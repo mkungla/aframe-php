@@ -44,9 +44,21 @@ $aframe->scene()->plane('my-plane')->entity('no-composer')->material('color: #00
 /** Output rendered scene when and where you want or save it into file **/
 $aframe->render();
 
+/**
+ * save it as index.php  and start php server if you do not have any server running already
+ * $ php -S localhost:8000
+ * and navigate your browser http://localhost:8000
+ */
+
 ````
 
+
 # Github stats examples
+To use examples change working directory to example directory and install composer dependencies.
+`composer install` 
+and optionally
+`php -S localhost:8000`
+then navigate your browser http://localhost:8000
 
 ````php
 <?php
@@ -65,4 +77,11 @@ $CFG['color']['progress-bar']   = '#0f3a46';
 $CFG['color']['floor']          = '#198d7f';
 $CFG['color']['hemisphere']     = '#04c9ff';
 ````
+
+**[LIVE DEMO 1: Basic demo](https://okramlabs.com/sandbox/aframe-php/demo/)**
+## Following examples get data with github API 
+
+**[LIVE DEMO 2: Github stats example showing for this repo](https://okramlabs.com/sandbox/aframe-php/github/aframe-php/)**
+
+**[LIVE DEMO 3: Github stats example showing for aframe repo](https://okramlabs.com/sandbox/aframe-php/github/aframe/)**
 
