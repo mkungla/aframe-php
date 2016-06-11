@@ -1,11 +1,12 @@
 {
 	"name" : "mkungla/aframe-php",
-	"description" : "Just a idea",
+	"description" : "Just a idea and test case repo to find out what would be the best way to structure the PHP API for creating A-Frame 3D and virtual reality scenes. This repo is nothing for production use at this point!",
 	"type" : "library",
 	"license" : "MIT",
 	"require": {
-        "php": ">= 7"
-    },
+        	"php": ">= 7"
+    	},
+    	"minimum-stability" : "dev",
 	"autoload" : {
 		"psr-4" : {
 			"Aframe\\" : ""
@@ -24,7 +25,7 @@
 	],
 	"support" : {
 		"issues" : "https://github.com/mkungla/aframe-php/issues",
-		"source" : "https://github.com/mkungla/aframe-php
+		"source" : "https://github.com/mkungla/aframe-php"
 	},
 	"keywords" : [
 		"php",
