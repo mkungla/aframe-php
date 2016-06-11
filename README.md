@@ -1,6 +1,6 @@
 # aframe-php
 
-> Just a idea and test case repo to find out what would be the best way to structure the PHP API for creating [A-Frame](https://aframe.io/d) 3D and virtual reality scenes. This repo is nothing for production use at this point!
+> Just a idea and test case repo to find out what would be the best way to structure the PHP API for creating [A-Frame](https://aframe.io/) 3D and virtual reality scenes. This repo is nothing for production use at this point!
 
 PHP API should be as light and independend as possible and have enough to generate basic scenes with dynamic content.
 
