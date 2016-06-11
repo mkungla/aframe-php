@@ -134,7 +134,7 @@ final class Render
 
     private static function cylinder($cylinder)
     {
-        printf('<a-cylinder%s>', $cylinder->position() . $cylinder->attr() . $cylinder->light() . $cylinder->geometry() . $cylinder->material() . $cylinder->scale() . $cylinder->mixin() . $cylinder->src() . $cylinder->height() . $cylinder->radius());
+        printf('<a-cylinder%s>', $cylinder->position() . $cylinder->attr() . $cylinder->light() . $cylinder->geometry() . $cylinder->material() . $cylinder->scale() . $cylinder->mixin() . $cylinder->src() . $cylinder->height() . $cylinder->radius() . $cylinder->color());
         
         $childs = $cylinder->getEntities();
         if (! empty($childs)) {

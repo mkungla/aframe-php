@@ -79,27 +79,27 @@ final class Scene
 
     public function getEntities()
     {
-        return $this->entities;
+        return $this->entities ?? array();
     }
 
     public function getCylinders()
     {
-        return $this->cylinders;
+        return $this->cylinders ?? array();
     }
 
     public function getCurvedimages()
     {
-        return $this->curvedimages;
+        return $this->curvedimages ?? array();
     }
 
     public function getPlanes()
     {
-        return $this->planes;
+        return $this->planes ?? array();
     }
 
     public function getImages()
     {
-        return $this->images;
+        return $this->images ?? array();
     }
 }
  

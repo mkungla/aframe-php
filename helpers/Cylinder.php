@@ -51,6 +51,8 @@ final class Cylinder
     private $height;
 
     private $radius;
+    
+    private $color;
 
     public function __construct($ID)
     {
@@ -202,6 +204,21 @@ final class Cylinder
         return ! empty($this->scale) ? sprintf(' scale="%s"', $this->scale) : '';
     }
 
+    /**
+     * color
+     *
+     * @param string $scale
+     */
+    public function color(string $color = NULL)
+    {
+        if (! empty($color)) {
+            $this->color = $color;
+        }
+    
+        return ! empty($this->color) ? sprintf(' color="%s"', $this->color) : '';
+    }
+    
+    
     /**
      * mixin
      *
