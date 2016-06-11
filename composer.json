@@ -4,8 +4,8 @@
 	"type" : "library",
 	"license" : "MIT",
 	"require": {
-        "php": ">= 7"
-    },
+        	"php": ">= 7"
+    	},
 	"autoload" : {
 		"psr-4" : {
 			"Aframe\\" : ""
@@ -24,7 +24,7 @@
 	],
 	"support" : {
 		"issues" : "https://github.com/mkungla/aframe-php/issues",
-		"source" : "https://github.com/mkungla/aframe-php
+		"source" : "https://github.com/mkungla/aframe-php"
 	},
 	"keywords" : [
 		"php",
