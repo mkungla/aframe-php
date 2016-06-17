@@ -1,3 +1,9 @@
+# Files and directories to ignore
 composer.phar
-/vendor/
+/vendor/*
+/tmp/*
 .project
+
+# Directories to keep
+!/vendor/.gitkeep
+!/tmp/.gitkeep
