@@ -1,0 +1,11 @@
+# Git attributes to ignore selection of files and directories
+# when publishing any of releases release.
+
+# Exclude git files and other files starting with .
+.* export-ignore
+
+# Exclude tests
+test export-ignore
+
+# Exclude vendor directory
+vendor export-ignore

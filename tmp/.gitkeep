@@ -1,1 +1,4 @@
 # preserve directory
+# 
+# tmp directory will be used by default to serve temporary files 
+# if have not configured other path for temporary files
