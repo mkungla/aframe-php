@@ -4,12 +4,13 @@
 	"type" : "library",
 	"license" : "MIT",
 	"require": {
-        	"php": ">= 7"
-    	},
-    	"minimum-stability" : "dev",
+        	"php": ">= 7",
+        	"masterminds/html5": "2.*"
+    },
+    "minimum-stability" : "stable",
 	"autoload" : {
 		"psr-4" : {
-			"aframevr\\" : "src/"
+			"AframeVR\\" : "src/"
 		}
 	},
 	"config" : {

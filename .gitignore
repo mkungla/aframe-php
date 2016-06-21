@@ -1,9 +1,11 @@
 # Files and directories to ignore
 composer.phar
-/vendor/*
+/tests/*
 /tmp/*
+/vendor/*
 .project
 
 # Directories to keep
-!/vendor/.gitkeep
+!/tests/.gitkeep
 !/tmp/.gitkeep
+!/vendor/.gitkeep

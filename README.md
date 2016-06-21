@@ -1,3 +1,3 @@
-# aframe-php
+# A-Frame-PHP library
 
 > Work in progress...
