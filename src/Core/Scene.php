@@ -26,6 +26,7 @@ namespace AframeVR\Core;
 use \AframeVR\Core\Helpers\MetaTags;
 use \AframeVR\Extras\Primitives;
 use \DOMImplementation;
+use \DOMDocument;
 
 final class Scene
 {
@@ -82,10 +83,21 @@ final class Scene
         $aframe_dom->formatOutput = true;
         
         /* Print Scene */
-        if($print)
-            print $aframe_dom->saveHTML();
-        else 
-            return $aframe_dom->saveHTML();
+        
+        if (! $full) {
+            $html = new DOMDocument();
+            $html_scene = $html->importNode($aframe_dom_scene, true);
+            $html->appendChild($html_scene);
+            if ($print)
+                print $html->saveHTML();
+            else
+                return $html->saveHTML();
+        } else {
+            if ($print)
+                print $aframe_dom->saveHTML();
+            else
+                return $aframe_dom->saveHTML();
+        }
     }
 }
  

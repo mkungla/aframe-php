@@ -39,30 +39,30 @@ class Rotation implements ComponentInterface
     /**
      * Roll, rotation about the X-axis.
      *
-     * @var int $x
+     * @var integer|double $x
      */
     protected $x;
 
     /**
      * Pitch, rotation about the Y-axis.
      *
-     * @var int $y
+     * @var integer|double $y
      */
     protected $y;
 
     /**
      * Yaw, rotation about the Z-axis.
      *
-     * @var int $z
+     * @var integer|double $z
      */
     protected $z;
 
     /**
      * Constructor
      * 
-     * @param float $x
-     * @param float $y
-     * @param float $z
+     * @param integer|double $x
+     * @param integer|double $y
+     * @param integer|double $z
      */
     public function __construct(float $x = 0, float $y = 0, float $z = 0)
     {
@@ -123,9 +123,9 @@ class Rotation implements ComponentInterface
      * A-Frame uses a right-handed coordinate system. When aligning our right hand’s thumb with a positive axis, 
      * our hand will curl in the positive direction of rotation.
      * 
-     * @param float $x
-     * @param float $y
-     * @param float $z
+     * @param integer|double $x
+     * @param integer|double $y
+     * @param integer|double $z
      */
     public function update(float $x = 0, float $y = 0, float $z = 0)
     {

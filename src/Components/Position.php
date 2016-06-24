@@ -40,7 +40,7 @@ class Position implements ComponentInterface
      *
      * Positive X Axis extends right.
      *
-     * @var int $x
+     * @var integer|double $x
      */
     protected $x;
 
@@ -48,7 +48,7 @@ class Position implements ComponentInterface
      * Negative Y axis extends up.
      * Positive Y Axis extends down.
      *
-     * @var int $y
+     * @var integer|double $y
      */
     protected $y;
 
@@ -56,16 +56,16 @@ class Position implements ComponentInterface
      * Negative Z axis extends in.
      * Positive Z Axis extends out.
      *
-     * @var int $z
+     * @var integer|double $z
      */
     protected $z;
 
     /**
      * Constructor
      * 
-     * @param float $x
-     * @param float $y
-     * @param float $z
+     * @param integer|double $x
+     * @param integer|double $y
+     * @param integer|double $z
      */
     public function __construct(float $x = 0, float $y = 0, float $z = 0)
     {
@@ -123,9 +123,9 @@ class Position implements ComponentInterface
     /**
      * Update coordinates
      * 
-     * @param float $x
-     * @param float $y
-     * @param float $z
+     * @param integer|double $x
+     * @param integer|double $y
+     * @param integer|double $z
      */
     public function update(float $x = 0, float $y = 0, float $z = 0)
     {

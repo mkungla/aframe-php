@@ -39,30 +39,30 @@ class Scale implements ComponentInterface
     /**
      * Scaling factor in the X direction.
      *
-     * @var int $x
+     * @var integer|double $x
      */
     protected $x;
 
     /**
      * Scaling factor in the Y direction.
      *
-     * @var int $y
+     * @var integer|double $y
      */
     protected $y;
 
     /**
      * Scaling factor in the Z direction.
      *
-     * @var int $z
+     * @var integer|double $z
      */
     protected $z;
 
     /**
      * Constructor
      * 
-     * @param float $x
-     * @param float $y
-     * @param float $z
+     * @param integer|double $x
+     * @param integer|double $y
+     * @param integer|double $z
      */
     public function __construct(float $x = 0, float $y = 0, float $z = 0)
     {
@@ -123,9 +123,9 @@ class Scale implements ComponentInterface
      * If any of the scaling factors are set to 0, then A-Frame will 
      * assign instead an extremely small value such that things don’t break.
      * 
-     * @param float $x
-     * @param float $y
-     * @param float $z
+     * @param integer|double $x
+     * @param integer|double $y
+     * @param integer|double $z
      */
     public function update(float $x = 0, float $y = 0, float $z = 00)
     {
