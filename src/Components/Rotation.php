@@ -24,6 +24,7 @@
 namespace AframeVR\Components;
 
 use \AframeVR\Interfaces\ComponentInterface;
+use \DOMAttr;
 
 /**
  * The rotation component defines the orientation of an entity.
@@ -36,35 +37,34 @@ class Rotation implements ComponentInterface
 {
 
     /**
-     * Negative X axis extends left.
-     * Positive X Axis extends right.
+     * Roll, rotation about the X-axis.
      *
      * @var int $x
      */
     protected $x;
 
     /**
-     * Negative Y axis extends up.
-     * Positive Y Axis extends down.
+     * Pitch, rotation about the Y-axis.
      *
      * @var int $y
      */
     protected $y;
 
     /**
-     * Negative Z axis extends in.
-     * Positive Z Axis extends out.
+     * Yaw, rotation about the Z-axis.
      *
      * @var int $z
      */
     protected $z;
 
     /**
-     * Set initial coordinates
-     *
-     * @param string $coordinates            
+     * Constructor
+     * 
+     * @param float $x
+     * @param float $y
+     * @param float $z
      */
-    public function __construct($x = 0, $y = 0, $z = 0)
+    public function __construct(float $x = 0, float $y = 0, float $z = 0)
     {
         $this->update($x, $y, $z);
     }
@@ -112,17 +112,22 @@ class Rotation implements ComponentInterface
      *
      * @return DOMAttr
      */
-    public function getDOMAttributes(): \DOMAttr
+    public function getDOMAttributes(): DOMAttr
     {
         return new \DOMAttr('rotation', sprintf('%s %s %s', $this->x, $this->y, $this->z));
     }
 
     /**
-     * Update coordinates
-     *
-     * @param string $coordinates            
+     * Update rotation
+     * 
+     * A-Frame uses a right-handed coordinate system. When aligning our right hand’s thumb with a positive axis, 
+     * our hand will curl in the positive direction of rotation.
+     * 
+     * @param float $x
+     * @param float $y
+     * @param float $z
      */
-    public function update($x = 0, $y = 0, $z = 0)
+    public function update(float $x = 0, float $y = 0, float $z = 0)
     {
         $this->x = $x ?? 0;
         $this->y = $y ?? 0;

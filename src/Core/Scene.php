@@ -51,9 +51,10 @@ final class Scene
     /**
      * Render the A-Frame scene
      *
-     * @param string $full            
+     * @param bool $full            
+     * @param bool $print            
      */
-    public function render($full = true)
+    public function render($full = true, $print = true)
     {
         $dom = new DOMImplementation();
         $doctype = $dom->createDocumentType('html');
@@ -81,7 +82,10 @@ final class Scene
         $aframe_dom->formatOutput = true;
         
         /* Print Scene */
-        print $aframe_dom->saveHTML();
+        if($print)
+            print $aframe_dom->saveHTML();
+        else 
+            return $aframe_dom->saveHTML();
     }
 }
  

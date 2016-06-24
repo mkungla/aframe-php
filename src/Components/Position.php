@@ -24,6 +24,7 @@
 namespace AframeVR\Components;
 
 use \AframeVR\Interfaces\ComponentInterface;
+use \DOMAttr;
 
 /**
  * The position component defines where an entity is placed in the scene’s world space.
@@ -36,8 +37,9 @@ class Position implements ComponentInterface
 
     /**
      * Negative X axis extends left.
+     *
      * Positive X Axis extends right.
-     * 
+     *
      * @var int $x
      */
     protected $x;
@@ -45,7 +47,7 @@ class Position implements ComponentInterface
     /**
      * Negative Y axis extends up.
      * Positive Y Axis extends down.
-     * 
+     *
      * @var int $y
      */
     protected $y;
@@ -53,17 +55,19 @@ class Position implements ComponentInterface
     /**
      * Negative Z axis extends in.
      * Positive Z Axis extends out.
-     * 
+     *
      * @var int $z
      */
     protected $z;
 
     /**
-     * Set initial coordinates
-     *
-     * @param string $coordinates            
+     * Constructor
+     * 
+     * @param float $x
+     * @param float $y
+     * @param float $z
      */
-    public function __construct($x = 0, $y = 0, $z = 0)
+    public function __construct(float $x = 0, float $y = 0, float $z = 0)
     {
         $this->update($x, $y, $z);
     }
@@ -111,17 +115,19 @@ class Position implements ComponentInterface
      *
      * @return DOMAttr
      */
-    public function getDOMAttributes(): \DOMAttr
+    public function getDOMAttributes(): DOMAttr
     {
         return new \DOMAttr('position', sprintf('%s %s %s', $this->x, $this->y, $this->z));
     }
 
     /**
      * Update coordinates
-     *
-     * @param string $coordinates            
+     * 
+     * @param float $x
+     * @param float $y
+     * @param float $z
      */
-    public function update($x = 0, $y = 0, $z = 0)
+    public function update(float $x = 0, float $y = 0, float $z = 0)
     {
         $this->x = $x ?? 0;
         $this->y = $y ?? 0;

@@ -2,20 +2,18 @@
 
 > Work in progress...
 
-> ##### General project info
->
-> [![Minimum PHP Version][php-image]][php-url]
-> [![A-Frame Version][aframe-image]][aframe-url]
-> [![GitHub license][license-image]][license-url]
-> [![Latest version][packagist-v-image]][packagist-url]
-> [![Downloads total][packagist-dt-image]][packagist-url]
+[![Minimum PHP Version][php-image]][php-url]
+[![A-Frame Version][aframe-image]][aframe-url]
+[![GitHub license][license-image]][license-url]
+[![Latest version][packagist-v-image]][packagist-url]
+[![Downloads total][packagist-dt-image]][packagist-url]
 
-> ##### Branch `master` stats
-> 
-> [![Coding Standards][psr-image]][psr-url]
-> [![Build Status][travis-ci-image]][travis-ci-url]
-> [![Scrutinizer Code Quality][scrutinizer-image]][scrutinizer-url]
-> [![codecov][codecov-image]][codecov-url]
+##### Development and Contributing
+
+[![Coding Standards][psr-image]][psr-url]
+[![Build Status][travis-ci-image]][travis-ci-url]
+[![Scrutinizer Code Quality][scrutinizer-image]][scrutinizer-url]
+[![codecov][codecov-image]][codecov-url]
 
 
 <!-- ASSETS and LINKS -->

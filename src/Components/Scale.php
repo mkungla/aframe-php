@@ -24,46 +24,47 @@
 namespace AframeVR\Components;
 
 use \AframeVR\Interfaces\ComponentInterface;
+use \DOMAttr;
 
 /**
  * The scale component defines a shrinking, stretching, or skewing transformation of an entity. 
  * It takes three scaling factors for the X, Y, and Z axes.
- *
+ * Scaling factors can be negative, which results in a reflection.
+ * 
  * All entities inherently have the rotation component.
  */
 class Scale implements ComponentInterface
 {
 
     /**
-     * Negative X axis extends left.
-     * Positive X Axis extends right.
+     * Scaling factor in the X direction.
      *
      * @var int $x
      */
     protected $x;
 
     /**
-     * Negative Y axis extends up.
-     * Positive Y Axis extends down.
+     * Scaling factor in the Y direction.
      *
      * @var int $y
      */
     protected $y;
 
     /**
-     * Negative Z axis extends in.
-     * Positive Z Axis extends out.
+     * Scaling factor in the Z direction.
      *
      * @var int $z
      */
     protected $z;
 
     /**
-     * Set initial coordinates
-     *
-     * @param string $coordinates
+     * Constructor
+     * 
+     * @param float $x
+     * @param float $y
+     * @param float $z
      */
-    public function __construct($x = 0, $y = 0, $z = 0)
+    public function __construct(float $x = 0, float $y = 0, float $z = 0)
     {
         $this->update($x, $y, $z);
     }
@@ -111,17 +112,22 @@ class Scale implements ComponentInterface
      *
      * @return DOMAttr
      */
-    public function getDOMAttributes(): \DOMAttr
+    public function getDOMAttributes(): DOMAttr
     {
         return new \DOMAttr('scale', sprintf('%s %s %s', $this->x, $this->y, $this->z));
     }
 
     /**
-     * Update coordinates
-     *
-     * @param string $coordinates
+     * Update scale
+     * 
+     * If any of the scaling factors are set to 0, then A-Frame will 
+     * assign instead an extremely small value such that things don’t break.
+     * 
+     * @param float $x
+     * @param float $y
+     * @param float $z
      */
-    public function update($x = 0, $y = 0, $z = 0)
+    public function update(float $x = 0, float $y = 0, float $z = 00)
     {
         $this->x = $x ?? 0;
         $this->y = $y ?? 0;
