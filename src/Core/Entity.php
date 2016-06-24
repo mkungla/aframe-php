@@ -24,10 +24,13 @@
 namespace AframeVR\Core;
 
 use \AframeVR\Core\Exceptions\BadComponentCallException;
-use \AframeVR\Interfaces\ComponentInterface;
+use \AframeVR\Interfaces\{
+    ComponentInterface,
+    EntityInterface
+};
 use \DOMElement;
 
-class Entity
+class Entity implements EntityInterface
 {
 
     protected $components = array();
@@ -52,23 +55,60 @@ class Entity
         $this->defaults();
     }
 
-    public function position($x = 0, $y = 0, $z = 0): Entity
+    /**
+     * Position component
+     * 
+     * All entities inherently have the position component.
+     * 
+     * @param number $x
+     * @param number $y
+     * @param number $z
+     * @return Entity
+     */
+    public function position($x = 0, $y = 0, $z = 0): EntityInterface
     {
         $this->component('Position')->update($x, $y, $z);
         return $this;
     }
 
-    public function rotation($x = 0, $y = 0, $z = 0): Entity
+    /**
+     * Rotation component
+     * 
+     * All entities inherently have the rotation component.
+     * 
+     * @param number $x
+     * @param number $y
+     * @param number $z
+     * @return EntityInterface
+     */
+    public function rotation($x = 0, $y = 0, $z = 0): EntityInterface
     {
         $this->component('Rotation')->update($x, $y, $z);
         return $this;
     }
-
+    
+    /**
+     * Scale component
+     *
+     * All entities inherently have the scale component.
+     *
+     * @param number $x
+     * @param number $y
+     * @param number $z
+     * @return EntityInterface
+     */
+    public function scale($x = 0, $y = 0, $z = 0): EntityInterface
+    {
+        $this->component('Scale')->update($x, $y, $z);
+        return $this;
+    }
+    
     /**
      * Load component for this entity
      *
      * @param string $component_name            
      * @throws BadComponentCallException
+     * @return ComponentInterface
      */
     public function component(string $component_name): ComponentInterface
     {
@@ -103,11 +143,6 @@ class Entity
     public function __call(string $component_name, array $args)
     {
         return call_user_func_array($this->{$component_name}->bindTo($this), $args);
-    }
-
-    public function __toString()
-    {
-        return call_user_func($this->{"__toString"}->bindTo($this));
     }
 
     /**

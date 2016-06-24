@@ -321,9 +321,7 @@ class Geometry implements ComponentInterface
     {
         $defaults = $this->primitiveDefaults();
         foreach (get_object_vars($this) as $name => $value) {
-            if (empty($value) 
-                || (array_key_exists($name, self::P_COMMON_PROPS) && $value === self::P_COMMON_PROPS[$name]) 
-                || (array_key_exists($name, $defaults) && $value === $defaults[$name]))
+            if (empty($value) || (array_key_exists($name, self::P_COMMON_PROPS) && $value === self::P_COMMON_PROPS[$name]) || (array_key_exists($name, $defaults) && $value === $defaults[$name]))
                 unset($this->$name);
         }
     }
@@ -336,7 +334,7 @@ class Geometry implements ComponentInterface
     public function getDOMAttributes(): DOMAttr
     {
         $format = implode(': %s; ', array_keys(get_object_vars($this))) . ': %s;';
-        return new \DOMAttr('geometry', vsprintf($format, array_values(get_object_vars($this))));
+        return new DOMAttr('geometry', vsprintf($format, array_values(get_object_vars($this))));
     }
 
     /**
@@ -553,8 +551,8 @@ class Geometry implements ComponentInterface
 
     /**
      * Is called method allowed for current primitive
-     * 
-     * @param unknown $method
+     *
+     * @param unknown $method            
      */
     protected function isPrimitiveMethod($method)
     {
@@ -594,10 +592,10 @@ class Geometry implements ComponentInterface
 
     /**
      * Get defaults for current primitve type
-     * 
+     *
      * @return array;
      */
-    protected function primitiveDefaults() : array
+    protected function primitiveDefaults(): array
     {
         switch ($this->primitive) {
             case 'box':

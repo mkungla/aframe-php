@@ -47,6 +47,28 @@ trait Primitives
     protected $sky;
 
     /**
+     * A-Frame Primitive box
+     *
+     * @param string $name
+     * @return Entity
+     */
+    public function box(string $name = 'untitled'): Entity
+    {
+        return $this->boxes[$name] ?? $this->boxes[$name] = new Box();
+    }
+    
+    /**
+     * A-Frame Primitive camera
+     * 
+     * @param string $name
+     * @return Entity
+     */
+    public function camera(string $name = 'untitled'): Entity
+    {
+        return $this->cameras[$name] ?? $this->cameras[$name] = new Camera();
+    }
+    
+    /**
      * A-Frame Primitive sphere
      *
      * @param string $name            
@@ -57,16 +79,7 @@ trait Primitives
         return $this->spheres[$name] ?? $this->spheres[$name] = new Sphere();
     }
 
-    /**
-     * A-Frame Primitive box
-     *
-     * @param string $name            
-     * @return Entity
-     */
-    public function box(string $name = 'untitled'): Entity
-    {
-        return $this->boxes[$name] ?? $this->boxes[$name] = new Box();
-    }
+    
 
     /**
      * A-Frame Primitive cylinder

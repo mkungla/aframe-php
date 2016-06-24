@@ -79,8 +79,8 @@ final class Scene
         $html->appendChild($aframe_dom_body);
         
         $aframe_dom->formatOutput = true;
-        /* Print Scene */
         
+        /* Print Scene */
         print $aframe_dom->saveHTML();
     }
 }

@@ -25,7 +25,10 @@ namespace AframeVR\Extras\Primitives;
 
 use \AframeVR\Core\Entity;
 use \AframeVR\Core\Helpers\MeshAttributes;
-use \AframeVR\Interfaces\PrimitiveInterface;
+use \AframeVR\Interfaces\{
+    PrimitiveInterface,
+    EntityInterface
+};
 
 /**
  * <a-box>
@@ -43,19 +46,19 @@ class Box extends Entity implements PrimitiveInterface
         $this->component('Geometry')->primitive('box');
     }
 
-    public function depth(float $depth = 1): Entity
+    public function depth(float $depth = 1): EntityInterface
     {
         $this->component('Geometry')->depth($depth);
         return $this;
     }
 
-    public function height(float $height = 1)
+    public function height(float $height = 1): EntityInterface
     {
         $this->component('Geometry')->height($height);
         return $this;
     }
 
-    public function width(float $width = 1)
+    public function width(float $width = 1): EntityInterface
     {
         $this->component('Geometry')->width($width);
         return $this;

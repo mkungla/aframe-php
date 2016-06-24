@@ -153,7 +153,7 @@ class Material implements ComponentInterface
      *
      * @var string standard
      */
-    public function shader($shader = 'standard')
+    public function shader(string $shader = 'standard')
     {
         if ($this->shaderObj instanceof ShaderInterface)
             return $this->shaderObj;
@@ -169,6 +169,45 @@ class Material implements ComponentInterface
             die($e->getMessage());
         }
         return $this->shaderObj;
+    }
+
+    /**
+     * opacity
+     *
+     * Extent of transparency. If the transparent property is not true,
+     * then the material will remain opaque and opacity will only affect color.
+     *
+     * @param float $opacity            
+     * @return Entity
+     */
+    public function opacity(float $opacity = 1.0)
+    {
+        $this->opacity = $opacity;
+    }
+
+    /**
+     * transparent
+     *
+     * Whether material is transparent. Transparent entities are rendered after non-transparent entities.
+     *
+     * @param string $transparent            
+     */
+    public function transparent(string $transparent = 'false')
+    {
+        $this->transparent = $transparent;
+    }
+
+    /**
+     * side
+     *
+     * Which sides of the mesh to render. Can be one of front, back, or double
+     *
+     * @param string $side            
+     * @return EntityInterface
+     */
+    public function side(string $side = 'front'): EntityInterface
+    {
+        $this->side = $side;
     }
 }
  

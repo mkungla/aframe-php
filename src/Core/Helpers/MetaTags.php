@@ -87,5 +87,23 @@ final class MetaTags
         $description->setAttribute('name', 'description');
         $description->setAttribute('content', $this->description);
         $head->appendChild($description);
+        
+        /* meta viewport */
+        $viewport = $aframe_dom->createElement('meta');
+        $viewport->setAttribute('name', 'viewport');
+        $viewport->setAttribute('content', 'width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,minimal-ui');
+        $head->appendChild($viewport);
+        
+        /* mobile */
+        $mobile = $aframe_dom->createElement('meta');
+        $mobile->setAttribute('name', 'mobile-web-app-capable');
+        $mobile->setAttribute('content', 'yes');
+        $head->appendChild($mobile);
+        
+        /* theme */
+        $theme = $aframe_dom->createElement('meta');
+        $theme->setAttribute('name', 'theme-color');
+        $theme->setAttribute('content', 'black');
+        $head->appendChild($theme);
     }
 }

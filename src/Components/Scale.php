@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jun 21, 2016 - 12:10:50 PM
+ * Created by   Marko Kungla on Jun 24, 2016 - 8:08:15 PM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         Rotation.php
+ * File         Scale.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  ^ @issues      https://github.com/mkungla/aframe-php/issues
@@ -26,13 +26,12 @@ namespace AframeVR\Components;
 use \AframeVR\Interfaces\ComponentInterface;
 
 /**
- * The rotation component defines the orientation of an entity.
- *
- * It takes the roll (x), pitch (y), and yaw (z) as three space-delimited numbers indicating degrees of rotation.
+ * The scale component defines a shrinking, stretching, or skewing transformation of an entity. 
+ * It takes three scaling factors for the X, Y, and Z axes.
  *
  * All entities inherently have the rotation component.
  */
-class Rotation implements ComponentInterface
+class Scale implements ComponentInterface
 {
 
     /**
@@ -62,7 +61,7 @@ class Rotation implements ComponentInterface
     /**
      * Set initial coordinates
      *
-     * @param string $coordinates            
+     * @param string $coordinates
      */
     public function __construct($x = 0, $y = 0, $z = 0)
     {
@@ -114,13 +113,13 @@ class Rotation implements ComponentInterface
      */
     public function getDOMAttributes(): \DOMAttr
     {
-        return new \DOMAttr('rotation', sprintf('%s %s %s', $this->x, $this->y, $this->z));
+        return new \DOMAttr('scale', sprintf('%s %s %s', $this->x, $this->y, $this->z));
     }
 
     /**
      * Update coordinates
      *
-     * @param string $coordinates            
+     * @param string $coordinates
      */
     public function update($x = 0, $y = 0, $z = 0)
     {
@@ -129,3 +128,5 @@ class Rotation implements ComponentInterface
         $this->z = $z ?? 0;
     }
 }
+
+ 

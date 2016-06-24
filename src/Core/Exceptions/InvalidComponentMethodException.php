@@ -23,11 +23,11 @@
  * @formatter:on */
 namespace AframeVR\Core\Exceptions;
 
-final class InvalidComponentMethodException extends \InvalidArgumentException
+final class InvalidComponentMethodException extends \BadMethodCallException
 {
 
     public function __construct(string $message = 'null', $component_method)
     {
-        $this->message = sprintf("Called invalid method (%s) for %s!\n", $message, $component_method);
+        $this->message = sprintf("Called invalid method (%s) for %s!\nFile: %s on line: %s", $message, $component_method, $this->getFile(), $this->getLine());
     }
 }
