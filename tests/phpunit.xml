@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="../vendor/autoload.php" colors="true"
+	printerFile="tests/results/ResultPrinter.php"
+	beStrictAboutTestsThatDoNotTestAnything="true" columns="67" verbose="true">
+	<php>
+		<const name="FS_TEST_LOG_LEVEL" value="7" />
+	</php>
+	<testsuites>
+		<testsuite name="general" phpVersion="7"
+			phpVersionOperator=">=" suffix="Test.php">
+			<directory>testsuites/general</directory>
+		</testsuite>
+	</testsuites>
+	<filter>
+		<whitelist processUncoveredFilesFromWhitelist="true">
+			<directory suffix=".php">../src</directory>
+		</whitelist>
+	</filter>
+	<logging>
+		<log type="coverage-html" target="results/report" lowUpperBound="35"
+			highLowerBound="70" />
+		<log type="json" target="results/log/logfile.json" />
+		<log type="junit" target="results/log/logfile.xml"
+			logIncompleteSkipped="false" />
+		<log type="testdox-html" target="results/testdox.html" />
+	</logging>
+</phpunit>

@@ -1,11 +1,17 @@
 # Files and directories to ignore
 composer.phar
-/tests/*
+/examples/devel/*
+
+/tests/results/log/*
+/tests/results/report/*
+/tests/results/testdox.html
+
 /tmp/*
 /vendor/*
 .project
 
-# Directories to keep
-!/tests/.gitkeep
+# Directories files to keep
+!/tests/results/log/.gitkeep
+!/tests/results/report/.gitkeep
 !/tmp/.gitkeep
 !/vendor/.gitkeep

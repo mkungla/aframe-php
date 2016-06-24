@@ -4,6 +4,9 @@
 # Exclude git files and other files starting with .
 .* export-ignore
 
+# Exclude examples
+examples export-ignore
+
 # Exclude tests
 test export-ignore
 
