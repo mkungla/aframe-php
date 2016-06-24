@@ -13,6 +13,11 @@
 			"AframeVR\\" : "src/"
 		}
 	},
+	"autoload-dev": {
+	    "psr-4": {
+	        "AframeVR\\Tests\\": "tests/helpers"
+	    }
+	},
 	"config" : {
 		"optimize-autoloader" : true
 	},

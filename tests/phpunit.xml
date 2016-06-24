@@ -7,8 +7,12 @@
 	</php>
 	<testsuites>
 		<testsuite name="general" phpVersion="7"
-			phpVersionOperator=">=" suffix="Test.php">
+			phpVersionOperator=">=">
 			<directory>testsuites/general</directory>
+		</testsuite>
+		<testsuite name="primitives" phpVersion="7"
+			phpVersionOperator=">=">
+			<directory>testsuites/primitives</directory>
 		</testsuite>
 	</testsuites>
 	<filter>
