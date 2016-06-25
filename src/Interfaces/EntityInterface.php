@@ -23,10 +23,8 @@
  * @formatter:on */
 namespace AframeVR\Interfaces;
 
-use \AframeVR\Interfaces\{
-    ComponentInterface
-};
 use \DOMElement;
+use \AframeVR\Core\Entity;
 
 interface EntityInterface
 {
@@ -39,9 +37,9 @@ interface EntityInterface
      * @param float|int $x            
      * @param float|int $y            
      * @param float|int $z            
-     * @return \AframeVR\Interfaces\EntityInterface
+     * @return \AframeVR\Core\Entity
      */
-    public function position(float $x = 0, float $y = 0, float $z = 0): EntityInterface;
+    public function position(float $x = 0, float $y = 0, float $z = 0): Entity;
 
     /**
      * Rotation component
@@ -51,9 +49,9 @@ interface EntityInterface
      * @param float|int $x            
      * @param float|int $y            
      * @param float|int $z            
-     * @return \AframeVR\Interfaces\EntityInterface
+     * @return \AframeVR\Core\Entity
      */
-    public function rotation(float $x = 0, float $y = 0, float $z = 0): EntityInterface;
+    public function rotation(float $x = 0, float $y = 0, float $z = 0): Entity;
 
     /**
      * Scale component
@@ -63,16 +61,16 @@ interface EntityInterface
      * @param float|int $x            
      * @param float|int $y            
      * @param float|int $z            
-     * @return \AframeVR\Interfaces\EntityInterface
+     * @return \AframeVR\Core\Entity
      */
-    public function scale(float $x = 0, float $y = 0, float $z = 0): EntityInterface;
+    public function scale(float $x = 0, float $y = 0, float $z = 0): Entity;
 
     /**
      * Load component for this entity
      *
      * @param string $component_name            
      * @throws BadComponentCallException
-     * @return \AframeVR\Interfaces\ComponentInterface|null
+     * @return \AframeVR\Core\Entity
      */
     public function component(string $component_name);
 

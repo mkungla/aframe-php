@@ -23,7 +23,7 @@
  * @formatter:on */
 namespace AframeVR\Components;
 
-use \AframeVR\Interfaces\Components\GeometryComponentInterface;
+use \AframeVR\Interfaces\ComponentInterface;
 use \AframeVR\Core\Exceptions\{
     InvalidComponentArgumentException,
     InvalidComponentMethodException
@@ -37,7 +37,7 @@ use \DOMAttr;
  * additional properties are used to further define the geometry. A material component is usually defined alongside
  * to provide a appearance alongside the shape to create a complete mesh.
  */
-class Geometry implements GeometryComponentInterface
+class Geometry implements ComponentInterface
 {
 
     const ALLOWED_PRIMITIVES = array(
@@ -482,6 +482,8 @@ class Geometry implements GeometryComponentInterface
     protected $q;
 
     /**
+     * translate
+     * 
      * Translates the geometry relative to its pivot point.
      *
      * @var string $translate
@@ -489,12 +491,23 @@ class Geometry implements GeometryComponentInterface
     protected $translate = '0 0 0';
 
     /**
+     * skipCache
+     * 
      * Disable retrieving the shared geometry object from the cache.
      *
-     * @var string $skipCache
+     * @var bool $skipCache
      */
     protected $skipCache;
 
+    /**
+     * Set Buffer
+     *
+     * Transform geometry into a BufferGeometry to reduce memory usage at the cost of being harder to manipulate.
+     *
+     * @param bool $buffer            
+     */
+    protected $buffer;
+    
     /**
      * Magic Call
      *
@@ -596,7 +609,7 @@ class Geometry implements GeometryComponentInterface
     /**
      * Set Buffer
      *
-     * Transform geometry into a BufferGeometry to reduce memory usage at the cost of being harder to manipulate.
+     * {@inheritdoc}
      *
      * @param bool $buffer            
      */
@@ -608,7 +621,7 @@ class Geometry implements GeometryComponentInterface
     /**
      * skipCache
      *
-     * Disable retrieving the shared geometry object from the cache.
+     * {@inheritdoc}
      *
      * @param bool $skipCache            
      */
@@ -964,7 +977,7 @@ class Geometry implements GeometryComponentInterface
     /**
      * Get defaults for current primitve type
      *
-     * @return array;
+     * @return array $defaults
      */
     protected function primitiveDefaults(): array
     {

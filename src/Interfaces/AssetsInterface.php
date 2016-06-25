@@ -23,8 +23,6 @@
  * @formatter:on */
 namespace AframeVR\Interfaces;
 
-use \AframeVR\Interfaces\MixinInterface;
-
 interface AssetsInterface
 {
 

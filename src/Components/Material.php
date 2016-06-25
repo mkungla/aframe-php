@@ -24,11 +24,11 @@
 namespace AframeVR\Components;
 
 use \AframeVR\Interfaces\ShaderInterface;
-use \AframeVR\Interfaces\Components\MaterialComponentInterface;
+use \AframeVR\Interfaces\ComponentInterface;
 use \AframeVR\Core\Exceptions\BadShaderCallException;
 use \DOMAttr;
 
-class Material implements MaterialComponentInterface
+class Material implements ComponentInterface
 {
 
     private $shaderObj;

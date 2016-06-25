@@ -76,9 +76,9 @@ class Entity implements EntityInterface
      * @param float|int $x            
      * @param float|int $y            
      * @param float|int $z            
-     * @return \AframeVR\Interfaces\EntityInterface
+     * @return \AframeVR\Core\Entity
      */
-    public function position(float $x = 0, float $y = 0, float $z = 0): EntityInterface
+    public function position(float $x = 0, float $y = 0, float $z = 0): Entity
     {
         $this->component('Position')->update($x, $y, $z);
         return $this;
@@ -92,9 +92,9 @@ class Entity implements EntityInterface
      * @param float|int $x            
      * @param float|int $y            
      * @param float|int $z            
-     * @return \AframeVR\Interfaces\EntityInterface
+     * @return \AframeVR\Core\Entity
      */
-    public function rotation(float $x = 0, float $y = 0, float $z = 0): EntityInterface
+    public function rotation(float $x = 0, float $y = 0, float $z = 0): Entity
     {
         $this->component('Rotation')->update($x, $y, $z);
         return $this;
@@ -108,9 +108,9 @@ class Entity implements EntityInterface
      * @param float|int $x            
      * @param float|int $y            
      * @param float|int $z            
-     * @return \AframeVR\Interfaces\EntityInterface
+     * @return \AframeVR\Core\Entity
      */
-    public function scale(float $x = 0, float $y = 0, float $z = 0): EntityInterface
+    public function scale(float $x = 0, float $y = 0, float $z = 0): Entity
     {
         $this->component('Scale')->update($x, $y, $z);
         return $this;

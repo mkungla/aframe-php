@@ -23,7 +23,7 @@
  * @formatter:on */
 namespace AframeVR\Components;
 
-use \AframeVR\Interfaces\Components\ScaleComponentInterface;
+use \AframeVR\Interfaces\ComponentInterface;
 use \DOMAttr;
 
 /**
@@ -34,7 +34,7 @@ use \DOMAttr;
  *
  * All entities inherently have the rotation component.
  */
-class Scale implements ScaleComponentInterface
+class Scale implements ComponentInterface
 {
 
     /**
