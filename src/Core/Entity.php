@@ -120,7 +120,7 @@ class Entity implements EntityInterface
      * Animations
      *
      * @param string $name            
-     * @return AnimationInterface
+     * @return \AframeVR\Interfaces\AnimationInterface
      */
     public function animation(string $name = 'untitled'): AnimationInterface
     {

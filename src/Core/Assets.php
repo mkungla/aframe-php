@@ -38,7 +38,7 @@ final class Assets implements AssetsInterface
      * mixin
      *
      * @param string $name            
-     * @return MixinInterface
+     * @return \AframeVR\Interfaces\MixinInterface
      */
     public function mixin(string $name = 'untitled'): MixinInterface
     {

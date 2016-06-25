@@ -75,7 +75,7 @@ final class Scene
      * Assets
      *
      * @param string $name            
-     * @return AssetsnInterface
+     * @return \AframeVR\Interfaces\AssetsInterface
      */
     public function assets(string $name = 'untitled'): AssetsInterface
     {

@@ -53,10 +53,10 @@ trait MeshAttributes
     /**
      * material.metalness
      *
-     * @param string $metalness            
+     * @param int|float $metalness            
      * @return \AframeVR\Core\Helpers\MeshAttributes
      */
-    public function metalness($metalness = 0): EntityInterface
+    public function metalness(float $metalness = 0): EntityInterface
     {
         $this->component('Material')
             ->shader()
@@ -95,9 +95,9 @@ trait MeshAttributes
     /**
      * geometry.translate
      *
-     * @param float $x            
-     * @param float $y            
-     * @param float $z            
+     * @param int|float $x            
+     * @param int|float $y            
+     * @param int|float $z            
      * @return EntityInterface
      */
     public function translate(float $x = 0, float $y = 0, float $z = 0): EntityInterface
@@ -121,7 +121,7 @@ trait MeshAttributes
     /**
      * material.opacity
      *
-     * @param string $opacity            
+     * @param float $opacity            
      * @return \AframeVR\Core\Helpers\MeshAttributes
      */
     public function opacity(float $opacity = 1.0): EntityInterface
