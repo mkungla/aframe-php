@@ -170,7 +170,7 @@ class Material implements ComponentInterface
      * Can be set to the built-in flat shading model or to a registered custom shader
      *
      * @var string standard
-     * @return ShaderInterface|null
+     * @return \AframeVR\Interfaces\ShaderInterface|null
      */
     public function shader(string $shader = 'standard')
     {
@@ -204,7 +204,7 @@ class Material implements ComponentInterface
      *
      * Whether material is transparent. Transparent entities are rendered after non-transparent entities.
      *
-     * @param string $transparent            
+     * @param bool|string $transparent            
      */
     public function transparent(bool $transparent = false)
     {
@@ -217,7 +217,7 @@ class Material implements ComponentInterface
      * Which sides of the mesh to render. Can be one of front, back, or double
      *
      * @param string $side            
-     * @return EntityInterface
+     * @return void
      */
     public function side(string $side = 'front')
     {

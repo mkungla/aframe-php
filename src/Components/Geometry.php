@@ -477,16 +477,23 @@ class Geometry implements ComponentInterface
      *
      * TORUSKNOT: Number that helps define the pretzel shape.
      *
-     * @var unknown
+     * @var int $q
      */
     protected $q;
 
     /**
      * Translates the geometry relative to its pivot point.
      *
-     * @var string
+     * @var string $translate
      */
     protected $translate = '0 0 0';
+
+    /**
+     * Disable retrieving the shared geometry object from the cache.
+     *
+     * @var bool $skipCache
+     */
+    protected $skipCache;
 
     /**
      * Magic Call
@@ -495,12 +502,12 @@ class Geometry implements ComponentInterface
      * @param array $args            
      * @throws InvalidComponentMethodException
      */
-    public function __call($method, $args)
+    public function __call(string $method, $args)
     {
         if (method_exists($this, $method) && ($this->isPrimitiveMethod($method) || array_key_exists($method, self::P_COMMON_PROPS))) {
             return call_user_func_array(array(
                 $this,
-                $method
+                (string) $method
             ), $args);
         } else {
             throw new InvalidComponentMethodException($method, 'Geometry::primitive ' . $this->primitive);
@@ -561,10 +568,10 @@ class Geometry implements ComponentInterface
      *
      * One of box, circle, cone, cylinder, plane, ring, sphere, torus, torusKnot.
      *
-     * @param unknown $primitive            
+     * @param string|null $primitive            
      * @throws InvalidComponentArgumentException
      */
-    public function primitive($primitive = null)
+    public function primitive(string $primitive = null)
     {
         if (in_array($primitive, self::ALLOWED_PRIMITIVES)) {
             /* If primitive is changed we reset the object and releoad allowed attributes */
@@ -582,7 +589,7 @@ class Geometry implements ComponentInterface
                     unset($this->$name);
             }
         } else {
-            throw new InvalidComponentArgumentException($primitive, 'Geometry::primitive');
+            throw new InvalidComponentArgumentException((string) $primitive, 'Geometry::primitive');
         }
     }
 
@@ -615,7 +622,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param float $width            
+     * @param float|null $width            
      */
     protected function width(float $width = null)
     {
@@ -627,7 +634,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param float $height            
+     * @param float|null $height            
      */
     protected function height(float $height = null)
     {
@@ -639,7 +646,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param float $depth            
+     * @param float|null $depth            
      */
     protected function depth(float $depth = null)
     {
@@ -651,9 +658,9 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param int $segments            
+     * @param int|null $segments            
      */
-    protected function segments($segments)
+    protected function segments(int $segments = null)
     {
         $this->segments = $segments;
     }
@@ -663,9 +670,9 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param float $thetaStart            
+     * @param float|null $thetaStart            
      */
-    protected function thetaStart($thetaStart)
+    protected function thetaStart(float $thetaStart = null)
     {
         $this->thetaStart = $thetaStart;
     }
@@ -675,7 +682,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param float $thetaLength            
+     * @param float|null $thetaLength            
      */
     protected function thetaLength(float $thetaLength = null)
     {
@@ -687,7 +694,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param bool $openEnded            
+     * @param bool|false $openEnded            
      */
     protected function openEnded(bool $openEnded = false)
     {
@@ -699,7 +706,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param int $segmentsRadial            
+     * @param int|null $segmentsRadial            
      */
     protected function segmentsRadial(int $segmentsRadial = null)
     {
@@ -711,7 +718,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param int $segmentsHeight            
+     * @param int|null $segmentsHeight            
      */
     protected function segmentsHeight(int $segmentsHeight = null)
     {
@@ -723,7 +730,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param unknown $segmentsWidth            
+     * @param int|null $segmentsWidth            
      */
     protected function segmentsWidth(int $segmentsWidth = null)
     {
@@ -735,7 +742,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param int $segmentsTheta            
+     * @param int|null $segmentsTheta            
      */
     protected function segmentsTheta(int $segmentsTheta = null)
     {
@@ -747,7 +754,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param int $segmentsPhi            
+     * @param int|null $segmentsPhi            
      */
     protected function segmentsPhi(int $segmentsPhi = null)
     {
@@ -759,7 +766,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param unknown $segmentsTubular            
+     * @param int|null $segmentsTubular            
      */
     protected function segmentsTubular(int $segmentsTubular = null)
     {
@@ -771,7 +778,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param float $phiStart            
+     * @param float|null $phiStart            
      */
     protected function phiStart(float $phiStart = null)
     {
@@ -783,7 +790,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param unknown $phiLength            
+     * @param float|null $phiLength            
      */
     protected function phiLength(float $phiLength = null)
     {
@@ -795,7 +802,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param float $radius            
+     * @param float|null $radius            
      */
     protected function radius(float $radius = null)
     {
@@ -807,7 +814,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param float $radiusTubular            
+     * @param float|null $radiusTubular            
      */
     protected function radiusTubular(float $radiusTubular = null)
     {
@@ -819,7 +826,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param float $radiusTop            
+     * @param float|null $radiusTop            
      */
     protected function radiusTop(float $radiusTop = null)
     {
@@ -831,7 +838,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param float $radiusBottom            
+     * @param float|null $radiusBottom            
      */
     protected function radiusBottom(float $radiusBottom = null)
     {
@@ -843,7 +850,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param unknown $radiusInner            
+     * @param float|null $radiusInner            
      */
     protected function radiusInner(float $radiusInner = null)
     {
@@ -855,7 +862,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param unknown $radiusOuter            
+     * @param float|null $radiusOuter            
      */
     protected function radiusOuter(float $radiusOuter = null)
     {
@@ -867,7 +874,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param unknown $arc            
+     * @param float|null $arc            
      */
     protected function arc(float $arc = null)
     {
@@ -879,7 +886,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param int $p            
+     * @param int|null $p            
      */
     protected function p(int $p = null)
     {
@@ -891,7 +898,7 @@ class Geometry implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @param int $q            
+     * @param int|null $q            
      */
     protected function q(int $q = null)
     {
@@ -903,9 +910,9 @@ class Geometry implements ComponentInterface
      *
      * Translates the geometry relative to its pivot point.
      *
-     * @param float $x            
-     * @param float $y            
-     * @param float $z            
+     * @param float|int $x            
+     * @param float|int $y            
+     * @param float|int $z            
      */
     protected function translate(float $x = 0, float $y = 0, float $z = 0)
     {
@@ -916,9 +923,9 @@ class Geometry implements ComponentInterface
     /**
      * Is called method allowed for current primitive
      *
-     * @param unknown $method            
+     * @param string|null $method            
      */
-    protected function isPrimitiveMethod($method)
+    protected function isPrimitiveMethod(string $method = null)
     {
         $isPrimitiveMethod = false;
         

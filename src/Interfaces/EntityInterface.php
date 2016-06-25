@@ -36,43 +36,43 @@ interface EntityInterface
      *
      * All entities inherently have the position component.
      *
-     * @param number $x            
-     * @param number $y            
-     * @param number $z            
-     * @return Entity
+     * @param float|int $x            
+     * @param float|int $y            
+     * @param float|int $z            
+     * @return \AframeVR\Interfaces\EntityInterface
      */
-    public function position($x = 0, $y = 0, $z = 0): EntityInterface;
+    public function position(float $x = 0, float $y = 0, float $z = 0): EntityInterface;
 
     /**
      * Rotation component
      *
      * All entities inherently have the rotation component.
      *
-     * @param number $x            
-     * @param number $y            
-     * @param number $z            
-     * @return Entity
+     * @param float|int $x            
+     * @param float|int $y            
+     * @param float|int $z            
+     * @return \AframeVR\Interfaces\EntityInterface
      */
-    public function rotation($x = 0, $y = 0, $z = 0): EntityInterface;
+    public function rotation(float $x = 0, float $y = 0, float $z = 0): EntityInterface;
 
     /**
      * Scale component
      *
      * All entities inherently have the scale component.
      *
-     * @param number $x            
-     * @param number $y            
-     * @param number $z            
-     * @return EntityInterface
+     * @param float|int $x            
+     * @param float|int $y            
+     * @param float|int $z            
+     * @return \AframeVR\Interfaces\EntityInterface
      */
-    public function scale($x = 0, $y = 0, $z = 0): EntityInterface;
+    public function scale(float $x = 0, float $y = 0, float $z = 0): EntityInterface;
 
     /**
      * Load component for this entity
      *
      * @param string $component_name            
      * @throws BadComponentCallException
-     * @return ComponentInterface|null
+     * @return \AframeVR\Interfaces\ComponentInterface|null
      */
     public function component(string $component_name);
 
@@ -80,7 +80,7 @@ interface EntityInterface
      * Create and add DOM element of the entity
      *
      * @param unknown $aframe_dom            
-     * @return DOMElement
+     * @return \DOMElement
      */
     public function DOMElement(&$aframe_dom): DOMElement;
 }

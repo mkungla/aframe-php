@@ -36,6 +36,8 @@ final class Scene
 
     private $name;
 
+    protected $meta;
+
     protected $assets = array();
 
     /**

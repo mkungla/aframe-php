@@ -23,7 +23,7 @@
  * @formatter:on */
 namespace AframeVR\Core\Helpers;
 
-use \AframeVR\Interfaces\EntityInterface;
+use \AframeVR\Interfaces\PrimitiveInterface;
 
 /**
  * Many of the primitives are entities that compose a geometric mesh, meaning they
@@ -40,9 +40,9 @@ trait MeshAttributes
      * material.color
      *
      * @param string $color            
-     * @return \AframeVR\Core\Helpers\MeshAttributes
+     * @return \AframeVR\Interfaces\PrimitiveInterface
      */
-    public function color(string $color = 'gray'): EntityInterface
+    public function color(string $color = 'gray'): PrimitiveInterface
     {
         $this->component('Material')
             ->shader()
@@ -54,9 +54,9 @@ trait MeshAttributes
      * material.metalness
      *
      * @param int|float $metalness            
-     * @return \AframeVR\Core\Helpers\MeshAttributes
+     * @return \AframeVR\Interfaces\PrimitiveInterface
      */
-    public function metalness(float $metalness = 0): EntityInterface
+    public function metalness(float $metalness = 0): PrimitiveInterface
     {
         $this->component('Material')
             ->shader()
@@ -68,9 +68,9 @@ trait MeshAttributes
      * material.roughness
      *
      * @param string $roughness            
-     * @return \AframeVR\Core\Helpers\MeshAttributes
+     * @return \AframeVR\Interfaces\PrimitiveInterface
      */
-    public function roughness($roughness = 0.5): EntityInterface
+    public function roughness($roughness = 0.5): PrimitiveInterface
     {
         $this->component('Material')
             ->shader()
@@ -82,9 +82,9 @@ trait MeshAttributes
      * material.src
      *
      * @param string $src            
-     * @return \AframeVR\Core\Helpers\MeshAttributes
+     * @return \AframeVR\Interfaces\PrimitiveInterface
      */
-    public function src(string $src = null): EntityInterface
+    public function src(string $src = null): PrimitiveInterface
     {
         $this->component('Material')
             ->shader()
@@ -98,9 +98,9 @@ trait MeshAttributes
      * @param int|float $x            
      * @param int|float $y            
      * @param int|float $z            
-     * @return EntityInterface
+     * @return \AframeVR\Interfaces\PrimitiveInterface
      */
-    public function translate(float $x = 0, float $y = 0, float $z = 0): EntityInterface
+    public function translate(float $x = 0, float $y = 0, float $z = 0): PrimitiveInterface
     {
         $this->component('Geometry')->translate($x, $y, $z);
         return $this;
@@ -110,9 +110,9 @@ trait MeshAttributes
      * material.shader
      *
      * @param string $shader            
-     * @return \AframeVR\Core\Helpers\MeshAttributes
+     * @return \AframeVR\Interfaces\PrimitiveInterface
      */
-    public function shader($shader = 'standard'): EntityInterface
+    public function shader($shader = 'standard'): PrimitiveInterface
     {
         $this->component('Material')->shader($shader);
         return $this;
@@ -122,9 +122,9 @@ trait MeshAttributes
      * material.opacity
      *
      * @param float $opacity            
-     * @return \AframeVR\Core\Helpers\MeshAttributes
+     * @return \AframeVR\Interfaces\PrimitiveInterface
      */
-    public function opacity(float $opacity = 1.0): EntityInterface
+    public function opacity(float $opacity = 1.0): PrimitiveInterface
     {
         $this->component('Material')->opacity($opacity);
         return $this;
@@ -134,9 +134,9 @@ trait MeshAttributes
      * material.transparent
      *
      * @param string $transparent            
-     * @return \AframeVR\Core\Helpers\MeshAttributes
+     * @return \AframeVR\Interfaces\PrimitiveInterface
      */
-    public function transparent(string $transparent = 'false'): EntityInterface
+    public function transparent(string $transparent = 'false'): PrimitiveInterface
     {
         $this->component('Material')->transparent($transparent);
         return $this;

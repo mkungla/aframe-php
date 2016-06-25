@@ -73,12 +73,12 @@ class Entity implements EntityInterface
      *
      * All entities inherently have the position component.
      *
-     * @param number $x            
-     * @param number $y            
-     * @param number $z            
-     * @return Entity
+     * @param float|int $x            
+     * @param float|int $y            
+     * @param float|int $z            
+     * @return \AframeVR\Interfaces\EntityInterface
      */
-    public function position($x = 0, $y = 0, $z = 0): EntityInterface
+    public function position(float $x = 0, float $y = 0, float $z = 0): EntityInterface
     {
         $this->component('Position')->update($x, $y, $z);
         return $this;
@@ -89,12 +89,12 @@ class Entity implements EntityInterface
      *
      * All entities inherently have the rotation component.
      *
-     * @param number $x            
-     * @param number $y            
-     * @param number $z            
-     * @return EntityInterface
+     * @param float|int $x            
+     * @param float|int $y            
+     * @param float|int $z            
+     * @return \AframeVR\Interfaces\EntityInterface
      */
-    public function rotation($x = 0, $y = 0, $z = 0): EntityInterface
+    public function rotation(float $x = 0, float $y = 0, float $z = 0): EntityInterface
     {
         $this->component('Rotation')->update($x, $y, $z);
         return $this;
@@ -105,12 +105,12 @@ class Entity implements EntityInterface
      *
      * All entities inherently have the scale component.
      *
-     * @param number $x            
-     * @param number $y            
-     * @param number $z            
-     * @return EntityInterface
+     * @param float|int $x            
+     * @param float|int $y            
+     * @param float|int $z            
+     * @return \AframeVR\Interfaces\EntityInterface
      */
-    public function scale($x = 0, $y = 0, $z = 0): EntityInterface
+    public function scale(float $x = 0, float $y = 0, float $z = 0): EntityInterface
     {
         $this->component('Scale')->update($x, $y, $z);
         return $this;
@@ -132,7 +132,7 @@ class Entity implements EntityInterface
      *
      * @param string $component_name            
      * @throws BadComponentCallException
-     * @return ComponentInterface|null
+     * @return \AframeVR\Interfaces\ComponentInterface|null
      */
     public function component(string $component_name)
     {
@@ -174,8 +174,8 @@ class Entity implements EntityInterface
     /**
      * Create and add DOM element of the entity
      *
-     * @param unknown $aframe_dom            
-     * @return DOMElement
+     * @param \DOMDocument $aframe_dom            
+     * @return \DOMElement
      */
     public function DOMElement(&$aframe_dom): DOMElement
     {

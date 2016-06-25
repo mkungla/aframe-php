@@ -117,8 +117,8 @@ class Flat implements ShaderInterface
 
     /**
      *
-     * @param float $x            
-     * @param float $y            
+     * @param int|float $x            
+     * @param int|float $y            
      */
     public function repeat(float $x = 1, float $y = 1)
     {
