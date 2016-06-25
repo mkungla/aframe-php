@@ -23,7 +23,7 @@
  * @formatter:on */
 namespace AframeVR\Components;
 
-use \AframeVR\Interfaces\ComponentInterface;
+use \AframeVR\Interfaces\Components\ScaleComponentInterface;
 use \DOMAttr;
 
 /**
@@ -34,7 +34,7 @@ use \DOMAttr;
  *
  * All entities inherently have the rotation component.
  */
-class Scale implements ComponentInterface
+class Scale implements ScaleComponentInterface
 {
 
     /**
@@ -121,8 +121,7 @@ class Scale implements ComponentInterface
     /**
      * Update scale
      *
-     * If any of the scaling factors are set to 0, then A-Frame will
-     * assign instead an extremely small value such that things don’t break.
+     * {@inheritdoc}
      *
      * @param integer|double $x            
      * @param integer|double $y            

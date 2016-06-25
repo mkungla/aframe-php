@@ -23,7 +23,7 @@
  * @formatter:on */
 namespace AframeVR\Components;
 
-use \AframeVR\Interfaces\ComponentInterface;
+use \AframeVR\Interfaces\Components\GeometryComponentInterface;
 use \AframeVR\Core\Exceptions\{
     InvalidComponentArgumentException,
     InvalidComponentMethodException
@@ -37,7 +37,7 @@ use \DOMAttr;
  * additional properties are used to further define the geometry. A material component is usually defined alongside
  * to provide a appearance alongside the shape to create a complete mesh.
  */
-class Geometry implements ComponentInterface
+class Geometry implements GeometryComponentInterface
 {
 
     const ALLOWED_PRIMITIVES = array(
@@ -491,7 +491,7 @@ class Geometry implements ComponentInterface
     /**
      * Disable retrieving the shared geometry object from the cache.
      *
-     * @var bool $skipCache
+     * @var string $skipCache
      */
     protected $skipCache;
 

@@ -23,7 +23,7 @@
  * @formatter:on */
 namespace AframeVR\Components;
 
-use \AframeVR\Interfaces\ComponentInterface;
+use \AframeVR\Interfaces\Components\PositionComponentInterface;
 use \DOMAttr;
 
 /**
@@ -32,7 +32,7 @@ use \DOMAttr;
  *
  * All entities inherently have the position component.
  */
-class Position implements ComponentInterface
+class Position implements PositionComponentInterface
 {
 
     /**

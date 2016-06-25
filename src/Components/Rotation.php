@@ -23,7 +23,7 @@
  * @formatter:on */
 namespace AframeVR\Components;
 
-use \AframeVR\Interfaces\ComponentInterface;
+use \AframeVR\Interfaces\Components\RotationComponentInterface;
 use \DOMAttr;
 
 /**
@@ -33,7 +33,7 @@ use \DOMAttr;
  *
  * All entities inherently have the rotation component.
  */
-class Rotation implements ComponentInterface
+class Rotation implements RotationComponentInterface
 {
 
     /**
@@ -120,8 +120,7 @@ class Rotation implements ComponentInterface
     /**
      * Update rotation
      *
-     * A-Frame uses a right-handed coordinate system. When aligning our right hand’s thumb with a positive axis,
-     * our hand will curl in the positive direction of rotation.
+     * {@inheritdoc}
      *
      * @param integer|double $x            
      * @param integer|double $y            

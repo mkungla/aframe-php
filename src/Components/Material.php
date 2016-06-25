@@ -23,14 +23,12 @@
  * @formatter:on */
 namespace AframeVR\Components;
 
-use \AframeVR\Interfaces\{
-    ComponentInterface,
-    ShaderInterface
-};
+use \AframeVR\Interfaces\ShaderInterface;
+use \AframeVR\Interfaces\Components\MaterialComponentInterface;
 use \AframeVR\Core\Exceptions\BadShaderCallException;
 use \DOMAttr;
 
-class Material implements ComponentInterface
+class Material implements MaterialComponentInterface
 {
 
     private $shaderObj;
