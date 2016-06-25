@@ -131,8 +131,8 @@ class Entity implements EntityInterface
      * Load component for this entity
      *
      * @param string $component_name            
-     * @throws BadComponentCallException
-     * @return \AframeVR\Interfaces\ComponentInterface|null
+     * @throws \AframeVR\Core\Exceptions\BadComponentCallException
+     * @return object|null
      */
     public function component(string $component_name)
     {

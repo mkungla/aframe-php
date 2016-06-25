@@ -37,6 +37,15 @@ trait MeshAttributes
 {
 
     /**
+     * Load component for this entity
+     *
+     * @param string $component_name            
+     * @throws \AframeVR\Core\Exceptions\BadComponentCallException
+     * @return object|null
+     */
+    abstract public function component(string $component_name);
+
+    /**
      * material.color
      *
      * @param string $color            
@@ -67,10 +76,10 @@ trait MeshAttributes
     /**
      * material.roughness
      *
-     * @param string $roughness            
+     * @param float $roughness            
      * @return \AframeVR\Interfaces\PrimitiveInterface
      */
-    public function roughness($roughness = 0.5): PrimitiveInterface
+    public function roughness(float $roughness = 0.5): PrimitiveInterface
     {
         $this->component('Material')
             ->shader()
@@ -81,7 +90,7 @@ trait MeshAttributes
     /**
      * material.src
      *
-     * @param string $src            
+     * @param null|string $src            
      * @return \AframeVR\Interfaces\PrimitiveInterface
      */
     public function src(string $src = null): PrimitiveInterface

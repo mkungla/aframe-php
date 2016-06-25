@@ -128,7 +128,7 @@ class Flat implements ShaderInterface
     /**
      * How many times a texture (defined by src) repeats in the X and Y direction.
      *
-     * @param string $src            
+     * @param null|string $src            
      */
     public function src(string $src = null)
     {

@@ -168,7 +168,7 @@ class Material implements ComponentInterface
      * Can be set to the built-in flat shading model or to a registered custom shader
      *
      * @var string standard
-     * @return \AframeVR\Interfaces\ShaderInterface|null
+     * @return object|null
      */
     public function shader(string $shader = 'standard')
     {

@@ -483,7 +483,7 @@ class Geometry implements ComponentInterface
 
     /**
      * translate
-     * 
+     *
      * Translates the geometry relative to its pivot point.
      *
      * @var string $translate
@@ -492,10 +492,10 @@ class Geometry implements ComponentInterface
 
     /**
      * skipCache
-     * 
+     *
      * Disable retrieving the shared geometry object from the cache.
      *
-     * @var bool $skipCache
+     * @var string $skipCache
      */
     protected $skipCache;
 
@@ -504,10 +504,10 @@ class Geometry implements ComponentInterface
      *
      * Transform geometry into a BufferGeometry to reduce memory usage at the cost of being harder to manipulate.
      *
-     * @param bool $buffer            
+     * @param string $buffer            
      */
     protected $buffer;
-    
+
     /**
      * Magic Call
      *
@@ -613,7 +613,7 @@ class Geometry implements ComponentInterface
      *
      * @param bool $buffer            
      */
-    protected function buffer($buffer = true)
+    protected function buffer(bool $buffer = true)
     {
         $this->buffer = $buffer ? 'true' : 'false';
     }
@@ -625,7 +625,7 @@ class Geometry implements ComponentInterface
      *
      * @param bool $skipCache            
      */
-    protected function skipCache($skipCache = false)
+    protected function skipCache(bool $skipCache = false)
     {
         $this->skipCache = $skipCache ? 'true' : 'false';
     }

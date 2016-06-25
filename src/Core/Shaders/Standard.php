@@ -136,7 +136,7 @@ class Standard implements ShaderInterface
      * Environment cubemap texture for reflections.
      * Can be a selector to or a comma-separated list of URLs.
      *
-     * @param string $envMap            
+     * @param string|null $envMap            
      */
     public function envMap(string $envMap = null)
     {
@@ -166,8 +166,8 @@ class Standard implements ShaderInterface
     /**
      * repeat
      *
-     * @param float $x            
-     * @param float $y            
+     * @param float|int $x            
+     * @param float|int $y            
      */
     public function repeat(float $x = 1, float $y = 1)
     {
@@ -189,7 +189,7 @@ class Standard implements ShaderInterface
     /**
      * How many times a texture (defined by src) repeats in the X and Y direction.
      *
-     * @param string $src            
+     * @param string|null $src            
      */
     public function src(string $src = null)
     {

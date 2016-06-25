@@ -25,15 +25,24 @@ namespace AframeVR\Interfaces;
 
 interface PrimitiveInterface
 {
+
     /**
+     * Init
+     *
      * Primitve init called from entir=ty constructor must load all components for this primitive
      * Ex: $this->component('Position')
+     *
+     * @return void
      */
     public function init();
-    
+
     /**
+     * defaults
+     *
      * Defaults method is called in primitvie constructor to set
      * primitives default values for loaded components.
+     *
+     * @return void
      */
     public function defaults();
 }
