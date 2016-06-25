@@ -23,8 +23,10 @@
  * @formatter:on */
 namespace AframeVR\Components;
 
-use \AframeVR\Interfaces\ComponentInterface;
-use \AframeVR\Interfaces\ShaderInterface;
+use \AframeVR\Interfaces\{
+    ComponentInterface,
+    ShaderInterface
+};
 use \AframeVR\Core\Exceptions\BadShaderCallException;
 use \DOMAttr;
 
@@ -97,7 +99,7 @@ class Material implements ComponentInterface
         $shader_attributes = is_object($this->shaderObj) ? get_object_vars($this->shaderObj) : [];
         $attributes = array_merge($this_attributes, $shader_attributes);
         unset($attributes['shaderObj']);
-        return !empty($attributes);
+        return ! empty($attributes);
     }
 
     /**
@@ -124,8 +126,9 @@ class Material implements ComponentInterface
         }
         
         /* Remove defaults from current shader */
-        if(is_object($this->shaderObj))
+        if ($this->shaderObj instanceof ShaderInterface) {
             $this->shaderObj->removeDefaultDOMAttributes();
+        }
     }
 
     /**
@@ -136,15 +139,14 @@ class Material implements ComponentInterface
     public function getDOMAttributes(): DOMAttr
     {
         $attributes = [];
-        $material = array(
-            'depthTest' => $this->depthTest ?? null,
-            'opacity' => $this->opacity ?? null,
-            'transparent' => $this->transparent ?? null,
-            'side' => $this->side ?? null
-        );
+        $material = [];
+        $material['depthTest'] = $this->depthTest ?? null;
+        $material['opacity'] = $this->opacity ?? null;
+        $material['transparent'] = $this->transparent ?? null;
+        $material['side'] = $this->side ?? null;
         
         foreach ($material as $key => $val) {
-            if (empty($val) || ! property_exists($key, $this))
+            if (empty($val) || ! property_exists($this, $key))
                 unset($material[$key]);
         }
         if (! empty($material)) {
@@ -153,11 +155,10 @@ class Material implements ComponentInterface
         }
         
         /* Load shader if not loaded yet */
-        if(is_object($this->shaderObj)) {
+        if (is_object($this->shaderObj)) {
             $shader_format = implode(': %s; ', array_keys(get_object_vars($this->shaderObj))) . ': %s;';
             $attributes[] = vsprintf($shader_format, array_values(get_object_vars($this->shaderObj)));
         }
-       
         
         $format = count($attributes) === 1 ? '%s' : '%s %s';
         return new \DOMAttr('material', vsprintf($format, $attributes));
@@ -169,23 +170,20 @@ class Material implements ComponentInterface
      * Can be set to the built-in flat shading model or to a registered custom shader
      *
      * @var string standard
+     * @return ShaderInterface|null
      */
     public function shader(string $shader = 'standard')
     {
         if ($this->shaderObj instanceof ShaderInterface)
             return $this->shaderObj;
         
-        try {
-            $shader = sprintf('\AframeVR\Core\Shaders\%s', ucfirst($shader));
-            if (class_exists($shader)) {
-                $this->shaderObj = new $shader();
-            } else {
-                throw new BadShaderCallException($shader);
-            }
-        } catch (BadShaderCallException $e) {
-            die($e->getMessage());
+        $shader = sprintf('\AframeVR\Core\Shaders\%s', ucfirst($shader));
+        if (class_exists($shader)) {
+            $this->shaderObj = new $shader();
+        } else {
+            throw new BadShaderCallException($shader);
         }
-        return $this->shaderObj;
+        return $this->shaderObj ?? null;
     }
 
     /**
@@ -194,7 +192,7 @@ class Material implements ComponentInterface
      * Extent of transparency. If the transparent property is not true,
      * then the material will remain opaque and opacity will only affect color.
      *
-     * @param float $opacity
+     * @param float $opacity            
      */
     public function opacity(float $opacity = 1.0)
     {
@@ -208,9 +206,9 @@ class Material implements ComponentInterface
      *
      * @param string $transparent            
      */
-    public function transparent(string $transparent = 'false')
+    public function transparent(bool $transparent = false)
     {
-        $this->transparent = $transparent;
+        $this->transparent = $transparent ? 'true' : 'false';
     }
 
     /**
@@ -221,7 +219,7 @@ class Material implements ComponentInterface
      * @param string $side            
      * @return EntityInterface
      */
-    public function side(string $side = 'front'): EntityInterface
+    public function side(string $side = 'front')
     {
         $this->side = $side;
     }

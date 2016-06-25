@@ -23,10 +23,26 @@
  * @formatter:on */
 namespace AframeVR\Core;
 
-final class Assets
+use \AframeVR\Interfaces\{
+    AssetsInterface,
+    MixinInterface
+};
+use \AframeVR\Core\Mixin;
+
+final class Assets implements AssetsInterface
 {
 
-    public function __construct()
-    {}
+    protected $mixins;
+
+    /**
+     * mixin
+     *
+     * @param string $name            
+     * @return MixinInterface
+     */
+    public function mixin(string $name = 'untitled'): MixinInterface
+    {
+        return $this->mixins[$name] ?? $this->mixins[$name] = new Mixin();
+    }
 }
  

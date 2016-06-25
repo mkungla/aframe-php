@@ -59,10 +59,10 @@ class Rotation implements ComponentInterface
 
     /**
      * Constructor
-     * 
-     * @param integer|double $x
-     * @param integer|double $y
-     * @param integer|double $z
+     *
+     * @param integer|double $x            
+     * @param integer|double $y            
+     * @param integer|double $z            
      */
     public function __construct(float $x = 0, float $y = 0, float $z = 0)
     {
@@ -100,7 +100,7 @@ class Rotation implements ComponentInterface
      */
     public function removeDefaultDOMAttributes()
     {
-        if ($this->x === 0 && $this->y === 0 && $this->z === 0) {
+        if (empty($this->x) && empty($this->y) && empty($this->z)) {
             unset($this->x);
             unset($this->y);
             unset($this->z);
@@ -119,13 +119,13 @@ class Rotation implements ComponentInterface
 
     /**
      * Update rotation
-     * 
-     * A-Frame uses a right-handed coordinate system. When aligning our right hand’s thumb with a positive axis, 
+     *
+     * A-Frame uses a right-handed coordinate system. When aligning our right hand’s thumb with a positive axis,
      * our hand will curl in the positive direction of rotation.
-     * 
-     * @param integer|double $x
-     * @param integer|double $y
-     * @param integer|double $z
+     *
+     * @param integer|double $x            
+     * @param integer|double $y            
+     * @param integer|double $z            
      */
     public function update(float $x = 0, float $y = 0, float $z = 0)
     {

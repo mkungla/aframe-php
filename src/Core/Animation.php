@@ -23,9 +23,8 @@
  * @formatter:on */
 namespace AframeVR\Core;
 
-final class Animation
-{
+use \AframeVR\Interfaces\AnimationInterface;
 
-    public function __construct()
-    {}
+final class Animation implements AnimationInterface
+{
 }

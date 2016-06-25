@@ -62,7 +62,11 @@ class Geometry implements ComponentInterface
 
         /* The translate property translates the geometry. It is provided as a vec3. This is a useful short-hand for 
          * translating the geometry to effectively move its pivot point when running animations. */
-        'translate' => '0 1 0'
+        'translate' => '0 0 0',
+        /* Transform geometry into a BufferGeometry to reduce memory usage at the cost of being harder to manipulate. */
+        'buffer' => true,
+        /* Disable retrieving the shared geometry object from the cache. */
+        'skipCache' => false
     );
 
     /**
@@ -238,55 +242,270 @@ class Geometry implements ComponentInterface
     /* DOM atrributes */
     protected $primitive;
 
+    /**
+     * Width
+     *
+     * BOX: Width (in meters) of the sides on the X axis.
+     * PLANE: Width along the X axis.
+     *
+     * @var float
+     */
     protected $width;
 
+    /**
+     * Height
+     *
+     * BOX: Height (in meters) of the sides on the Y axis.
+     * CONE: Height of the cone.
+     * CYLINDER: Height of the cylinder.
+     * PLANE: Height along the Y axis.
+     *
+     * @var float $height
+     */
     protected $height;
 
+    /**
+     * Depth
+     *
+     * BOX: Depth (in meters) of the sides on the Z axis.
+     *
+     * @var float $depth
+     */
     protected $depth;
 
-    protected $radius;
-
-    protected $radiusTubular;
-
-    protected $radiusBottom;
-
-    protected $radiusTop;
-
+    /**
+     * Segments
+     *
+     * CIRCLE: Number of triangles to construct the circle, like pizza slices.
+     * A higher number of segments means the circle will be more round.
+     *
+     * @var int $segments
+     */
     protected $segments;
 
+    /**
+     * Start angle for first segmen
+     *
+     * CIRCLE: Start angle for first segment. Can be used to define a partial circle.
+     * CONE: Starting angle in degrees.
+     * CYLINDER: Starting angle in degrees.
+     * RING: Starting angle in degrees.
+     * SPHERE: Vertical starting angle.
+     *
+     * @var float $thetaStart;
+     */
     protected $thetaStart;
 
+    /**
+     * The central angle (in degrees).
+     *
+     * CIRCLE: Defaults to 360, which makes for a complete circle.
+     * CONE: Central angle in degrees.
+     * CYLINDER: Central angle in degrees.
+     * RING: Central angle in degrees.
+     * SPHERE: Vertical sweep angle size.
+     *
+     * @var float $thetaLength
+     */
     protected $thetaLength;
 
+    /**
+     * openEnded
+     *
+     * CONE: Whether the ends of the cone are open (true) or capped (false).
+     * CYLINDER: Whether the ends of the cylinder are open (true) or capped (false).
+     *
+     * @var string $openEnded
+     */
     protected $openEnded;
 
+    /**
+     * segmentsRadial
+     *
+     * CONE: Number of segmented faces around the circumference of the cone.
+     * CYLINDER: Number of segmented faces around the circumference of the cylinder.
+     * TORUS: Number of segments along the circumference of the tube ends.
+     * A higher number means the tube will be more round.
+     *
+     * @var int $segmentsRadial
+     */
     protected $segmentsRadial;
 
+    /**
+     * segmentsHeight
+     *
+     * CONE: Number of rows of faces along the height of the cone.
+     * CYLINDER: Number of rows of faces along the height of the cylinder.
+     * SPHERE: Number of vertical segments.
+     *
+     * @var int $segmentsHeight
+     */
     protected $segmentsHeight;
 
+    /**
+     * segmentsWidth
+     *
+     * SPHERE: Number of horizontal segments.
+     *
+     * @var int $segmentsWidth
+     */
     protected $segmentsWidth;
 
+    /**
+     * segmentsTheta
+     *
+     * RING: Number of segments. A higher number means the ring will be more round.
+     *
+     * @var int $segmentsTheta
+     */
     protected $segmentsTheta;
 
+    /**
+     * segmentsPhi
+     *
+     * RING: Number of triangles within each face defined by segmentsTheta.
+     *
+     * @var int $segmentsPhi
+     */
     protected $segmentsPhi;
 
+    /**
+     * segmentsTubular
+     *
+     * TORUS: Number of segments along the circumference of the tube face.
+     * A higher number means the tube will be more round.
+     *
+     * @var int $segmentsTubular
+     */
     protected $segmentsTubular;
 
+    /**
+     * phiStart
+     *
+     * SPHERE: Horizontal starting angle.
+     *
+     * @var float $phiStart
+     */
     protected $phiStart;
 
+    /**
+     * phiLength
+     *
+     * SPHERE: Horizontal sweep angle size.
+     *
+     * @var float $phiLength
+     */
     protected $phiLength;
 
+    /**
+     * Radius
+     *
+     * CIRCLE: Radius (in meters) of the circle.
+     * CYLINDER: Radius of the cylinder.
+     * SPHERE: Radius of the sphere.
+     * TORUS: Radius of the outer edge of the torus.
+     *
+     * @var float $radius
+     */
+    protected $radius;
+
+    /**
+     * radiusTubular
+     *
+     * TORUS: Radius of the tube.
+     *
+     * @var float $radiusTubular
+     */
+    protected $radiusTubular;
+
+    /**
+     * radiusTop
+     *
+     * CONE: Radius of the top end of the cone.
+     *
+     * @var float $radiusTop
+     */
+    protected $radiusTop;
+
+    /**
+     * radiusBottom;
+     *
+     * CONE: Radius of the bottom end of the cone.
+     *
+     * @var float
+     */
+    protected $radiusBottom;
+
+    /**
+     * radiusInner
+     *
+     * RING: Radius of the inner hole of the ring.
+     *
+     * @var float $radiusInner
+     */
     protected $radiusInner;
 
+    /**
+     * radiusOuter
+     *
+     * RING: Radius of the outer edge of the ring.
+     *
+     * @var float $radiusOuter
+     */
     protected $radiusOuter;
 
+    /**
+     * arc
+     *
+     * TORUS: Central angle.
+     *
+     * @var float $arc
+     */
     protected $arc;
 
+    /**
+     * p
+     *
+     * TORUSKNOT: Number that helps define the pretzel shape.
+     *
+     * @var int $p
+     */
     protected $p;
 
+    /**
+     * q
+     *
+     * TORUSKNOT: Number that helps define the pretzel shape.
+     *
+     * @var unknown
+     */
     protected $q;
 
-    protected $translate;
+    /**
+     * Translates the geometry relative to its pivot point.
+     *
+     * @var string
+     */
+    protected $translate = '0 0 0';
+
+    /**
+     * Magic Call
+     *
+     * @param string $method            
+     * @param array $args            
+     * @throws InvalidComponentMethodException
+     */
+    public function __call($method, $args)
+    {
+        if (method_exists($this, $method) && ($this->isPrimitiveMethod($method) || array_key_exists($method, self::P_COMMON_PROPS))) {
+            return call_user_func_array(array(
+                $this,
+                $method
+            ), $args);
+        } else {
+            throw new InvalidComponentMethodException($method, 'Geometry::primitive ' . $this->primitive);
+        }
+    }
 
     /**
      * Get Component scripts
@@ -347,27 +566,23 @@ class Geometry implements ComponentInterface
      */
     public function primitive($primitive = null)
     {
-        try {
-            if (in_array($primitive, self::ALLOWED_PRIMITIVES)) {
-                /* If primitive is changed we reset the object and releoad allowed attributes */
-                $this->primitive = $primitive;
-                $defaults = $this->primitiveDefaults();
-                foreach (get_class_vars(get_class($this)) as $name => $default) {
-                    if ($name === 'primitive')
-                        continue;
-                    
-                    if (array_key_exists($name, $defaults))
-                        $this->$name = $defaults[$name];
-                    elseif (array_key_exists($name, self::P_COMMON_PROPS))
-                        $this->$name = self::P_COMMON_PROPS[$name];
-                    else
-                        unset($this->$name);
-                }
-            } else {
-                throw new InvalidComponentArgumentException($primitive, 'Geometry::primitive');
+        if (in_array($primitive, self::ALLOWED_PRIMITIVES)) {
+            /* If primitive is changed we reset the object and releoad allowed attributes */
+            $this->primitive = $primitive;
+            $defaults = $this->primitiveDefaults();
+            foreach (get_class_vars(get_class($this)) as $name => $default) {
+                if ($name === 'primitive')
+                    continue;
+                
+                if (array_key_exists($name, $defaults))
+                    $this->$name = $defaults[$name];
+                elseif (array_key_exists($name, self::P_COMMON_PROPS))
+                    $this->$name = self::P_COMMON_PROPS[$name];
+                else
+                    unset($this->$name);
             }
-        } catch (InvalidComponentArgumentException $e) {
-            die($e->getMessage());
+        } else {
+            throw new InvalidComponentArgumentException($primitive, 'Geometry::primitive');
         }
     }
 
@@ -376,11 +591,11 @@ class Geometry implements ComponentInterface
      *
      * Transform geometry into a BufferGeometry to reduce memory usage at the cost of being harder to manipulate.
      *
-     * @param string $buffer            
+     * @param bool $buffer            
      */
-    public function buffer($buffer = 'true')
+    protected function buffer($buffer = true)
     {
-        $this->buffer = $buffer;
+        $this->buffer = $buffer ? 'true' : 'false';
     }
 
     /**
@@ -388,165 +603,314 @@ class Geometry implements ComponentInterface
      *
      * Disable retrieving the shared geometry object from the cache.
      *
-     * @param string $skipCache            
+     * @param bool $skipCache            
      */
-    public function skipCache($skipCache = 'false')
+    protected function skipCache($skipCache = false)
     {
-        $this->skipCache = $skipCache;
+        $this->skipCache = $skipCache ? 'true' : 'false';
     }
 
-    public function width($width)
+    /**
+     * Width
+     *
+     * {@inheritdoc}
+     *
+     * @param float $width            
+     */
+    protected function width(float $width = null)
     {
         $this->width = $width;
     }
 
-    public function height($height)
+    /**
+     * Height
+     *
+     * {@inheritdoc}
+     *
+     * @param float $height            
+     */
+    protected function height(float $height = null)
     {
         $this->height = $height;
     }
 
-    public function depth($depth)
+    /**
+     * Depth
+     *
+     * {@inheritdoc}
+     *
+     * @param float $depth            
+     */
+    protected function depth(float $depth = null)
     {
         $this->depth = $depth;
     }
 
-    public function radius($radius)
-    {
-        $this->radius = $radius;
-    }
-
-    public function radiusTubular($radiusTubular)
-    {
-        $this->radiusTubular = $radiusTubular;
-    }
-
-    public function radiusBottom($radiusBottom)
-    {
-        $this->radiusBottom = $radiusBottom;
-    }
-
-    public function radiusTop($radiusTop)
-    {
-        $this->radiusTop = $radiusTop;
-    }
-
-    public function segments($segments)
+    /**
+     * Segments
+     *
+     * {@inheritdoc}
+     *
+     * @param int $segments            
+     */
+    protected function segments($segments)
     {
         $this->segments = $segments;
     }
 
-    public function thetaStart($thetaStart)
+    /**
+     * Start angle for first segmen
+     *
+     * {@inheritdoc}
+     *
+     * @param float $thetaStart            
+     */
+    protected function thetaStart($thetaStart)
     {
         $this->thetaStart = $thetaStart;
     }
 
-    public function thetaLength($thetaLength)
+    /**
+     * The central angle (in degrees).
+     *
+     * {@inheritdoc}
+     *
+     * @param float $thetaLength            
+     */
+    protected function thetaLength(float $thetaLength = null)
     {
         $this->thetaLength = $thetaLength;
     }
 
-    public function openEnded($openEnded)
+    /**
+     * openEnded
+     *
+     * {@inheritdoc}
+     *
+     * @param bool $openEnded            
+     */
+    protected function openEnded(bool $openEnded = false)
     {
-        $this->openEnded = $openEnded;
+        $this->openEnded = $openEnded ? 'true' : 'false';
     }
 
-    public function segmentsRadial($segmentsRadial)
+    /**
+     * segmentsRadial
+     *
+     * {@inheritdoc}
+     *
+     * @param int $segmentsRadial            
+     */
+    protected function segmentsRadial(int $segmentsRadial = null)
     {
         $this->segmentsRadial = $segmentsRadial;
     }
 
-    public function segmentsHeight($segmentsHeight)
+    /**
+     * segmentsHeight
+     *
+     * {@inheritdoc}
+     *
+     * @param int $segmentsHeight            
+     */
+    protected function segmentsHeight(int $segmentsHeight = null)
     {
         $this->segmentsHeight = $segmentsHeight;
     }
 
-    public function segmentsWidth($segmentsWidth)
+    /**
+     * segmentsWidth
+     *
+     * {@inheritdoc}
+     *
+     * @param unknown $segmentsWidth            
+     */
+    protected function segmentsWidth(int $segmentsWidth = null)
     {
         $this->segmentsWidth = $segmentsWidth;
     }
 
-    public function segmentsTheta($segmentsTheta)
+    /**
+     * segmentsTheta
+     *
+     * {@inheritdoc}
+     *
+     * @param int $segmentsTheta            
+     */
+    protected function segmentsTheta(int $segmentsTheta = null)
     {
         $this->segmentsTheta = $segmentsTheta;
     }
 
-    public function segmentsPhi($segmentsPhi)
+    /**
+     * segmentsPhi
+     *
+     * {@inheritdoc}
+     *
+     * @param int $segmentsPhi            
+     */
+    protected function segmentsPhi(int $segmentsPhi = null)
     {
         $this->segmentsPhi = $segmentsPhi;
     }
 
-    public function segmentsTubular($segmentsTubular)
+    /**
+     * segmentsTubular
+     *
+     * {@inheritdoc}
+     *
+     * @param unknown $segmentsTubular            
+     */
+    protected function segmentsTubular(int $segmentsTubular = null)
     {
         $this->segmentsTubular = $segmentsTubular;
     }
 
-    public function phiStart($phiStart)
+    /**
+     * phiStart
+     *
+     * {@inheritdoc}
+     *
+     * @param float $phiStart            
+     */
+    protected function phiStart(float $phiStart = null)
     {
         $this->phiStart = $phiStart;
     }
 
-    public function phiLength($phiLength)
+    /**
+     * phiLength
+     *
+     * {@inheritdoc}
+     *
+     * @param unknown $phiLength            
+     */
+    protected function phiLength(float $phiLength = null)
     {
         $this->phiLength = $phiLength;
     }
 
-    public function radiusInner($radiusInner)
+    /**
+     * Radius
+     *
+     * {@inheritdoc}
+     *
+     * @param float $radius            
+     */
+    protected function radius(float $radius = null)
+    {
+        $this->radius = $radius;
+    }
+
+    /**
+     * radiusTubular
+     *
+     * {@inheritdoc}
+     *
+     * @param float $radiusTubular            
+     */
+    protected function radiusTubular(float $radiusTubular = null)
+    {
+        $this->radiusTubular = $radiusTubular;
+    }
+
+    /**
+     * radiusTop
+     *
+     * {@inheritdoc}
+     *
+     * @param float $radiusTop            
+     */
+    protected function radiusTop(float $radiusTop = null)
+    {
+        $this->radiusTop = $radiusTop;
+    }
+
+    /**
+     * radiusBottom
+     *
+     * {@inheritdoc}
+     *
+     * @param float $radiusBottom            
+     */
+    protected function radiusBottom(float $radiusBottom = null)
+    {
+        $this->radiusBottom = $radiusBottom;
+    }
+
+    /**
+     * radiusInner
+     *
+     * {@inheritdoc}
+     *
+     * @param unknown $radiusInner            
+     */
+    protected function radiusInner(float $radiusInner = null)
     {
         $this->radiusInner = $radiusInner;
     }
 
-    public function radiusOuter($radiusOuter)
+    /**
+     * radiusOuter
+     *
+     * {@inheritdoc}
+     *
+     * @param unknown $radiusOuter            
+     */
+    protected function radiusOuter(float $radiusOuter = null)
     {
         $this->radiusOuter = $radiusOuter;
     }
 
-    public function arc($arc)
+    /**
+     * arc
+     *
+     * {@inheritdoc}
+     *
+     * @param unknown $arc            
+     */
+    protected function arc(float $arc = null)
     {
         $this->arc = $arc;
     }
 
-    public function p($p)
+    /**
+     * p
+     *
+     * {@inheritdoc}
+     *
+     * @param int $p            
+     */
+    protected function p(int $p = null)
     {
         $this->p = $p;
     }
 
-    public function q($q)
+    /**
+     * q
+     *
+     * {@inheritdoc}
+     *
+     * @param int $q            
+     */
+    protected function q(int $q = null)
     {
         $this->q = $q;
     }
 
-    public function translate($translate)
-    {
-        $this->translate = $translate;
-    }
-
     /**
-     * Magic Call
+     * translate
      *
-     * @param string $method            
-     * @param array $args            
-     * @throws InvalidComponentMethodException
+     * Translates the geometry relative to its pivot point.
+     *
+     * @param float $x            
+     * @param float $y            
+     * @param float $z            
      */
-    public function __call($method, $args)
+    protected function translate(float $x = 0, float $y = 0, float $z = 0)
     {
-        if ($method === 'primitive') {
-            return call_user_func_array(array(
-                $this,
-                $method
-            ), $args);
-        }
-        try {
-            if (method_exists($this, $method) && $this->isPrimitiveMethod($method)) {
-                return call_user_func_array(array(
-                    $this,
-                    $method
-                ), $args);
-            } else {
-                throw new InvalidComponentMethodException($method, 'Geometry::primitive ' . $this->primitive);
-            }
-        } catch (InvalidComponentMethodException $e) {
-            die($e->getMessage());
-        }
+        $this->translate = sprintf('%d %d %d', $x, $y, $z);
+        ;
     }
 
     /**
@@ -556,38 +920,38 @@ class Geometry implements ComponentInterface
      */
     protected function isPrimitiveMethod($method)
     {
+        $isPrimitiveMethod = false;
+        
         switch ($this->primitive) {
             case 'box':
-                return in_array($method, self::P_BOX) ? self::P_BOX : false;
+                $isPrimitiveMethod = array_key_exists($method, self::P_BOX);
                 break;
             case 'circle':
-                return in_array($method, self::P_CIRCLE) ? self::P_CIRCLE : false;
+                $isPrimitiveMethod = array_key_exists($method, self::P_CIRCLE);
                 break;
             case 'cone':
-                return in_array($method, self::P_CONE) ? self::P_CONE : false;
+                $isPrimitiveMethod = array_key_exists($method, self::P_CONE);
                 break;
             case 'cylinder':
-                return in_array($method, self::P_CYLINDER) ? self::P_CYLINDER : false;
+                $isPrimitiveMethod = array_key_exists($method, self::P_CYLINDER);
                 break;
             case 'plane':
-                return in_array($method, self::P_PLANE) ? self::P_PLANE : false;
+                $isPrimitiveMethod = array_key_exists($method, self::P_PLANE);
                 break;
             case 'ring':
-                return in_array($method, self::P_RING) ? self::P_RING : false;
+                $isPrimitiveMethod = array_key_exists($method, self::P_RING);
                 break;
             case 'sphere':
-                return in_array($method, self::P_SPHERE) ? self::P_SPHERE : false;
+                $isPrimitiveMethod = array_key_exists($method, self::P_SPHERE);
                 break;
             case 'torus':
-                return in_array($method, self::P_TORUS) ? self::P_TORUS : false;
+                $isPrimitiveMethod = array_key_exists($method, self::P_TORUS);
                 break;
             case 'torusKnot':
-                return in_array($method, self::P_TORUS_KNOT) ? self::P_TORUS_KNOT : false;
-                break;
-            default:
-                return false;
+                $isPrimitiveMethod = array_key_exists($method, self::P_TORUS_KNOT);
                 break;
         }
+        return $isPrimitiveMethod;
     }
 
     /**
@@ -597,37 +961,37 @@ class Geometry implements ComponentInterface
      */
     protected function primitiveDefaults(): array
     {
+        $defaults = false;
+        
         switch ($this->primitive) {
             case 'box':
-                return self::P_BOX;
+                $defaults = self::P_BOX;
                 break;
             case 'circle':
-                return self::P_CIRCLE;
+                $defaults = self::P_CIRCLE;
                 break;
             case 'cone':
-                return self::P_CONE;
+                $defaults = self::P_CONE;
                 break;
             case 'cylinder':
-                return self::P_CYLINDER;
+                $defaults = self::P_CYLINDER;
                 break;
             case 'plane':
-                return self::P_PLANE;
+                $defaults = self::P_PLANE;
                 break;
             case 'ring':
-                return self::P_RING;
+                $defaults = self::P_RING;
                 break;
             case 'sphere':
-                return self::P_SPHERE;
+                $defaults = self::P_SPHERE;
                 break;
             case 'torus':
-                return self::P_TORUS;
+                $defaults = self::P_TORUS;
                 break;
             case 'torusKnot':
-                return self::P_TORUS_KNOT;
-                break;
-            default:
-                return array();
+                $defaults = self::P_TORUS_KNOT;
                 break;
         }
+        return $defaults;
     }
 }

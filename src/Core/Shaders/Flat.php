@@ -30,37 +30,52 @@ class Flat implements ShaderInterface
 
     /**
      * Base diffuse color.
+     *
+     * @var string $color
      */
     public $color = '#fff';
 
     /**
      * Whether or not material is affected by fog.
+     *
+     * @var string $fog
      */
-    public $fog = true;
+    public $fog = 'true';
 
     /**
      * Height of video (in pixels), if defining a video texture.
      *
-     * @var unknown
+     * @var int $height
      */
-    public $height = '360';
+    public $height = 360;
 
     /**
      * How many times a texture (defined by src) repeats in the X and Y direction.
+     *
+     * @var string $repeat
      */
     public $repeat = '1 1';
 
     /**
      * Image or video texture map.
      * Can either be a selector to an <img> or <video>, or an inline URL.
+     *
+     * @var string|null $src
      */
-    public $src = false;
+    public $src = null;
 
     /**
      * Width of video (in pixels), if defining a video texture.
+     *
+     * @var int $width
      */
-    public $width = '640';
+    public $width = 640;
 
+    /**
+     * removeDefaultDOMAttributes
+     *
+     * @return void
+     */
     public function removeDefaultDOMAttributes()
     {
         $defaults = get_class_vars(get_class($this));
@@ -68,5 +83,65 @@ class Flat implements ShaderInterface
             if (empty($value) || (array_key_exists($name, $defaults) && $value === $defaults[$name]))
                 unset($this->$name);
         }
+    }
+
+    /**
+     * Base diffuse color
+     *
+     * @param string $color            
+     */
+    public function color(string $color = '#fff')
+    {
+        $this->color = $color;
+    }
+
+    /**
+     * Whether or not material is affected by fog.
+     *
+     * @param bool $fog            
+     */
+    public function fog(bool $fog = true)
+    {
+        $this->fog = $fog ? 'true' : 'false';
+    }
+
+    /**
+     * Height of video (in pixels), if defining a video texture.
+     *
+     * @param int $height            
+     */
+    public function height(int $height = 360)
+    {
+        $this->height = $height;
+    }
+
+    /**
+     *
+     * @param float $x            
+     * @param float $y            
+     */
+    public function repeat(float $x = 1, float $y = 1)
+    {
+        $this->repeat = sprintf('%d %d', $x, $y);
+    }
+
+    /**
+     * How many times a texture (defined by src) repeats in the X and Y direction.
+     *
+     * @param string $src            
+     */
+    public function src(string $src = null)
+    {
+        $this->src = $src;
+    }
+
+    /**
+     * Width of video (in pixels), if defining a video texture.
+     *
+     * @param int $width            
+     */
+    public function width(int $width = 360)
+    {
+        $this->width = $width;
     }
 }

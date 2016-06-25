@@ -26,20 +26,26 @@ namespace AframeVR\Core;
 use \AframeVR\Core\Exceptions\BadComponentCallException;
 use \AframeVR\Interfaces\{
     ComponentInterface,
-    EntityInterface
+    EntityInterface,
+    AnimationInterface
 };
+use \AframeVR\Core\Animation;
 use \DOMElement;
+use \Closure;
 
 class Entity implements EntityInterface
 {
 
     protected $components = array();
 
+    protected $animations = array();
+
     public function __construct()
     {
         /* Components which All entities inherently have */
         $this->component('Position');
         $this->component('Rotation');
+        $this->component('Scale');
         
         /*
          * We initialize common entity components here since
@@ -47,6 +53,7 @@ class Entity implements EntityInterface
          */
         $this->position();
         $this->rotation();
+        $this->scale();
         
         /* Extending entity components and init */
         $this->init();
@@ -55,14 +62,20 @@ class Entity implements EntityInterface
         $this->defaults();
     }
 
+    public function init()
+    {}
+
+    public function defaults()
+    {}
+
     /**
      * Position component
-     * 
+     *
      * All entities inherently have the position component.
-     * 
-     * @param number $x
-     * @param number $y
-     * @param number $z
+     *
+     * @param number $x            
+     * @param number $y            
+     * @param number $z            
      * @return Entity
      */
     public function position($x = 0, $y = 0, $z = 0): EntityInterface
@@ -73,12 +86,12 @@ class Entity implements EntityInterface
 
     /**
      * Rotation component
-     * 
+     *
      * All entities inherently have the rotation component.
-     * 
-     * @param number $x
-     * @param number $y
-     * @param number $z
+     *
+     * @param number $x            
+     * @param number $y            
+     * @param number $z            
      * @return EntityInterface
      */
     public function rotation($x = 0, $y = 0, $z = 0): EntityInterface
@@ -86,15 +99,15 @@ class Entity implements EntityInterface
         $this->component('Rotation')->update($x, $y, $z);
         return $this;
     }
-    
+
     /**
      * Scale component
      *
      * All entities inherently have the scale component.
      *
-     * @param number $x
-     * @param number $y
-     * @param number $z
+     * @param number $x            
+     * @param number $y            
+     * @param number $z            
      * @return EntityInterface
      */
     public function scale($x = 0, $y = 0, $z = 0): EntityInterface
@@ -102,32 +115,39 @@ class Entity implements EntityInterface
         $this->component('Scale')->update($x, $y, $z);
         return $this;
     }
-    
+
+    /**
+     * Animations
+     *
+     * @param string $name            
+     * @return AnimationInterface
+     */
+    public function animation(string $name = 'untitled'): AnimationInterface
+    {
+        return $this->animations[$name] ?? $this->animations[$name] = new Animation();
+    }
+
     /**
      * Load component for this entity
      *
      * @param string $component_name            
      * @throws BadComponentCallException
-     * @return ComponentInterface
+     * @return ComponentInterface|null
      */
-    public function component(string $component_name): ComponentInterface
+    public function component(string $component_name)
     {
         $component_name = strtolower($component_name);
         
         if (! array_key_exists($component_name, $this->components)) {
-            try {
-                $component = sprintf('\AframeVR\Components\%s', ucfirst($component_name));
-                if (class_exists($component)) {
-                    $this->components[$component_name] = new $component();
-                } else {
-                    throw new BadComponentCallException($component_name);
-                }
-            } catch (BadComponentCallException $e) {
-                die($e->getMessage());
+            $component = sprintf('\AframeVR\Components\%s', ucfirst($component_name));
+            if (class_exists($component)) {
+                $this->components[$component_name] = new $component();
+            } else {
+                throw new BadComponentCallException($component_name);
             }
         }
         
-        return $this->components[$component_name];
+        return $this->components[$component_name] ?? null;
     }
 
     /**
@@ -142,7 +162,13 @@ class Entity implements EntityInterface
      */
     public function __call(string $component_name, array $args)
     {
-        return call_user_func_array($this->{$component_name}->bindTo($this), $args);
+        if (! method_exists($this, $component_name)) {
+            $this->{$component_name} = Closure::bind(function () use ($component_name) {
+                return $this->component($component_name);
+            }, $this, get_class());
+        }
+        
+        return call_user_func($this->{$component_name}, $args);
     }
 
     /**

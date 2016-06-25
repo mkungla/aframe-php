@@ -6,13 +6,23 @@
 		<const name="FS_TEST_LOG_LEVEL" value="7" />
 	</php>
 	<testsuites>
-		<testsuite name="general" phpVersion="7"
-			phpVersionOperator=">=">
+		<testsuite name="general" phpVersion="7" phpVersionOperator=">=">
 			<directory>testsuites/general</directory>
 		</testsuite>
 		<testsuite name="primitives" phpVersion="7"
 			phpVersionOperator=">=">
 			<directory>testsuites/primitives</directory>
+		</testsuite>
+		<testsuite name="components" phpVersion="7"
+			phpVersionOperator=">=">
+			<directory>testsuites/components</directory>
+		</testsuite>
+		<testsuite name="exceptions" phpVersion="7"
+			phpVersionOperator=">=">
+			<directory>testsuites/exceptions</directory>
+		</testsuite>
+		<testsuite name="shaders" phpVersion="7" phpVersionOperator=">=">
+			<directory>testsuites/shaders</directory>
 		</testsuite>
 	</testsuites>
 	<filter>

@@ -66,6 +66,21 @@ final class MetaTags
     }
 
     /**
+     * Return meta tags as object
+     *
+     * @return \stdClass
+     */
+    public function getMetaTags()
+    {
+        $meta_tags = new \stdClass();
+        $meta_tags->title = $this->title;
+        $meta_tags->description = $this->description;
+        $meta_tags->charset = $this->charset;
+        
+        return $meta_tags;
+    }
+
+    /**
      * Add DOM meta tags
      *
      * @param \DOMDocument $aframe_dom            

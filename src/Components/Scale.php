@@ -27,10 +27,11 @@ use \AframeVR\Interfaces\ComponentInterface;
 use \DOMAttr;
 
 /**
- * The scale component defines a shrinking, stretching, or skewing transformation of an entity. 
+ * The scale component defines a shrinking, stretching, or skewing transformation of an entity.
+ *
  * It takes three scaling factors for the X, Y, and Z axes.
  * Scaling factors can be negative, which results in a reflection.
- * 
+ *
  * All entities inherently have the rotation component.
  */
 class Scale implements ComponentInterface
@@ -59,10 +60,10 @@ class Scale implements ComponentInterface
 
     /**
      * Constructor
-     * 
-     * @param integer|double $x
-     * @param integer|double $y
-     * @param integer|double $z
+     *
+     * @param integer|double $x            
+     * @param integer|double $y            
+     * @param integer|double $z            
      */
     public function __construct(float $x = 0, float $y = 0, float $z = 0)
     {
@@ -100,7 +101,7 @@ class Scale implements ComponentInterface
      */
     public function removeDefaultDOMAttributes()
     {
-        if ($this->x === 0 && $this->y === 0 && $this->z === 0) {
+        if (empty($this->x) && empty($this->y) && empty($this->z)) {
             unset($this->x);
             unset($this->y);
             unset($this->z);
@@ -119,13 +120,13 @@ class Scale implements ComponentInterface
 
     /**
      * Update scale
-     * 
-     * If any of the scaling factors are set to 0, then A-Frame will 
+     *
+     * If any of the scaling factors are set to 0, then A-Frame will
      * assign instead an extremely small value such that things don’t break.
-     * 
-     * @param integer|double $x
-     * @param integer|double $y
-     * @param integer|double $z
+     *
+     * @param integer|double $x            
+     * @param integer|double $y            
+     * @param integer|double $z            
      */
     public function update(float $x = 0, float $y = 0, float $z = 00)
     {

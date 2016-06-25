@@ -30,35 +30,45 @@ class Standard implements ShaderInterface
 
     /**
      * Base diffuse color.
+     *
+     * @var string $color
      */
     public $color = '#fff';
 
     /**
      * Height of video (in pixels), if defining a video texture.
      *
-     * @var unknown
+     * @var int $height
      */
-    public $height = '360';
+    public $height = 360;
 
     /**
      * Environment cubemap texture for reflections.
      *
      * Can be a selector to or a comma-separated list of URLs.
+     *
+     * @var string|null $envMap
      */
-    public $envMap = false;
+    public $envMap = null;
 
     /**
      * Whether or not material is affected by fog.
+     *
+     * @var string $fog
      */
-    public $fog = true;
+    public $fog = 'true';
 
     /**
      * How metallic the material is from 0 to 1.
+     *
+     * @var float $metalness
      */
-    public $metalness = '0.5';
+    public $metalness = 0.5;
 
     /**
      * How many times a texture (defined by src) repeats in the X and Y direction.
+     *
+     * @var string $repeat
      */
     public $repeat = '1 1';
 
@@ -66,20 +76,31 @@ class Standard implements ShaderInterface
      * How rough the material is from 0 to 1.
      * A rougher material will scatter
      * reflected light in more directions than a smooth material.
+     *
+     * @var float $roughness
      */
-    public $roughness = '0.5';
-
-    /**
-     * Width of video (in pixels), if defining a video texture.
-     */
-    public $width = '640';
+    public $roughness = 0.5;
 
     /**
      * Image or video texture map.
      * Can either be a selector to an <img> or <video>, or an inline URL.
+     *
+     * @var string|null $src
      */
     public $src = null;
 
+    /**
+     * Width of video (in pixels), if defining a video texture.
+     *
+     * @var int $width
+     */
+    public $width = 640;
+
+    /**
+     * Remove default attributes
+     *
+     * @return void
+     */
     public function removeDefaultDOMAttributes()
     {
         $defaults = get_class_vars(get_class($this));
@@ -89,48 +110,99 @@ class Standard implements ShaderInterface
         }
     }
 
+    /**
+     * Base diffuse color
+     *
+     * @param string $color            
+     */
     public function color(string $color = '#fff')
     {
         $this->color = $color;
     }
 
-    public function height(string $height = '360')
+    /**
+     * Height of video (in pixels), if defining a video texture.
+     *
+     * @param int $height            
+     */
+    public function height(int $height = 360)
     {
         $this->height = $height;
     }
 
-    public function envMap($envMap = false)
+    /**
+     * envMap
+     *
+     * Environment cubemap texture for reflections.
+     * Can be a selector to or a comma-separated list of URLs.
+     *
+     * @param string $envMap            
+     */
+    public function envMap(string $envMap = null)
     {
         $this->envMap = $envMap;
     }
 
+    /**
+     * Whether or not material is affected by fog.
+     *
+     * @param bool $fog            
+     */
     public function fog(bool $fog = true)
     {
-        $this->fog = $fog;
+        $this->fog = $fog ? 'true' : 'false';
     }
 
-    public function metalness(string $metalness = '0.5')
+    /**
+     * How metallic the material is from 0 to 1.
+     *
+     * @param float $metalness            
+     */
+    public function metalness(float $metalness = 0.5)
     {
         $this->metalness = $metalness;
     }
 
-    public function repeat(string $repeat = '1 1')
+    /**
+     * repeat
+     *
+     * @param float $x            
+     * @param float $y            
+     */
+    public function repeat(float $x = 1, float $y = 1)
     {
-        $this->repeat = $repeat;
+        $this->repeat = sprintf('%d %d', $x, $y);
     }
 
-    public function roughness(string $roughness = '0.5')
+    /**
+     * How rough the material is from 0 to 1
+     *
+     * A rougher material will scatter reflected light in more directions than a smooth material.
+     *
+     * @param float $roughness            
+     */
+    public function roughness(float $roughness = 0.5)
     {
         $this->roughness = $roughness;
     }
 
-    public function width($width = '640')
-    {
-        $this->width = $width;
-    }
-
+    /**
+     * How many times a texture (defined by src) repeats in the X and Y direction.
+     *
+     * @param string $src            
+     */
     public function src(string $src = null)
     {
         $this->src = $src;
+    }
+
+    /**
+     * Width of video (in pixels), if defining a video texture.
+     *
+     * @param int $width            
+     */
+    public function width(int $width = 360)
+    {
+        $this->width = $width;
     }
 }

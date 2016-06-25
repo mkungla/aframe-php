@@ -95,12 +95,14 @@ trait MeshAttributes
     /**
      * geometry.translate
      *
-     * @param string $translate            
-     * @return \AframeVR\Core\Helpers\MeshAttributes
+     * @param float $x            
+     * @param float $y            
+     * @param float $z            
+     * @return EntityInterface
      */
-    public function translate($translate = '0 0 0'): EntityInterface
+    public function translate(float $x = 0, float $y = 0, float $z = 0): EntityInterface
     {
-        $this->component('Geometry')->translate($translate);
+        $this->component('Geometry')->translate($x, $y, $z);
         return $this;
     }
 

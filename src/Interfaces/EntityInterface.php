@@ -25,8 +25,7 @@ namespace AframeVR\Interfaces;
 
 use \AframeVR\Interfaces\{
     ComponentInterface
-}
-;
+};
 use \DOMElement;
 
 interface EntityInterface
@@ -58,24 +57,24 @@ interface EntityInterface
 
     /**
      * Scale component
-     * 
+     *
      * All entities inherently have the scale component.
-     * 
-     * @param number $x
-     * @param number $y
-     * @param number $z
+     *
+     * @param number $x            
+     * @param number $y            
+     * @param number $z            
      * @return EntityInterface
      */
     public function scale($x = 0, $y = 0, $z = 0): EntityInterface;
-    
+
     /**
      * Load component for this entity
      *
      * @param string $component_name            
      * @throws BadComponentCallException
-     * @return ComponentInterface
+     * @return ComponentInterface|null
      */
-    public function component(string $component_name): ComponentInterface;
+    public function component(string $component_name);
 
     /**
      * Create and add DOM element of the entity

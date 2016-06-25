@@ -27,12 +27,23 @@ use \AframeVR\Core\Helpers\MetaTags;
 use \AframeVR\Extras\Primitives;
 use \DOMImplementation;
 use \DOMDocument;
+use \AframeVR\Core\Entity;
+use \AframeVR\Interfaces\AssetsInterface;
 
 final class Scene
 {
     use Primitives;
 
     private $name;
+
+    protected $assets = array();
+
+    /**
+     * A-Frame scene entities
+     *
+     * @var array|null $entities
+     */
+    protected $entities;
 
     public function __construct($name)
     {
@@ -47,6 +58,28 @@ final class Scene
     public function meta()
     {
         return $this->meta ?? $this->meta = new MetaTags();
+    }
+
+    /**
+     * Entity
+     *
+     * @param string $name            
+     * @return Entity
+     */
+    public function entity(string $name = 'untitled'): Entity
+    {
+        return $this->entities[$name] ?? $this->entities[$name] = new Entity();
+    }
+
+    /**
+     * Assets
+     *
+     * @param string $name            
+     * @return AssetsnInterface
+     */
+    public function assets(string $name = 'untitled'): AssetsInterface
+    {
+        return $this->assets[$name] ?? $this->assets[$name] = new Assets();
     }
 
     /**
@@ -69,6 +102,14 @@ final class Scene
         
         /* Add primitives to DOM */
         $this->DOMAppendPrimitives($aframe_dom, $aframe_dom_scene);
+        
+        /* Add entities */
+        if (is_array($this->entities)) {
+            foreach ($this->entities as $entity) {
+                $entity_dom = $entity->DOMElement($aframe_dom);
+                $aframe_dom_scene->appendChild($entity_dom);
+            }
+        }
         
         $cdn_script = $aframe_dom->createElement('script');
         $cdn_script->setAttribute('src', 'https://aframe.io/releases/0.2.0/aframe.min.js');
