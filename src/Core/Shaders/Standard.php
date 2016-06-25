@@ -24,8 +24,9 @@
 namespace AframeVR\Core\Shaders;
 
 use \AframeVR\Interfaces\ShaderInterface;
+use \AframeVR\Core\Helpers\ShaderAbstract;
 
-class Standard implements ShaderInterface
+class Standard extends ShaderAbstract implements ShaderInterface
 {
 
     /**
@@ -95,20 +96,6 @@ class Standard implements ShaderInterface
      * @var int $width
      */
     public $width = 640;
-
-    /**
-     * Remove default attributes
-     *
-     * @return void
-     */
-    public function removeDefaultDOMAttributes()
-    {
-        $defaults = get_class_vars(get_class($this));
-        foreach (get_object_vars($this) as $name => $value) {
-            if (empty($value) || (array_key_exists($name, $defaults) && $value === $defaults[$name]))
-                unset($this->$name);
-        }
-    }
 
     /**
      * Base diffuse color
