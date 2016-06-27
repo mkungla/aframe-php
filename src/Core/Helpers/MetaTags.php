@@ -98,27 +98,40 @@ final class MetaTags
         $head->appendChild($title);
         
         /* meta description */
-        $description = $aframe_dom->createElement('meta');
-        $description->setAttribute('name', 'description');
-        $description->setAttribute('content', $this->description);
-        $head->appendChild($description);
+        $description = array(
+            'name' => 'description',
+            'content' => $this->description
+        );
+        $this->DOMappendTag('meta', $description, $aframe_dom, $head);
         
         /* meta viewport */
-        $viewport = $aframe_dom->createElement('meta');
-        $viewport->setAttribute('name', 'viewport');
-        $viewport->setAttribute('content', 'width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,minimal-ui');
-        $head->appendChild($viewport);
+        $viewport = array(
+            'name' => 'viewport',
+            'content' => 'width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,minimal-ui'
+        );
+        $this->DOMappendTag('meta', $viewport, $aframe_dom, $head);
         
         /* mobile */
-        $mobile = $aframe_dom->createElement('meta');
-        $mobile->setAttribute('name', 'mobile-web-app-capable');
-        $mobile->setAttribute('content', 'yes');
-        $head->appendChild($mobile);
+        $mobile = array(
+            'name' => 'mobile-web-app-capable',
+            'content' => 'yes'
+        );
+        $this->DOMappendTag('meta', $mobile, $aframe_dom, $head);
         
         /* theme */
-        $theme = $aframe_dom->createElement('meta');
-        $theme->setAttribute('name', 'theme-color');
-        $theme->setAttribute('content', 'black');
-        $head->appendChild($theme);
+        $theme = array(
+            'name' => 'theme-color',
+            'content' => 'black'
+        );
+        $this->DOMappendTag('meta', $theme, $aframe_dom, $head);
+    }
+
+    private function DOMappendTag(string $element, array $attrs, \DOMDocument &$aframe_dom, \DOMElement &$head)
+    {
+        $child = $aframe_dom->createElement($element);
+        foreach ($attrs as $name => $content) {
+            $child->setAttribute($name, $content);
+        }
+        $head->appendChild($child);
     }
 }
