@@ -34,7 +34,7 @@ class DefaultMethods
      * @param float|int $x_axis            
      * @return void
      */
-    public function updateX(array &$dom_attributes, float $x_axis)
+    public function positionX(array &$dom_attributes, float $x_axis)
     {
         $dom_attributes['x'] = $x_axis;
     }
@@ -47,7 +47,7 @@ class DefaultMethods
      * @param float|int $y_axis            
      * @return void
      */
-    public function updateY(array &$dom_attributes, float $y_axis)
+    public function positionY(array &$dom_attributes, float $y_axis)
     {
         $dom_attributes['y'] = $y_axis;
     }
@@ -60,7 +60,7 @@ class DefaultMethods
      * @param float|int $z_axis            
      * @return void
      */
-    public function updateZ(array &$dom_attributes, float $z_axis)
+    public function positionZ(array &$dom_attributes, float $z_axis)
     {
         $dom_attributes['z'] = $z_axis;
     }

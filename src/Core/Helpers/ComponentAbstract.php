@@ -50,7 +50,7 @@ abstract class ComponentAbstract implements ComponentInterface
     /**
      * Name of DOM attribute
      *
-     * @var unknown
+     * @var string
      */
     protected $dom_attribute_name;
 
@@ -175,6 +175,7 @@ abstract class ComponentAbstract implements ComponentInterface
     /**
      * Set Dom Attribute name
      *
+     * @param string $dom_attribute_name
      * @return void
      */
     public function setDomAttributeName(string $dom_attribute_name)

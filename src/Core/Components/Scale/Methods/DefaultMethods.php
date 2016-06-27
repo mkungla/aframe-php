@@ -30,35 +30,35 @@ class DefaultMethods
      * Roll, rotation about the X-axis.
      *
      * @param array $dom_attributes            
-     * @param float|int $roll            
+     * @param float|int $scale_x            
      * @return void
      */
-    public function updateX(array &$dom_attributes, float $roll)
+    public function scaleX(array &$dom_attributes, float $scale_x)
     {
-        $dom_attributes['x'] = $roll;
+        $dom_attributes['x'] = $scale_x;
     }
 
     /**
      * Pitch, rotation about the Y-axis.
      *
      * @param array $dom_attributes            
-     * @param float|int $pitch            
+     * @param float|int $scaling_y            
      * @return void
      */
-    public function updateY(array &$dom_attributes, float $pitch)
+    public function scaleY(array &$dom_attributes, float $scale_y)
     {
-        $dom_attributes['y'] = $pitch;
+        $dom_attributes['y'] = $scale_y;
     }
 
     /**
      * Yaw, rotation about the Z-axis.
      *
      * @param array $dom_attributes            
-     * @param float|int $yaw            
+     * @param float|int $scale_z            
      * @return void
      */
-    public function updateZ(array &$dom_attributes, float $yaw)
+    public function scaleZ(array &$dom_attributes, float $scale_z)
     {
-        $dom_attributes['z'] = $yaw;
+        $dom_attributes['z'] = $scale_z;
     }
 }

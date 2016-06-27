@@ -73,16 +73,16 @@ class Entity implements EntityInterface
      *
      * All entities inherently have the position component.
      *
-     * @param float|int $x            
-     * @param float|int $y            
-     * @param float|int $z            
+     * @param float|int $x_axis            
+     * @param float|int $y_axis            
+     * @param float|int $z_axis            
      * @return \AframeVR\Core\Entity
      */
-    public function position(float $x = 0, float $y = 0, float $z = 0): Entity
+    public function position(float $x_axis = 0, float $y_axis = 0, float $z_axis = 0): Entity
     {
-        $this->component('Position')->updateX($x);
-        $this->component('Position')->updateY($y);
-        $this->component('Position')->updateZ($z);
+        $this->component('Position')->positionX($x_axis);
+        $this->component('Position')->positionY($y_axis);
+        $this->component('Position')->positionZ($z_axis);
         return $this;
     }
 
@@ -91,16 +91,16 @@ class Entity implements EntityInterface
      *
      * All entities inherently have the rotation component.
      *
-     * @param float|int $x            
-     * @param float|int $y            
-     * @param float|int $z            
+     * @param float|int $roll            
+     * @param float|int $pitch            
+     * @param float|int $yaw            
      * @return \AframeVR\Core\Entity
      */
-    public function rotation(float $x = 0, float $y = 0, float $z = 0): Entity
+    public function rotation(float $roll = 0, float $pitch = 0, float $yaw = 0): Entity
     {
-        $this->component('Rotation')->updateX($x);
-        $this->component('Rotation')->updateY($y);
-        $this->component('Rotation')->updateZ($z);
+        $this->component('Rotation')->roll($roll);
+        $this->component('Rotation')->pitch($pitch);
+        $this->component('Rotation')->yaw($yaw);
         return $this;
     }
 
@@ -114,11 +114,11 @@ class Entity implements EntityInterface
      * @param float|int $z            
      * @return \AframeVR\Core\Entity
      */
-    public function scale(float $x = 0, float $y = 0, float $z = 0): Entity
+    public function scale(float $scale_x = 0, float $scale_y = 0, float $scale_z = 0): Entity
     {
-        $this->component('Scale')->updateX($x);
-        $this->component('Scale')->updateY($y);
-        $this->component('Scale')->updateZ($z);
+        $this->component('Scale')->scaleX($scale_x);
+        $this->component('Scale')->scaleY($scale_y);
+        $this->component('Scale')->scaleZ($scale_z);
         return $this;
     }
 

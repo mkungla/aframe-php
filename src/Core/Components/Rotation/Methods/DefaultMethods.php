@@ -33,7 +33,7 @@ class DefaultMethods
      * @param float|int $roll            
      * @return void
      */
-    public function updateX(array &$dom_attributes, float $roll)
+    public function roll(array &$dom_attributes, float $roll)
     {
         $dom_attributes['x'] = $roll;
     }
@@ -45,7 +45,7 @@ class DefaultMethods
      * @param float|int $pitch            
      * @return void
      */
-    public function updateY(array &$dom_attributes, float $pitch)
+    public function pitch(array &$dom_attributes, float $pitch)
     {
         $dom_attributes['y'] = $pitch;
     }
@@ -57,7 +57,7 @@ class DefaultMethods
      * @param float|int $yaw            
      * @return void
      */
-    public function updateZ(array &$dom_attributes, float $yaw)
+    public function yaw(array &$dom_attributes, float $yaw)
     {
         $dom_attributes['z'] = $yaw;
     }

@@ -155,12 +155,12 @@ class AframeComponentInstaller extends LibraryInstaller
         
         if ($this->supportedByName($target->getPrettyName())) {
             $this->io->info(sprintf("Updating A-Frame Component %s", $this->aframe_component_name));
-            if (! is_dir($this->getInstallPath($package) . DIRECTORY_SEPARATOR . 'dist')) {
+            if (! is_dir($this->getInstallPath($target) . DIRECTORY_SEPARATOR . 'dist')) {
                 $this->io->warning(sprintf('A-Frame Component %s can not be used since missing dist directory!', $this->aframe_component_name));
             } else {
                 $this->filesystem->removeDirectory($this->getComponentPath());
                 $this->filesystem->ensureDirectoryExists($this->getComponentPath());
-                $this->copy($this->getInstallPath($package) . DIRECTORY_SEPARATOR . 'dist', $this->getComponentPath());
+                $this->copy($this->getInstallPath($target) . DIRECTORY_SEPARATOR . 'dist', $this->getComponentPath());
             }
         }
     }
