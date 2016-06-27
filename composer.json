@@ -5,8 +5,7 @@
 	"license" : "MIT",
     "require": {
         	"php": ">= 7",
-        	"composer-plugin-api": "^1.1",
-        	"mkungla/aframe":"*"
+        	"composer-plugin-api": "^1.1"
     },
     "minimum-stability" : "stable",
 	"autoload" : {
