@@ -121,7 +121,7 @@ class AframeComponentInstaller extends LibraryInstaller
         
         if ($this->supportedByName($package->getPrettyName())) {
             $this->io->info(sprintf("Installing A-Frame Component %s", $this->aframe_component_name));
-
+            
             if (! is_dir($this->getComponentSrcDistPath($package))) {
                 $this->io->warning(sprintf('A-Frame Component %s can not be used since missing dist directory!', $this->aframe_component_name));
             } else {
@@ -179,9 +179,6 @@ class AframeComponentInstaller extends LibraryInstaller
         
         if (is_dir($this->getComponentPath()) && basename($this->getComponentPath()) !== 'component') {
             $this->filesystem->removeDirectory($this->getComponentPath());
-            $this->io->error($this->aframe_component_vendor);
-            $this->io->error($this->aframe_component_name);
-            $this->io->error($this->getComponentPath());
         } else {
             $this->io->error($this->getComponentPath());
         }
@@ -207,14 +204,14 @@ class AframeComponentInstaller extends LibraryInstaller
 
     /**
      * Get component dist path
-     * 
+     *
      * @return string
      */
-    protected function getComponentSrcDistPath(PackageInterface $package) : string
+    protected function getComponentSrcDistPath(PackageInterface $package): string
     {
         return $this->getInstallPath($package) . DIRECTORY_SEPARATOR . 'dist';
     }
-    
+
     /**
      * Get A-Frame component path
      *
@@ -283,26 +280,31 @@ class AframeComponentInstaller extends LibraryInstaller
      *
      * @param string $source            
      * @param string $dest            
+     * @return bool
      */
     public function copy(string $source, string $dest)
     {
-        if (! empty($source) && ! empty($dest) && ! is_dir($source)) {
-            $this->rm($dest);
-            return copy($source, $dest);
-        } elseif ((! empty($source) && ! empty($dest)) && is_dir($source)) {
-            
-            foreach ($iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($source, \RecursiveDirectoryIterator::SKIP_DOTS), \RecursiveIteratorIterator::SELF_FIRST) as $item) {
-                if ($item->isDir()) {
-                    mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName(), octdec(str_pad($iterator->getPerms(), 4, 0, STR_PAD_LEFT)));
-                } else {
-                    
-                    $this->copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
-                }
+        return ! is_dir($source) ? $this->rm($dest) & copy($source, $dest) : $this->copyDir($source, $dest);
+    }
+    
+    /**
+     * Copy directory
+     * 
+     * @param string $source
+     * @param string $dest
+     */
+    private function copyDir(string $source, string $dest)
+    {
+        $dir_iterator = new \RecursiveDirectoryIterator($source, \RecursiveDirectoryIterator::SKIP_DOTS);
+        $iterator = new \RecursiveIteratorIterator($dir_iterator, \RecursiveIteratorIterator::SELF_FIRST);
+        foreach ($iterator as $item) {
+            if ($item->isDir()) {
+                mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName(), octdec(str_pad($iterator->getPerms(), 4, 0, STR_PAD_LEFT)));
+            } else {   
+                $this->copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
             }
-            
-            return true;
-        } else
-            return false;
+        }
+        return true;
     }
 
     /**
