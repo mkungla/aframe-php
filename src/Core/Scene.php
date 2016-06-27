@@ -100,7 +100,7 @@ final class Scene
         $aframe_dom_scene = $aframe_dom->createElement("a-scene", "\n");
         
         /* Add metatags */
-        $this->meta()->DOMAppendTags($aframe_dom, $aframe_dom_head);
+        $this->meta()->DOMAppendAllTags($aframe_dom, $aframe_dom_head);
         
         /* Add primitives to DOM */
         $this->DOMAppendPrimitives($aframe_dom, $aframe_dom_scene);
@@ -143,4 +143,3 @@ final class Scene
         }
     }
 }
- 

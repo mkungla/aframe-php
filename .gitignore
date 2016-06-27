@@ -3,6 +3,7 @@
 *.min.js
 
 composer.phar
+composer.lock
 /public/examples/devel/*
 
 /tests/results/log/*

@@ -59,12 +59,9 @@ class SceneTest extends PHPUnit_Framework_TestCase
             ->meta()
             ->charset($charset);
         
-        $meta_tags = $this->aframe->scene()
+        $this->assertFalse($this->aframe->scene()
             ->meta()
-            ->getMetaTags();
+            ->removeTag('invalidTag'));
         
-        $this->assertEquals($meta_tags->title, $title);
-        $this->assertEquals($meta_tags->description, $description);
-        $this->assertEquals($meta_tags->charset, $charset);
     }
 }

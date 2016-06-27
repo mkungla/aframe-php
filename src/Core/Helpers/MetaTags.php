@@ -35,12 +35,22 @@ final class MetaTags
     /* Meta charset */
     private $charset = 'utf-8';
 
+    public function __construct()
+    {
+        $this->title();
+        $this->description();
+        $this->viewport('width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,minimal-ui');
+        $this->charset();
+        $this->setTag('mobile-web-app-capable', 'yes');
+        $this->setTag('theme-color', 'black');
+    }
+
     /**
      * Set meta title
      *
      * @param string $title            
      */
-    public function title(string $title = 'untitled')
+    public function title(string $title = 'Untitled A-Frame')
     {
         $this->title = $title;
     }
@@ -53,6 +63,19 @@ final class MetaTags
     public function description(string $description = 'no description')
     {
         $this->description = $description;
+        $this->setTag('description', $description);
+    }
+
+    /**
+     * Set unset viewport
+     *
+     * @param string $viewport            
+     * @return void
+     */
+    public function viewport(string $viewport = null)
+    {
+        $this->viewport = $viewport;
+        ! empty($viewport) ? $this->setTag('viewport', $viewport) : $this->removeTag('viewport', $viewport);
     }
 
     /**
@@ -66,18 +89,31 @@ final class MetaTags
     }
 
     /**
-     * Return meta tags as object
+     * Set meta tags
      *
-     * @return \stdClass
+     * @param string $name            
+     * @param string $content            
+     * @return void
      */
-    public function getMetaTags()
+    public function setTag(string $name, string $content)
     {
-        $meta_tags = new \stdClass();
-        $meta_tags->title = $this->title;
-        $meta_tags->description = $this->description;
-        $meta_tags->charset = $this->charset;
-        
-        return $meta_tags;
+        $this->tags[$name] = $content;
+    }
+
+    /**
+     * Remove meta tags
+     *
+     * Returns true if meta tag existed and was removed
+     *
+     * @param string $name            
+     * @return bool
+     */
+    public function removeTag(string $name)
+    {
+        return array_key_exists($name, $this->tags) ? function () {
+            unset($this->tags[$name]);
+            return true;
+        } : false;
     }
 
     /**
@@ -85,53 +121,62 @@ final class MetaTags
      *
      * @param \DOMDocument $aframe_dom            
      * @param \DOMElement $head            
+     * @return void
      */
-    public function DOMAppendTags(\DOMDocument &$aframe_dom, \DOMElement &$head)
+    public function DOMAppendAllTags(\DOMDocument &$aframe_dom, \DOMElement &$head)
     {
-        /* meta charset */
-        $charset = $aframe_dom->createElement('meta');
-        $charset->setAttribute('charset', 'utf-8');
-        $head->appendChild($charset);
-        
         /* meta title */
-        $title = $aframe_dom->createElement('title', $this->title);
-        $head->appendChild($title);
+        $this->DOMappendTitle($aframe_dom, $head);
         
-        /* meta description */
-        $description = array(
-            'name' => 'description',
-            'content' => $this->description
-        );
-        $this->DOMappendTag('meta', $description, $aframe_dom, $head);
+        /* meta charset */
+        $this->DOMappendCharset($aframe_dom, $head);
         
-        /* meta viewport */
-        $viewport = array(
-            'name' => 'viewport',
-            'content' => 'width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,minimal-ui'
-        );
-        $this->DOMappendTag('meta', $viewport, $aframe_dom, $head);
-        
-        /* mobile */
-        $mobile = array(
-            'name' => 'mobile-web-app-capable',
-            'content' => 'yes'
-        );
-        $this->DOMappendTag('meta', $mobile, $aframe_dom, $head);
-        
-        /* theme */
-        $theme = array(
-            'name' => 'theme-color',
-            'content' => 'black'
-        );
-        $this->DOMappendTag('meta', $theme, $aframe_dom, $head);
+        /* meta tags */
+        foreach ($this->tags as $name => $content)
+            $this->DOMappendTag($name, $content, $aframe_dom, $head);
     }
 
-    private function DOMappendTag(string $element, array $attrs, \DOMDocument &$aframe_dom, \DOMElement &$head)
+    /**
+     * Append Meta tag to DOM
+     *
+     * @param string $name            
+     * @param string $content            
+     * @param \DOMDocument $aframe_dom            
+     * @param \DOMElement $head            
+     * @return void
+     */
+    private function DOMappendTag(string $name, string $content, \DOMDocument &$aframe_dom, \DOMElement &$head)
     {
-        $child = $aframe_dom->createElement($element);
-        foreach ($attrs as $name => $content) {
-            $child->setAttribute($name, $content);
-        }
+        $child = $aframe_dom->createElement('meta');
+        $child->setAttribute('name', $name);
+        $child->setAttribute('content', $content);
         $head->appendChild($child);
+    }
+
+    /**
+     * Insert Meta title
+     *
+     * @param \DOMDocument $aframe_dom            
+     * @param \DOMElement $head            
+     * @return void
+     */
+    private function DOMappendTitle(\DOMDocument &$aframe_dom, \DOMElement &$head)
+    {
+        $title = $aframe_dom->createElement('title', $this->title);
+        $head->appendChild($title);
+    }
+
+    /**
+     * Insert Charset
+     *
+     * @param \DOMDocument $aframe_dom            
+     * @param \DOMElement $head            
+     * @return void
+     */
+    private function DOMappendCharset(\DOMDocument &$aframe_dom, \DOMElement &$head)
+    {
+        $charset = $aframe_dom->createElement('meta');
+        $charset->setAttribute('charset', $this->charset);
+        $head->appendChild($charset);
     }
 }

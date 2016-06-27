@@ -33,10 +33,20 @@ abstract class ShaderAbstract
      */
     public function removeDefaultDOMAttributes()
     {
-        $defaults = get_class_vars(get_class($this));
-        foreach (get_object_vars($this) as $name => $value) {
-            if (empty($value) || (array_key_exists($name, $defaults) && $value === $defaults[$name]))
+        $defaults = $this->getShaderClassDefaultVars();
+        foreach ($this as $name => $value) {
+            if (empty($value) || $value === $defaults[$name])
                 unset($this->$name);
         }
+    }
+
+    /**
+     * Get default class vars
+     *
+     * @return void
+     */
+    private function getShaderClassDefaultVars()
+    {
+        return get_class_vars(get_class($this));
     }
 }
