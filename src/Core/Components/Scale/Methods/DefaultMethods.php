@@ -27,7 +27,7 @@ class DefaultMethods
 {
 
     /**
-     * Roll, rotation about the X-axis.
+     * Scaling factor in the X direction.
      *
      * @param array $dom_attributes            
      * @param float|int $scale_x            
@@ -39,10 +39,10 @@ class DefaultMethods
     }
 
     /**
-     * Pitch, rotation about the Y-axis.
+     * Scaling factor in the Y direction..
      *
      * @param array $dom_attributes            
-     * @param float|int $scaling_y            
+     * @param float|int $scale_y            
      * @return void
      */
     public function scaleY(array &$dom_attributes, float $scale_y)
@@ -51,7 +51,7 @@ class DefaultMethods
     }
 
     /**
-     * Yaw, rotation about the Z-axis.
+     * Scaling factor in the Z direction.
      *
      * @param array $dom_attributes            
      * @param float|int $scale_z            

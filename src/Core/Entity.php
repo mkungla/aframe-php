@@ -109,9 +109,9 @@ class Entity implements EntityInterface
      *
      * All entities inherently have the scale component.
      *
-     * @param float|int $x            
-     * @param float|int $y            
-     * @param float|int $z            
+     * @param float|int $scale_x            
+     * @param float|int $scale_y           
+     * @param float|int $scale_z            
      * @return \AframeVR\Core\Entity
      */
     public function scale(float $scale_x = 0, float $scale_y = 0, float $scale_z = 0): Entity

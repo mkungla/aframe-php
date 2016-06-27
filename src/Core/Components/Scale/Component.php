@@ -27,6 +27,12 @@ use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Core\Helpers\ComponentHelper;
 use \AframeVR\Interfaces\ComponentInterface;
 
+/**
+ * AframeVR\Core\Components\Scale
+ * 
+ * The scale component defines a shrinking, stretching, or skewing transformation of an entity. 
+ * It takes three scaling factors for the X, Y, and Z axes.
+ */
 class Component extends ComponentAbstract implements ComponentInterface
 {
     use ComponentHelper;

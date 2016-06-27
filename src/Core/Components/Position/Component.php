@@ -27,6 +27,12 @@ use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Core\Helpers\ComponentHelper;
 use \AframeVR\Interfaces\ComponentInterface;
 
+/**
+ * AframeVR\Core\Components\Position
+ *
+ * The position component defines where an entity is placed in the scene's world space.
+ * It takes a coordinate value as three space-delimited numbers.
+ */
 class Component extends ComponentAbstract implements ComponentInterface
 {
     use ComponentHelper;

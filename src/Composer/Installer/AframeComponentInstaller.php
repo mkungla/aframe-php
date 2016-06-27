@@ -122,12 +122,12 @@ class AframeComponentInstaller extends LibraryInstaller
         if ($this->supportedByName($package->getPrettyName())) {
             $this->io->info(sprintf("Installing A-Frame Component %s", $this->aframe_component_name));
 
-            if (! is_dir($this->getInstallPath($package) . DIRECTORY_SEPARATOR . 'dist')) {
+            if (! is_dir($this->getComponentSrcDistPath($package))) {
                 $this->io->warning(sprintf('A-Frame Component %s can not be used since missing dist directory!', $this->aframe_component_name));
             } else {
                 $this->filesystem->ensureDirectoryExists($this->getComponentPath());
                 
-                $this->copy($this->getInstallPath($package) . DIRECTORY_SEPARATOR . 'dist', $this->getComponentPath());
+                $this->copy($this->getComponentSrcDistPath($package), $this->getComponentPath());
             }
         }
     }
@@ -155,12 +155,12 @@ class AframeComponentInstaller extends LibraryInstaller
         
         if ($this->supportedByName($target->getPrettyName())) {
             $this->io->info(sprintf("Updating A-Frame Component %s", $this->aframe_component_name));
-            if (! is_dir($this->getInstallPath($target) . DIRECTORY_SEPARATOR . 'dist')) {
+            if (! is_dir($this->getComponentSrcDistPath($target))) {
                 $this->io->warning(sprintf('A-Frame Component %s can not be used since missing dist directory!', $this->aframe_component_name));
             } else {
                 $this->filesystem->removeDirectory($this->getComponentPath());
                 $this->filesystem->ensureDirectoryExists($this->getComponentPath());
-                $this->copy($this->getInstallPath($target) . DIRECTORY_SEPARATOR . 'dist', $this->getComponentPath());
+                $this->copy($this->getComponentSrcDistPath($target), $this->getComponentPath());
             }
         }
     }
@@ -205,6 +205,16 @@ class AframeComponentInstaller extends LibraryInstaller
         return substr($package_name, 0, 6) === 'aframe' && $package_name !== 'aframe';
     }
 
+    /**
+     * Get component dist path
+     * 
+     * @return string
+     */
+    protected function getComponentSrcDistPath(PackageInterface $package) : string
+    {
+        return $this->getInstallPath($package) . DIRECTORY_SEPARATOR . 'dist';
+    }
+    
     /**
      * Get A-Frame component path
      *

@@ -27,6 +27,16 @@ use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Core\Helpers\ComponentHelper;
 use \AframeVR\Interfaces\ComponentInterface;
 
+/**
+ * AframeVR\Core\Components\Rotation
+ * 
+ * The rotation component defines the orientation of an entity. 
+ * It takes the 
+ * roll (x), 
+ * pitch (y), 
+ * and yaw (z) 
+ * as three space-delimited numbers indicating degrees of rotation.
+ */
 class Component extends ComponentAbstract implements ComponentInterface
 {
     use ComponentHelper;
