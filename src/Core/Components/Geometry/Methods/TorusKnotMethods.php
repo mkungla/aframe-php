@@ -49,7 +49,7 @@ class TorusKnotMethods
     /**
      * Radius that contains the torus knot.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $radius            
      * @return void
      */
@@ -61,7 +61,7 @@ class TorusKnotMethods
     /**
      * Radius of the tubes of the torus knot.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $radiusTubular            
      * @return void
      */
@@ -74,7 +74,7 @@ class TorusKnotMethods
      * Number of segments along the circumference of the tube ends.
      * A higher number means the tube will be more round.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param int $segmentsRadial            
      * @return void
      */
@@ -87,7 +87,7 @@ class TorusKnotMethods
      * Number of segments along the circumference of the tube face.
      * A higher number means the tube will be more round.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param int $segmentsTubular            
      * @return void
      */
@@ -99,7 +99,7 @@ class TorusKnotMethods
     /**
      * Number that helps define the pretzel shape.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param int $p            
      * @return void
      */
@@ -111,7 +111,7 @@ class TorusKnotMethods
     /**
      * Number that helps define the pretzel shape.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param int $q            
      * @return void
      */

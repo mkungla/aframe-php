@@ -32,7 +32,7 @@ class DefaultMethods
      * Extent of transparency. If the transparent property is not true,
      * then the material will remain opaque and opacity will only affect color.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float $opacity            
      * @return void
      */
@@ -46,7 +46,7 @@ class DefaultMethods
      *
      * Whether material is transparent. Transparent entities are rendered after non-transparent entities.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param bool|string $transparent            
      * @return void
      */
@@ -59,7 +59,7 @@ class DefaultMethods
      * Which sides of the mesh to render.
      * Can be one of front, back, or double
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param string $side            
      * @return void
      */

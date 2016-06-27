@@ -44,7 +44,7 @@ class CircleMethods
     /**
      * Radius (in meters) of the circle.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $radius            
      * @return void
      */
@@ -59,7 +59,7 @@ class CircleMethods
      * CIRCLE: Number of triangles to construct the circle, like pizza slices.
      * A higher number of segments means the circle will be more round.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param int $segments            
      * @return void
      */
@@ -72,7 +72,7 @@ class CircleMethods
      * Start angle for first segment.
      * Can be used to define a partial circle.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $thetaStart            
      * @return void
      */
@@ -84,7 +84,7 @@ class CircleMethods
     /**
      * Defaults to 360, which makes for a complete circle.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $thetaLength            
      * @return void
      */

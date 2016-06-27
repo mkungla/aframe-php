@@ -30,7 +30,7 @@ class DefaultMethods
      * Negative X axis extends left.
      * Positive X Axis extends right.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $x_axis            
      * @return void
      */
@@ -43,7 +43,7 @@ class DefaultMethods
      * Negative Y axis extends up.
      * Positive Y Axis extends down.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $y_axis            
      * @return void
      */
@@ -56,7 +56,7 @@ class DefaultMethods
      * Negative Z axis extends in.
      * Positive Z Axis extends out.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $z_axis            
      * @return void
      */

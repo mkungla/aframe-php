@@ -51,7 +51,7 @@ class ConeMethods
     /**
      * Height of the cone.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $height            
      * @return void
      */
@@ -63,7 +63,7 @@ class ConeMethods
     /**
      * Whether the ends of the cone are open (true) or capped (false).
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param bool|false $openEnded            
      * @return void
      */
@@ -76,7 +76,7 @@ class ConeMethods
     /**
      * Radius of the bottom end of the cone.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $radiusBottom            
      * @return void
      */
@@ -88,7 +88,7 @@ class ConeMethods
     /**
      * Radius of the top end of the cone.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $radiusBottom            
      * @return void
      */
@@ -100,7 +100,7 @@ class ConeMethods
     /**
      * Number of segmented faces around the circumference of the cone.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param int $segmentsRadial            
      * @return void
      */
@@ -112,7 +112,7 @@ class ConeMethods
     /**
      * Number of rows of faces along the height of the cone.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param int $segmentsHeight            
      * @return void
      */
@@ -124,7 +124,7 @@ class ConeMethods
     /**
      * Starting angle in degrees.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $thetaStart            
      * @return void
      */
@@ -136,7 +136,7 @@ class ConeMethods
     /**
      * Central angle in degrees.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $thetaLength            
      * @return void
      */

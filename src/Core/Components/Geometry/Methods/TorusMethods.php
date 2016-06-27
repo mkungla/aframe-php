@@ -45,7 +45,7 @@ class TorusMethods
     /**
      * Radius of the outer edge of the torus.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $radius            
      * @return void
      */
@@ -57,7 +57,7 @@ class TorusMethods
     /**
      * Radius of the tube.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $radiusTubular            
      * @return void
      */
@@ -70,7 +70,7 @@ class TorusMethods
      * Number of segments along the circumference of the tube ends.
      * A higher number means the tube will be more round.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param int $segmentsRadial            
      * @return void
      */
@@ -83,7 +83,7 @@ class TorusMethods
      * Number of segments along the circumference of the tube face.
      * A higher number means the tube will be more round.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param int $segmentsTubular            
      * @return void
      */
@@ -95,7 +95,7 @@ class TorusMethods
     /**
      * Central angle.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $radiusTubular            
      * @return void
      */

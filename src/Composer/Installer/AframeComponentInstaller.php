@@ -78,7 +78,7 @@ class AframeComponentInstaller extends LibraryInstaller
      * and package.
      * We only handle components with name prefix aframe
      *
-     * @param string $packageType            
+     * @param string $package_type            
      * @return bool
      */
     public function supports($package_type)
@@ -150,12 +150,12 @@ class AframeComponentInstaller extends LibraryInstaller
         parent::update($repo, $initial, $target);
         
         $this->initializeVendorDir();
-        $this->supportedByName($package->getPrettyName());
+        $this->supportedByName($target->getPrettyName());
         $this->setComponentPath();
         
-        if ($this->supportedByName($package->getPrettyName())) {
+        if ($this->supportedByName($target->getPrettyName())) {
             $this->io->info(sprintf("Updating A-Frame Component %s", $this->aframe_component_name));
-            $src = $this->getInstallPath($package) . DIRECTORY_SEPARATOR . 'dist';
+            $src = $this->getInstallPath($target) . DIRECTORY_SEPARATOR . 'dist';
             if (! is_dir($src)) {
                 $this->io->warning(sprintf('A-Frame Component %s can not be used since missing dist directory!', $this->aframe_component_name));
             } else {

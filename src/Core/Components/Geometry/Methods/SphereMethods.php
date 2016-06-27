@@ -54,7 +54,7 @@ class SphereMethods
     /**
      * Radius of the sphere.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $radius            
      * @return void
      */
@@ -66,7 +66,7 @@ class SphereMethods
     /**
      * Number of vertical segments.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param int $segmentsHeight            
      * @return void
      */
@@ -78,7 +78,7 @@ class SphereMethods
     /**
      * Number of horizontal segments.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param int $segmentsWidth            
      * @return void
      */
@@ -90,7 +90,7 @@ class SphereMethods
     /**
      * Horizontal starting angle.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $phiStart            
      * @return void
      */
@@ -102,7 +102,7 @@ class SphereMethods
     /**
      * Horizontal sweep angle size.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $phiLength            
      * @return void
      */
@@ -114,7 +114,7 @@ class SphereMethods
     /**
      * Vertical starting angle.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $thetaStart            
      * @return void
      */
@@ -126,7 +126,7 @@ class SphereMethods
     /**
      * Vertical sweep angle size.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $thetaLength            
      * @return void
      */

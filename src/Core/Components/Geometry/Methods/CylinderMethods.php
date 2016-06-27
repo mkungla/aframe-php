@@ -57,7 +57,7 @@ class CylinderMethods
     /**
      * Height of the cylinder.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $height            
      * @return void
      */
@@ -69,7 +69,7 @@ class CylinderMethods
     /**
      * Whether the ends of the cylinder are open (true) or capped (false).
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param bool|false $openEnded            
      * @return void
      */
@@ -82,7 +82,7 @@ class CylinderMethods
     /**
      * Radius of the cylinder.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $radius            
      * @return void
      */
@@ -94,7 +94,7 @@ class CylinderMethods
     /**
      * Number of rows of faces along the height of the cylinder.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param int $segmentsHeight            
      * @return void
      */
@@ -106,7 +106,7 @@ class CylinderMethods
     /**
      * Central angle in degrees.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $thetaLength            
      * @return void
      */
@@ -118,7 +118,7 @@ class CylinderMethods
     /**
      * Starting angle in degrees.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $thetaStart            
      * @return void
      */
@@ -130,7 +130,7 @@ class CylinderMethods
     /**
      * Number of segmented faces around the circumference of the cylinder.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param int $segmentsRadial            
      * @return void
      */

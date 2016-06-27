@@ -49,7 +49,7 @@ class RingMethods
     /**
      * Radius of the inner hole of the ring.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $radiusInner            
      * @return void
      */
@@ -61,7 +61,7 @@ class RingMethods
     /**
      * Radius of the outer edge of the ring.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $radiusOuter            
      * @return void
      */
@@ -73,7 +73,7 @@ class RingMethods
     /**
      * Central angle in degrees.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param float|int $thetaLength            
      * @return void
      */
@@ -85,7 +85,7 @@ class RingMethods
     /**
      * Starting angle in degrees.
      *
-     * @param &array $dom_attributess            
+     * @param array $dom_attributess            
      * @param float|int $thetaStart            
      * @return void
      */
@@ -98,7 +98,7 @@ class RingMethods
      * Number of segments.
      * A higher number means the ring will be more round.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param int $segmentsTheta            
      * @return void
      */
@@ -110,7 +110,7 @@ class RingMethods
     /**
      * Number of triangles within each face defined by segmentsTheta.
      *
-     * @param &array $dom_attributes            
+     * @param array $dom_attributes            
      * @param int $segmentsPhi            
      * @return void
      */
