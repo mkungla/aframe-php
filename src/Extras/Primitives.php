@@ -29,7 +29,8 @@ use \AframeVR\Extras\Primitives\{
     Cylinder,
     Plane,
     Sky
-};
+}
+;
 use \AframeVR\Core\Entity;
 
 trait Primitives
@@ -104,41 +105,41 @@ trait Primitives
      *
      * @param \DOMDocument $aframe_dom            
      * @param \DOMElement $scene            
+     * @return void
      */
     protected function DOMAppendPrimitives(\DOMDocument &$aframe_dom, \DOMElement &$scene)
     {
         /* Add sphiers to DOM */
-        if (is_array($this->spheres)) {
-            foreach ($this->spheres as $sphere) {
-                $entity = $sphere->DOMElement($aframe_dom);
-                $scene->appendChild($entity);
-            }
-        }
+        $this->DOMappendPrimitiveCollection($this->sphiers, $aframe_dom, $scene);
+        
         /* Add boxes to DOM */
-        if (is_array($this->boxes)) {
-            foreach ($this->boxes as $box) {
-                $entity = $box->DOMElement($aframe_dom);
+        $this->DOMappendPrimitiveCollection($this->boxes, $aframe_dom, $scene);
+        
+        /* Add cylinders to DOM */
+        $this->DOMappendPrimitiveCollection($this->cylinders, $aframe_dom, $scene);
+        
+        /* Add planes to DOM */
+        $this->DOMappendPrimitiveCollection($this->planes, $aframe_dom, $scene);
+        
+        /* Add sky to DOM */
+        $this->DOMappendPrimitiveCollection($this->sky, $aframe_dom, $scene);
+    }
+
+    /**
+     * Append Primitive Collection
+     *
+     * @param array $primitives            
+     * @param \DOMDocument $aframe_dom            
+     * @param \DOMElement $scene            
+     * @return void
+     */
+    private function DOMappendPrimitiveCollection(array $primitives, \DOMDocument &$aframe_dom, \DOMElement &$scene)
+    {
+        if (! empty($primitives)) {
+            foreach ($primitives as $primitive) {
+                $entity = $primitive->DOMElement($aframe_dom);
                 $scene->appendChild($entity);
             }
-        }
-        /* Add cylinders to DOM */
-        if (is_array($this->cylinders)) {
-            foreach ($this->cylinders as $cylinder) {
-                $entity = $cylinder->DOMElement($aframe_dom);
-                $scene->appendChild($entity);
-            }
-        }
-        /* Add cylinders to DOM */
-        if (is_array($this->planes)) {
-            foreach ($this->planes as $plane) {
-                $entity = $plane->DOMElement($aframe_dom);
-                $scene->appendChild($entity);
-            }
-        }
-        /* Add cylinders to DOM */
-        if (is_object($this->sky)) {
-            $entity = $this->sky->DOMElement($aframe_dom);
-            $scene->appendChild($entity);
         }
     }
 }
