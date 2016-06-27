@@ -29,21 +29,40 @@ use \AframeVR\Extras\Primitives\{
     Cylinder,
     Plane,
     Sky
-}
-;
+};
 use \AframeVR\Core\Entity;
 
 trait Primitives
 {
 
-    protected $spheres;
+    /**
+     *
+     * @var array $spheres
+     */
+    protected $spheres = array();
 
-    protected $boxes;
+    /**
+     *
+     * @var array $boxes
+     */
+    protected $boxes = array();
 
-    protected $cylinders;
+    /**
+     *
+     * @var array $cylinders
+     */
+    protected $cylinders = array();
 
-    protected $planes;
+    /**
+     *
+     * @var array $planes
+     */
+    protected $planes = array();
 
+    /**
+     *
+     * @var \AframeVR\Extras\Primitives\Sky $sky
+     */
     protected $sky;
 
     /**
@@ -110,7 +129,7 @@ trait Primitives
     protected function DOMAppendPrimitives(\DOMDocument &$aframe_dom, \DOMElement &$scene)
     {
         /* Add sphiers to DOM */
-        $this->DOMappendPrimitiveCollection($this->sphiers, $aframe_dom, $scene);
+        $this->DOMappendPrimitiveCollection($this->spheres, $aframe_dom, $scene);
         
         /* Add boxes to DOM */
         $this->DOMappendPrimitiveCollection($this->boxes, $aframe_dom, $scene);
@@ -122,7 +141,7 @@ trait Primitives
         $this->DOMappendPrimitiveCollection($this->planes, $aframe_dom, $scene);
         
         /* Add sky to DOM */
-        $this->DOMappendPrimitiveCollection($this->sky, $aframe_dom, $scene);
+        $this->DOMappendPrimitiveSky($aframe_dom, $scene);
     }
 
     /**
@@ -140,6 +159,21 @@ trait Primitives
                 $entity = $primitive->DOMElement($aframe_dom);
                 $scene->appendChild($entity);
             }
+        }
+    }
+
+    /**
+     * Append SKY primitive
+     *
+     * @param \DOMDocument $aframe_dom            
+     * @param \DOMElement $scene            
+     * @return void
+     */
+    private function DOMappendPrimitiveSky(\DOMDocument &$aframe_dom, \DOMElement &$scene)
+    {
+        if (is_object($this->sky)) {
+            $sky = $this->sky->DOMElement($aframe_dom);
+            $scene->appendChild($sky);
         }
     }
 }
