@@ -26,14 +26,40 @@ namespace AframeVR\Core\Helpers;
 final class MetaTags
 {
 
-    /* Meta title */
-    private $title;
+    /**
+     * Meta title
+     * 
+     * @var string $title
+     */
+    private $title = '';
 
-    /* Meta desription */
-    private $description;
+    /**
+     * Meta desription 
+     * 
+     * @var string $description
+     */
+    private $description = '';
 
-    /* Meta charset */
+    /**
+     * Meta charset
+     * 
+     * @var string $charset
+     */
     private $charset = 'utf-8';
+    
+    /**
+     * Viewport metatag content string
+     * 
+     * @var null|string $viewport
+     */
+    private $viewport;
+    
+    /**
+     * Meta tags
+     * 
+     * @var array $tags
+     */
+    private $tags = array();
 
     public function __construct()
     {
@@ -69,13 +95,13 @@ final class MetaTags
     /**
      * Set unset viewport
      *
-     * @param string $viewport            
+     * @param null|string $viewport            
      * @return void
      */
     public function viewport(string $viewport = null)
     {
         $this->viewport = $viewport;
-        ! empty($viewport) ? $this->setTag('viewport', $viewport) : $this->removeTag('viewport', $viewport);
+        ! empty($viewport) ? $this->setTag('viewport', $viewport) : $this->removeTag('viewport');
     }
 
     /**
@@ -106,7 +132,7 @@ final class MetaTags
      * Returns true if meta tag existed and was removed
      *
      * @param string $name            
-     * @return bool
+     * @return \Closure|false
      */
     public function removeTag(string $name)
     {
