@@ -80,7 +80,9 @@ class Entity implements EntityInterface
      */
     public function position(float $x = 0, float $y = 0, float $z = 0): Entity
     {
-        $this->component('Position')->update($x, $y, $z);
+        $this->component('Position')->updateX($x);
+        $this->component('Position')->updateY($y);
+        $this->component('Position')->updateZ($z);
         return $this;
     }
 
@@ -96,7 +98,9 @@ class Entity implements EntityInterface
      */
     public function rotation(float $x = 0, float $y = 0, float $z = 0): Entity
     {
-        $this->component('Rotation')->update($x, $y, $z);
+        $this->component('Rotation')->updateX($x);
+        $this->component('Rotation')->updateY($y);
+        $this->component('Rotation')->updateZ($z);
         return $this;
     }
 
@@ -112,7 +116,9 @@ class Entity implements EntityInterface
      */
     public function scale(float $x = 0, float $y = 0, float $z = 0): Entity
     {
-        $this->component('Scale')->update($x, $y, $z);
+        $this->component('Scale')->updateX($x);
+        $this->component('Scale')->updateY($y);
+        $this->component('Scale')->updateZ($z);
         return $this;
     }
 
@@ -139,7 +145,7 @@ class Entity implements EntityInterface
         $component_name = strtolower($component_name);
         
         if (! array_key_exists($component_name, $this->components)) {
-            $component = sprintf('\AframeVR\Components\%s', ucfirst($component_name));
+            $component = sprintf('\AframeVR\Core\Components\%s\Component', ucfirst($component_name));
             if (class_exists($component)) {
                 $this->components[$component_name] = new $component();
             } else {
@@ -182,16 +188,12 @@ class Entity implements EntityInterface
         /* Create entity DOMElement */
         $a_entity = $aframe_dom->createElement('a-entity', "\n");
         foreach ($this->components as $component) {
-            /**
-             * Remeve component default properties which are not needed
-             */
-            $component->removeDefaultDOMAttributes();
             /*
              * Check does component has any attributes to add to DOM element.
              * default attributes most of cases are ommited so we might not have any attributes to add
              */
             if ($component->hasDOMAttributes())
-                $a_entity->setAttributeNode($component->getDOMAttributes());
+                $a_entity->setAttributeNode($component->getDOMAttr());
         }
         return $a_entity;
     }

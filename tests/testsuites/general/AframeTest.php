@@ -16,4 +16,10 @@ class AframeTest extends PHPUnit_Framework_TestCase
     {
         return new \AframeVR\Aframe();
     }
+    
+    public function test_config()
+    {
+        $aframe = $this->a_get_instance();
+        $this->assertInstanceOf('\AframeVR\Core\Config', $aframe->config());
+    }
 }

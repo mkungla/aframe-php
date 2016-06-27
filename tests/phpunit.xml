@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="../vendor/autoload.php" colors="true"
 	printerFile="tests/results/ResultPrinter.php"
-	beStrictAboutTestsThatDoNotTestAnything="true" columns="67" verbose="true">
+	beStrictAboutTestsThatDoNotTestAnything="true" columns="67" verbose="true"
+	stopOnError="true" stopOnFailure="true">
 	<php>
 		<const name="FS_TEST_LOG_LEVEL" value="7" />
 	</php>
@@ -13,9 +14,9 @@
 			phpVersionOperator=">=">
 			<directory>testsuites/primitives</directory>
 		</testsuite>
-		<testsuite name="components" phpVersion="7"
+		<testsuite name="components-core" phpVersion="7"
 			phpVersionOperator=">=">
-			<directory>testsuites/components</directory>
+			<directory>testsuites/components/core</directory>
 		</testsuite>
 		<testsuite name="exceptions" phpVersion="7"
 			phpVersionOperator=">=">
@@ -28,6 +29,9 @@
 	<filter>
 		<whitelist processUncoveredFilesFromWhitelist="true">
 			<directory suffix=".php">../src</directory>
+			<exclude>
+				<directory suffix=".php">../src/Composer</directory>
+			</exclude>
 		</whitelist>
 	</filter>
 	<logging>

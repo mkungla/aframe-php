@@ -29,38 +29,110 @@ interface ComponentInterface
 {
 
     /**
-     * Get Component scripts
+     * Set class providing component methods
      *
-     * Return array of scripts which are required for this component.
-     * Array Key: Vendor
-     * Array Val: Script file basename
-     *
-     * @return array
+     * @api
+     * 
+     * @param string $method_provider            
+     * @return void
      */
-    public function getScripts(): array;
+    public function setMethodProvider(string $method_provider = 'DefaultMethods');
+
+    /**
+     * Initialize Component
+     *
+     * When component is loaded then this method is called. It MUST prepare component
+     * and perform following.
+     *
+     * 1. Call $this->addDependencyScript(string $vendor, string, $script)
+     * 1. Update $this->is_valid
+     *
+     * @api
+     *
+     * @return bool
+     */
+    public function initializeComponent(): bool;
 
     /**
      * Does component have DOM Atributes
      *
-     * Is there any DOM attributes we should attach to DOMElement of the entity
-     * While there most likely are, purpose of this method is to determine that after
-     * we have removed default values attributes which are not required.
+     * Is there any DOM attributes we should attach to DOMElement
+     * of the entity when we are about to render parent entity.
+     *
+     * @api
      *
      * @return bool
      */
     public function hasDOMAttributes(): bool;
 
     /**
-     * Remove default DOMElement Attributes which are not required
+     * Get component DOM Atributes array
      *
-     * @return void
+     * @api
+     *
+     * @return bool
      */
-    public function removeDefaultDOMAttributes();
+    public function getDOMAttributesArray(): array;
+
+    /**
+     * Get Component scripts
+     *
+     * Return array of scripts which are required for this component.
+     * Array Key: Vendor
+     * Array Val: Script file basename
+     *
+     * @api
+     *
+     * @return array
+     */
+    public function getComponentScripts(): array;
+
+    /**
+     * Add component scripts
+     *
+     * "vendor/component-name","script"
+     *
+     * @api
+     *
+     * @param string $vendor_component            
+     * @param string $script_name            
+     */
+    public function addComponentScripts(string $vendor_component, string $script_name);
 
     /**
      * Get DOMAttr for the entity
      *
+     * @api
+     *
      * @return DOMAttr
      */
-    public function getDOMAttributes(): DOMAttr;
+    public function getDOMAttr(): DOMAttr;
+
+    /**
+     * Get DOM attribute name
+     *
+     * @api
+     *
+     * @return string
+     */
+    public function getDomAttributeName(): string;
+
+    /**
+     * Set DOM Attribute name
+     *
+     * @api
+     *
+     * @param string $dom_attribute_name            
+     * @return void
+     */
+    public function setDomAttributeName(string $dom_attribute_name);
+
+    /**
+     * Return DOM attribute contents
+     *
+     * @api
+     *
+     * @return string
+     */
+    public function getDomAttributeString(): string;
 }

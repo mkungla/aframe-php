@@ -1,11 +1,12 @@
 {
 	"name" : "mkungla/aframe-php",
 	"description" : "Work in progress...",
-	"type" : "library",
+	"type" : "composer-plugin",
 	"license" : "MIT",
-	"require": {
+    "require": {
         	"php": ">= 7",
-        	"masterminds/html5": "2.*"
+        	"composer-plugin-api": "^1.1",
+        	"mkungla/aframe":"*"
     },
     "minimum-stability" : "stable",
 	"autoload" : {
@@ -19,7 +20,9 @@
 	    }
 	},
 	"config" : {
-		"optimize-autoloader" : true
+		"optimize-autoloader" : true,
+		"aframe-dir": "public/aframe",
+		"aframe-url": "/aframe"
 	},
 	"homepage" : "https://github.com/mkungla/aframe-php",
 	"authors" : [{
@@ -36,5 +39,8 @@
 	"keywords" : [
 		"php",
 		"aframe"
-	]
+	],
+	"extra": {
+        "class": "AframeVR\\Composer\\Installer\\AframeInstallerPlugin"
+    }
 }

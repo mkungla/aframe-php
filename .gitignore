@@ -1,6 +1,9 @@
 # Files and directories to ignore
+# Never commit minified JS files
+*.min.js
+
 composer.phar
-/examples/devel/*
+/public/examples/devel/*
 
 /tests/results/log/*
 /tests/results/report/*

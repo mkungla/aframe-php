@@ -5,7 +5,7 @@
 .* export-ignore
 
 # Exclude examples
-examples export-ignore
+public/examples export-ignore
 
 # Exclude tests
 test export-ignore

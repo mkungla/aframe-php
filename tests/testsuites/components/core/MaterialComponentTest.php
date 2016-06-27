@@ -16,7 +16,7 @@ class MaterialComponentTest extends PHPUnit_Framework_TestCase
             ->material();
     }
 
-    const A_INSTANCE = '\AframeVR\Components\Material';
+    const A_INSTANCE = '\AframeVR\Core\Components\Material\Component';
 
     public function a_get_instance()
     {
@@ -37,7 +37,7 @@ class MaterialComponentTest extends PHPUnit_Framework_TestCase
             ->material()
             ->opacity(.5);
         
-        $this->assertInternalType('array', $this->component->getScripts());
+        $this->assertInternalType('array', $this->component->getDOMAttributesArray());
         
         $aframe->scene()->render(true, false);
     }
@@ -48,8 +48,10 @@ class MaterialComponentTest extends PHPUnit_Framework_TestCase
         $this->component->transparent(true);
         $this->component->side('front');
         
-        $this->assertAttributeEquals(2, 'opacity', $this->component);
-        $this->assertAttributeEquals('true', 'transparent', $this->component);
-        $this->assertAttributeEquals('front', 'side', $this->component);
+        $attrs = $this->component->getDOMAttributesArray();
+        
+        $this->assertArrayHasKey('opacity', $attrs);
+        $this->assertArrayHasKey('transparent', $attrs);
+        $this->assertArrayHasKey('side', $attrs);
     }
 }

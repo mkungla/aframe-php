@@ -1,0 +1,9 @@
+{
+	"name":"scale",
+	"description":"The scale component defines a shrinking, stretching, or skewing transformation of an entity. It takes three scaling factors for the X, Y, and Z axes.",
+	"desc-extra":{
+		"All entities inherently have the position component."
+	},
+	"doc":"",
+	"requires":{}
+}

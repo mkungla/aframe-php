@@ -1,7 +1,7 @@
 <?php
 use \AframeVR\Tests\CommonTests;
 
-class ScaleComponentTest extends PHPUnit_Framework_TestCase
+class RotationComponentTest extends PHPUnit_Framework_TestCase
 {
     use CommonTests;
 
@@ -13,10 +13,10 @@ class ScaleComponentTest extends PHPUnit_Framework_TestCase
         $aframe = new \AframeVR\Aframe();
         $this->component = $aframe->scene()
             ->entity()
-            ->component('Scale');
+            ->component('Rotation');
     }
 
-    const A_INSTANCE = '\AframeVR\Components\Scale';
+    const A_INSTANCE = '\AframeVR\Core\Components\Rotation\Component';
 
     public function a_get_instance()
     {
@@ -29,9 +29,9 @@ class ScaleComponentTest extends PHPUnit_Framework_TestCase
         
         $aframe->scene()
             ->entity()
-            ->scale(1, 5, 6);
+            ->rotation(1, 5, 6);
         
-        $this->assertInternalType('array', $this->component->getScripts());
+        $this->assertInternalType('array', $this->component->getDOMAttributesArray());
         
         $aframe->scene()->render(true, false);
     }

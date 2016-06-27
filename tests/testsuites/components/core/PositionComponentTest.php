@@ -1,7 +1,7 @@
 <?php
 use \AframeVR\Tests\CommonTests;
 
-class RotationComponentTest extends PHPUnit_Framework_TestCase
+class PositionComponentTest extends PHPUnit_Framework_TestCase
 {
     use CommonTests;
 
@@ -13,10 +13,10 @@ class RotationComponentTest extends PHPUnit_Framework_TestCase
         $aframe = new \AframeVR\Aframe();
         $this->component = $aframe->scene()
             ->entity()
-            ->component('Rotation');
+            ->component('Position');
     }
 
-    const A_INSTANCE = '\AframeVR\Components\Rotation';
+    const A_INSTANCE = '\AframeVR\Core\Components\Position\Component';
 
     public function a_get_instance()
     {
@@ -29,9 +29,14 @@ class RotationComponentTest extends PHPUnit_Framework_TestCase
         
         $aframe->scene()
             ->entity()
-            ->rotation(1, 5, 6);
+            ->position(1, 5, 6);
         
-        $this->assertInternalType('array', $this->component->getScripts());
+        $this->assertInternalType('array', $this->component->getDOMAttributesArray());
+        
+        $this->assertEmpty($this->component->getComponentScripts());
+        
+        $this->component->addComponentScripts("vendor/component","script.js");
+        $this->assertNotEmpty($this->component->getComponentScripts());
         
         $aframe->scene()->render(true, false);
     }

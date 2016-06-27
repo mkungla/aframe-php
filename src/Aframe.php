@@ -23,7 +23,10 @@
  * @formatter:on */
 namespace AframeVR;
 
-use AframeVR\Core\Scene;
+use \AframeVR\Core\{
+    Config,
+    Scene
+};
 
 final class Aframe
 {
@@ -37,6 +40,8 @@ final class Aframe
      */
     private $scenes;
 
+    private $configObj;
+
     /**
      * Constructor
      */
@@ -44,6 +49,11 @@ final class Aframe
     {
         /* We will have scenes in array */
         $this->scenes = array();
+    }
+
+    public function config()
+    {
+        return $this->configObj ?? $this->configObj = new Config();
     }
 
     /**

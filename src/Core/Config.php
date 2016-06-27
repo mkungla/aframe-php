@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jun 25, 2016 - 8:48:28 AM
+ * Created by   Marko Kungla on Jun 27, 2016 - 6:28:45 AM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         ShaderAbstract.php
+ * File         Config.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  ^ @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,22 +21,8 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Core\Helpers;
+namespace AframeVR\Core;
 
-abstract class ShaderAbstract
+final class Config
 {
-
-    /**
-     * removeDefaultDOMAttributes
-     *
-     * @return void
-     */
-    public function removeDefaultDOMAttributes()
-    {
-        $defaults = get_class_vars(get_class($this));
-        foreach (get_object_vars($this) as $name => $value) {
-            if (empty($value) || (array_key_exists($name, $defaults) && $value === $defaults[$name]))
-                unset($this->$name);
-        }
-    }
 }

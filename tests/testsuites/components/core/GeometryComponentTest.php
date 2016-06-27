@@ -16,7 +16,7 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
             ->component('Geometry');
     }
 
-    const A_INSTANCE = '\AframeVR\Components\Geometry';
+    const A_INSTANCE = '\AframeVR\Core\Components\Geometry\Component';
 
     public function a_get_instance()
     {
@@ -25,7 +25,7 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
 
     public function test_dependencies()
     {
-        $this->assertInternalType('array', $this->component->getScripts());
+        $this->assertInternalType('array', $this->component->getComponentScripts());
     }
 
     public function test_non_primitive()
@@ -46,12 +46,13 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
         $this->component->buffer(false);
         $this->component->skipCache(true);
         
-        $this->assertAttributeEquals(2, 'width', $this->component);
-        $this->assertAttributeEquals(2, 'height', $this->component);
-        $this->assertAttributeEquals(2, 'depth', $this->component);
-        $this->assertAttributeEquals('1 2 3', 'translate', $this->component);
-        $this->assertAttributeEquals('false', 'buffer', $this->component);
-        $this->assertAttributeEquals('true', 'skipCache', $this->component);
+        $attrs = $this->component->getDOMAttributesArray();
+        $this->assertArrayHasKey('width', $attrs);
+        $this->assertArrayHasKey('height', $attrs);
+        $this->assertArrayHasKey('depth', $attrs);
+        $this->assertArrayHasKey('translate', $attrs);
+        $this->assertArrayHasKey('buffer', $attrs);
+        $this->assertArrayHasKey('skipCache', $attrs);
     }
 
     public function test_primitive_circle()
@@ -62,10 +63,12 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
         $this->component->thetaStart(90);
         $this->component->thetaLength(180);
         
-        $this->assertAttributeEquals(2, 'radius', $this->component);
-        $this->assertAttributeEquals(64, 'segments', $this->component);
-        $this->assertAttributeEquals(90, 'thetaStart', $this->component);
-        $this->assertAttributeEquals(180, 'thetaLength', $this->component);
+        $attrs = $this->component->getDOMAttributesArray();
+        
+        $this->assertArrayHasKey('radius', $attrs);
+        $this->assertArrayHasKey('segments', $attrs);
+        $this->assertArrayHasKey('thetaStart', $attrs);
+        $this->assertArrayHasKey('thetaLength', $attrs);
     }
 
     public function test_primitive_cone()
@@ -80,14 +83,16 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
         $this->component->thetaStart(90);
         $this->component->thetaLength(180);
         
-        $this->assertAttributeEquals(5, 'height', $this->component);
-        $this->assertAttributeEquals('false', 'openEnded', $this->component);
-        $this->assertAttributeEquals(1.5, 'radiusBottom', $this->component);
-        $this->assertAttributeEquals(1.5, 'radiusTop', $this->component);
-        $this->assertAttributeEquals(72, 'segmentsRadial', $this->component);
-        $this->assertAttributeEquals(36, 'segmentsHeight', $this->component);
-        $this->assertAttributeEquals(90, 'thetaStart', $this->component);
-        $this->assertAttributeEquals(180, 'thetaLength', $this->component);
+        $attrs = $this->component->getDOMAttributesArray();
+        
+        $this->assertArrayHasKey('height', $attrs);
+        $this->assertArrayHasKey('openEnded', $attrs);
+        $this->assertArrayHasKey('radiusBottom', $attrs);
+        $this->assertArrayHasKey('radiusTop', $attrs);
+        $this->assertArrayHasKey('segmentsRadial', $attrs);
+        $this->assertArrayHasKey('segmentsHeight', $attrs);
+        $this->assertArrayHasKey('thetaStart', $attrs);
+        $this->assertArrayHasKey('thetaLength', $attrs);
     }
 
     public function test_primitive_cylinder()
@@ -101,13 +106,15 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
         $this->component->thetaStart(90);
         $this->component->thetaLength(180);
         
-        $this->assertAttributeEquals(2, 'radius', $this->component);
-        $this->assertAttributeEquals(2, 'height', $this->component);
-        $this->assertAttributeEquals(72, 'segmentsRadial', $this->component);
-        $this->assertAttributeEquals(36, 'segmentsHeight', $this->component);
-        $this->assertAttributeEquals('false', 'openEnded', $this->component);
-        $this->assertAttributeEquals(90, 'thetaStart', $this->component);
-        $this->assertAttributeEquals(180, 'thetaLength', $this->component);
+        $attrs = $this->component->getDOMAttributesArray();
+        
+        $this->assertArrayHasKey('radius', $attrs);
+        $this->assertArrayHasKey('height', $attrs);
+        $this->assertArrayHasKey('segmentsRadial', $attrs);
+        $this->assertArrayHasKey('segmentsHeight', $attrs);
+        $this->assertArrayHasKey('openEnded', $attrs);
+        $this->assertArrayHasKey('thetaStart', $attrs);
+        $this->assertArrayHasKey('thetaLength', $attrs);
     }
 
     public function test_primitive_plane()
@@ -116,8 +123,10 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
         $this->component->height(2);
         $this->component->width(2);
         
-        $this->assertAttributeEquals(2, 'width', $this->component);
-        $this->assertAttributeEquals(2, 'height', $this->component);
+        $attrs = $this->component->getDOMAttributesArray();
+        
+        $this->assertArrayHasKey('width', $attrs);
+        $this->assertArrayHasKey('height', $attrs);
     }
 
     public function test_primitive_ring()
@@ -130,12 +139,14 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
         $this->component->thetaStart(90);
         $this->component->thetaLength(180);
         
-        $this->assertAttributeEquals(2, 'radiusInner', $this->component);
-        $this->assertAttributeEquals(2, 'radiusOuter', $this->component);
-        $this->assertAttributeEquals(64, 'segmentsTheta', $this->component);
-        $this->assertAttributeEquals(16, 'segmentsPhi', $this->component);
-        $this->assertAttributeEquals(90, 'thetaStart', $this->component);
-        $this->assertAttributeEquals(180, 'thetaLength', $this->component);
+        $attrs = $this->component->getDOMAttributesArray();
+        
+        $this->assertArrayHasKey('radiusInner', $attrs);
+        $this->assertArrayHasKey('radiusOuter', $attrs);
+        $this->assertArrayHasKey('segmentsTheta', $attrs);
+        $this->assertArrayHasKey('segmentsPhi', $attrs);
+        $this->assertArrayHasKey('thetaStart', $attrs);
+        $this->assertArrayHasKey('thetaLength', $attrs);
     }
 
     public function test_primitive_sphere()
@@ -149,13 +160,15 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
         $this->component->thetaStart(90);
         $this->component->thetaLength(270);
         
-        $this->assertAttributeEquals(2, 'radius', $this->component);
-        $this->assertAttributeEquals(72, 'segmentsHeight', $this->component);
-        $this->assertAttributeEquals(36, 'segmentsWidth', $this->component);
-        $this->assertAttributeEquals(0, 'phiStart', $this->component);
-        $this->assertAttributeEquals(360, 'phiLength', $this->component);
-        $this->assertAttributeEquals(90, 'thetaStart', $this->component);
-        $this->assertAttributeEquals(270, 'thetaLength', $this->component);
+        $attrs = $this->component->getDOMAttributesArray();
+        
+        $this->assertArrayHasKey('radius', $attrs);
+        $this->assertArrayHasKey('segmentsHeight', $attrs);
+        $this->assertArrayHasKey('segmentsWidth', $attrs);
+        $this->assertArrayHasKey('phiStart', $attrs);
+        $this->assertArrayHasKey('phiLength', $attrs);
+        $this->assertArrayHasKey('thetaStart', $attrs);
+        $this->assertArrayHasKey('thetaLength', $attrs);
     }
 
     public function test_primitive_torus()
@@ -167,11 +180,13 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
         $this->component->segmentsTubular(64);
         $this->component->arc(360);
         
-        $this->assertAttributeEquals(2, 'radius', $this->component);
-        $this->assertAttributeEquals(0.4, 'radiusTubular', $this->component);
-        $this->assertAttributeEquals(72, 'segmentsRadial', $this->component);
-        $this->assertAttributeEquals(64, 'segmentsTubular', $this->component);
-        $this->assertAttributeEquals(360, 'arc', $this->component);
+        $attrs = $this->component->getDOMAttributesArray();
+        
+        $this->assertArrayHasKey('radius', $attrs);
+        $this->assertArrayHasKey('radiusTubular', $attrs);
+        $this->assertArrayHasKey('segmentsRadial', $attrs);
+        $this->assertArrayHasKey('segmentsTubular', $attrs);
+        $this->assertArrayHasKey('arc', $attrs);
     }
 
     public function test_primitive_torusKnot()
@@ -184,11 +199,13 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
         $this->component->p(2);
         $this->component->q(3);
         
-        $this->assertAttributeEquals(2, 'radius', $this->component);
-        $this->assertAttributeEquals(0.4, 'radiusTubular', $this->component);
-        $this->assertAttributeEquals(72, 'segmentsRadial', $this->component);
-        $this->assertAttributeEquals(64, 'segmentsTubular', $this->component);
-        $this->assertAttributeEquals(2, 'p', $this->component);
-        $this->assertAttributeEquals(3, 'q', $this->component);
+        $attrs = $this->component->getDOMAttributesArray();
+        
+        $this->assertArrayHasKey('radius', $attrs);
+        $this->assertArrayHasKey('radiusTubular', $attrs);
+        $this->assertArrayHasKey('segmentsRadial', $attrs);
+        $this->assertArrayHasKey('segmentsTubular', $attrs);
+        $this->assertArrayHasKey('p', $attrs);
+        $this->assertArrayHasKey('q', $attrs);
     }
 }
