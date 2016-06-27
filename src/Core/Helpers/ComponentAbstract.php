@@ -122,7 +122,7 @@ abstract class ComponentAbstract implements ComponentInterface
      *
      * {@inheritdoc}
      *
-     * @return bool
+     * @return array
      */
     public function getDOMAttributesArray(): array
     {

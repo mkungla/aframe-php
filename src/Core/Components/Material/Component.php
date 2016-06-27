@@ -54,8 +54,9 @@ class Component extends ComponentAbstract implements ComponentInterface, Materia
      */
     public function getDomAttributeString(): string
     {
-        $attrs = $this->getDOMAttributesArray();
-        return '';
+        $material_attrs = $this->getDOMAttributesArray();
+        $format = implode(': %s; ', array_keys($material_attrs)) . ': %s;';
+        return vsprintf($format, array_values($material_attrs));
     }
 
     /**

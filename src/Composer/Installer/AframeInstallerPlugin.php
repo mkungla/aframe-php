@@ -75,11 +75,9 @@ class AframeInstallerPlugin implements PluginInterface
      */
     protected function requiresAframeCoreUpdate(AframeComponentInstaller $aframe_installer, IOInterface $io)
     {
-        $public_path = $aframe_installer->getPublicRoot();
+
         $aframe_core_dir = $aframe_installer->getPublicAframeCoreDir();
-        
         $aframe_core_file = $aframe_core_dir . DIRECTORY_SEPARATOR . 'aframe.js';
-        
         $aframe_src_dir = $aframe_installer->getAframeCoreSrcDir();
         
         return (! is_dir($aframe_core_dir) || ! file_exists($aframe_core_file) || ! is_dir($aframe_src_dir)) ? true : filemtime($aframe_src_dir) > filemtime($aframe_core_dir);

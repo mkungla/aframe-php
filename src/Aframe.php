@@ -51,6 +51,11 @@ final class Aframe
         $this->scenes = array();
     }
 
+    /**
+     * Get Config
+     * 
+     * @return \AframeVR\Core\Config
+     */
     public function config()
     {
         return $this->configObj ?? $this->configObj = new Config();
@@ -62,7 +67,7 @@ final class Aframe
      * Work with untitled scene or scene by name
      *
      * @param string $name            
-     * @return Scene
+     * @return \AframeVR\Core\Scene
      */
     public function scene(string $name = 'untitled'): Scene
     {

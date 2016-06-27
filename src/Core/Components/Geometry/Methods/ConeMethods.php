@@ -89,7 +89,7 @@ class ConeMethods
      * Radius of the top end of the cone.
      *
      * @param array $dom_attributes            
-     * @param float|int $radiusBottom            
+     * @param float|int $radiusTop            
      * @return void
      */
     public function radiusTop(array &$dom_attributes, float $radiusTop)

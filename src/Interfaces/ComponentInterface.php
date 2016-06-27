@@ -70,7 +70,7 @@ interface ComponentInterface
      *
      * @api
      *
-     * @return bool
+     * @return array
      */
     public function getDOMAttributesArray(): array;
 
@@ -95,7 +95,8 @@ interface ComponentInterface
      * @api
      *
      * @param string $vendor_component            
-     * @param string $script_name            
+     * @param string $script_name
+     * @return void            
      */
     public function addComponentScripts(string $vendor_component, string $script_name);
 

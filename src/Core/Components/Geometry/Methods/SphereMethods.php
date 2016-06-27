@@ -106,7 +106,7 @@ class SphereMethods
      * @param float|int $phiLength            
      * @return void
      */
-    public function phiLength(array &$dom_attributes, float $phiLength = null)
+    public function phiLength(array &$dom_attributes, float $phiLength)
     {
         $dom_attributes['phiLength'] = $phiLength;
     }

@@ -85,7 +85,7 @@ class RingMethods
     /**
      * Starting angle in degrees.
      *
-     * @param array $dom_attributess            
+     * @param array $dom_attributes            
      * @param float|int $thetaStart            
      * @return void
      */

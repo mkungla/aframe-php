@@ -30,6 +30,7 @@ use \AframeVR\Core\Exceptions\InvalidComponentArgumentException;
 
 class Component extends ComponentAbstract implements ComponentInterface, GeometryInterface
 {
+
     /**
      * Initialize Component
      *
@@ -37,29 +38,30 @@ class Component extends ComponentAbstract implements ComponentInterface, Geometr
      *
      * @return bool
      */
-    public function initializeComponent() : bool
+    public function initializeComponent(): bool
     {
         $this->setDomAttributeName('geometry');
         return true;
     }
-    
+
     /**
      * Return DOM attribute contents
      *
      * @return string
      */
-    public function getDomAttributeString() : string
+    public function getDomAttributeString(): string
     {
-        $attrs = $this->getDOMAttributesArray();
-        return '';
+        $geometry_attrs = $this->getDOMAttributesArray();
+        $format = implode(': %s; ', array_keys($geometry_attrs)) . ': %s;';
+        return vsprintf($format, array_values($geometry_attrs));
     }
-    
+
     /**
      * Set geometry primitive
-     * 
+     *
      * One of box, circle, cone, cylinder, plane, ring, sphere, torus, torusKnot.
-     * 
-     * @param string $primitive
+     *
+     * @param string $primitive            
      * @throws InvalidComponentArgumentException
      * @return void
      */
@@ -67,21 +69,21 @@ class Component extends ComponentAbstract implements ComponentInterface, Geometr
     {
         if (in_array($primitive, self::ALLOWED_PRIMITIVES)) {
             $this->dom_attributes = array();
-            $method_provider = sprintf('%sMethods',ucfirst($primitive));
+            $method_provider = sprintf('%sMethods', ucfirst($primitive));
             $this->setMethodProvider($method_provider);
         } else {
             throw new InvalidComponentArgumentException((string) $primitive, 'Geometry::primitive');
         }
     }
-    
+
     /**
      * translate
      *
      * {@inheritdoc}
      *
-     * @param float|int $x
-     * @param float|int $y
-     * @param float|int $z
+     * @param float|int $x            
+     * @param float|int $y            
+     * @param float|int $z            
      * @return void
      */
     public function translate(float $x = 0, float $y = 0, float $z = 0)
@@ -94,21 +96,21 @@ class Component extends ComponentAbstract implements ComponentInterface, Geometr
      *
      * {@inheritdoc}
      *
-     * @param bool $buffer     
-     * @return void       
+     * @param bool $buffer            
+     * @return void
      */
     public function buffer(bool $buffer = true)
     {
         $this->dom_attributes['buffer'] = $buffer ? 'true' : 'false';
     }
-    
+
     /**
      * skipCache
      *
      * {@inheritdoc}
      *
-     * @param bool $skipCache
-     * @return void 
+     * @param bool $skipCache            
+     * @return void
      */
     public function skipCache(bool $skipCache = false)
     {

@@ -121,13 +121,13 @@ class AframeComponentInstaller extends LibraryInstaller
         
         if ($this->supportedByName($package->getPrettyName())) {
             $this->io->info(sprintf("Installing A-Frame Component %s", $this->aframe_component_name));
-            $src = $this->getInstallPath($package) . DIRECTORY_SEPARATOR . 'dist';
-            if (! is_dir($src)) {
+
+            if (! is_dir($this->getInstallPath($package) . DIRECTORY_SEPARATOR . 'dist')) {
                 $this->io->warning(sprintf('A-Frame Component %s can not be used since missing dist directory!', $this->aframe_component_name));
             } else {
                 $this->filesystem->ensureDirectoryExists($this->getComponentPath());
                 
-                $this->copy($src, $this->getComponentPath());
+                $this->copy($this->getInstallPath($package) . DIRECTORY_SEPARATOR . 'dist', $this->getComponentPath());
             }
         }
     }
@@ -155,13 +155,12 @@ class AframeComponentInstaller extends LibraryInstaller
         
         if ($this->supportedByName($target->getPrettyName())) {
             $this->io->info(sprintf("Updating A-Frame Component %s", $this->aframe_component_name));
-            $src = $this->getInstallPath($target) . DIRECTORY_SEPARATOR . 'dist';
-            if (! is_dir($src)) {
+            if (! is_dir($this->getInstallPath($package) . DIRECTORY_SEPARATOR . 'dist')) {
                 $this->io->warning(sprintf('A-Frame Component %s can not be used since missing dist directory!', $this->aframe_component_name));
             } else {
                 $this->filesystem->removeDirectory($this->getComponentPath());
                 $this->filesystem->ensureDirectoryExists($this->getComponentPath());
-                $this->copy($src, $this->getComponentPath());
+                $this->copy($this->getInstallPath($package) . DIRECTORY_SEPARATOR . 'dist', $this->getComponentPath());
             }
         }
     }

@@ -96,7 +96,7 @@ class TorusMethods
      * Central angle.
      *
      * @param array $dom_attributes            
-     * @param float|int $radiusTubular            
+     * @param float|int $arc            
      * @return void
      */
     public function arc(array &$dom_attributes, float $arc)
