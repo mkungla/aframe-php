@@ -58,7 +58,7 @@ class CylinderMethods
      * Height of the cylinder.
      *
      * @param array $dom_attributes            
-     * @param float|int $height            
+     * @param double $height            
      * @return void
      */
     public function height(array &$dom_attributes, float $height)
@@ -83,7 +83,7 @@ class CylinderMethods
      * Radius of the cylinder.
      *
      * @param array $dom_attributes            
-     * @param float|int $radius            
+     * @param double $radius            
      * @return void
      */
     public function radius(array &$dom_attributes, float $radius)
@@ -107,7 +107,7 @@ class CylinderMethods
      * Central angle in degrees.
      *
      * @param array $dom_attributes            
-     * @param float|int $thetaLength            
+     * @param double $thetaLength            
      * @return void
      */
     public function thetaLength(array &$dom_attributes, float $thetaLength)
@@ -119,7 +119,7 @@ class CylinderMethods
      * Starting angle in degrees.
      *
      * @param array $dom_attributes            
-     * @param float|int $thetaStart            
+     * @param double $thetaStart            
      * @return void
      */
     public function thetaStart(array &$dom_attributes, float $thetaStart)

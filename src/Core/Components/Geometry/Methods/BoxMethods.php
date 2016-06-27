@@ -42,7 +42,7 @@ class BoxMethods
      * Depth (in meters) of the sides on the Z axis.
      *
      * @param array $dom_attributes            
-     * @param float|int $depth            
+     * @param double $depth            
      * @return void
      */
     public function depth(array &$dom_attributes, float $depth)
@@ -54,7 +54,7 @@ class BoxMethods
      * Height (in meters) of the sides on the Y axis.
      *
      * @param array $dom_attributes            
-     * @param float|int $height            
+     * @param double $height            
      * @return void
      */
     public function height(array &$dom_attributes, float $height)
@@ -66,7 +66,7 @@ class BoxMethods
      * Width (in meters) of the sides on the X axis.
      *
      * @param array $dom_attributes            
-     * @param float|int $width            
+     * @param double $width            
      * @return void
      */
     public function width(array &$dom_attributes, float $width)

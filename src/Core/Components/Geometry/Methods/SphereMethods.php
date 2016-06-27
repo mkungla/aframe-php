@@ -55,7 +55,7 @@ class SphereMethods
      * Radius of the sphere.
      *
      * @param array $dom_attributes            
-     * @param float|int $radius            
+     * @param double $radius            
      * @return void
      */
     public function radius(array &$dom_attributes, float $radius)
@@ -91,7 +91,7 @@ class SphereMethods
      * Horizontal starting angle.
      *
      * @param array $dom_attributes            
-     * @param float|int $phiStart            
+     * @param double $phiStart            
      * @return void
      */
     public function phiStart(array &$dom_attributes, float $phiStart)
@@ -103,7 +103,7 @@ class SphereMethods
      * Horizontal sweep angle size.
      *
      * @param array $dom_attributes            
-     * @param float|int $phiLength            
+     * @param double $phiLength            
      * @return void
      */
     public function phiLength(array &$dom_attributes, float $phiLength)
@@ -115,7 +115,7 @@ class SphereMethods
      * Vertical starting angle.
      *
      * @param array $dom_attributes            
-     * @param float|int $thetaStart            
+     * @param double $thetaStart            
      * @return void
      */
     public function thetaStart(array &$dom_attributes, float $thetaStart)
@@ -127,7 +127,7 @@ class SphereMethods
      * Vertical sweep angle size.
      *
      * @param array $dom_attributes            
-     * @param float|int $thetaLength            
+     * @param double $thetaLength            
      * @return void
      */
     public function thetaLength(array &$dom_attributes, float $thetaLength)

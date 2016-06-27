@@ -31,7 +31,7 @@ class DefaultMethods
      * Positive X Axis extends right.
      *
      * @param array $dom_attributes            
-     * @param float|int $x_axis            
+     * @param double $x_axis            
      * @return void
      */
     public function positionX(array &$dom_attributes, float $x_axis)
@@ -44,7 +44,7 @@ class DefaultMethods
      * Positive Y Axis extends down.
      *
      * @param array $dom_attributes            
-     * @param float|int $y_axis            
+     * @param double $y_axis            
      * @return void
      */
     public function positionY(array &$dom_attributes, float $y_axis)
@@ -57,7 +57,7 @@ class DefaultMethods
      * Positive Z Axis extends out.
      *
      * @param array $dom_attributes            
-     * @param float|int $z_axis            
+     * @param double $z_axis            
      * @return void
      */
     public function positionZ(array &$dom_attributes, float $z_axis)

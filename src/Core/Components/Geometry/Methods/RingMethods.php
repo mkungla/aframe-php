@@ -50,7 +50,7 @@ class RingMethods
      * Radius of the inner hole of the ring.
      *
      * @param array $dom_attributes            
-     * @param float|int $radiusInner            
+     * @param double $radiusInner            
      * @return void
      */
     public function radiusInner(array &$dom_attributes, float $radiusInner)
@@ -62,7 +62,7 @@ class RingMethods
      * Radius of the outer edge of the ring.
      *
      * @param array $dom_attributes            
-     * @param float|int $radiusOuter            
+     * @param double $radiusOuter            
      * @return void
      */
     public function radiusOuter(array &$dom_attributes, float $radiusOuter)
@@ -74,7 +74,7 @@ class RingMethods
      * Central angle in degrees.
      *
      * @param array $dom_attributes            
-     * @param float|int $thetaLength            
+     * @param double $thetaLength            
      * @return void
      */
     public function thetaLength(array &$dom_attributes, float $thetaLength)
@@ -86,7 +86,7 @@ class RingMethods
      * Starting angle in degrees.
      *
      * @param array $dom_attributes            
-     * @param float|int $thetaStart            
+     * @param double $thetaStart            
      * @return void
      */
     public function thetaStart(array &$dom_attributes, float $thetaStart)

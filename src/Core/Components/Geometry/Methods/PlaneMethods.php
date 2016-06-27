@@ -42,7 +42,7 @@ class PlaneMethods
      * Height along the Y axis.
      *
      * @param array $dom_attributes            
-     * @param float|int $height            
+     * @param double $height            
      * @return void
      */
     public function height(array &$dom_attributes, float $height)
@@ -54,7 +54,7 @@ class PlaneMethods
      * Width along the X axis.
      *
      * @param array $dom_attributes            
-     * @param float|int $width            
+     * @param double $width            
      * @return void
      */
     public function width(array &$dom_attributes, float $width)

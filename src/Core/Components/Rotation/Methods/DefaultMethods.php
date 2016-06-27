@@ -30,7 +30,7 @@ class DefaultMethods
      * Roll, rotation about the X-axis.
      *
      * @param array $dom_attributes            
-     * @param float|int $roll            
+     * @param double $roll            
      * @return void
      */
     public function roll(array &$dom_attributes, float $roll)
@@ -42,7 +42,7 @@ class DefaultMethods
      * Pitch, rotation about the Y-axis.
      *
      * @param array $dom_attributes            
-     * @param float|int $pitch            
+     * @param double $pitch            
      * @return void
      */
     public function pitch(array &$dom_attributes, float $pitch)
@@ -54,7 +54,7 @@ class DefaultMethods
      * Yaw, rotation about the Z-axis.
      *
      * @param array $dom_attributes            
-     * @param float|int $yaw            
+     * @param double $yaw            
      * @return void
      */
     public function yaw(array &$dom_attributes, float $yaw)

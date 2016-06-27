@@ -45,7 +45,7 @@ class CircleMethods
      * Radius (in meters) of the circle.
      *
      * @param array $dom_attributes            
-     * @param float|int $radius            
+     * @param double $radius            
      * @return void
      */
     public function radius(array &$dom_attributes, float $radius)
@@ -73,7 +73,7 @@ class CircleMethods
      * Can be used to define a partial circle.
      *
      * @param array $dom_attributes            
-     * @param float|int $thetaStart            
+     * @param double $thetaStart            
      * @return void
      */
     public function thetaStart(array &$dom_attributes, float $thetaStart)
@@ -85,7 +85,7 @@ class CircleMethods
      * Defaults to 360, which makes for a complete circle.
      *
      * @param array $dom_attributes            
-     * @param float|int $thetaLength            
+     * @param double $thetaLength            
      * @return void
      */
     public function thetaLength(array &$dom_attributes, float $thetaLength)

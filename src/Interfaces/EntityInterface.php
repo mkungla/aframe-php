@@ -34,9 +34,9 @@ interface EntityInterface
      *
      * All entities inherently have the position component.
      *
-     * @param float|int $x            
-     * @param float|int $y            
-     * @param float|int $z            
+     * @param double $x            
+     * @param double $y            
+     * @param double $z            
      * @return \AframeVR\Core\Entity
      */
     public function position(float $x = 0, float $y = 0, float $z = 0): Entity;
@@ -46,9 +46,9 @@ interface EntityInterface
      *
      * All entities inherently have the rotation component.
      *
-     * @param float|int $x            
-     * @param float|int $y            
-     * @param float|int $z            
+     * @param double $x            
+     * @param double $y            
+     * @param double $z            
      * @return \AframeVR\Core\Entity
      */
     public function rotation(float $x = 0, float $y = 0, float $z = 0): Entity;
@@ -58,9 +58,9 @@ interface EntityInterface
      *
      * All entities inherently have the scale component.
      *
-     * @param float|int $x            
-     * @param float|int $y            
-     * @param float|int $z            
+     * @param double $x            
+     * @param double $y            
+     * @param double $z            
      * @return \AframeVR\Core\Entity
      */
     public function scale(float $x = 0, float $y = 0, float $z = 0): Entity;

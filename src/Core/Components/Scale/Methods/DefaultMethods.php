@@ -30,7 +30,7 @@ class DefaultMethods
      * Scaling factor in the X direction.
      *
      * @param array $dom_attributes            
-     * @param float|int $scale_x            
+     * @param double $scale_x            
      * @return void
      */
     public function scaleX(array &$dom_attributes, float $scale_x)
@@ -42,7 +42,7 @@ class DefaultMethods
      * Scaling factor in the Y direction..
      *
      * @param array $dom_attributes            
-     * @param float|int $scale_y            
+     * @param double $scale_y            
      * @return void
      */
     public function scaleY(array &$dom_attributes, float $scale_y)
@@ -54,7 +54,7 @@ class DefaultMethods
      * Scaling factor in the Z direction.
      *
      * @param array $dom_attributes            
-     * @param float|int $scale_z            
+     * @param double $scale_z            
      * @return void
      */
     public function scaleZ(array &$dom_attributes, float $scale_z)

@@ -50,7 +50,7 @@ class TorusKnotMethods
      * Radius that contains the torus knot.
      *
      * @param array $dom_attributes            
-     * @param float|int $radius            
+     * @param double $radius            
      * @return void
      */
     public function radius(array &$dom_attributes, float $radius)
@@ -62,7 +62,7 @@ class TorusKnotMethods
      * Radius of the tubes of the torus knot.
      *
      * @param array $dom_attributes            
-     * @param float|int $radiusTubular            
+     * @param double $radiusTubular            
      * @return void
      */
     public function radiusTubular(array &$dom_attributes, float $radiusTubular)

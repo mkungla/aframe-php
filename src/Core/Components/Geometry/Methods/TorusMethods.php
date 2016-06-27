@@ -46,7 +46,7 @@ class TorusMethods
      * Radius of the outer edge of the torus.
      *
      * @param array $dom_attributes            
-     * @param float|int $radius            
+     * @param double $radius            
      * @return void
      */
     public function radius(array &$dom_attributes, float $radius)
@@ -58,7 +58,7 @@ class TorusMethods
      * Radius of the tube.
      *
      * @param array $dom_attributes            
-     * @param float|int $radiusTubular            
+     * @param double $radiusTubular            
      * @return void
      */
     public function radiusTubular(array &$dom_attributes, float $radiusTubular)
@@ -96,7 +96,7 @@ class TorusMethods
      * Central angle.
      *
      * @param array $dom_attributes            
-     * @param float|int $arc            
+     * @param double $arc            
      * @return void
      */
     public function arc(array &$dom_attributes, float $arc)

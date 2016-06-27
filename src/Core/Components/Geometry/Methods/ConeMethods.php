@@ -52,7 +52,7 @@ class ConeMethods
      * Height of the cone.
      *
      * @param array $dom_attributes            
-     * @param float|int $height            
+     * @param double $height            
      * @return void
      */
     public function height(array &$dom_attributes, float $height)
@@ -77,7 +77,7 @@ class ConeMethods
      * Radius of the bottom end of the cone.
      *
      * @param array $dom_attributes            
-     * @param float|int $radiusBottom            
+     * @param double $radiusBottom            
      * @return void
      */
     public function radiusBottom(array &$dom_attributes, float $radiusBottom)
@@ -89,7 +89,7 @@ class ConeMethods
      * Radius of the top end of the cone.
      *
      * @param array $dom_attributes            
-     * @param float|int $radiusTop            
+     * @param double $radiusTop            
      * @return void
      */
     public function radiusTop(array &$dom_attributes, float $radiusTop)
@@ -125,7 +125,7 @@ class ConeMethods
      * Starting angle in degrees.
      *
      * @param array $dom_attributes            
-     * @param float|int $thetaStart            
+     * @param double $thetaStart            
      * @return void
      */
     public function thetaStart(array &$dom_attributes, float $thetaStart)
@@ -137,7 +137,7 @@ class ConeMethods
      * Central angle in degrees.
      *
      * @param array $dom_attributes            
-     * @param float|int $thetaLength            
+     * @param double $thetaLength            
      * @return void
      */
     public function thetaLength(array &$dom_attributes, float $thetaLength)
