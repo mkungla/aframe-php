@@ -34,36 +34,36 @@ interface EntityInterface
      *
      * All entities inherently have the position component.
      *
-     * @param double $x            
-     * @param double $y            
-     * @param double $z            
+     * @param int|float $x_axis            
+     * @param int|float $y_axis            
+     * @param int|float $z_axis            
      * @return \AframeVR\Core\Entity
      */
-    public function position(float $x = 0, float $y = 0, float $z = 0): Entity;
+    public function position(float $x_axis = 0, float $y_axis = 0, float $z_axis = 0): Entity;
 
     /**
      * Rotation component
      *
      * All entities inherently have the rotation component.
      *
-     * @param double $x            
-     * @param double $y            
-     * @param double $z            
+     * @param int|float $roll            
+     * @param int|float $pitch            
+     * @param int|float $yaw            
      * @return \AframeVR\Core\Entity
      */
-    public function rotation(float $x = 0, float $y = 0, float $z = 0): Entity;
+    public function rotation(float $roll = 0, float $pitch = 0, float $yaw = 0): Entity;
 
     /**
      * Scale component
      *
      * All entities inherently have the scale component.
      *
-     * @param double $x            
-     * @param double $y            
-     * @param double $z            
+     * @param int|float $scale_x            
+     * @param int|float $scale_y           
+     * @param int|float $scale_z            
      * @return \AframeVR\Core\Entity
      */
-    public function scale(float $x = 0, float $y = 0, float $z = 0): Entity;
+    public function scale(float $scale_x = 0, float $scale_y = 0, float $scale_z = 0): Entity;
 
     /**
      * Load component for this entity

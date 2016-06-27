@@ -92,9 +92,9 @@ class Component extends ComponentAbstract implements ComponentInterface, Geometr
      *
      * {@inheritdoc}
      *
-     * @param double $x            
-     * @param double $y            
-     * @param double $z            
+     * @param int|float $x            
+     * @param int|float $y            
+     * @param int|float $z            
      * @return void
      */
     public function translate(float $x = 0, float $y = 0, float $z = 0)

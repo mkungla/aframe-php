@@ -73,9 +73,9 @@ class Entity implements EntityInterface
      *
      * All entities inherently have the position component.
      *
-     * @param double $x_axis            
-     * @param double $y_axis            
-     * @param double $z_axis            
+     * @param int|float $x_axis            
+     * @param int|float $y_axis            
+     * @param int|float $z_axis            
      * @return \AframeVR\Core\Entity
      */
     public function position(float $x_axis = 0, float $y_axis = 0, float $z_axis = 0): Entity
@@ -91,9 +91,9 @@ class Entity implements EntityInterface
      *
      * All entities inherently have the rotation component.
      *
-     * @param double $roll            
-     * @param double $pitch            
-     * @param double $yaw            
+     * @param int|float $roll            
+     * @param int|float $pitch            
+     * @param int|float $yaw            
      * @return \AframeVR\Core\Entity
      */
     public function rotation(float $roll = 0, float $pitch = 0, float $yaw = 0): Entity
@@ -109,9 +109,9 @@ class Entity implements EntityInterface
      *
      * All entities inherently have the scale component.
      *
-     * @param double $scale_x            
-     * @param double $scale_y           
-     * @param double $scale_z            
+     * @param int|float $scale_x            
+     * @param int|float $scale_y           
+     * @param int|float $scale_z            
      * @return \AframeVR\Core\Entity
      */
     public function scale(float $scale_x = 0, float $scale_y = 0, float $scale_z = 0): Entity
