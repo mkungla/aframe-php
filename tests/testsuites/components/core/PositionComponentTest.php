@@ -16,7 +16,7 @@ class PositionComponentTest extends PHPUnit_Framework_TestCase
             ->component('Position');
     }
 
-    const A_INSTANCE = '\AframeVR\Core\Components\Position\Component';
+    const A_INSTANCE = '\AframeVR\Core\Components\Position\PositionComponent';
 
     public function a_get_instance()
     {

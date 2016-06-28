@@ -16,7 +16,7 @@ class ScaleComponentTest extends PHPUnit_Framework_TestCase
             ->component('Scale');
     }
 
-    const A_INSTANCE = '\AframeVR\Core\Components\Scale\Component';
+    const A_INSTANCE = '\AframeVR\Core\Components\Scale\ScaleComponent';
 
     public function a_get_instance()
     {

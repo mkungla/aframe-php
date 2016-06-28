@@ -16,7 +16,7 @@ class MaterialComponentTest extends PHPUnit_Framework_TestCase
             ->material();
     }
 
-    const A_INSTANCE = '\AframeVR\Core\Components\Material\Component';
+    const A_INSTANCE = '\AframeVR\Core\Components\Material\MaterialComponent';
 
     public function a_get_instance()
     {

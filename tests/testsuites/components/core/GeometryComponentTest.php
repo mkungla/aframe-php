@@ -18,7 +18,7 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
             ->component('Geometry');
     }
 
-    const A_INSTANCE = '\AframeVR\Core\Components\Geometry\Component';
+    const A_INSTANCE = '\AframeVR\Core\Components\Geometry\GeometryComponent';
 
     public function a_get_instance()
     {

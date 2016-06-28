@@ -16,7 +16,7 @@ class RotationComponentTest extends PHPUnit_Framework_TestCase
             ->component('Rotation');
     }
 
-    const A_INSTANCE = '\AframeVR\Core\Components\Rotation\Component';
+    const A_INSTANCE = '\AframeVR\Core\Components\Rotation\RotationComponent';
 
     public function a_get_instance()
     {
