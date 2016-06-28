@@ -27,4 +27,11 @@ use \AframeVR\Interfaces\ComponentInterface;
 
 interface PositionInterface extends ComponentInterface
 {
+
+    /**
+     * Get current position
+     *
+     * @return string
+     */
+    public function getPosition(): string;
 }

@@ -39,4 +39,16 @@ class PositionComponentTest extends PHPUnit_Framework_TestCase
         $this->assertNotEmpty($this->component->getComponentScripts());
         $this->assertInternalType('string', $this->component->getDomAttributeString());
     }
+    
+    public function test_getPosition()
+    {
+        $aframe = new \AframeVR\Aframe();
+        
+        $aframe->scene()
+        ->entity()
+        ->position(1, 5, 6);
+        
+        $this->assertEquals($aframe->scene()
+        ->entity()->component('Position')->getPosition(), '1 5 6');
+    }
 }

@@ -61,4 +61,16 @@ class Component extends ComponentAbstract implements PositionInterface
         $attrs = $this->getDOMAttributesArray();
         return $this->createCoordinateString($attrs['x'], $attrs['y'], $attrs['z']);
     }
+
+    /**
+     * Get current position
+     *
+     * {@inheritdoc}
+     *
+     * @return string
+     */
+    public function getPosition(): string
+    {
+        return $this->getDomAttributeString();
+    }
 }

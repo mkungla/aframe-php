@@ -101,7 +101,7 @@ class Cylinder extends Entity implements CylinderInterface
      *
      * {@inheritdoc}
      *
-     * @param int|float $radius            
+     * @param float $radius            
      * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
      */
     public function radius(float $radius = 0.75): CylinderInterface
