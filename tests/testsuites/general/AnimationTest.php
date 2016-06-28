@@ -1,9 +1,9 @@
 <?php
-use \AframeVR\Tests\CommonTests;
+use \AframeVR\Tests\CommonHelper;
 
 class AnimationTest extends PHPUnit_Framework_TestCase
 {
-    use CommonTests;
+    use CommonHelper;
 
     const A_INSTANCE = 'AframeVR\Core\Animation';
 

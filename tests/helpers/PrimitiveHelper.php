@@ -1,7 +1,7 @@
 <?php
 namespace AframeVR\Tests;
 
-trait PrimitiveTests
+trait PrimitiveHelper
 {
     protected static $mesh_attributes = array(
         'color',

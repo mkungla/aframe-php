@@ -1,9 +1,9 @@
 <?php
-use \AframeVR\Tests\CommonTests;
+use \AframeVR\Tests\CommonHelper;
 
 class PositionComponentTest extends PHPUnit_Framework_TestCase
 {
-    use CommonTests;
+    use CommonHelper;
 
     protected $component;
     
@@ -37,7 +37,6 @@ class PositionComponentTest extends PHPUnit_Framework_TestCase
         
         $this->component->addComponentScripts("vendor/component","script.js");
         $this->assertNotEmpty($this->component->getComponentScripts());
-        
-        $aframe->scene()->render(true, false);
+        $this->assertInternalType('string', $this->component->getDomAttributeString());
     }
 }

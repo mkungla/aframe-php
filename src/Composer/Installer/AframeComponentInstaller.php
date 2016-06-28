@@ -23,9 +23,9 @@
  * @formatter:on */
 namespace AframeVR\Composer\Installer;
 
-use Composer\Installer\LibraryInstaller;
-use Composer\Repository\InstalledRepositoryInterface;
-use Composer\Package\PackageInterface;
+use \Composer\Installer\LibraryInstaller;
+use \Composer\Repository\InstalledRepositoryInterface;
+use \Composer\Package\PackageInterface;
 
 class AframeComponentInstaller extends LibraryInstaller
 {
@@ -284,14 +284,16 @@ class AframeComponentInstaller extends LibraryInstaller
      */
     public function copy(string $source, string $dest)
     {
+        if (! file_exists($source))
+            return false;
         return ! is_dir($source) ? $this->rm($dest) & copy($source, $dest) : $this->copyDir($source, $dest);
     }
-    
+
     /**
      * Copy directory
-     * 
-     * @param string $source
-     * @param string $dest
+     *
+     * @param string $source            
+     * @param string $dest            
      */
     private function copyDir(string $source, string $dest)
     {
@@ -300,7 +302,7 @@ class AframeComponentInstaller extends LibraryInstaller
         foreach ($iterator as $item) {
             if ($item->isDir()) {
                 mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName(), octdec(str_pad($iterator->getPerms(), 4, 0, STR_PAD_LEFT)));
-            } else {   
+            } else {
                 $this->copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
             }
         }

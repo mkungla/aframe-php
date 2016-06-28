@@ -30,7 +30,7 @@ use \AframeVR\Core\Exceptions\InvalidComponentArgumentException;
 
 /**
  * AframeVR\Core\Components\Geometry
- * 
+ *
  * The geometry component provides a basic shape for an entity.
  * The general geometry is defined by the primitive property.
  * Geometric primitives, in computer graphics, means an extremely
@@ -81,6 +81,7 @@ class Component extends ComponentAbstract implements ComponentInterface, Geometr
         if (in_array($primitive, self::ALLOWED_PRIMITIVES)) {
             $this->dom_attributes = array();
             $method_provider = sprintf('%sMethods', ucfirst($primitive));
+            $this->dom_attributes['primitive'] = $primitive;
             $this->setMethodProvider($method_provider);
         } else {
             throw new InvalidComponentArgumentException((string) $primitive, 'Geometry::primitive');

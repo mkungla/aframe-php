@@ -1,11 +1,11 @@
 <?php
-use \AframeVR\Tests\CommonTests;
+use \AframeVR\Tests\CommonHelper;
 
 class AssetsTest extends PHPUnit_Framework_TestCase
 {
-    use CommonTests;
+    use CommonHelper;
 
-    const A_INSTANCE = 'AframeVR\Core\Assets';
+    const A_INSTANCE = 'AframeVR\Core\Asset';
 
     protected $aframe;
     
@@ -17,13 +17,13 @@ class AssetsTest extends PHPUnit_Framework_TestCase
 
     public function a_get_instance()
     {
-        return $this->aframe->scene()->assets();
+        return $this->aframe->scene()->asset();
     }
 
     public function test_mixin()
     {
         $this->assertInstanceOf('AframeVR\Interfaces\MixinInterface', $this->aframe->scene()
-            ->assets()
+            ->asset()
             ->mixin());
     }
 }

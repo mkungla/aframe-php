@@ -23,47 +23,67 @@
  * @formatter:on */
 namespace AframeVR\Core;
 
-use \AframeVR\Core\Helpers\MetaTags;
 use \AframeVR\Extras\Primitives;
-use \DOMImplementation;
-use \DOMDocument;
 use \AframeVR\Core\Entity;
+use \AframeVR\Core\DOM\AframeDOMDocument;
 use \AframeVR\Interfaces\AssetsInterface;
 
 final class Scene
 {
+    /* All scenes can use primitives */
     use Primitives;
 
+    /**
+     * Name with what you can retrieve this scene while working with multiple scenes
+     *
+     * @var string $name
+     */
     private $name;
-
-    protected $meta;
 
     protected $assets = array();
 
     /**
+     * Aframe Document Object Model
+     *
+     * @var \AframeVR\Core\DOM\AframeDOMDocument
+     */
+    protected $aframeDomObj;
+
+    /**
      * A-Frame scene entities
      *
-     * @var array|null $entities
+     * @var array $entities
      */
-    protected $entities;
+    protected $entities = array();
 
-    public function __construct($name)
+    /**
+     * Scene constructor
+     *
+     * @param string $name            
+     * @param Config $config            
+     */
+    public function __construct(string $name, Config $config)
     {
         $this->name = $name;
+        $this->aframeDomObj = new AframeDOMDocument($config);
     }
 
     /**
-     * Scene DOMDocument meta tags object
+     * Aframe Document Object Model
      *
-     * @return \AframeVR\Core\Helpers\MetaTags
+     * @api
+     *
+     * @return \AframeVR\Core\DOM\AframeDOMDocument
      */
-    public function meta()
+    public function dom()
     {
-        return $this->meta ?? $this->meta = new MetaTags();
+        return $this->aframeDomObj;
     }
 
     /**
      * Entity
+     *
+     * @api
      *
      * @param string $name            
      * @return Entity
@@ -76,70 +96,83 @@ final class Scene
     /**
      * Assets
      *
+     * @api
+     *
      * @param string $name            
      * @return \AframeVR\Interfaces\AssetsInterface
      */
-    public function assets(string $name = 'untitled'): AssetsInterface
+    public function asset(string $name = 'untitled'): AssetsInterface
     {
-        return $this->assets[$name] ?? $this->assets[$name] = new Assets();
+        return $this->assets[$name] ?? $this->assets[$name] = new Asset();
     }
 
     /**
-     * Render the A-Frame scene
+     * Render the A-Frame scene and return the HTML
      *
-     * @param bool $full            
-     * @param bool $print            
+     * @api
+     *
+     * @param bool $only_scene            
+     * @return string
      */
-    public function render($full = true, $print = true)
+    public function save($only_scene = false): string
     {
-        $dom = new DOMImplementation();
-        $doctype = $dom->createDocumentType('html');
-        $aframe_dom = $dom->createDocument(null, 'html', $doctype);
-        $aframe_dom_head = $aframe_dom->createElement('head');
-        $aframe_dom_body = $aframe_dom->createElement('body', "\n");
-        $aframe_dom_scene = $aframe_dom->createElement("a-scene", "\n");
-        
-        /* Add metatags */
-        $this->meta()->DOMAppendAllTags($aframe_dom, $aframe_dom_head);
-        
-        /* Add primitives to DOM */
-        $this->DOMAppendPrimitives($aframe_dom, $aframe_dom_scene);
-        
-        /* Add entities */
-        if (is_array($this->entities)) {
-            foreach ($this->entities as $entity) {
-                $entity_dom = $entity->DOMElement($aframe_dom);
-                $aframe_dom_scene->appendChild($entity_dom);
-            }
-        }
-        
-        $cdn_script = $aframe_dom->createElement('script');
-        $cdn_script->setAttribute('src', 'https://aframe.io/releases/0.2.0/aframe.min.js');
-        $aframe_dom_head->appendChild($cdn_script);
-        
-        /* Pull DOM together */
-        $aframe_dom_body->appendChild($aframe_dom_scene);
-        $html = $aframe_dom->getElementsByTagName('html')[0];
-        $html->appendChild($aframe_dom_head);
-        $html->appendChild($aframe_dom_body);
-        
-        $aframe_dom->formatOutput = true;
-        
-        /* Print Scene */
-        
-        if (! $full) {
-            $html = new DOMDocument();
-            $html_scene = $html->importNode($aframe_dom_scene, true);
-            $html->appendChild($html_scene);
-            if ($print)
-                print $html->saveHTML();
-            else
-                return $html->saveHTML();
-        } else {
-            if ($print)
-                print $aframe_dom->saveHTML();
-            else
-                return $aframe_dom->saveHTML();
-        }
+        $this->prepare();
+        return ! $only_scene ? $this->aframeDomObj->render() : $this->aframeDomObj->renderSceneOnly();
+    }
+
+    /**
+     * Render the A-Frame scene and passthru HTML
+     *
+     * @api
+     *
+     * @param bool $only_scene            
+     * @return void
+     */
+    public function render($only_scene = false)
+    {
+        $this->prepare();
+        print ! $only_scene ? $this->aframeDomObj->render() : $this->aframeDomObj->renderSceneOnly();
+    }
+
+    /**
+     * Alias of AframeDOMDocument::setTitle(string)
+     *
+     * Set <title> tag
+     * $this->dom()->setTitle(string);
+     *
+     * @api
+     *
+     * @param string $title            
+     */
+    public function title(string $title)
+    {
+        $this->dom()->setTitle($title);
+    }
+
+    /**
+     * Alias of AframeDOMDocument::setDescription(string)
+     *
+     * Set <meta name="description"> tag
+     * $this->dom()->setDescription(string);
+     *
+     * @api
+     *
+     * @param string $description            
+     */
+    public function description(string $description)
+    {
+        $this->dom()->setDescription($description);
+    }
+
+    /**
+     * Add everyting to DOM
+     *
+     * @return void
+     */
+    protected function prepare()
+    {
+        /* Append all primitives */
+        $this->preparePrimitives();
+        $this->aframeDomObj->appendEntities($this->entities);
     }
 }

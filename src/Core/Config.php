@@ -25,4 +25,96 @@ namespace AframeVR\Core;
 
 final class Config
 {
+    /**
+     * Path to package composer.json
+     * 
+     * @var string|null
+     */
+    private $config_path;
+    
+    /**
+     * Array with contents of composer.json
+     * 
+     * @var array|null
+     */
+    private $config_data;
+    
+    /**
+     * Config arguments starting with (aframe-)
+     * 
+     * @var array|null
+     */
+    private $config_args;
+    
+    /**
+     * Useful config vars
+     * 
+     * @var array
+     */
+    private $config_vars;
+    
+    /**
+     * Configuration constructor
+     * 
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->loadComposerJson();
+        $this->defineVars();
+    }
+    
+    /**
+     * Get configuration value by key
+     * 
+     * @param string $prop
+     * @return string|null
+     */
+    public function get(string $prop)
+    {
+        return $this->config_vars[$prop] ?? null;
+    }
+    
+    /**
+     * Real path to aframe-php composer.json
+     * 
+     * @return string
+     */
+    protected function getConfigRealPath()
+    {
+        return $this->config_path ?? $this->config_path = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'composer.json';
+    }
+    
+    /**
+     * Whether config file can be found
+     * 
+     * @return bool
+     */
+    protected function configExists()
+    {
+        return file_exists($this->getConfigRealPath());
+    }
+    
+    /**
+     * Load contents of aframe-php cmposer.json
+     * 
+     * @return array|null
+     */
+    protected function loadComposerJson()
+    {
+        return $this->configExists() ? $this->config_data = json_decode(file_get_contents($this->getConfigRealPath()),true) : null;
+    }
+    
+    /**
+     * Define Configuration constants
+     * 
+     * @return void
+     */
+    protected function defineVars()
+    {
+        $this->config_vars = array();
+        $this->config_vars['DIR'] = $this->config_data['config']['aframe-dir'] ?? 'public/aframe';
+        $this->config_vars['URL'] = $this->config_data['config']['aframe-url'] ?? '/aframe';
+        $this->config_vars['CDN'] = $this->config_data['config']['aframe-cdn'] ?? 'https://aframe.io/releases/latest/aframe.min.js';
+    }
 }

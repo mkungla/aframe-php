@@ -1,13 +1,14 @@
 <?php 
 /* Require autoloader */
-require dirname(__FILE__,4).DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
+require dirname(__DIR__,4).DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
 
 /* Initialize A-FRAME */
 $aframe = new AframeVR\Aframe();
+$aframe->scene()->dom()->useCDN();
 
 /* $aframe->scene(); === Anonymous scene */
-$aframe->scene()->meta()->title('Hello, World! • A-Frame');
-$aframe->scene()->meta()->description('Hello, World! • A-Frame');
+$aframe->scene()->title('Hello, World! • A-Frame');
+$aframe->scene()->description('Hello, World! • A-Frame');
 
 /* sphere method creates anonymous entity matching primitive sphere */
 $aframe->scene()->sphere()

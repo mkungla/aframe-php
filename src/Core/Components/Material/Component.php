@@ -65,6 +65,7 @@ class Component extends ComponentAbstract implements ComponentInterface, Materia
      */
     public function getDomAttributeString(): string
     {
+        $this->prepareShader();
         $material_attrs = $this->getDOMAttributesArray();
         $format = implode(': %s; ', array_keys($material_attrs)) . ': %s;';
         return vsprintf($format, array_values($material_attrs));
@@ -81,6 +82,8 @@ class Component extends ComponentAbstract implements ComponentInterface, Materia
      */
     public function shader(string $shader = 'standard')
     {
+        $this->dom_attributes['shader'] = $shader;
+        
         if ($this->shaderObj instanceof ShaderInterface)
             return $this->shaderObj;
         
@@ -91,5 +94,19 @@ class Component extends ComponentAbstract implements ComponentInterface, Materia
             throw new BadShaderCallException($shader);
         }
         return $this->shaderObj ?? null;
+    }
+
+    /**
+     * Prepare Shader attributes
+     *
+     * @return void
+     */
+    private function prepareShader()
+    {
+        if (! empty($this->shaderObj)) {
+            $this->shaderObj->removeDefaultDOMAttributes();
+            foreach ($this->shaderObj as $key => $val)
+                $this->dom_attributes[$key] = $val;
+        }
     }
 }

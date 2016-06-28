@@ -1,12 +1,12 @@
 <?php
 use \AframeVR\Tests\interfaces\PrimitiveTestInterface;
-use \AframeVR\Tests\PrimitiveTests;
-use \AframeVR\Tests\CommonTests;
+use \AframeVR\Tests\PrimitiveHelper;
+use \AframeVR\Tests\CommonHelper;
 
 class SkyTest extends PHPUnit_Framework_TestCase implements PrimitiveTestInterface
 {
-    use CommonTests;
-    use PrimitiveTests;
+    use CommonHelper;
+    use PrimitiveHelper;
 
     const A_INSTANCE = 'AframeVR\Core\Entity';
 

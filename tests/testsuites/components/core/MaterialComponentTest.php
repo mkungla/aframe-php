@@ -1,9 +1,9 @@
 <?php
-use \AframeVR\Tests\CommonTests;
+use \AframeVR\Tests\CommonHelper;
 
 class MaterialComponentTest extends PHPUnit_Framework_TestCase
 {
-    use CommonTests;
+    use CommonHelper;
 
     protected $component;
     
@@ -22,7 +22,7 @@ class MaterialComponentTest extends PHPUnit_Framework_TestCase
     {
         return $this->component;
     }
-
+    
     public function test_general()
     {
         $aframe = new \AframeVR\Aframe();
@@ -35,11 +35,14 @@ class MaterialComponentTest extends PHPUnit_Framework_TestCase
         $aframe->scene()
             ->entity()
             ->material()
-            ->opacity(.5);
+            ->opacity(0.5);
         
+        $this->assertInternalType('string', $aframe->scene()
+            ->entity()
+            ->material()->getDomAttributeString());
         $this->assertInternalType('array', $this->component->getDOMAttributesArray());
         
-        $aframe->scene()->render(true, false);
+        
     }
 
     public function test_props()

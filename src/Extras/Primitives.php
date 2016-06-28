@@ -126,55 +126,16 @@ trait Primitives
      * @param \DOMElement $scene            
      * @return void
      */
-    protected function DOMAppendPrimitives(\DOMDocument &$aframe_dom, \DOMElement &$scene)
+    protected function preparePrimitives()
     {
-        /* Add sphiers to DOM */
-        $this->DOMappendPrimitiveCollection($this->spheres, $aframe_dom, $scene);
+        /* Primitive collections */
+        $this->aframeDomObj->appendEntities($this->boxes);
+        $this->aframeDomObj->appendEntities($this->spheres);
+        $this->aframeDomObj->appendEntities($this->cylinders);
+        $this->aframeDomObj->appendEntities($this->planes);
         
-        /* Add boxes to DOM */
-        $this->DOMappendPrimitiveCollection($this->boxes, $aframe_dom, $scene);
-        
-        /* Add cylinders to DOM */
-        $this->DOMappendPrimitiveCollection($this->cylinders, $aframe_dom, $scene);
-        
-        /* Add planes to DOM */
-        $this->DOMappendPrimitiveCollection($this->planes, $aframe_dom, $scene);
-        
-        /* Add sky to DOM */
-        $this->DOMappendPrimitiveSky($aframe_dom, $scene);
-    }
-
-    /**
-     * Append Primitive Collection
-     *
-     * @param array $primitives            
-     * @param \DOMDocument $aframe_dom            
-     * @param \DOMElement $scene            
-     * @return void
-     */
-    private function DOMappendPrimitiveCollection(array $primitives, \DOMDocument &$aframe_dom, \DOMElement &$scene)
-    {
-        if (! empty($primitives)) {
-            foreach ($primitives as $primitive) {
-                $entity = $primitive->DOMElement($aframe_dom);
-                $scene->appendChild($entity);
-            }
-        }
-    }
-
-    /**
-     * Append SKY primitive
-     *
-     * @param \DOMDocument $aframe_dom            
-     * @param \DOMElement $scene            
-     * @return void
-     */
-    private function DOMappendPrimitiveSky(\DOMDocument &$aframe_dom, \DOMElement &$scene)
-    {
-        if (is_object($this->sky)) {
-            $sky = $this->sky->DOMElement($aframe_dom);
-            $scene->appendChild($sky);
-        }
+        /* Primitives which only one can be present */
+        (!$this->sky)?:$this->aframeDomObj->appendEntity($this->sky);
     }
 }
  

@@ -1,7 +1,7 @@
 <?php
 namespace AframeVR\Tests;
 
-trait CommonTests
+trait CommonHelper
 {
 
     /**

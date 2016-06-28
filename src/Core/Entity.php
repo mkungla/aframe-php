@@ -110,11 +110,11 @@ class Entity implements EntityInterface
      * All entities inherently have the scale component.
      *
      * @param int|float $scale_x            
-     * @param int|float $scale_y           
+     * @param int|float $scale_y            
      * @param int|float $scale_z            
      * @return \AframeVR\Core\Entity
      */
-    public function scale(float $scale_x = 0, float $scale_y = 0, float $scale_z = 0): Entity
+    public function scale(float $scale_x = 1, float $scale_y = 1, float $scale_z = 1): Entity
     {
         $this->component('Scale')->scaleX($scale_x);
         $this->component('Scale')->scaleY($scale_y);

@@ -36,21 +36,28 @@ final class Aframe
      *
      * All scenes will be in this array as Scene objects with index of custom identifier.
      *
-     * @var $scenes
+     * @var array $scenes
      */
-    private $scenes;
+    private $scenes = array();
 
+    /**
+     * Configuration Object
+     * 
+     * @var \AframeVR\Core\Config $configObj
+     */
     private $configObj;
 
     /**
-     * Constructor
+     * A-Frame PHP Constructor
+     * 
+     * @return void
      */
     public function __construct()
     {
-        /* We will have scenes in array */
-        $this->scenes = array();
+        /* Initialize configuration */
+        $this->config();
     }
-
+    
     /**
      * Get Config
      * 
@@ -71,7 +78,6 @@ final class Aframe
      */
     public function scene(string $name = 'untitled'): Scene
     {
-        return $this->scenes[$name] ?? $this->scenes[$name] = new Scene($name);
+        return $this->scenes[$name] ?? $this->scenes[$name] = new Scene($name, $this->config());
     }
 }
- 

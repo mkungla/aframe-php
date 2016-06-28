@@ -7,6 +7,9 @@
         	"php": ">= 7",
         	"composer-plugin-api": "^1.0"
     },
+    "require-dev": {
+        "composer/composer": "~1.1.2"
+	},
     "minimum-stability" : "stable",
 	"autoload" : {
 		"psr-4" : {
@@ -21,7 +24,8 @@
 	"config" : {
 		"optimize-autoloader" : true,
 		"aframe-dir": "public/aframe",
-		"aframe-url": "/aframe"
+		"aframe-url": "/aframe",
+		"aframe-cdn": "https://aframe.io/releases/0.2.0/aframe.min.js"
 	},
 	"homepage" : "https://github.com/mkungla/aframe-php",
 	"authors" : [{

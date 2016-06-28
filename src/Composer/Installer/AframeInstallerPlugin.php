@@ -23,9 +23,10 @@
  * @formatter:on */
 namespace AframeVR\Composer\Installer;
 
-use Composer\Composer;
-use Composer\IO\IOInterface;
-use Composer\Plugin\PluginInterface;
+use \Composer\Composer;
+use \Composer\IO\IOInterface;
+use \Composer\Plugin\PluginInterface;
+
 class AframeInstallerPlugin implements PluginInterface
 {
 
@@ -44,7 +45,7 @@ class AframeInstallerPlugin implements PluginInterface
         
         /* Update A-Frame core */
         if ($this->requiresAframeCoreUpdate($aframe_installer, $io))
-            $this->updateAframeCore($aframe_installer,$io);
+            $this->updateAframeCore($aframe_installer, $io);
         
         $aframe_installer->updateConfig();
     }
@@ -59,7 +60,7 @@ class AframeInstallerPlugin implements PluginInterface
      * @param AframeComponentInstaller $aframe_installer            
      * @return void
      */
-    private function updateAframeCore(AframeComponentInstaller $aframe_installer,$io)
+    private function updateAframeCore(AframeComponentInstaller $aframe_installer, $io)
     {
         $source = $aframe_installer->getAframeCoreSrcDir();
         $dest = $aframe_installer->getPublicAframeCoreDir();
@@ -75,12 +76,10 @@ class AframeInstallerPlugin implements PluginInterface
      */
     protected function requiresAframeCoreUpdate(AframeComponentInstaller $aframe_installer, IOInterface $io)
     {
-
         $aframe_core_dir = $aframe_installer->getPublicAframeCoreDir();
         $aframe_core_file = $aframe_core_dir . DIRECTORY_SEPARATOR . 'aframe.js';
         $aframe_src_dir = $aframe_installer->getAframeCoreSrcDir();
         
         return (! is_dir($aframe_core_dir) || ! file_exists($aframe_core_file) || ! is_dir($aframe_src_dir)) ? true : filemtime($aframe_src_dir) > filemtime($aframe_core_dir);
     }
-    
 }

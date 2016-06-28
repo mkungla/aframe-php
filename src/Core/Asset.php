@@ -29,7 +29,7 @@ use \AframeVR\Interfaces\{
 };
 use \AframeVR\Core\Mixin;
 
-final class Assets implements AssetsInterface
+final class Asset implements AssetsInterface
 {
 
     protected $mixins;

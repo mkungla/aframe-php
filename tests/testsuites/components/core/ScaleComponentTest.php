@@ -1,9 +1,9 @@
 <?php
-use \AframeVR\Tests\CommonTests;
+use \AframeVR\Tests\CommonHelper;
 
 class ScaleComponentTest extends PHPUnit_Framework_TestCase
 {
-    use CommonTests;
+    use CommonHelper;
 
     protected $component;
     
@@ -33,6 +33,6 @@ class ScaleComponentTest extends PHPUnit_Framework_TestCase
         
         $this->assertInternalType('array', $this->component->getDOMAttributesArray());
         
-        $aframe->scene()->render(true, false);
+        $this->assertInternalType('string', $this->component->getDomAttributeString());
     }
 }
