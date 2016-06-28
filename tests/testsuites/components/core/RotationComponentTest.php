@@ -35,4 +35,16 @@ class RotationComponentTest extends PHPUnit_Framework_TestCase
         
         $this->assertInternalType('string', $this->component->getDomAttributeString());
     }
+    
+    public function test_getPosition()
+    {
+        $aframe = new \AframeVR\Aframe();
+    
+        $aframe->scene()
+        ->entity()
+        ->rotation(10, -5, 6);
+    
+        $this->assertEquals($aframe->scene()
+            ->entity()->component('Rotation')->getRotation(), '10 -5 6');
+    }
 }

@@ -29,7 +29,8 @@ interface AssetsInterface
     /**
      * Asset constructor set asset ID
      *
-     * @param string $id            
+     * @param string $id 
+     * @return void          
      */
     public function __construct(string $id);
 

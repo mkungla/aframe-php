@@ -35,4 +35,16 @@ class ScaleComponentTest extends PHPUnit_Framework_TestCase
         
         $this->assertInternalType('string', $this->component->getDomAttributeString());
     }
+    
+    public function test_getScale()
+    {
+        $aframe = new \AframeVR\Aframe();
+    
+        $aframe->scene()
+        ->entity()
+        ->scale(1, 2, 6);
+    
+        $this->assertEquals($aframe->scene()
+            ->entity()->component('Scale')->getScale(), '1 2 6');
+    }
 }

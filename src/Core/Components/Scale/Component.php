@@ -29,8 +29,8 @@ use \AframeVR\Core\Helpers\ComponentHelper;
 
 /**
  * AframeVR\Core\Components\Scale
- * 
- * The scale component defines a shrinking, stretching, or skewing transformation of an entity. 
+ *
+ * The scale component defines a shrinking, stretching, or skewing transformation of an entity.
  * It takes three scaling factors for the X, Y, and Z axes.
  */
 class Component extends ComponentAbstract implements ScaleInterface
@@ -59,5 +59,17 @@ class Component extends ComponentAbstract implements ScaleInterface
     {
         $attrs = $this->getDOMAttributesArray();
         return $this->createCoordinateString($attrs['x'], $attrs['y'], $attrs['z']);
+    }
+
+    /**
+     * Get scale
+     *
+     * {@inheritdoc}
+     *
+     * @return string
+     */
+    public function getScale(): string
+    {
+        return $this->getDomAttributeString();
     }
 }

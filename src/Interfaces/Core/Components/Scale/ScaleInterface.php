@@ -27,4 +27,12 @@ use \AframeVR\Interfaces\ComponentInterface;
 
 interface ScaleInterface extends ComponentInterface
 {
+    /**
+     * Get scale
+     *
+     * {@inheritdoc}
+     *
+     * @return string
+     */
+    public function getScale(): string;
 }

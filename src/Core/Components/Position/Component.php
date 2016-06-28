@@ -63,7 +63,7 @@ class Component extends ComponentAbstract implements PositionInterface
     }
 
     /**
-     * Get current position
+     * Get current position coordinates
      *
      * {@inheritdoc}
      *

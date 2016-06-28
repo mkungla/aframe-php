@@ -29,7 +29,7 @@ interface PositionInterface extends ComponentInterface
 {
 
     /**
-     * Get current position
+     * Get current position coordinates
      *
      * @return string
      */
