@@ -27,23 +27,19 @@ use \AframeVR\Interfaces\Core\Components\Rotation\RotationInterface;
 use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Core\Helpers\ComponentHelper;
 
-
-/**
- * AframeVR\Core\Components\Rotation
- * 
- * The rotation component defines the orientation of an entity. 
- * It takes the 
- * roll (x), 
- * pitch (y), 
- * and yaw (z) 
- * as three space-delimited numbers indicating degrees of rotation.
- */
 class RotationComponent extends ComponentAbstract implements RotationInterface
 {
     use ComponentHelper;
 
     /**
-     * Initialize Component
+     * Initialize Rotation Component
+     *
+     * The rotation component defines the orientation of an entity.
+     * It takes the
+     * roll (x),
+     * pitch (y),
+     * and yaw (z)
+     * as three space-delimited numbers indicating degrees of rotation.
      *
      * {@inheritdoc}
      *
@@ -58,6 +54,9 @@ class RotationComponent extends ComponentAbstract implements RotationInterface
     /**
      * Return DOM attribute contents
      *
+     * Scale Components dom atribute contains roll, pitch, yaw
+     * Ex: rotation="1 1 1"
+     *
      * @return string
      */
     public function getDomAttributeString(): string
@@ -65,7 +64,7 @@ class RotationComponent extends ComponentAbstract implements RotationInterface
         $attrs = $this->getDOMAttributesArray();
         return $this->createCoordinateString($attrs['x'], $attrs['y'], $attrs['z']);
     }
-    
+
     /**
      * Get Rotation
      *
