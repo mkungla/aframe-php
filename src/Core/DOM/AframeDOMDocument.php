@@ -105,8 +105,7 @@ final class AframeDOMDocument extends DOMImplementation
     /**
      * A-Frame DOM
      *
-     * @param Config $config            
-     * @return void
+     * @param Config $config
      */
     public function __construct(Config $config)
     {
@@ -147,8 +146,7 @@ final class AframeDOMDocument extends DOMImplementation
 
     /**
      * Render scene this DOM Object is attached to
-     *
-     * @param bool $only_scene            
+     *          
      * @return string
      */
     public function render(): string
@@ -177,7 +175,7 @@ final class AframeDOMDocument extends DOMImplementation
     /**
      * Set Scene meta description
      *
-     * @param string $title            
+     * @param string $description            
      */
     public function setDescription(string $description)
     {
@@ -310,7 +308,7 @@ final class AframeDOMDocument extends DOMImplementation
      */
     protected function createDocType(string $doctype)
     {
-        $this->doctypeObj = parent::createDocumentType('html');
+        $this->doctypeObj = $this->createDocumentType($doctype);
     }
 
     /**
@@ -320,7 +318,7 @@ final class AframeDOMDocument extends DOMImplementation
      */
     protected function createAframeDocument()
     {
-        $this->docObj = parent::createDocument(null, 'html', $this->doctypeObj);
+        $this->docObj = $this->createDocument(null, 'html', $this->doctypeObj);
     }
 
     /**

@@ -53,6 +53,13 @@ class AframeComponentInstaller extends LibraryInstaller
     protected $aframe_component_name;
 
     /**
+     * Get A-Frame component path
+     * 
+     * @var string
+     */
+    protected $aframe_component_path;
+    
+    /**
      * Path to directory of A-Frame assets
      *
      * @var string
@@ -66,6 +73,13 @@ class AframeComponentInstaller extends LibraryInstaller
      */
     protected $public_core_dir;
 
+    /**
+     * Get A-Frame core assets source path
+     * 
+     * @var string
+     */
+    protected $public_src_dir;
+    
     /**
      * URI of A-Frame assets relative to your document root
      *

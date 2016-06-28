@@ -36,6 +36,13 @@ trait Primitives
 {
 
     /**
+     * Aframe Document Object Model
+     *
+     * @var \AframeVR\Core\DOM\AframeDOMDocument
+     */
+    protected $aframeDomObj;
+    
+    /**
      *
      * @var array $spheres
      */
@@ -121,9 +128,7 @@ trait Primitives
 
     /**
      * Add all used primitevs to the scene
-     *
-     * @param \DOMDocument $aframe_dom            
-     * @param \DOMElement $scene            
+     *         
      * @return void
      */
     protected function preparePrimitives()

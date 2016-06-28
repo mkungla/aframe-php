@@ -25,27 +25,12 @@ namespace AframeVR\Core\Helpers;
 
 abstract class ShaderAbstract
 {
-
-    /**
-     * removeDefaultDOMAttributes
-     *
-     * @return void
-     */
-    public function removeDefaultDOMAttributes()
-    {
-        $defaults = $this->getShaderClassDefaultVars();
-        foreach ($this as $name => $value) {
-            if (empty($value) || $value === $defaults[$name])
-                unset($this->$name);
-        }
-    }
-
     /**
      * Get default class vars
      *
-     * @return void
+     * @return array
      */
-    private function getShaderClassDefaultVars()
+    protected function getShaderClassDefaultVars()
     {
         return get_class_vars(get_class($this));
     }

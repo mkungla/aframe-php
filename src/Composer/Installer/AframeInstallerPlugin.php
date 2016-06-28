@@ -41,11 +41,11 @@ class AframeInstallerPlugin implements PluginInterface
         $aframe_installer = new AframeComponentInstaller($io, $composer);
         $composer->getInstallationManager()->addInstaller($aframe_installer);
         $info_msg = sprintf('A-Frame installer plugin is added as custom installer! composer-plugin-api v: %s', self::PLUGIN_API_VERSION);
-        $io->write($info_msg, "comment");
+        $io->write($info_msg);
         
         /* Update A-Frame core */
-        if ($this->requiresAframeCoreUpdate($aframe_installer, $io))
-            $this->updateAframeCore($aframe_installer, $io);
+        if ($this->requiresAframeCoreUpdate($aframe_installer))
+            $this->updateAframeCore($aframe_installer);
         
         $aframe_installer->updateConfig();
     }
@@ -60,7 +60,7 @@ class AframeInstallerPlugin implements PluginInterface
      * @param AframeComponentInstaller $aframe_installer            
      * @return void
      */
-    private function updateAframeCore(AframeComponentInstaller $aframe_installer, $io)
+    private function updateAframeCore(AframeComponentInstaller $aframe_installer)
     {
         $source = $aframe_installer->getAframeCoreSrcDir();
         $dest = $aframe_installer->getPublicAframeCoreDir();
@@ -74,7 +74,7 @@ class AframeInstallerPlugin implements PluginInterface
      * @param AframeComponentInstaller $aframe_installer            
      * @return bool
      */
-    protected function requiresAframeCoreUpdate(AframeComponentInstaller $aframe_installer, IOInterface $io)
+    protected function requiresAframeCoreUpdate(AframeComponentInstaller $aframe_installer)
     {
         $aframe_core_dir = $aframe_installer->getPublicAframeCoreDir();
         $aframe_core_file = $aframe_core_dir . DIRECTORY_SEPARATOR . 'aframe.js';

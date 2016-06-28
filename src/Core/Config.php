@@ -55,8 +55,6 @@ final class Config
     
     /**
      * Configuration constructor
-     * 
-     * @return void
      */
     public function __construct()
     {

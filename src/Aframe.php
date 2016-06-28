@@ -49,8 +49,6 @@ final class Aframe
 
     /**
      * A-Frame PHP Constructor
-     * 
-     * @return void
      */
     public function __construct()
     {
