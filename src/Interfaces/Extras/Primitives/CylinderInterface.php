@@ -47,7 +47,7 @@ interface CylinderInterface extends PrimitiveInterface
     /**
      * geometry.radius
      *
-     * @param float $radius            
+     * @param int|float $radius            
      * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
      */
     public function radius(float $radius = 0.75): CylinderInterface;

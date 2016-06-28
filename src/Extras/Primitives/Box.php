@@ -69,7 +69,7 @@ class Box extends Entity implements BoxInterface
      *
      * {@inheritdoc}
      *
-     * @param float $depth            
+     * @param int|float $depth            
      * @return \AframeVR\Interfaces\Extras\Primitives\BoxInterface
      */
     public function depth(float $depth = 1): BoxInterface
@@ -83,7 +83,7 @@ class Box extends Entity implements BoxInterface
      *
      * {@inheritdoc}
      *
-     * @param float $height            
+     * @param int|float $height            
      * @return \AframeVR\Interfaces\Extras\Primitives\BoxInterface
      */
     public function height(float $height = 1): BoxInterface
@@ -97,7 +97,7 @@ class Box extends Entity implements BoxInterface
      *
      * {@inheritdoc}
      *
-     * @param float $width            
+     * @param int|float $width            
      * @return \AframeVR\Interfaces\Extras\Primitives\BoxInterface
      */
     public function width(float $width = 1): BoxInterface

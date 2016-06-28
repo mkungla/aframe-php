@@ -30,7 +30,7 @@ interface BoxInterface extends PrimitiveInterface
     /**
      * geometry.depth
      * 
-     * @param float $depth
+     * @param int|float $depth
      * @return \AframeVR\Interfaces\Extras\Primitives\BoxInterface
      */
     public function depth(float $depth = 1): BoxInterface;
@@ -38,15 +38,15 @@ interface BoxInterface extends PrimitiveInterface
     /**
      * geometry.height
      * 
-     * @param float $height
-     * @return \A\AframeVR\Interfaces\Extras\Primitives\BoxInterface
+     * @param int|float $height
+     * @return \AframeVR\Interfaces\Extras\Primitives\BoxInterface
      */
     public function height(float $height = 1): BoxInterface;
     
     /**
      * geometry.width
      * 
-     * @param float $width
+     * @param int|float $width
      * @return \AframeVR\Interfaces\Extras\Primitives\BoxInterface
      */
     public function width(float $width = 1): BoxInterface;

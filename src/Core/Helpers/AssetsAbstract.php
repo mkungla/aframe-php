@@ -46,7 +46,7 @@ abstract class AssetsAbstract implements AssetsInterface
     /**
      * SRC attribute
      *
-     * @var stringZ
+     * @var string
      */
     protected $attr_src;
 
