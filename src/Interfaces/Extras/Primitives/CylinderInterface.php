@@ -31,7 +31,7 @@ interface CylinderInterface extends PrimitiveInterface
     /**
      * geometry.height
      *
-     * @param float $height            
+     * @param int|float $height            
      * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
      */
     public function height(float $height = 1): CylinderInterface;

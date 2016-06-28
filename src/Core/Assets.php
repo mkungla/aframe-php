@@ -46,7 +46,7 @@ final class Assets
      * mixin
      *
      * @param string $name            
-     * @return \AframeVR\Interfaces\Assets\MixinInterface
+     * @return \AframeVR\Interfaces\Core\Assets\MixinInterface
      */
     public function mixin(string $name = 'untitled'): MixinInterface
     {
@@ -57,7 +57,7 @@ final class Assets
      * mixin
      *
      * @param string $name            
-     * @return \AframeVR\Interfaces\Assets\ItemInterface
+     * @return \AframeVR\Interfaces\Core\Assets\ItemInterface
      */
     public function item(string $name = 'untitled'): ItemInterface
     {

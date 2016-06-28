@@ -73,7 +73,7 @@ class Cylinder extends Entity implements CylinderInterface
      *
      * {@inheritdoc}
      *
-     * @param float $height            
+     * @param int|foat $height            
      * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
      */
     public function height(float $height = 1): CylinderInterface

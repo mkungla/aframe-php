@@ -134,7 +134,7 @@ final class AframeDOMDocument extends DOMImplementation
         /* Create <a-assets> element */
         $this->createAssets();
         /* Set CDN of aframe.js */
-        $this->setCDN($config->get('CDN'));
+        $this->setCDN(is_string($config->get('CDN')) ? $config->get('CDN') : '');
     }
 
     /**

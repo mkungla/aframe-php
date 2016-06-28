@@ -69,7 +69,7 @@ class Plane extends Entity implements PlaneInterface
      *
      * {@inheritdoc}
      *
-     * @param float $height            
+     * @param int|float $height            
      * @return \AframeVR\Interfaces\Extras\Primitives\PlaneInterface
      */
     public function height(float $height = 1): PlaneInterface
@@ -83,7 +83,7 @@ class Plane extends Entity implements PlaneInterface
      *
      * {@inheritdoc}
      *
-     * @param float $width            
+     * @param int|float $width            
      * @return \AframeVR\Interfaces\Extras\Primitives\PlaneInterface
      */
     public function width(float $width = 1): PlaneInterface
