@@ -27,32 +27,38 @@ use \AframeVR\Interfaces\Core\Components\Scale\ScaleInterface;
 use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Core\Helpers\ComponentHelper;
 
-/**
- * AframeVR\Core\Components\Scale
- *
- * The scale component defines a shrinking, stretching, or skewing transformation of an entity.
- * It takes three scaling factors for the X, Y, and Z axes.
- */
 class ScaleComponent extends ComponentAbstract implements ScaleInterface
 {
     use ComponentHelper;
 
     /**
      * Initialize Component
-     *
+     * 
+     * AframeVR\Core\Components\Scale
+     * 
+     * The scale component defines a shrinking, stretching, or skewing transformation of an entity.
+     * It takes three scaling factors for the X, Y, and Z axes.
+     * 
+     * Scale compnent dom attribute is scale
      * {@inheritdoc}
-     *
+     * 
      * @return bool
      */
     public function initializeComponent(): bool
     {
+        
         $this->setDomAttributeName('scale');
         return true;
     }
 
     /**
      * Return DOM attribute contents
-     *
+     * 
+     * Scale Components dom atribute contains coordinates 
+     * Ex: scale="1 1 1"
+     * 
+     * {@inheritdoc}
+     * 
      * @return string
      */
     public function getDomAttributeString(): string
