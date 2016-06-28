@@ -27,18 +27,15 @@ use \AframeVR\Interfaces\Extras\Primitives\BoxInterface;
 use \AframeVR\Core\Entity;
 use \AframeVR\Core\Helpers\MeshAttributes;
 
-/**
- * <a-box>
- *
- * The box primitive, formerly called <a-cube>, creates shapes such as boxes, cubes, or walls.
- * It is an entity that prescribes the geometry with its geometric primitive set to box.
- */
 class Box extends Entity implements BoxInterface
 {
     use MeshAttributes;
 
     /**
-     * Init
+     * Init <a-box>
+     *
+     * The box primitive, formerly called <a-cube>, creates shapes such as boxes, cubes, or walls.
+     * It is an entity that prescribes the geometry with its geometric primitive set to box.
      *
      * {@inheritdoc}
      *

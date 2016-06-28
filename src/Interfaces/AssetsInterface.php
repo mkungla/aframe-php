@@ -27,13 +27,6 @@ interface AssetsInterface
 {
 
     /**
-     * Asset constructor set asset ID
-     *
-     * @param string $id          
-     */
-    public function __construct(string $id);
-
-    /**
      * Set ID attribute of the asset
      *
      * @param string $id            

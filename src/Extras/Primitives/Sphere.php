@@ -27,18 +27,15 @@ use \AframeVR\Interfaces\Extras\Primitives\SphereInterface;
 use \AframeVR\Core\Entity;
 use \AframeVR\Core\Helpers\MeshAttributes;
 
-/**
- * <a-sphere>
- *
- * The sphere primitive creates a spherical or polyhedron shapes.
- * It wraps an entity that prescribes the geometry component with its geometric primitive set to sphere.
- */
 class Sphere extends Entity implements SphereInterface
 {
     use MeshAttributes;
 
     /**
-     * Init
+     * Init <a-sphere>
+     *
+     * The sphere primitive creates a spherical or polyhedron shapes.
+     * It wraps an entity that prescribes the geometry component with its geometric primitive set to sphere.
      *
      * {@inheritdoc}
      *
