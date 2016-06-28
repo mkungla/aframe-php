@@ -15,12 +15,12 @@ class PlaneTest extends PHPUnit_Framework_TestCase implements PrimitiveTestInter
         'rotation',
         'scale'
     );
-    
+
     const A_PRIMITIVE_ATTRIBUTES = array(
         'height',
         'width'
     );
-    
+
     public function a_get_instance()
     {
         $aframe = new \AframeVR\Aframe();

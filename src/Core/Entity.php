@@ -145,7 +145,7 @@ class Entity implements EntityInterface
         $component_name = strtolower($component_name);
         
         if (! array_key_exists($component_name, $this->components)) {
-            $component = sprintf('\AframeVR\Core\Components\%s\Component', ucfirst($component_name));
+            $component = sprintf('\AframeVR\Core\Components\%s\%sComponent', ucfirst($component_name), ucfirst($component_name));
             if (class_exists($component)) {
                 $this->components[$component_name] = new $component();
             } else {

@@ -14,7 +14,7 @@ class BoxTest extends PHPUnit_Framework_TestCase implements PrimitiveTestInterfa
         'position',
         'rotation'
     );
-    
+
     const A_PRIMITIVE_ATTRIBUTES = array(
         'color',
         'metalness',
@@ -28,7 +28,7 @@ class BoxTest extends PHPUnit_Framework_TestCase implements PrimitiveTestInterfa
         'height',
         'width'
     );
-    
+
     public function a_get_instance()
     {
         $aframe = new \AframeVR\Aframe();

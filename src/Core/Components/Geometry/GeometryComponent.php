@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         PositionComponent.php
+ * File         GeometryComponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  ^ @issues      https://github.com/mkungla/aframe-php/issues
@@ -38,7 +38,7 @@ use \AframeVR\Core\Exceptions\InvalidComponentArgumentException;
  * is usually defined alongside to provide a appearance
  * alongside the shape to create a complete mesh.
  */
-class Component extends ComponentAbstract implements GeometryInterface
+class GeometryComponent extends ComponentAbstract implements GeometryInterface
 {
 
     /**

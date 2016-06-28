@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         PositionComponent.php
+ * File         ScaleComponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  ^ @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,19 +21,19 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Core\Components\Position;
+namespace AframeVR\Core\Components\Scale;
 
-use \AframeVR\Interfaces\Core\Components\Position\PositionInterface;
+use \AframeVR\Interfaces\Core\Components\Scale\ScaleInterface;
 use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Core\Helpers\ComponentHelper;
 
 /**
- * AframeVR\Core\Components\Position
+ * AframeVR\Core\Components\Scale
  *
- * The position component defines where an entity is placed in the scene's world space.
- * It takes a coordinate value as three space-delimited numbers.
+ * The scale component defines a shrinking, stretching, or skewing transformation of an entity.
+ * It takes three scaling factors for the X, Y, and Z axes.
  */
-class Component extends ComponentAbstract implements PositionInterface
+class ScaleComponent extends ComponentAbstract implements ScaleInterface
 {
     use ComponentHelper;
 
@@ -43,11 +43,10 @@ class Component extends ComponentAbstract implements PositionInterface
      * {@inheritdoc}
      *
      * @return bool
-     *
      */
     public function initializeComponent(): bool
     {
-        $this->setDomAttributeName('position');
+        $this->setDomAttributeName('scale');
         return true;
     }
 
@@ -63,13 +62,13 @@ class Component extends ComponentAbstract implements PositionInterface
     }
 
     /**
-     * Get current position
+     * Get scale
      *
      * {@inheritdoc}
      *
      * @return string
      */
-    public function getPosition(): string
+    public function getScale(): string
     {
         return $this->getDomAttributeString();
     }

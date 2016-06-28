@@ -50,29 +50,29 @@ class StandardShaderTest extends PHPUnit_Framework_TestCase
     public function test_properties2()
     {
         $this->entity->material()
-        ->shader('standard')
-        ->color('#fff');
+            ->shader('standard')
+            ->color('#fff');
         $this->entity->material()
-        ->shader('standard')
-        ->fog(true);
+            ->shader('standard')
+            ->fog(true);
         $this->entity->material()
-        ->shader('standard')
-        ->height(100);
+            ->shader('standard')
+            ->height(100);
         $this->entity->material()
-        ->shader('standard')
-        ->repeat(5, 2);
+            ->shader('standard')
+            ->repeat(5, 2);
         $this->entity->material()
-        ->shader('standard')
-        ->src('video-uri');
+            ->shader('standard')
+            ->src('video-uri');
         $this->entity->material()
-        ->shader('standard')
-        ->width(20);
+            ->shader('standard')
+            ->width(20);
         $this->entity->material()
-        ->shader('standard')
-        ->envMap('#env-map-2');
-    
+            ->shader('standard')
+            ->envMap('#env-map-2');
+        
         $shader = $this->entity->material()->shader('standard');
-    
+        
         $this->assertEquals($shader->color, '#fff');
         $this->assertEquals($shader->fog, 'true');
         $this->assertEquals($shader->height, 100);
@@ -81,7 +81,7 @@ class StandardShaderTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($shader->width, 20);
         $this->assertEquals($shader->envMap, '#env-map-2');
     }
-    
+
     public function test_removeDefaultDOMAttributes()
     {
         $this->assertNull($this->entity->material()

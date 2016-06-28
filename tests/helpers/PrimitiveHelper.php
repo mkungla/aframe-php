@@ -3,6 +3,7 @@ namespace AframeVR\Tests;
 
 trait PrimitiveHelper
 {
+
     protected static $mesh_attributes = array(
         'color',
         'metalness',
@@ -13,7 +14,7 @@ trait PrimitiveHelper
         'opacity',
         'transparent'
     );
-    
+
     /**
      * Test is instance
      */
@@ -35,7 +36,7 @@ trait PrimitiveHelper
                 ->{$attribute}());
         }
     }
-    
+
     public function test_primitive_attributes()
     {
         $primitive = $this->a_get_instance();

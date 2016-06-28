@@ -15,13 +15,13 @@ class SkyTest extends PHPUnit_Framework_TestCase implements PrimitiveTestInterfa
         'rotation',
         'scale'
     );
-    
+
     const A_PRIMITIVE_ATTRIBUTES = array(
         'radius',
         'segmentsHeight',
         'segmentsWidth'
     );
-    
+
     public function a_get_instance()
     {
         $aframe = new \AframeVR\Aframe();

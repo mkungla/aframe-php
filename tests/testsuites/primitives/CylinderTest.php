@@ -15,7 +15,7 @@ class CylinderTest extends PHPUnit_Framework_TestCase implements PrimitiveTestIn
         'rotation',
         'scale'
     );
-    
+
     const A_PRIMITIVE_ATTRIBUTES = array(
         'height',
         'openEnded',
@@ -25,7 +25,7 @@ class CylinderTest extends PHPUnit_Framework_TestCase implements PrimitiveTestIn
         'thetaLength',
         'thetaStart'
     );
-    
+
     public function a_get_instance()
     {
         $aframe = new \AframeVR\Aframe();

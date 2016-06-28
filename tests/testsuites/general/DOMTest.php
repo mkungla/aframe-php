@@ -13,13 +13,15 @@ class DOMTest extends PHPUnit_Framework_TestCase
     public function test_CDN()
     {
         $aframe = new \AframeVR\Aframe();
-        $this->assertNotContains($aframe->config()->get('CDN'), $aframe->scene()
+        $this->assertNotContains($aframe->config()
+            ->get('CDN'), $aframe->scene()
             ->save());
         
         $aframe = new \AframeVR\Aframe();
         $aframe->config()->set('useCDN', true);
         
-        $this->assertContains($aframe->config()->get('CDN'), $aframe->scene()
+        $this->assertContains($aframe->config()
+            ->get('CDN'), $aframe->scene()
             ->save());
     }
 }

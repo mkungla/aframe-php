@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         PositionComponent.php
+ * File         RotationComponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  ^ @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,19 +21,24 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Core\Components\Scale;
+namespace AframeVR\Core\Components\Rotation;
 
-use \AframeVR\Interfaces\Core\Components\Scale\ScaleInterface;
+use \AframeVR\Interfaces\Core\Components\Rotation\RotationInterface;
 use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Core\Helpers\ComponentHelper;
 
+
 /**
- * AframeVR\Core\Components\Scale
+ * AframeVR\Core\Components\Rotation
  * 
- * The scale component defines a shrinking, stretching, or skewing transformation of an entity. 
- * It takes three scaling factors for the X, Y, and Z axes.
+ * The rotation component defines the orientation of an entity. 
+ * It takes the 
+ * roll (x), 
+ * pitch (y), 
+ * and yaw (z) 
+ * as three space-delimited numbers indicating degrees of rotation.
  */
-class Component extends ComponentAbstract implements ScaleInterface
+class RotationComponent extends ComponentAbstract implements RotationInterface
 {
     use ComponentHelper;
 
@@ -46,7 +51,7 @@ class Component extends ComponentAbstract implements ScaleInterface
      */
     public function initializeComponent(): bool
     {
-        $this->setDomAttributeName('scale');
+        $this->setDomAttributeName('rotation');
         return true;
     }
 
@@ -59,5 +64,17 @@ class Component extends ComponentAbstract implements ScaleInterface
     {
         $attrs = $this->getDOMAttributesArray();
         return $this->createCoordinateString($attrs['x'], $attrs['y'], $attrs['z']);
+    }
+    
+    /**
+     * Get Rotation
+     *
+     * {@inheritdoc}
+     *
+     * @return string
+     */
+    public function getRotation(): string
+    {
+        return $this->getDomAttributeString();
     }
 }

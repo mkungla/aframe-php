@@ -6,9 +6,8 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
     use CommonHelper;
 
     protected $component;
-    
+
     protected $aframe;
-    
     
     // Setup function to instantiate de object to $this->scrap
     protected function setUp()
@@ -44,9 +43,9 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
         $this->component->primitive('box');
         $this->component->width(2);
         $this->component->height(2);
-        $this->assertInternalType('string',$this->component->getDomAttributeString());
+        $this->assertInternalType('string', $this->component->getDomAttributeString());
     }
-    
+
     public function test_primitive_box()
     {
         $this->component->primitive('box');
@@ -64,7 +63,6 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('translate', $attrs);
         $this->assertArrayHasKey('buffer', $attrs);
         $this->assertArrayHasKey('skipCache', $attrs);
-        
     }
 
     public function test_primitive_circle()

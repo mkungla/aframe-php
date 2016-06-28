@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         omponent.php
+ * File         PositionComponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  ^ @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,24 +21,19 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Core\Components\Rotation;
+namespace AframeVR\Core\Components\Position;
 
-use \AframeVR\Interfaces\Core\Components\Rotation\RotationInterface;
+use \AframeVR\Interfaces\Core\Components\Position\PositionInterface;
 use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Core\Helpers\ComponentHelper;
 
-
 /**
- * AframeVR\Core\Components\Rotation
- * 
- * The rotation component defines the orientation of an entity. 
- * It takes the 
- * roll (x), 
- * pitch (y), 
- * and yaw (z) 
- * as three space-delimited numbers indicating degrees of rotation.
+ * AframeVR\Core\Components\Position
+ *
+ * The position component defines where an entity is placed in the scene's world space.
+ * It takes a coordinate value as three space-delimited numbers.
  */
-class Component extends ComponentAbstract implements RotationInterface
+class PositionComponent extends ComponentAbstract implements PositionInterface
 {
     use ComponentHelper;
 
@@ -48,10 +43,11 @@ class Component extends ComponentAbstract implements RotationInterface
      * {@inheritdoc}
      *
      * @return bool
+     *
      */
     public function initializeComponent(): bool
     {
-        $this->setDomAttributeName('rotation');
+        $this->setDomAttributeName('position');
         return true;
     }
 
@@ -64,5 +60,17 @@ class Component extends ComponentAbstract implements RotationInterface
     {
         $attrs = $this->getDOMAttributesArray();
         return $this->createCoordinateString($attrs['x'], $attrs['y'], $attrs['z']);
+    }
+
+    /**
+     * Get current position coordinates
+     *
+     * {@inheritdoc}
+     *
+     * @return string
+     */
+    public function getPosition(): string
+    {
+        return $this->getDomAttributeString();
     }
 }

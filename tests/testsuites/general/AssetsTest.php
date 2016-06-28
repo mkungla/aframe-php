@@ -26,7 +26,7 @@ class AssetsTest extends PHPUnit_Framework_TestCase
             ->asset()
             ->item());
     }
-    
+
     public function test_mixin()
     {
         $this->assertInstanceOf('AframeVR\Interfaces\Core\Assets\MixinInterface', $this->aframe->scene()

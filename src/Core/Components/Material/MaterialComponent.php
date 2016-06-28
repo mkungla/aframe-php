@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         PositionComponent.php
+ * File         MaterialComponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  ^ @issues      https://github.com/mkungla/aframe-php/issues
@@ -39,7 +39,7 @@ use \AframeVR\Interfaces\ShaderInterface;
  * the appearance to create a complete mesh. The material component is coupled to shaders.
  * Some of the built-in shading models will provide properties like color or texture to the material component.
  */
-class Component extends ComponentAbstract implements MaterialInterface
+class MaterialComponent extends ComponentAbstract implements MaterialInterface
 {
 
     private $shaderObj;
