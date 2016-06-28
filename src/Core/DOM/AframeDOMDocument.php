@@ -105,7 +105,7 @@ final class AframeDOMDocument extends DOMImplementation
     /**
      * A-Frame DOM
      *
-     * @param Config $config
+     * @param Config $config            
      */
     public function __construct(Config $config)
     {
@@ -146,7 +146,7 @@ final class AframeDOMDocument extends DOMImplementation
 
     /**
      * Render scene this DOM Object is attached to
-     *          
+     *
      * @return string
      */
     public function render(): string
@@ -229,27 +229,49 @@ final class AframeDOMDocument extends DOMImplementation
     protected function renderHead()
     {
         $this->appendTitle();
-        $this->appendMetaTag(array(
-            'name' => 'description',
-            'content' => $this->scene_description
-        ));
-        $this->appendMetaTag(array(
-            'charset' => 'utf-8'
-        ));
-        $this->appendMetaTag(array(
-            'name' => 'viewport',
-            'content' => 'width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,minimal-ui'
-        ));
-        $this->appendMetaTag(array(
-            'name' => 'mobile-web-app-capable',
-            'content' => 'yes'
-        ));
-        $this->appendMetaTag(array(
-            'name' => 'theme-color',
-            'content' => 'black'
-        ));
-        
+        $this->appendDefaultMetaTags();
         $this->appendCDN();
+    }
+
+    /**
+     * Append deffault metatags
+     *
+     * @return void
+     */
+    protected function appendDefaultMetaTags()
+    {
+        foreach ($this->getDefaultMetaTags() as $tag)
+            $this->appendMetaTag($tag);
+    }
+
+    /**
+     * Get default meta tags
+     *
+     * @return array
+     */
+    protected function getDefaultMetaTags(): array
+    {
+        return array(
+            array(
+                'name' => 'description',
+                'content' => $this->scene_description
+            ),
+            array(
+                'charset' => 'utf-8'
+            ),
+            array(
+                'name' => 'viewport',
+                'content' => 'width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,minimal-ui'
+            ),
+            array(
+                'name' => 'mobile-web-app-capable',
+                'content' => 'yes'
+            ),
+            array(
+                'name' => 'theme-color',
+                'content' => 'black'
+            )
+        );
     }
 
     /**
