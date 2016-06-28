@@ -131,18 +131,4 @@ class Flat extends ShaderAbstract implements ShaderInterface
     {
         $this->width = $width;
     }
-    
-    /**
-     * removeDefaultDOMAttributes
-     *
-     * @return void
-     */
-    public function removeDefaultDOMAttributes()
-    {
-        $defaults = $this->getShaderClassDefaultVars();
-        foreach ($this as $name => $value) {
-            if (empty($value) || $value === $defaults[$name])
-                unset($this->$name);
-        }
-    }
 }
