@@ -36,6 +36,7 @@
 			<directory suffix=".php">../src</directory>
 			<exclude>
 				<file>../src/Composer/Installer/AframeInstallerPlugin.php</file>
+				<file>../src/Composer/Installer/AframeComponentInstaller.php</file>
 			</exclude>
 		</whitelist>
 	</filter>
