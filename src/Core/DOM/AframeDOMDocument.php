@@ -33,6 +33,24 @@ use \AframeVR\Interfaces\AssetsInterface;
 final class AframeDOMDocument extends DOMImplementation
 {
 
+    const DEFAULT_METATAGS = array(
+        array(
+            'charset' => 'utf-8'
+        ),
+        array(
+            'name' => 'viewport',
+            'content' => 'width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,minimal-ui'
+        ),
+        array(
+            'name' => 'mobile-web-app-capable',
+            'content' => 'yes'
+        ),
+        array(
+            'name' => 'theme-color',
+            'content' => 'black'
+        )
+    );
+
     /**
      * A-Frame DOM Document type
      *
@@ -126,13 +144,13 @@ final class AframeDOMDocument extends DOMImplementation
         /* Create A-Frame DOM Document */
         $this->createAframeDocument();
         /* Create <head> element */
-        $this->createHead();
+        $this->head = $this->docObj->createElement('head');
         /* Create <body> element */
-        $this->createBody();
+        $this->body = $this->docObj->createElement('body', $this->formatOutput ? "\n" : '');
         /* Create <a-scene> element */
-        $this->createScene();
+        $this->scene = $this->docObj->createElement('a-scene');
         /* Create <a-assets> element */
-        $this->createAssets();
+        $this->assets = $this->docObj->createElement('a-assets');
         /* Set CDN of aframe.js */
         $this->setCDN(is_string($config->get('CDN')) ? $config->get('CDN') : '');
     }
@@ -310,7 +328,8 @@ final class AframeDOMDocument extends DOMImplementation
      */
     protected function renderHead()
     {
-        $this->appendTitle();
+        $title = $this->docObj->createElement('title', $this->scene_title);
+        $this->head->appendChild($title);
         $this->appendDefaultMetaTags();
         $this->appendCDN();
     }
@@ -322,6 +341,10 @@ final class AframeDOMDocument extends DOMImplementation
      */
     protected function appendDefaultMetaTags()
     {
+        $this->appendMetaTag(array(
+            'name' => 'description',
+            'content' => $this->scene_description
+        ));
         foreach ($this->getDefaultMetaTags() as $tag)
             $this->appendMetaTag($tag);
     }
@@ -333,27 +356,7 @@ final class AframeDOMDocument extends DOMImplementation
      */
     protected function getDefaultMetaTags(): array
     {
-        return array(
-            array(
-                'name' => 'description',
-                'content' => $this->scene_description
-            ),
-            array(
-                'charset' => 'utf-8'
-            ),
-            array(
-                'name' => 'viewport',
-                'content' => 'width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,minimal-ui'
-            ),
-            array(
-                'name' => 'mobile-web-app-capable',
-                'content' => 'yes'
-            ),
-            array(
-                'name' => 'theme-color',
-                'content' => 'black'
-            )
-        );
+        return self::DEFAULT_METATAGS;
     }
 
     /**
@@ -394,17 +397,6 @@ final class AframeDOMDocument extends DOMImplementation
     }
 
     /**
-     * Create title tag
-     *
-     * @return void
-     */
-    protected function appendTitle()
-    {
-        $title = $this->docObj->createElement('title', $this->scene_title);
-        $this->head->appendChild($title);
-    }
-
-    /**
      * Creates an empty DOMDocumentType object
      *
      * @param string $doctype            
@@ -423,45 +415,5 @@ final class AframeDOMDocument extends DOMImplementation
     protected function createAframeDocument()
     {
         $this->docObj = $this->createDocument(null, 'html', $this->doctypeObj);
-    }
-
-    /**
-     * Create <head> element node
-     *
-     * @return void
-     */
-    protected function createHead()
-    {
-        $this->head = $this->docObj->createElement('head');
-    }
-
-    /**
-     * Create <body> element node
-     *
-     * @return void
-     */
-    protected function createBody()
-    {
-        $this->body = $this->docObj->createElement('body', $this->formatOutput ? "\n" : '');
-    }
-
-    /**
-     * Create <a-scene> element node
-     *
-     * @return void
-     */
-    protected function createScene()
-    {
-        $this->scene = $this->docObj->createElement('a-scene');
-    }
-
-    /**
-     * Create <a-scene> element node
-     *
-     * @return void
-     */
-    protected function createAssets()
-    {
-        $this->assets = $this->docObj->createElement('a-assets');
     }
 }
