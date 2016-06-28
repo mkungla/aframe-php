@@ -74,6 +74,17 @@ final class Config
     }
     
     /**
+     * Set configuration value
+     * 
+     * @param string $key
+     * @param string $val
+     */
+    public function set(string $key, string $val)
+    {
+        $this->config_vars[$key] = $val;
+    }
+    
+    /**
      * Real path to aframe-php composer.json
      * 
      * @return string
@@ -114,5 +125,8 @@ final class Config
         $this->config_vars['DIR'] = $this->config_data['config']['aframe-dir'] ?? 'public/aframe';
         $this->config_vars['URL'] = $this->config_data['config']['aframe-url'] ?? '/aframe';
         $this->config_vars['CDN'] = $this->config_data['config']['aframe-cdn'] ?? 'https://aframe.io/releases/latest/aframe.min.js';
+        
+        $this->config_vars['formatOutput'] = !empty($this->config_data['config']['aframe-formatOutput']) ? true : false;
+        $this->config_vars['formatOutput'] = !empty($this->config_data['config']['aframe-formatOutput']) ? true : false;
     }
 }

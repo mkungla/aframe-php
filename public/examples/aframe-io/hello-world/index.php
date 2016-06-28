@@ -4,7 +4,10 @@ require dirname(__DIR__,4).DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'aut
 
 /* Initialize A-FRAME */
 $aframe = new AframeVR\Aframe();
-$aframe->scene()->dom()->useCDN();
+
+/* Examples specific configuration */
+$aframe->config()->set('formatOutput', true);
+$aframe->config()->set('useCDN', true);
 
 /* $aframe->scene(); === Anonymous scene */
 $aframe->scene()->title('Hello, World! • A-Frame');
@@ -45,3 +48,7 @@ $aframe->scene()->sky()
 
 /* Render scene */
 $aframe->scene()->render();
+
+/* Update index HTML for documentation pages */
+$aframe->scene()->save(false, dirname(__FILE__).DIRECTORY_SEPARATOR.'index.html');
+$aframe->scene()->save(true, dirname(__FILE__).DIRECTORY_SEPARATOR.'scene.html');

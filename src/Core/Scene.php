@@ -26,7 +26,7 @@ namespace AframeVR\Core;
 use \AframeVR\Extras\Primitives;
 use \AframeVR\Core\Entity;
 use \AframeVR\Core\DOM\AframeDOMDocument;
-use \AframeVR\Interfaces\AssetsInterface;
+use \AframeVR\Core\Assets;
 
 final class Scene
 {
@@ -40,7 +40,14 @@ final class Scene
      */
     private $name;
 
-    protected $assets = array();
+    /**
+     * Is scene prepared for rendering
+     * 
+     * @var bool
+     */
+    private $prepared;
+    
+    protected $assets;
 
     /**
      * Aframe Document Object Model
@@ -66,6 +73,8 @@ final class Scene
     {
         $this->name = $name;
         $this->aframeDomObj = new AframeDOMDocument($config);
+        /* Initialize assests manager */
+        $this->asset();
     }
 
     /**
@@ -97,13 +106,12 @@ final class Scene
      * Assets
      *
      * @api
-     *
-     * @param string $name            
+     *            
      * @return \AframeVR\Interfaces\AssetsInterface
      */
-    public function asset(string $name = 'untitled'): AssetsInterface
+    public function asset(): Assets
     {
-        return $this->assets[$name] ?? $this->assets[$name] = new Asset();
+        return $this->assets ?? $this->assets = new Assets();
     }
 
     /**
@@ -114,10 +122,15 @@ final class Scene
      * @param bool $only_scene            
      * @return string
      */
-    public function save($only_scene = false): string
+    public function save($only_scene = false, string $file = null): string
     {
         $this->prepare();
-        return ! $only_scene ? $this->aframeDomObj->render() : $this->aframeDomObj->renderSceneOnly();
+        $html = ! $only_scene ? $this->aframeDomObj->render() : $this->aframeDomObj->renderSceneOnly();
+        if($file && is_writable(dirname($file))) {
+            file_put_contents($file,$html);
+        }
+        
+        return $html;
     }
 
     /**
@@ -130,8 +143,7 @@ final class Scene
      */
     public function render($only_scene = false)
     {
-        $this->prepare();
-        print ! $only_scene ? $this->aframeDomObj->render() : $this->aframeDomObj->renderSceneOnly();
+        print $this->save($only_scene);
     }
 
     /**
@@ -171,8 +183,18 @@ final class Scene
      */
     protected function prepare()
     {
+        if($this->prepared) return;
+        
+        /* Append all assets  */
+        $assets = $this->assets->getAssets();
+        (!$assets) ?: $this->aframeDomObj->appendAssets($assets);
+        
         /* Append all primitives */
         $this->preparePrimitives();
+        
+        /* Append all entities */
         $this->aframeDomObj->appendEntities($this->entities);
+        $this->prepared = true;
     }
+    
 }

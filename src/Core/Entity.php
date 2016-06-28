@@ -185,8 +185,7 @@ class Entity implements EntityInterface
      */
     public function DOMElement(&$aframe_dom): DOMElement
     {
-        /* Create entity DOMElement */
-        $a_entity = $aframe_dom->createElement('a-entity', "\n");
+        $a_entity = $aframe_dom->createElement('a-entity');
         foreach ($this->components as $component) {
             /*
              * Check does component has any attributes to add to DOM element.

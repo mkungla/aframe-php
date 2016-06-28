@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jun 25, 2016 - 5:44:02 AM
+ * Created by   Marko Kungla on Jun 28, 2016 - 3:44:21 PM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         AssetsInterface.php
+ * File         ItemInterface.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  ^ @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,31 +21,10 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces;
+namespace AframeVR\Interfaces\Assets;
 
-interface AssetsInterface
+use \AframeVR\Interfaces\AssetsInterface;
+
+interface ItemInterface extends AssetsInterface
 {
-
-    /**
-     * Asset constructor set asset ID
-     *
-     * @param string $id            
-     */
-    public function __construct(string $id);
-
-    /**
-     * Set ID attribute of the asset
-     *
-     * @param string $id            
-     * @return void
-     */
-    public function id(string $id = 'untitled');
-
-    /**
-     * Set Assets src attribute
-     *
-     * @param string $src            
-     * @return void
-     */
-    public function src(string $src = null);
 }

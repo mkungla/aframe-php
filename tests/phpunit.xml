@@ -6,29 +6,30 @@
 	<php>
 		<const name="FS_TEST_LOG_LEVEL" value="7" />
 	</php>
-	<testsuites>
-		<testsuite name="components-core" phpVersion="7"
-			phpVersionOperator=">=">
+	<testsuites phpVersion="7" phpVersionOperator=">=">
+		<testsuite name="components-core">
 			<directory>testsuites/components/core</directory>
 		</testsuite>
-		<testsuite name="components-community" phpVersion="7"
-			phpVersionOperator=">=">
+		<testsuite name="components-community">
 			<directory>testsuites/components/community</directory>
 		</testsuite>
-		<testsuite name="general" phpVersion="7" phpVersionOperator=">=">
+		<testsuite name="general" >
 			<directory>testsuites/general</directory>
 		</testsuite>
-		<testsuite name="primitives" phpVersion="7"
-			phpVersionOperator=">=">
+		<testsuite name="primitives">
 			<directory>testsuites/primitives</directory>
 		</testsuite>
-		<testsuite name="shaders-core" phpVersion="7"
-			phpVersionOperator=">=">
+		<testsuite name="shaders-core">
 			<directory>testsuites/shaders/core</directory>
 		</testsuite>
-		<testsuite name="shaders-community" phpVersion="7"
-			phpVersionOperator=">=">
+		<testsuite name="shaders-community" >
 			<directory>testsuites/shaders/community</directory>
+		</testsuite>
+		<testsuite name="examples-aframe-io" >
+			<directory>testsuites/examples/aframe-io</directory>
+		</testsuite>
+		<testsuite name="examples-aframe-php">
+			<directory>testsuites/examples/aframe-php</directory>
 		</testsuite>
 	</testsuites>
 	<filter>

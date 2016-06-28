@@ -28,6 +28,7 @@ use \DOMImplementation;
 use \DOMDocumentType;
 use \DOMDocument;
 use \AframeVR\Core\Entity;
+use \AframeVR\Interfaces\AssetsInterface;
 
 final class AframeDOMDocument extends DOMImplementation
 {
@@ -77,30 +78,37 @@ final class AframeDOMDocument extends DOMImplementation
     /**
      * <head>
      *
-     * @var \DOMElement $head
+     * @var \DOMElement
      */
     protected $head;
 
     /**
      * <body>
      *
-     * @var \DOMElement $body
+     * @var \DOMElement
      */
     protected $body;
 
     /**
      * <a-scene>
      *
-     * @var \DOMElement $scene
+     * @var \DOMElement
      */
     protected $scene;
+
+    /**
+     * <a-assets>
+     *
+     * @var \DOMElement
+     */
+    protected $assets;
 
     /**
      * Nicely formats output with indentation and extra space.
      *
      * @var bool
      */
-    public $formatOutput = true;
+    protected $formatOutput = false;
 
     /**
      * A-Frame DOM
@@ -109,6 +117,10 @@ final class AframeDOMDocument extends DOMImplementation
      */
     public function __construct(Config $config)
     {
+        /* Config */
+        $this->formatOutput = $config->get('formatOutput');
+        $this->use_cdn = $config->get('useCDN');
+        
         /* Create HTML5 Document type */
         $this->createDocType('html');
         /* Create A-Frame DOM Document */
@@ -119,18 +131,10 @@ final class AframeDOMDocument extends DOMImplementation
         $this->createBody();
         /* Create <a-scene> element */
         $this->createScene();
+        /* Create <a-assets> element */
+        $this->createAssets();
         /* Set CDN of aframe.js */
         $this->setCDN($config->get('CDN'));
-    }
-
-    /**
-     * Load aframe.in.js from CDN
-     *
-     * @return void
-     */
-    public function useCDN()
-    {
-        $this->use_cdn = true;
     }
 
     /**
@@ -152,14 +156,16 @@ final class AframeDOMDocument extends DOMImplementation
     public function render(): string
     {
         $this->docObj->formatOutput = $this->formatOutput;
-        $html = $this->docObj->getElementsByTagName('html')[0];
-        
-        $this->renderHead();
-        $html->appendChild($this->head);
-        
-        $this->renderBody();
-        $html->appendChild($this->body);
-        return $this->docObj->saveHTML();
+        $html = $this->docObj->getElementsByTagName('html')->item(0);
+        /* Make sure we do not add duplicates when render is called multiple times */
+        if (! $html->hasChildNodes()) {
+            $this->renderHead();
+            $html->appendChild($this->head);
+            
+            $this->renderBody();
+            $html->appendChild($this->body);
+        }
+        return $this->formatOutput ? $this->correctOutputFormat($this->docObj->saveHTML()) : $this->docObj->saveHTML();
     }
 
     /**
@@ -198,6 +204,41 @@ final class AframeDOMDocument extends DOMImplementation
     }
 
     /**
+     * Append assets
+     *
+     * @param array $assets            
+     * @return void
+     */
+    public function appendAssets(array $assets)
+    {
+        if (! empty($assets)) {
+            if ($this->formatOutput) {
+                $com = $this->docObj->createComment('');
+                $this->scene->appendChild($com);
+            }
+            foreach ($assets as $asset) {
+                $this->appendAsset($asset);
+            }
+            $this->scene->appendChild($this->assets);
+        }
+    }
+
+    /**
+     * Append asset
+     *
+     * @param AssetsInterface $asset            
+     */
+    public function appendAsset(AssetsInterface $asset)
+    {
+        /* Create asset DOMElement */
+        if ($this->formatOutput) {
+            $com = $this->docObj->createComment("\n\t");
+            $this->assets->appendChild($com);
+        }
+        $this->assets->appendChild($asset->DOMElement($this->docObj));
+    }
+
+    /**
      * Add entity
      *
      * @param Entity $entity            
@@ -205,6 +246,11 @@ final class AframeDOMDocument extends DOMImplementation
      */
     public function appendEntity(Entity $entity)
     {
+        /* Create entity DOMElement */
+        if ($this->formatOutput) {
+            $com = $this->docObj->createComment("\n");
+            $this->scene->appendChild($com);
+        }
         $this->scene->appendChild($entity->DOMElement($this->docObj));
     }
 
@@ -216,9 +262,35 @@ final class AframeDOMDocument extends DOMImplementation
     public function renderSceneOnly()
     {
         $html = new DOMDocument();
+        $html->formatOutput = $this->formatOutput;
         $html_scene = $html->importNode($this->scene, true);
         $html->appendChild($html_scene);
-        return $html->saveHTML();
+        return $this->formatOutput ? $this->correctOutputFormat($html->saveHTML()) : $html->saveHTML();
+    }
+
+    /**
+     * Correct html format for tags which are not supported by DOMDocument
+     *
+     * @param string $html            
+     * @return string
+     */
+    protected function correctOutputFormat($html)
+    {
+        $tags = array(
+            '<!--',
+            '-->',
+            '<a-assets>',
+            '</a-assets>',
+            '</a-scene>'
+        );
+        $values = array(
+            '',
+            "\t",
+            "\n\t<a-assets>",
+            "\n\t</a-assets>",
+            "\n</a-scene>"
+        );
+        return str_ireplace($tags, $values, $html);
     }
 
     /**
@@ -360,7 +432,7 @@ final class AframeDOMDocument extends DOMImplementation
      */
     protected function createBody()
     {
-        $this->body = $this->docObj->createElement('body');
+        $this->body = $this->docObj->createElement('body', $this->formatOutput ? "\n" : '');
     }
 
     /**
@@ -371,5 +443,15 @@ final class AframeDOMDocument extends DOMImplementation
     protected function createScene()
     {
         $this->scene = $this->docObj->createElement('a-scene');
+    }
+
+    /**
+     * Create <a-scene> element node
+     *
+     * @return void
+     */
+    protected function createAssets()
+    {
+        $this->assets = $this->docObj->createElement('a-assets');
     }
 }

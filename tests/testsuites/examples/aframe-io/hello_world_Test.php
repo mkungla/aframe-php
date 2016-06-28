@@ -1,23 +1,20 @@
 <?php
 
-class ExampleTest extends PHPUnit_Framework_TestCase
+class hello_world_Test extends PHPUnit_Framework_TestCase
 {
     protected $aframe;
     
+    // Setup function to instantiate de object to $this->scrap
     protected function setUp()
     {
-        $this->aframe =  new \AframeVR\Aframe(); 
-    }
-
-    public function test_config()
-    {
-
-        $this->assertInstanceOf('\AframeVR\Core\Config', $this->aframe->config());
-    }
-    
-    public function test_hello()
-    {
-        $this->aframe->scene()->dom()->useCDN();
+        $this->ex_root_path = dirname(__FILE__,5).DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'examples'.DIRECTORY_SEPARATOR.'aframe-io'.DIRECTORY_SEPARATOR.'hello-world';
+        $this->ex_page_path = $this->ex_root_path.DIRECTORY_SEPARATOR.'index.html';
+        $this->ex_scene_path = $this->ex_root_path.DIRECTORY_SEPARATOR.'scene.html';
+        $this->aframe = new AframeVR\Aframe();
+        
+        /* Examples specific configuration */
+        $this->aframe->config()->set('formatOutput', true);
+        $this->aframe->config()->set('useCDN', true);
         
         /* $aframe->scene(); === Anonymous scene */
         $this->aframe->scene()->title('Hello, World! • A-Frame');
@@ -56,7 +53,20 @@ class ExampleTest extends PHPUnit_Framework_TestCase
         $this->aframe->scene()->sky()
         ->color('#000');
         
-        /* Render scene */
-        $this->assertInternalType('string',$this->aframe->scene()->save());
+    }
+
+    public function test_example_files()
+    {
+        $this->assertFileExists($this->ex_page_path);
+        $this->assertFileExists($this->ex_scene_path);
+    }
+    
+    public function test_page()
+    {  
+        $this->assertEquals(file_get_contents($this->ex_page_path),$this->aframe->scene()->save());
+    }
+    public function test_scene()
+    {
+        $this->assertEquals(file_get_contents($this->ex_scene_path),$this->aframe->scene()->save(true));
     }
 }
