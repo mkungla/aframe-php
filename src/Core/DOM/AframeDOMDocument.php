@@ -118,8 +118,8 @@ final class AframeDOMDocument extends DOMImplementation
     public function __construct(Config $config)
     {
         /* Config */
-        $this->formatOutput = $config->get('formatOutput');
-        $this->use_cdn = $config->get('useCDN');
+        $this->formatOutput = is_bool($config->get('formatOutput')) ? $config->get('formatOutput') : false;
+        $this->use_cdn = is_bool($config->get('useCDN')) ? $config->get('useCDN') : false;
         
         /* Create HTML5 Document type */
         $this->createDocType('html');
@@ -226,31 +226,27 @@ final class AframeDOMDocument extends DOMImplementation
     /**
      * Append asset
      *
+     * Create asset DOMElement
+     *
      * @param AssetsInterface $asset            
      */
     public function appendAsset(AssetsInterface $asset)
     {
-        /* Create asset DOMElement */
-        if ($this->formatOutput) {
-            $com = $this->docObj->createComment("\n\t");
-            $this->assets->appendChild($com);
-        }
+        $this->appendFormatComment('assets', "\n\t");
         $this->assets->appendChild($asset->DOMElement($this->docObj));
     }
 
     /**
-     * Add entity
+     * Create entity DOMElement
+     *
+     * Created entity and append it to scene
      *
      * @param Entity $entity            
      * @return void
      */
     public function appendEntity(Entity $entity)
     {
-        /* Create entity DOMElement */
-        if ($this->formatOutput) {
-            $com = $this->docObj->createComment("\n");
-            $this->scene->appendChild($com);
-        }
+        $this->appendFormatComment('scene', "\n");
         $this->scene->appendChild($entity->DOMElement($this->docObj));
     }
 
@@ -266,6 +262,20 @@ final class AframeDOMDocument extends DOMImplementation
         $html_scene = $html->importNode($this->scene, true);
         $html->appendChild($html_scene);
         return $this->formatOutput ? $this->correctOutputFormat($html->saveHTML()) : $html->saveHTML();
+    }
+
+    /**
+     * Add document comment for formatting
+     *
+     * @param string $element            
+     * @param string $comment            
+     */
+    protected function appendFormatComment(string $element, string $comment)
+    {
+        if ($this->formatOutput) {
+            $com = $this->docObj->createComment($comment);
+            $this->{$element}->appendChild($com);
+        }
     }
 
     /**

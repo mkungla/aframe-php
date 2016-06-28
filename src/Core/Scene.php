@@ -42,11 +42,11 @@ final class Scene
 
     /**
      * Is scene prepared for rendering
-     * 
+     *
      * @var bool
      */
     private $prepared;
-    
+
     protected $assets;
 
     /**
@@ -95,7 +95,7 @@ final class Scene
      * @api
      *
      * @param string $name            
-     * @return Entity
+     * @return \AframeVR\Core\Entity
      */
     public function entity(string $name = 'untitled'): Entity
     {
@@ -106,8 +106,8 @@ final class Scene
      * Assets
      *
      * @api
-     *            
-     * @return \AframeVR\Interfaces\AssetsInterface
+     *
+     * @return \AframeVR\Core\Assets
      */
     public function asset(): Assets
     {
@@ -126,8 +126,8 @@ final class Scene
     {
         $this->prepare();
         $html = ! $only_scene ? $this->aframeDomObj->render() : $this->aframeDomObj->renderSceneOnly();
-        if($file && is_writable(dirname($file))) {
-            file_put_contents($file,$html);
+        if (! empty($file) && is_writable(dirname($file))) {
+            file_put_contents($file, $html);
         }
         
         return $html;
@@ -183,11 +183,12 @@ final class Scene
      */
     protected function prepare()
     {
-        if($this->prepared) return;
-        
-        /* Append all assets  */
+        if ($this->prepared)
+            return;
+            
+            /* Append all assets */
         $assets = $this->assets->getAssets();
-        (!$assets) ?: $this->aframeDomObj->appendAssets($assets);
+        (! $assets) ?: $this->aframeDomObj->appendAssets($assets);
         
         /* Append all primitives */
         $this->preparePrimitives();
@@ -196,5 +197,4 @@ final class Scene
         $this->aframeDomObj->appendEntities($this->entities);
         $this->prepared = true;
     }
-    
 }

@@ -23,6 +23,8 @@
  * @formatter:on */
 namespace AframeVR\Interfaces\Core\Components\Geometry;
 
+use \AframeVR\Interfaces\ComponentInterface;
+
 /**
  * The geometry component provides a basic shape for an entity.
  * The general geometry is defined by the primitive property.
@@ -30,7 +32,7 @@ namespace AframeVR\Interfaces\Core\Components\Geometry;
  * additional properties are used to further define the geometry. A material component is usually defined alongside
  * to provide a appearance alongside the shape to create a complete mesh.
  */
-interface GeometryInterface
+interface GeometryInterface extends ComponentInterface
 {
 
     const DEFAULTS = array(

@@ -25,34 +25,35 @@ namespace AframeVR\Core;
 
 final class Config
 {
+
     /**
      * Path to package composer.json
-     * 
+     *
      * @var string|null
      */
     private $config_path;
-    
+
     /**
      * Array with contents of composer.json
-     * 
+     *
      * @var array|null
      */
     private $config_data;
-    
+
     /**
      * Config arguments starting with (aframe-)
-     * 
+     *
      * @var array|null
      */
     private $config_args;
-    
+
     /**
      * Useful config vars
-     * 
+     *
      * @var array
      */
     private $config_vars;
-    
+
     /**
      * Configuration constructor
      */
@@ -61,62 +62,62 @@ final class Config
         $this->loadComposerJson();
         $this->defineVars();
     }
-    
+
     /**
      * Get configuration value by key
-     * 
-     * @param string $prop
+     *
+     * @param string $prop            
      * @return string|null
      */
     public function get(string $prop)
     {
         return $this->config_vars[$prop] ?? null;
     }
-    
+
     /**
      * Set configuration value
-     * 
-     * @param string $key
-     * @param string $val
+     *
+     * @param string $key            
+     * @param mixed $val            
      */
-    public function set(string $key, string $val)
+    public function set(string $key, $val)
     {
         $this->config_vars[$key] = $val;
     }
-    
+
     /**
      * Real path to aframe-php composer.json
-     * 
+     *
      * @return string
      */
     protected function getConfigRealPath()
     {
         return $this->config_path ?? $this->config_path = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'composer.json';
     }
-    
+
     /**
      * Whether config file can be found
-     * 
+     *
      * @return bool
      */
     protected function configExists()
     {
         return file_exists($this->getConfigRealPath());
     }
-    
+
     /**
      * Load contents of aframe-php cmposer.json
-     * 
+     *
      * @return array|null
      */
     protected function loadComposerJson()
     {
-        return $this->configExists() ? $this->config_data = json_decode(file_get_contents($this->getConfigRealPath()),true) : null;
+        return $this->configExists() ? $this->config_data = json_decode(file_get_contents($this->getConfigRealPath()), true) : null;
     }
-    
+
     /**
      * Define Configuration constants
-     * 
+     *
      * @return void
      */
     protected function defineVars()
@@ -126,7 +127,7 @@ final class Config
         $this->config_vars['URL'] = $this->config_data['config']['aframe-url'] ?? '/aframe';
         $this->config_vars['CDN'] = $this->config_data['config']['aframe-cdn'] ?? 'https://aframe.io/releases/latest/aframe.min.js';
         
-        $this->config_vars['formatOutput'] = !empty($this->config_data['config']['aframe-formatOutput']) ? true : false;
-        $this->config_vars['formatOutput'] = !empty($this->config_data['config']['aframe-formatOutput']) ? true : false;
+        $this->config_vars['formatOutput'] = ! empty($this->config_data['config']['aframe-formatOutput']) ? true : false;
+        $this->config_vars['useCDN'] = ! empty($this->config_data['config']['aframe-useCDN']) ? true : false;
     }
 }

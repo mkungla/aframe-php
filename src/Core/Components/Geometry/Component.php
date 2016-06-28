@@ -24,7 +24,6 @@
 namespace AframeVR\Core\Components\Geometry;
 
 use \AframeVR\Core\Helpers\ComponentAbstract;
-use \AframeVR\Interfaces\ComponentInterface;
 use \AframeVR\Interfaces\Core\Components\Geometry\GeometryInterface;
 use \AframeVR\Core\Exceptions\InvalidComponentArgumentException;
 
@@ -39,7 +38,7 @@ use \AframeVR\Core\Exceptions\InvalidComponentArgumentException;
  * is usually defined alongside to provide a appearance
  * alongside the shape to create a complete mesh.
  */
-class Component extends ComponentAbstract implements ComponentInterface, GeometryInterface
+class Component extends ComponentAbstract implements GeometryInterface
 {
 
     /**

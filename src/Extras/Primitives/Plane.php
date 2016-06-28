@@ -23,19 +23,26 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
+use \AframeVR\Interfaces\Extras\Primitives\PlaneInterface;
 use \AframeVR\Core\Entity;
 use \AframeVR\Core\Helpers\MeshAttributes;
-use \AframeVR\Interfaces\PrimitiveInterface;
 
 /**
  * <a-plane>
  *
  * The plane primitive creates flat surfaces. It is an entity that prescribes the geometry with its geometric primitive set to plane.
  */
-class Plane extends Entity implements PrimitiveInterface
+class Plane extends Entity implements PlaneInterface
 {
     use MeshAttributes;
 
+    /**
+     * Init
+     *
+     * {@inheritdoc}
+     *
+     * @return void
+     */
     public function init()
     {
         $this->component('Material');
@@ -44,22 +51,44 @@ class Plane extends Entity implements PrimitiveInterface
         /* Load defaults */
     }
 
-    public function height(float $height = 1)
-    {
-        $this->component('Geometry')->height($height);
-        return $this;
-    }
-
-    public function width(float $width = 1)
-    {
-        $this->component('Geometry')->width($width);
-        return $this;
-    }
-
+    /**
+     * Set defaults
+     *
+     * {@inheritdoc}
+     *
+     * @return void
+     */
     public function defaults()
     {
         $this->height();
         $this->width();
     }
+
+    /**
+     * geometry.height
+     *
+     * {@inheritdoc}
+     *
+     * @param float $height            
+     * @return \AframeVR\Interfaces\Extras\Primitives\PlaneInterface
+     */
+    public function height(float $height = 1): PlaneInterface
+    {
+        $this->component('Geometry')->height($height);
+        return $this;
+    }
+
+    /**
+     * geometry.width
+     *
+     * {@inheritdoc}
+     *
+     * @param float $width            
+     * @return \AframeVR\Interfaces\Extras\Primitives\PlaneInterface
+     */
+    public function width(float $width = 1): PlaneInterface
+    {
+        $this->component('Geometry')->width($width);
+        return $this;
+    }
 }
- 

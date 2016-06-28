@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jun 20, 2016 - 9:12:11 PM
+ * Created by   Marko Kungla on Jun 28, 2016 - 8:58:18 PM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         Mixin.php
+ * File         PositionInterface.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  ^ @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,11 +21,10 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Core\Assets;
+namespace AframeVR\Interfaces\Core\Components\Position;
 
-use \AframeVR\Interfaces\Core\Assets\MixinInterface;
-use \AframeVR\Core\Helpers\AssetsAbstract;
+use \AframeVR\Interfaces\ComponentInterface;
 
-final class Mixin extends AssetsAbstract implements MixinInterface
+interface PositionInterface extends ComponentInterface
 {
 }

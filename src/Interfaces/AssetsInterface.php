@@ -30,6 +30,7 @@ interface AssetsInterface
      * Asset constructor set asset ID
      *
      * @param string $id            
+     * @return void
      */
     public function __construct(string $id);
 
@@ -44,7 +45,7 @@ interface AssetsInterface
     /**
      * Set Assets src attribute
      *
-     * @param string $src            
+     * @param null|string $src            
      * @return void
      */
     public function src(string $src = null);

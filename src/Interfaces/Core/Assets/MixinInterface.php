@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jun 28, 2016 - 3:44:21 PM
+ * Created by   Marko Kungla on Jun 25, 2016 - 5:56:21 AM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         ItemInterface.php
+ * File         MixinInterface.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  ^ @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,10 +21,8 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Assets;
+namespace AframeVR\Interfaces\Core\Assets;
 
-use \AframeVR\Interfaces\AssetsInterface;
-
-interface ItemInterface extends AssetsInterface
+interface MixinInterface
 {
 }

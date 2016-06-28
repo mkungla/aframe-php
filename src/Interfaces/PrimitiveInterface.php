@@ -23,7 +23,9 @@
  * @formatter:on */
 namespace AframeVR\Interfaces;
 
-interface PrimitiveInterface
+use \AframeVR\Interfaces\EntityInterface;
+
+interface PrimitiveInterface extends EntityInterface
 {
 
     /**
@@ -37,7 +39,7 @@ interface PrimitiveInterface
     public function init();
 
     /**
-     * defaults
+     * Set defaults
      *
      * Defaults method is called in primitvie constructor to set
      * primitives default values for loaded components.
@@ -46,5 +48,3 @@ interface PrimitiveInterface
      */
     public function defaults();
 }
-
- 

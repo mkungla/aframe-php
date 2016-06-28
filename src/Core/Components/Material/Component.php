@@ -23,9 +23,8 @@
  * @formatter:on */
 namespace AframeVR\Core\Components\Material;
 
-use \AframeVR\Core\Helpers\ComponentAbstract;
-use \AframeVR\Interfaces\ComponentInterface;
 use \AframeVR\Interfaces\Core\Components\Material\MaterialInterface;
+use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Core\Exceptions\BadShaderCallException;
 use \AframeVR\Interfaces\ShaderInterface;
 
@@ -40,7 +39,7 @@ use \AframeVR\Interfaces\ShaderInterface;
  * the appearance to create a complete mesh. The material component is coupled to shaders.
  * Some of the built-in shading models will provide properties like color or texture to the material component.
  */
-class Component extends ComponentAbstract implements ComponentInterface, MaterialInterface
+class Component extends ComponentAbstract implements MaterialInterface
 {
 
     private $shaderObj;

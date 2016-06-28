@@ -23,7 +23,7 @@
  * @formatter:on */
 namespace AframeVR\Core;
 
-use \AframeVR\Interfaces\Assets\{
+use \AframeVR\Interfaces\Core\Assets\{
     ItemInterface,
     MixinInterface
 };
@@ -37,37 +37,36 @@ final class Assets
 
     /**
      * Array of mixins
-     * 
+     *
      * @var array
      */
     protected $assets;
-
 
     /**
      * mixin
      *
      * @param string $name            
-     * @return MixinInterface
+     * @return \AframeVR\Interfaces\Assets\MixinInterface
      */
     public function mixin(string $name = 'untitled'): MixinInterface
     {
         return $this->assets[$name] ?? $this->assets[$name] = new Mixin($name);
     }
-    
+
     /**
      * mixin
      *
-     * @param string $name
-     * @return ItemInterface
+     * @param string $name            
+     * @return \AframeVR\Interfaces\Assets\ItemInterface
      */
     public function item(string $name = 'untitled'): ItemInterface
     {
         return $this->assets[$name] ?? $this->assets[$name] = new Item($name);
     }
-    
+
     /**
      * Get all assets
-     * 
+     *
      * @return array|null
      */
     public function getAssets()
@@ -75,4 +74,3 @@ final class Assets
         return $this->assets;
     }
 }
- 

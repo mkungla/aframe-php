@@ -23,11 +23,9 @@
  * @formatter:on */
 namespace AframeVR\Core\Assets;
 
-use \AframeVR\Interfaces\Assets\ItemInterface;
+use \AframeVR\Interfaces\Core\Assets\ItemInterface;
 use \AframeVR\Core\Helpers\AssetsAbstract;
 
 final class Item extends AssetsAbstract implements ItemInterface
 {
 }
-
- 

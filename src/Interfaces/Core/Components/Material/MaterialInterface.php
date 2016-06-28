@@ -23,7 +23,9 @@
  * @formatter:on */
 namespace AframeVR\Interfaces\Core\Components\Material;
 
-interface MaterialInterface
+use \AframeVR\Interfaces\ComponentInterface;
+
+interface MaterialInterface extends ComponentInterface
 {
 
     /**

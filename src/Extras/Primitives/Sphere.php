@@ -23,9 +23,9 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
+use \AframeVR\Interfaces\Extras\Primitives\SphereInterface;
 use \AframeVR\Core\Entity;
 use \AframeVR\Core\Helpers\MeshAttributes;
-use \AframeVR\Interfaces\PrimitiveInterface;
 
 /**
  * <a-sphere>
@@ -33,10 +33,17 @@ use \AframeVR\Interfaces\PrimitiveInterface;
  * The sphere primitive creates a spherical or polyhedron shapes.
  * It wraps an entity that prescribes the geometry component with its geometric primitive set to sphere.
  */
-class Sphere extends Entity implements PrimitiveInterface
+class Sphere extends Entity implements SphereInterface
 {
     use MeshAttributes;
 
+    /**
+     * Init
+     *
+     * {@inheritdoc}
+     *
+     * @return void
+     */
     public function init()
     {
         $this->component('Material');
@@ -46,29 +53,59 @@ class Sphere extends Entity implements PrimitiveInterface
         $this->defaults();
     }
 
-    public function radius(float $radius = 0.85): Entity
-    {
-        $this->component('Geometry')->radius($radius);
-        return $this;
-    }
-
-    public function segmentsHeight($segmentsHeigh = 18)
-    {
-        $this->component('Geometry')->segmentsHeight($segmentsHeigh);
-        return $this;
-    }
-
-    public function segmentsWidth($segmentsWidth = 36)
-    {
-        $this->component('Geometry')->segmentsWidth($segmentsWidth);
-        return $this;
-    }
-
+    /**
+     * Set defaults
+     *
+     * {@inheritdoc}
+     *
+     * @return void
+     */
     public function defaults()
     {
         $this->radius();
         $this->segmentsHeight();
         $this->segmentsWidth();
     }
+
+    /**
+     * geometry.radius
+     *
+     * {@inheritdoc}
+     *
+     * @param float $radius            
+     * @return \AframeVR\Interfaces\Extras\Primitives\SphereInterface
+     */
+    public function radius(float $radius = 0.85): SphereInterface
+    {
+        $this->component('Geometry')->radius($radius);
+        return $this;
+    }
+
+    /**
+     * geometry.segmentsHeight
+     *
+     * {@inheritdoc}
+     *
+     * @param int $segmentsHeigh            
+     * @return \AframeVR\Interfaces\Extras\Primitives\SphereInterface
+     */
+    public function segmentsHeight($segmentsHeigh = 18): SphereInterface
+    {
+        $this->component('Geometry')->segmentsHeight($segmentsHeigh);
+        return $this;
+    }
+
+    /**
+     * geometry.segmentsWidth
+     *
+     * {@inheritdoc}
+     *
+     * @param int $segmentsWidth            
+     * @return \AframeVR\Interfaces\Extras\Primitives\SphereInterface
+     */
+    public function segmentsWidth($segmentsWidth = 36): SphereInterface
+    {
+        $this->component('Geometry')->segmentsWidth($segmentsWidth);
+        return $this;
+    }
 }
- 

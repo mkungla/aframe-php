@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         PositionComponent.php
+ * File         omponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  ^ @issues      https://github.com/mkungla/aframe-php/issues
@@ -23,9 +23,10 @@
  * @formatter:on */
 namespace AframeVR\Core\Components\Rotation;
 
+use \AframeVR\Interfaces\Core\Components\Rotation\RotationInterface;
 use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Core\Helpers\ComponentHelper;
-use \AframeVR\Interfaces\ComponentInterface;
+
 
 /**
  * AframeVR\Core\Components\Rotation
@@ -37,7 +38,7 @@ use \AframeVR\Interfaces\ComponentInterface;
  * and yaw (z) 
  * as three space-delimited numbers indicating degrees of rotation.
  */
-class Component extends ComponentAbstract implements ComponentInterface
+class Component extends ComponentAbstract implements RotationInterface
 {
     use ComponentHelper;
 

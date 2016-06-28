@@ -31,25 +31,25 @@ abstract class AssetsAbstract implements AssetsInterface
 
     /**
      * DOM tag name of asset item
-     * 
+     *
      * @var string $element_name
      */
     protected $element_name = 'a-asset-item';
-    
+
     /**
      * ID attribute
-     * 
+     *
      * @var string
      */
     protected $attr_id;
-    
+
     /**
      * SRC attribute
-     * 
-     * @var string
+     *
+     * @var stringZ
      */
     protected $attr_src;
-    
+
     /**
      * Asset constructor set asset ID
      *
@@ -59,44 +59,43 @@ abstract class AssetsAbstract implements AssetsInterface
     {
         $this->id($id);
     }
-    
+
     /**
      * Set ID attribute of the asset
-     * 
+     *
      * {@inheritdoc}
-     * 
-     * @param string $id
+     *
+     * @param string $id            
      */
     public function id(string $id = 'untitled')
     {
         $this->attr_id = $id;
     }
-    
+
     /**
      * Set Assets src attribute
      *
      * {@inheritdoc}
-     * 
-     * @param string $src
+     *
+     * @param null|string $src            
      * @return void
      */
     public function src(string $src = null)
     {
         $this->attr_src = $src;
     }
-    
+
     /**
      * Create and add DOM element of the asset
      *
-     * @param \DOMDocument $aframe_dom
+     * @param \DOMDocument $aframe_dom            
      * @return \DOMElement
      */
     public function DOMElement(&$aframe_dom): DOMElement
     {
         $a_asset = $aframe_dom->createElement($this->element_name);
-        $a_asset->setAttribute('id',$this->attr_id);
-        //$a_asset->setAttributeNode($this->idDOMAttr());
+        $a_asset->setAttribute('id', $this->attr_id);
+        // $a_asset->setAttributeNode($this->idDOMAttr());
         return $a_asset;
     }
-    
 }

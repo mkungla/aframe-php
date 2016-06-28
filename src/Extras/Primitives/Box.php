@@ -23,52 +23,86 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
+use \AframeVR\Interfaces\Extras\Primitives\BoxInterface;
 use \AframeVR\Core\Entity;
 use \AframeVR\Core\Helpers\MeshAttributes;
-use \AframeVR\Interfaces\{
-    PrimitiveInterface,
-    EntityInterface
-};
 
 /**
  * <a-box>
- * 
+ *
  * The box primitive, formerly called <a-cube>, creates shapes such as boxes, cubes, or walls.
  * It is an entity that prescribes the geometry with its geometric primitive set to box.
  */
-class Box extends Entity implements PrimitiveInterface
+class Box extends Entity implements BoxInterface
 {
     use MeshAttributes;
 
+    /**
+     * Init
+     *
+     * {@inheritdoc}
+     *
+     * @return void
+     */
     public function init()
     {
         $this->component('Material');
         $this->component('Geometry')->primitive('box');
     }
 
-    public function depth(float $depth = 1): EntityInterface
-    {
-        $this->component('Geometry')->depth($depth);
-        return $this;
-    }
-
-    public function height(float $height = 1): EntityInterface
-    {
-        $this->component('Geometry')->height($height);
-        return $this;
-    }
-
-    public function width(float $width = 1): EntityInterface
-    {
-        $this->component('Geometry')->width($width);
-        return $this;
-    }
-
+    /**
+     * Set defaults
+     *
+     * {@inheritdoc}
+     *
+     * @return void
+     */
     public function defaults()
     {
         $this->depth();
         $this->height();
         $this->width();
     }
+
+    /**
+     * geometry.depth
+     *
+     * {@inheritdoc}
+     *
+     * @param float $depth            
+     * @return \AframeVR\Interfaces\Extras\Primitives\BoxInterface
+     */
+    public function depth(float $depth = 1): BoxInterface
+    {
+        $this->component('Geometry')->depth($depth);
+        return $this;
+    }
+
+    /**
+     * geometry.height
+     *
+     * {@inheritdoc}
+     *
+     * @param float $height            
+     * @return \AframeVR\Interfaces\Extras\Primitives\BoxInterface
+     */
+    public function height(float $height = 1): BoxInterface
+    {
+        $this->component('Geometry')->height($height);
+        return $this;
+    }
+
+    /**
+     * geometry.width
+     *
+     * {@inheritdoc}
+     *
+     * @param float $width            
+     * @return \AframeVR\Interfaces\Extras\Primitives\BoxInterface
+     */
+    public function width(float $width = 1): BoxInterface
+    {
+        $this->component('Geometry')->width($width);
+        return $this;
+    }
 }
- 
