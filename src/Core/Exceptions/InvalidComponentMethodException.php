@@ -25,8 +25,13 @@ namespace AframeVR\Core\Exceptions;
 
 final class InvalidComponentMethodException extends \BadMethodCallException
 {
-
-    public function __construct(string $message = 'null', $component_method)
+    /**
+     * InvalidComponentMethodException
+     *
+     * @param string $message
+     * @param string $component_method
+     */
+    public function __construct(string $message = 'null', string $component_method = 'unknown')
     {
         $this->message = sprintf("Called invalid method (%s) for %s!\nFile: %s on line: %s", $message, $component_method, $this->getFile(), $this->getLine());
     }

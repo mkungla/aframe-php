@@ -279,8 +279,9 @@ final class AframeDOMDocument extends DOMImplementation
      */
     public function renderSceneOnly()
     {
-        $html = new DOMDocument();
+        $html               = new DOMDocument();
         $html->formatOutput = $this->formatOutput;
+        
         $html_scene = $html->importNode($this->scene, true);
         $html->appendChild($html_scene);
         return $this->formatOutput ? $this->correctOutputFormat($html->saveHTML()) : $html->saveHTML();
@@ -308,7 +309,7 @@ final class AframeDOMDocument extends DOMImplementation
      */
     protected function correctOutputFormat($html)
     {
-        $tags = array(
+        $tags   = array(
             '<!--',
             '-->',
             '<a-assets>',

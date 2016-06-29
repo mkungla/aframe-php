@@ -113,10 +113,11 @@ abstract class ComponentAbstract implements ComponentInterface
      * @param string $method_provider            
      * @return void
      */
-    public function setMethodProvider(string $method_provider = 'DefaultMethods')
+    public function setMethodProvider(string $mp = 'DefaultMethods')
     {
-        $method_provider_class = substr(get_called_class(), 0, strrpos(get_called_class(), '\\')) . '\Methods\\' . $method_provider;
-        $this->methodProvider = new $method_provider_class();
+        $mp_class = substr(get_called_class(), 0, strrpos(get_called_class(), '\\')) . '\Methods\\' . $mp;
+        
+        $this->methodProvider = new $mp_class();
     }
 
     /**

@@ -50,6 +50,14 @@ class ScaleComponent extends ComponentAbstract implements ScaleInterface
     }
 
     /**
+     * parent::getDomAttributeString
+     *
+     * Scale Components dom atribute contains coordinates
+     * Ex: scale="1 1 1"
+     * 
+     */
+    
+    /**
      * Return DOM attribute contents
      *
      * Scale Components dom atribute contains coordinates

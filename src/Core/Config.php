@@ -120,6 +120,7 @@ final class Config
         $this->config_vars = array();
         $this->config_vars['DIR'] = $this->config_data['config']['aframe-dir'] ?? 'public/aframe';
         $this->config_vars['URL'] = $this->config_data['config']['aframe-url'] ?? '/aframe';
+        
         $this->config_vars['CDN'] = $this->config_data['config']['aframe-cdn'] 
             ?? 'https://aframe.io/releases/latest/aframe.min.js';
         

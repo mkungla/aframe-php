@@ -31,11 +31,14 @@ class CylinderMethods
      * but it can also define shapes such as tubes and curved surfaces.
      * We’ll go over some of these cylinder recipes below.
      * 1. Traditional cylinders can be defined by using only a height and a radius:
-     * 2. Tubes can be defined by making the cylinder open-ended, which removes the top and bottom surfaces of the cylinder such that the inside is visible.
+     * 2. Tubes can be defined by making the cylinder open-ended, 
+     * which removes the top and bottom surfaces of the cylinder such that the inside is visible.
      * A double-sided material will be needed to render properly:
-     * 3. Curved surfaces can be defined by specifying the angle via thetaLength such that the cylinder doesn’t curve all the way around,
+     * 3. Curved surfaces can be defined by specifying the angle 
+     * via thetaLength such that the cylinder doesn’t curve all the way around,
      * making the cylinder open-ended, and then making the material double-sided.
-     * 4. Other types of prisms can be defined by varying the number of radial segments (i.e., sides). For example, to make a hexagonal prism:
+     * 4. Other types of prisms can be defined by varying the number 
+     * of radial segments (i.e., sides). For example, to make a hexagonal prism:
      */
     const DEFAULTS = array(
         /* Radius of the cylinder. */

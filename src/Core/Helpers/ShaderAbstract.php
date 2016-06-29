@@ -25,6 +25,7 @@ namespace AframeVR\Core\Helpers;
 
 abstract class ShaderAbstract
 {
+
     /**
      * Get default class vars
      *
@@ -34,7 +35,7 @@ abstract class ShaderAbstract
     {
         return get_class_vars(get_class($this));
     }
-    
+
     /**
      * removeDefaultDOMAttributes
      *
@@ -45,8 +46,9 @@ abstract class ShaderAbstract
         $defaults = $this->getShaderClassDefaultVars();
         $vars = get_object_vars($this);
         foreach ($vars as $name => $value) {
-            if (empty($value) || $value === $defaults[$name])
+            if (empty($value) || $value === $defaults[$name]) {
                 unset($this->$name);
+            }
         }
     }
 }
