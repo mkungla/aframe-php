@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jun 29, 2016 - 10:31:50 AM
+ * Created by   Marko Kungla on Jun 29, 2016 - 10:42:59 AM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         CursorInterface.php
+ * File         FogInterface.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  ^ @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,33 +21,30 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Core\Components\Cursor;
+namespace AframeVR\Interfaces\Core\Components\Fog;
 
 use \AframeVR\Interfaces\ComponentInterface;
 
-/**
- * Note, to further customize the cursor component, we can set the properties of the raycaster component.
- */
-interface CursorInterface extends ComponentInterface
+interface FogInterface extends ComponentInterface
 {
 
     /**
-     * Whether cursor is fuse-based.
+     * Fog type
      *
-     * false on desktop, true on mobile
+     * Type of fog distribution. Can be linear or exponential.
      *
-     * @param bool $fuse
-     * @return void            
+     * @param string $type            
+     * @return void
      */
-    public function fuse(bool $fuse = false);
+    public function type(string $type = 'linear');
 
     /**
-     * fuseTimeout
+     * Fog color
      *
-     * How long to wait (in milliseconds) before triggering a fuse-based click event.
+     * Color of fog. For example, if set to black, far away objects will be rendered black.
      *
-     * @param int $timeout
-     * @return void            
+     * @param string $color            
+     * @return void
      */
-    public function fuseTimeout(int $timeout = 1500);
+    public function color(string $color = '#000');
 }
