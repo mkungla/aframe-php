@@ -45,9 +45,22 @@ class PositionComponent extends ComponentAbstract implements PositionInterface
     public function initializeComponent(): bool
     {
         $this->setDomAttributeName('position');
+        
         return true;
     }
-    
+
+    /**
+     * Get current position coordinates
+     *
+     * {@inheritdoc}
+     *
+     * @return string
+     */
+    public function getPosition(): string
+    {
+        return $this->getDomAttributeString();
+    }
+
     /**
      * Return DOM attribute contents
      *
@@ -59,18 +72,7 @@ class PositionComponent extends ComponentAbstract implements PositionInterface
     public function getDomAttributeString(): string
     {
         $attrs = $this->getDOMAttributesArray();
+        
         return $this->createCoordinateString($attrs['x'], $attrs['y'], $attrs['z']);
-    }
-    
-    /**
-     * Get current position coordinates
-     *
-     * {@inheritdoc}
-     *
-     * @return string
-     */
-    public function getPosition(): string
-    {
-        return $this->getDomAttributeString();
     }
 }

@@ -38,7 +38,7 @@ final class Config
      *
      * @var array|null
      */
-    private $config_data;
+    private $cfg_data;
 
     /**
      * Config vars
@@ -106,7 +106,7 @@ final class Config
     protected function loadComposerJson()
     {
         return $this->configExists() 
-        ? $this->config_data = json_decode(file_get_contents($this->getConfigRealPath()), true) 
+        ? $this->cfg_data = json_decode(file_get_contents($this->getConfigRealPath()), true) 
         : null;
     }
 
@@ -117,16 +117,10 @@ final class Config
      */
     protected function defineVars()
     {
-        $this->config_vars        = array();
-        $this->config_vars['DIR'] = $this->config_data['config']['aframe-dir'] ?? 'public/aframe';
-        $this->config_vars['URL'] = $this->config_data['config']['aframe-url'] ?? '/aframe';
-        
-        $this->config_vars['CDN'] = $this->config_data['config']['aframe-cdn'] 
-            ?? 'https://aframe.io/releases/latest/aframe.min.js';
-        
-        $this->config_vars['formatOutput'] = ! empty($this->config_data['config']['aframe-formatOutput']) 
-            ? true : false;
-        $this->config_vars['useCDN']       = ! empty($this->config_data['config']['aframe-useCDN']) 
-            ? true : false;
+        $this->set('DIR', $this->cfg_data['config']['aframe-dir'] ?? 'public/aframe');
+        $this->set('URL', $this->cfg_data['config']['aframe-url'] ?? '/aframe');
+        $this->set('CDN', $this->cfg_data['config']['aframe-cdn'] ?? 'https://aframe.io/releases/latest/aframe.min.js');
+        $this->set('formatOutput',! empty($this->cfg_data['config']['aframe-formatOutput']) ? true : false);
+        $this->set('useCDN',! empty($this->cfg_data['config']['aframe-useCDN']) ? true : false);
     }
 }
