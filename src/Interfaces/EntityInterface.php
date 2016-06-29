@@ -59,7 +59,7 @@ interface EntityInterface
      * All entities inherently have the scale component.
      *
      * @param int|float $scale_x            
-     * @param int|float $scale_y           
+     * @param int|float $scale_y            
      * @param int|float $scale_z            
      * @return \AframeVR\Core\Entity
      */
@@ -82,4 +82,3 @@ interface EntityInterface
      */
     public function domElement(&$aframe_dom): DOMElement;
 }
- 

@@ -29,7 +29,8 @@ use \AframeVR\Extras\Primitives\{
     Cylinder,
     Plane,
     Sky
-};
+}
+;
 use \AframeVR\Core\Entity;
 
 trait Primitives
@@ -41,7 +42,7 @@ trait Primitives
      * @var \AframeVR\Core\DOM\AframeDOMDocument
      */
     protected $aframeDomObj;
-    
+
     /**
      *
      * @var array $spheres
@@ -128,7 +129,7 @@ trait Primitives
 
     /**
      * Add all used primitevs to the scene
-     *         
+     *
      * @return void
      */
     protected function preparePrimitives()
@@ -140,7 +141,6 @@ trait Primitives
         $this->aframeDomObj->appendEntities($this->planes);
         
         /* Primitives which only one can be present */
-        (!$this->sky)?:$this->aframeDomObj->appendEntity($this->sky);
+        (! $this->sky) ?: $this->aframeDomObj->appendEntity($this->sky);
     }
 }
- 

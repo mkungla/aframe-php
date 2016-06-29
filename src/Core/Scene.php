@@ -179,7 +179,7 @@ final class Scene
     /**
      * Get scenes keyword
      * 
-     * @return void
+     * @return string
      */
     public function getKeyword()
     {

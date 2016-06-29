@@ -54,11 +54,11 @@ class AframeComponentInstaller extends LibraryInstaller
 
     /**
      * Get A-Frame component path
-     * 
+     *
      * @var string
      */
     protected $aframe_component_path;
-    
+
     /**
      * Path to directory of A-Frame assets
      *
@@ -75,11 +75,11 @@ class AframeComponentInstaller extends LibraryInstaller
 
     /**
      * Get A-Frame core assets source path
-     * 
+     *
      * @var string
      */
     protected $public_src_dir;
-    
+
     /**
      * URI of A-Frame assets relative to your document root
      *
@@ -134,7 +134,7 @@ class AframeComponentInstaller extends LibraryInstaller
         $this->setComponentPath();
         
         if ($this->supportedByName($package->getPrettyName())) {
-            $this->io->info(sprintf("Installing A-Frame Component %s", $this->aframe_component_name));
+            $this->io->info(sprintf('Installing A-Frame Component %s', $this->aframe_component_name));
             
             if (! is_dir($this->getComponentSrcDistPath($package))) {
                 $this->io->warning(sprintf('A-Frame Component %s can not be used since missing dist directory!', $this->aframe_component_name));
@@ -168,7 +168,7 @@ class AframeComponentInstaller extends LibraryInstaller
         $this->setComponentPath();
         
         if ($this->supportedByName($target->getPrettyName())) {
-            $this->io->info(sprintf("Updating A-Frame Component %s", $this->aframe_component_name));
+            $this->io->info(sprintf('Updating A-Frame Component %s', $this->aframe_component_name));
             if (! is_dir($this->getComponentSrcDistPath($target))) {
                 $this->io->warning(sprintf('A-Frame Component %s can not be used since missing dist directory!', $this->aframe_component_name));
             } else {
@@ -339,7 +339,7 @@ class AframeComponentInstaller extends LibraryInstaller
                 '..'
             ));
             foreach ($files as $file) {
-                $this->rm("$pathname/$file");
+                $this->rm($pathname . DIRECTORY_SEPARATOR . $file);
             }
             
             $response = rmdir($pathname);

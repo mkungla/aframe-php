@@ -31,5 +31,3 @@ final class BadShaderCallException extends \BadMethodCallException
         $this->message = sprintf("Requested shader (%s) could not be loaded!\n", $message);
     }
 }
-
- 

@@ -143,14 +143,9 @@ final class AframeDOMDocument extends DOMImplementation
         $this->createDocType('html');
         /* Create A-Frame DOM Document */
         $this->createAframeDocument();
-        /* Create <head> element */
-        $this->head = $this->docObj->createElement('head');
-        /* Create <body> element */
-        $this->body = $this->docObj->createElement('body', $this->formatOutput ? "\n" : '');
-        /* Create <a-scene> element */
-        $this->scene = $this->docObj->createElement('a-scene');
-        /* Create <a-assets> element */
-        $this->assets = $this->docObj->createElement('a-assets');
+       
+        $this->documentBootstrap();
+
         /* Set CDN of aframe.js */
         $this->setCDN(is_string($config->get('CDN')) ? $config->get('CDN') : '');
     }
@@ -415,5 +410,22 @@ final class AframeDOMDocument extends DOMImplementation
     protected function createAframeDocument()
     {
         $this->docObj = $this->createDocument(null, 'html', $this->doctypeObj);
+    }
+    
+    /**
+     * Create dom elements for DOMDocument
+     * 
+     * @return void
+     */
+    protected function documentBootstrap()
+    {
+        /* Create <head> element */
+        $this->head = $this->docObj->createElement('head');
+        /* Create <body> element */
+        $this->body = $this->docObj->createElement('body', $this->formatOutput ? "\n" : '');
+        /* Create <a-scene> element */
+        $this->scene = $this->docObj->createElement('a-scene');
+        /* Create <a-assets> element */
+        $this->assets = $this->docObj->createElement('a-assets');
     }
 }
