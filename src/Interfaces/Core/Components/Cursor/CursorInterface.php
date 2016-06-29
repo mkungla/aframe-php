@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jun 29, 2016 - 10:16:01 AM
+ * Created by   Marko Kungla on Jun 29, 2016 - 10:31:50 AM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         CanvasInterface.php
+ * File         CursorInterface.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  ^ @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,40 +21,31 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Core\Components\Canvas;
+namespace AframeVR\Interfaces\Core\Components\Cursor;
 
 use \AframeVR\Interfaces\ComponentInterface;
 
-interface CanvasInterface extends ComponentInterface
+/**
+ * Note, to further customize the cursor component, we can set the properties of the raycaster component.
+ */
+interface CursorInterface extends ComponentInterface
 {
 
     /**
-     * Canvas Selector
+     * Whether cursor is fuse-based.
      *
-     * Selector to a canvas element that exists on the page.
+     * false on desktop, true on mobile
      *
-     * @param null|string $active            
-     * @return void
+     * @param bool $fuse            
      */
-    public function canvas(string $active = null);
+    public function fuse(bool $fuse = false);
 
     /**
-     * Canvas height
+     * fuseTimeout
      *
-     * Height of the injected canvas, in percentage.
+     * How long to wait (in milliseconds) before triggering a fuse-based click event.
      *
-     * @param int|float $height            
-     * @return void
+     * @param int $timeout            
      */
-    public function height(float $height = 100);
-
-    /**
-     * Canvas width
-     *
-     * Height of the injected canvas, in percentage.
-     *
-     * @param int|float $width            
-     * @return void
-     */
-    public function width(float $width = 100);
+    public function fuseTimeout(int $timeout = 1500);
 }
