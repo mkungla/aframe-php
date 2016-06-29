@@ -64,7 +64,8 @@ class ScaleComponent extends ComponentAbstract implements ScaleInterface
         $attrs = $this->getDOMAttributesArray();
         return $this->createCoordinateString($attrs['x'], $attrs['y'], $attrs['z']);
     }
-
+    
+    
     /**
      * Get scale
      *

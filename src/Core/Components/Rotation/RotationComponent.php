@@ -50,7 +50,7 @@ class RotationComponent extends ComponentAbstract implements RotationInterface
         $this->setDomAttributeName('rotation');
         return true;
     }
-
+    
     /**
      * Return DOM attribute contents
      *
@@ -64,7 +64,7 @@ class RotationComponent extends ComponentAbstract implements RotationInterface
         $attrs = $this->getDOMAttributesArray();
         return $this->createCoordinateString($attrs['x'], $attrs['y'], $attrs['z']);
     }
-
+    
     /**
      * Get Rotation
      *

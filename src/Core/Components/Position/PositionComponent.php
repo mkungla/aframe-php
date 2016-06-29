@@ -47,7 +47,7 @@ class PositionComponent extends ComponentAbstract implements PositionInterface
         $this->setDomAttributeName('position');
         return true;
     }
-
+    
     /**
      * Return DOM attribute contents
      *
@@ -61,7 +61,7 @@ class PositionComponent extends ComponentAbstract implements PositionInterface
         $attrs = $this->getDOMAttributesArray();
         return $this->createCoordinateString($attrs['x'], $attrs['y'], $attrs['z']);
     }
-
+    
     /**
      * Get current position coordinates
      *

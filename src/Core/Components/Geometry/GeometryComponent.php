@@ -53,20 +53,7 @@ class GeometryComponent extends ComponentAbstract implements GeometryInterface
         $this->setDomAttributeName('geometry');
         return true;
     }
-
-    /**
-     * Return DOM attribute contents
-     *
-     * @return string
-     */
-    public function getDomAttributeString(): string
-    {
-        $geometry_attrs         = $this->getDOMAttributesArray();
-        $component_attr_format  = implode(': %s; ', array_keys($geometry_attrs)) . ': %s;';
-        
-        return vsprintf($component_attr_format, array_values($geometry_attrs));
-    }
-
+    
     /**
      * Set geometry primitive
      *
@@ -79,9 +66,9 @@ class GeometryComponent extends ComponentAbstract implements GeometryInterface
     public function primitive(string $primitive)
     {
         if (in_array($primitive, self::ALLOWED_PRIMITIVES)) {     
-            $this->dom_attributes               = array();
-            $method_provider                    = sprintf('%sMethods', ucfirst($primitive));
-            $this->dom_attributes['primitive']  = $primitive;
+            $this->dom_attributes              = array();
+            $method_provider                   = sprintf('%sMethods', ucfirst($primitive));
+            $this->dom_attributes['primitive'] = $primitive;
             
             $this->setMethodProvider($method_provider);
         } else {

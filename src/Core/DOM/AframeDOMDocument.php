@@ -136,8 +136,10 @@ final class AframeDOMDocument extends DOMImplementation
     public function __construct(Config $config)
     {
         /* Config */
-        $this->formatOutput = is_bool($config->get('formatOutput')) ? $config->get('formatOutput') : false;
-        $this->use_cdn = is_bool($config->get('useCDN')) ? $config->get('useCDN') : false;
+        $this->formatOutput = is_bool($config->get('formatOutput')) 
+            ? $config->get('formatOutput') : false;
+        $this->use_cdn      = is_bool($config->get('useCDN')) 
+            ? $config->get('useCDN') : false;
         
         /* Create HTML5 Document type */
         $this->createDocType('html');
@@ -183,7 +185,9 @@ final class AframeDOMDocument extends DOMImplementation
             
             $html->appendChild($this->body);
         }
-        return $this->formatOutput ? $this->correctOutputFormat($this->docObj->saveHTML()) : $this->docObj->saveHTML();
+        return $this->formatOutput 
+        ? $this->correctOutputFormat($this->docObj->saveHTML()) 
+        : $this->docObj->saveHTML();
     }
 
     /**

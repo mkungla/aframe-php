@@ -65,11 +65,7 @@ class MaterialComponent extends ComponentAbstract implements MaterialInterface
     public function getDomAttributeString(): string
     {
         $this->prepareShader();
-        
-        $material_attrs = $this->getDOMAttributesArray();
-        $format         = implode(': %s; ', array_keys($material_attrs)) . ': %s;';
-        
-        return vsprintf($format, array_values($material_attrs));
+        return parent::getDomAttributeString();
     }
 
     /**
