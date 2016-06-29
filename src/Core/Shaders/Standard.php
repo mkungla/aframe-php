@@ -98,11 +98,27 @@ class Standard extends ShaderAbstract implements ShaderInterface
     public $width = 640;
 
     /**
+     * Construct and set shader defaults
+     */
+    public function __construct()
+    {
+        $this->color('#fff');
+        $this->height(360);
+        $this->envMap();
+        $this->fog(true);
+        $this->metalness(0.5);
+        $this->repeat(1, 1);
+        $this->roughness(0.5);
+        $this->src();
+        $this->width(640);
+    }
+
+    /**
      * Base diffuse color
      *
      * @param string $color            
      */
-    public function color(string $color = '#fff')
+    public function color(string $color)
     {
         $this->color = $color;
     }
@@ -112,7 +128,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
      *
      * @param int $height            
      */
-    public function height(int $height = 360)
+    public function height($height)
     {
         $this->height = $height;
     }
@@ -135,7 +151,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
      *
      * @param bool $fog            
      */
-    public function fog(bool $fog = true)
+    public function fog($fog)
     {
         $this->fog = $fog ? 'true' : 'false';
     }
@@ -145,7 +161,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
      *
      * @param float $metalness            
      */
-    public function metalness(float $metalness = 0.5)
+    public function metalness($metalness)
     {
         $this->metalness = $metalness;
     }
@@ -156,7 +172,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
      * @param int|float $x            
      * @param int|float $y            
      */
-    public function repeat(float $x = 1, float $y = 1)
+    public function repeat(float $x, float $y)
     {
         $this->repeat = sprintf('%d %d', $x, $y);
     }
@@ -168,7 +184,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
      *
      * @param float $roughness            
      */
-    public function roughness(float $roughness = 0.5)
+    public function roughness(float $roughness)
     {
         $this->roughness = $roughness;
     }
@@ -188,7 +204,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
      *
      * @param int $width            
      */
-    public function width(int $width = 360)
+    public function width(int $width)
     {
         $this->width = $width;
     }

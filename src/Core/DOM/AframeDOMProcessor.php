@@ -73,13 +73,27 @@ trait AframeDOMProcessor
      * @var \DOMElement
      */
     protected $head;
-    
+
+    /**
+     * <body>
+     *
+     * @var \DOMElement
+     */
+    protected $body;
+
     /**
      * <a-scene>
      *
      * @var \DOMElement
      */
     protected $scene;
+
+    /**
+     * <a-assets>
+     *
+     * @var \DOMElement
+     */
+    protected $assets;
     
     /**
      * Nicely formats output with indentation and extra space.
@@ -188,7 +202,7 @@ trait AframeDOMProcessor
      */
     protected function getDefaultMetaTags(): array
     {
-        $dmt = array();
+        $dmt               = array();
         $dmt[0]['charset'] = 'utf-8';     
         $dmt[1]['name']    = 'viewport';
         
