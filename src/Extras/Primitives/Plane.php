@@ -27,20 +27,20 @@ use \AframeVR\Interfaces\Extras\Primitives\PlaneInterface;
 use \AframeVR\Core\Entity;
 use \AframeVR\Core\Helpers\MeshAttributes;
 
-/**
- * <a-plane>
- *
- * The plane primitive creates flat surfaces. It is an entity that prescribes the geometry with its geometric primitive set to plane.
- */
+
 class Plane extends Entity implements PlaneInterface
 {
     use MeshAttributes;
 
     /**
-     * Init
+     * Init <a-plane>
      *
+     * The plane primitive creates flat surfaces.
+     * It is an entity that prescribes the geometry
+     * with its geometric primitive set to plane.
+     * 
      * {@inheritdoc}
-     *
+     * 
      * @return void
      */
     public function init()

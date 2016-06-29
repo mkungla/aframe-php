@@ -33,6 +33,12 @@ final class InvalidComponentMethodException extends \BadMethodCallException
      */
     public function __construct(string $message = 'null', string $component_method = 'unknown')
     {
-        $this->message = sprintf("Called invalid method (%s) for %s!\nFile: %s on line: %s", $message, $component_method, $this->getFile(), $this->getLine());
+        $this->message = sprintf(
+            "Called invalid method (%s) for %s!\nFile: %s on line: %s", 
+            $message, 
+            $component_method, 
+            $this->getFile(), 
+            $this->getLine()
+        );
     }
 }

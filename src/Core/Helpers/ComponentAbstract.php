@@ -110,7 +110,7 @@ abstract class ComponentAbstract implements ComponentInterface
     /**
      * Set class providing component methods
      *
-     * @param string $method_provider            
+     * @param string $mp            
      * @return void
      */
     public function setMethodProvider(string $mp = 'DefaultMethods')
