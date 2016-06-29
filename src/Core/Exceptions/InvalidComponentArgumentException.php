@@ -26,7 +26,13 @@ namespace AframeVR\Core\Exceptions;
 final class InvalidComponentArgumentException extends \InvalidArgumentException
 {
 
-    public function __construct(string $message = 'null', $component_method)
+    /**
+     * InvalidComponentArgumentException
+     *
+     * @param string $message            
+     * @param string $component_method            
+     */
+    public function __construct(string $message = 'null', string $component_method = 'unknown')
     {
         $this->message = sprintf("Invalid argument (%s) for %s!\n", $message, $component_method);
     }

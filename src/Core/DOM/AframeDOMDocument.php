@@ -141,11 +141,13 @@ final class AframeDOMDocument extends DOMImplementation
         
         /* Create HTML5 Document type */
         $this->createDocType('html');
+        
         /* Create A-Frame DOM Document */
         $this->createAframeDocument();
-       
+        
+        /* Create boostrap elements */
         $this->documentBootstrap();
-
+        
         /* Set CDN of aframe.js */
         $this->setCDN(is_string($config->get('CDN')) ? $config->get('CDN') : '');
     }
@@ -169,13 +171,16 @@ final class AframeDOMDocument extends DOMImplementation
     public function render(): string
     {
         $this->docObj->formatOutput = $this->formatOutput;
+        
         $html = $this->docObj->getElementsByTagName('html')->item(0);
         /* Make sure we do not add duplicates when render is called multiple times */
         if (! $html->hasChildNodes()) {
             $this->renderHead();
+            
             $html->appendChild($this->head);
             
             $this->renderBody();
+            
             $html->appendChild($this->body);
         }
         return $this->formatOutput ? $this->correctOutputFormat($this->docObj->saveHTML()) : $this->docObj->saveHTML();
@@ -411,10 +416,10 @@ final class AframeDOMDocument extends DOMImplementation
     {
         $this->docObj = $this->createDocument(null, 'html', $this->doctypeObj);
     }
-    
+
     /**
      * Create dom elements for DOMDocument
-     * 
+     *
      * @return void
      */
     protected function documentBootstrap()
