@@ -96,8 +96,9 @@ trait AframeDOMProcessor
      * {@inheritdoc}
      * 
      * @param string $qualifiedName
-     * @param string $publicId
-     * @param string $systemId
+     * @param null|string $publicId
+     * @param null|string $systemId
+     * @return \DOMDocumentType
      */
     abstract protected function createDocumentType($qualifiedName, $publicId, $systemId);
     
@@ -109,6 +110,7 @@ trait AframeDOMProcessor
      * @param string $namespaceURI
      * @param string $qualifiedName
      * @param \DOMDocumentType $doctype
+     * @return \DOMDocument
      */
     abstract protected function createDocument($namespaceURI, $qualifiedName, \DOMDocumentType $doctype);
     
@@ -246,7 +248,7 @@ trait AframeDOMProcessor
      */
     protected function createDocType(string $doctype)
     {
-        $this->doctypeObj = $this->createDocumentType($doctype);
+        $this->doctypeObj = $this->createDocumentType($doctype, null, null);
     }
 
     /**
