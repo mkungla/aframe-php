@@ -61,10 +61,10 @@ class GeometryComponent extends ComponentAbstract implements GeometryInterface
      */
     public function getDomAttributeString(): string
     {
-        $geometry_attrs = $this->getDOMAttributesArray();
-        $format = implode(': %s; ', array_keys($geometry_attrs)) . ': %s;';
+        $geometry_attrs         = $this->getDOMAttributesArray();
+        $component_attr_format  = implode(': %s; ', array_keys($geometry_attrs)) . ': %s;';
         
-        return vsprintf($format, array_values($geometry_attrs));
+        return vsprintf($component_attr_format, array_values($geometry_attrs));
     }
 
     /**
@@ -78,11 +78,11 @@ class GeometryComponent extends ComponentAbstract implements GeometryInterface
      */
     public function primitive(string $primitive)
     {
-        if (in_array($primitive, self::ALLOWED_PRIMITIVES)) {
+        if (in_array($primitive, self::ALLOWED_PRIMITIVES)) {     
+            $this->dom_attributes               = array();
+            $method_provider                    = sprintf('%sMethods', ucfirst($primitive));
+            $this->dom_attributes['primitive']  = $primitive;
             
-            $this->dom_attributes = array();
-            $method_provider = sprintf('%sMethods', ucfirst($primitive));
-            $this->dom_attributes['primitive'] = $primitive;
             $this->setMethodProvider($method_provider);
         } else {
             throw new InvalidComponentArgumentException((string) $primitive, 'Geometry::primitive');
