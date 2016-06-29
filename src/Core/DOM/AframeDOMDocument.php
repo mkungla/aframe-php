@@ -120,7 +120,7 @@ final class AframeDOMDocument extends DOMImplementation
     {
         /* Config */
         $this->formatOutput = is_bool($config->get('formatOutput')) ? $config->get('formatOutput') : false;
-        $this->use_cdn = is_bool($config->get('useCDN')) ? $config->get('useCDN') : false;
+        $this->use_cdn      = is_bool($config->get('useCDN')) ? $config->get('useCDN') : false;
         
         /* Create HTML5 Document type */
         $this->createDocType('html');
@@ -258,7 +258,7 @@ final class AframeDOMDocument extends DOMImplementation
      */
     public function renderSceneOnly()
     {
-        $html = new DOMDocument();
+        $html               = new DOMDocument();
         $html->formatOutput = $this->formatOutput;
         
         $html_scene = $html->importNode($this->scene, true);

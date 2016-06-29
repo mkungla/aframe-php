@@ -52,6 +52,18 @@ class RotationComponent extends ComponentAbstract implements RotationInterface
     }
     
     /**
+     * Get Rotation
+     *
+     * {@inheritdoc}
+     *
+     * @return string
+     */
+    public function getRotation(): string
+    {
+        return $this->getDomAttributeString();
+    }
+    
+    /**
      * Return DOM attribute contents
      *
      * Scale Components dom atribute contains roll, pitch, yaw
@@ -64,16 +76,5 @@ class RotationComponent extends ComponentAbstract implements RotationInterface
         $attrs = $this->getDOMAttributesArray();
         return $this->createCoordinateString($attrs['x'], $attrs['y'], $attrs['z']);
     }
-    
-    /**
-     * Get Rotation
-     *
-     * {@inheritdoc}
-     *
-     * @return string
-     */
-    public function getRotation(): string
-    {
-        return $this->getDomAttributeString();
-    }
+
 }

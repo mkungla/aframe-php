@@ -58,6 +58,18 @@ class ScaleComponent extends ComponentAbstract implements ScaleInterface
      */
     
     /**
+     * Get scale
+     *
+     * {@inheritdoc}
+     *
+     * @return string
+     */
+    public function getScale(): string
+    {
+        return $this->getDomAttributeString();
+    }
+    
+    /**
      * Return DOM attribute contents
      *
      * Scale Components dom atribute contains coordinates
@@ -72,17 +84,5 @@ class ScaleComponent extends ComponentAbstract implements ScaleInterface
         $attrs = $this->getDOMAttributesArray();
         return $this->createCoordinateString($attrs['x'], $attrs['y'], $attrs['z']);
     }
-    
-    
-    /**
-     * Get scale
-     *
-     * {@inheritdoc}
-     *
-     * @return string
-     */
-    public function getScale(): string
-    {
-        return $this->getDomAttributeString();
-    }
+
 }

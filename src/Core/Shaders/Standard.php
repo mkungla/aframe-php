@@ -169,8 +169,8 @@ class Standard extends ShaderAbstract implements ShaderInterface
     /**
      * repeat
      *
-     * @param int|float $x            
-     * @param int|float $y            
+     * @param float $x            
+     * @param float $y            
      */
     public function repeat(float $x, float $y)
     {
