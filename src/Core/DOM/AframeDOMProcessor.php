@@ -25,7 +25,93 @@ namespace AframeVR\Core\DOM;
 
 trait AframeDOMProcessor
 {
-
+    /**
+     * A-Frame DOM Document type
+     *
+     * @var \DOMDocumentType
+     */
+    protected $doctypeObj;
+    
+    /**
+     * A-Frame DOM Document
+     *
+     * @var \DOMDocument
+     */
+    protected $docObj;
+    
+    /**
+     * Scene meta tile
+     *
+     * @var string $scene_title
+     */
+    protected $scene_title = 'Untitled';
+    
+    /**
+     * Scene meta description
+     *
+     * @var string $scene_description
+     */
+    protected $scene_description = '';
+    
+    /**
+     * CDN Of aframe.js
+     *
+     * @var string
+     */
+    protected $aframe_cdn;
+    
+    /**
+     * Whether to use CDN
+     *
+     * @var bool $use_cdn
+     */
+    protected $use_cdn = false;
+    
+    /**
+     * <head>
+     *
+     * @var \DOMElement
+     */
+    protected $head;
+    
+    /**
+     * <a-scene>
+     *
+     * @var \DOMElement
+     */
+    protected $scene;
+    
+    /**
+     * Nicely formats output with indentation and extra space.
+     *
+     * @var bool
+     */
+    protected $formatOutput = false;
+    
+    /**
+     * \DOMImplementation::createDocumentType
+     * 
+     * DOMImplementation::createDocumentType — Creates an empty DOMDocumentType object 
+     * 
+     * {@inheritdoc}
+     * 
+     * @param string $qualifiedName
+     * @param string $publicId
+     * @param string $systemId
+     */
+    abstract protected function createDocumentType($qualifiedName, $publicId, $systemId);
+    
+    /**
+     * \DOMImplementation::createDocument
+     * 
+     * {@inheritdoc}
+     * 
+     * @param string $namespaceURI
+     * @param string $qualifiedName
+     * @param \DOMDocumentType $doctype
+     */
+    abstract protected function createDocument($namespaceURI, $qualifiedName, \DOMDocumentType $doctype);
+    
     /**
      * Add document comment for formatting
      *
@@ -48,7 +134,7 @@ trait AframeDOMProcessor
      */
     protected function correctOutputFormat($html)
     {
-        $tags = array(
+        $tags   = array(
             '<!--',
             '-->',
             '<a-assets>',
@@ -101,16 +187,15 @@ trait AframeDOMProcessor
     protected function getDefaultMetaTags(): array
     {
         $dmt = array();
-        $dmt[0]['charset'] = 'utf-8';
-        
-        $dmt[1]['name'] = 'viewport';
+        $dmt[0]['charset'] = 'utf-8';     
+        $dmt[1]['name']    = 'viewport';
         
         $vp = 'width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,minimal-ui';
         
         $dmt[1]['content'] = $vp;
-        $dmt[2]['name'] = 'mobile-web-app-capable';
+        $dmt[2]['name']    = 'mobile-web-app-capable';
         $dmt[2]['content'] = 'yes';
-        $dmt[3]['name'] = 'theme-color';
+        $dmt[3]['name']    = 'theme-color';
         $dmt[3]['content'] = 'black';
         
         return $dmt;
