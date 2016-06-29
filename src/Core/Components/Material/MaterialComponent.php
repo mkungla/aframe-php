@@ -101,9 +101,7 @@ class MaterialComponent extends ComponentAbstract implements MaterialInterface
     private function prepareShader()
     {
         if (! empty($this->shaderObj)) {
-            $this->shaderObj->removeDefaultDOMAttributes();
-            foreach ($this->shaderObj as $key => $val)
-                $this->dom_attributes[$key] = $val;
+            $this->dom_attributes = array_merge($this->dom_attributes, $this->shaderObj->getAttributes());
         }
     }
 }

@@ -35,12 +35,15 @@ class FlatShaderTest extends PHPUnit_Framework_TestCase
         
         $shader = $this->entity->material()->shader('flat');
         
-        $this->assertEquals($shader->color, '#000');
-        $this->assertEquals($shader->fog, 'false');
-        $this->assertEquals($shader->height, 1080);
-        $this->assertEquals($shader->repeat, '2 2');
-        $this->assertEquals($shader->src, 'video-url');
-        $this->assertEquals($shader->width, 1920);
+
+        $this->assertAttributeEquals('#000','color',$shader);
+        $this->assertAttributeEquals('false','fog',$shader);
+        $this->assertAttributeEquals(1080,'height',$shader);
+        $this->assertAttributeEquals('2 2','repeat',$shader);
+        $this->assertAttributeEquals('video-url','src',$shader);
+        $this->assertAttributeEquals(1920,'width',$shader);
+        
+        $shader->defaults();
     }
 
     public function test_removeDefaultDOMAttributes()

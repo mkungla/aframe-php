@@ -52,4 +52,10 @@ abstract class ShaderAbstract
             }
         }
     }
+    
+    public function getAttributes()
+    {
+        $this->removeDefaultDOMAttributes();
+        return get_object_vars($this);
+    }
 }

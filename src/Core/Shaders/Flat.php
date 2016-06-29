@@ -34,28 +34,28 @@ class Flat extends ShaderAbstract implements ShaderInterface
      *
      * @var string $color
      */
-    public $color = '#fff';
+    protected $color = '#fff';
 
     /**
      * Whether or not material is affected by fog.
      *
      * @var string $fog
      */
-    public $fog = 'true';
+    protected $fog = 'true';
 
     /**
      * Height of video (in pixels), if defining a video texture.
      *
      * @var int $height
      */
-    public $height = 360;
+    protected $height = 360;
 
     /**
      * How many times a texture (defined by src) repeats in the X and Y direction.
      *
      * @var string $repeat
      */
-    public $repeat = '1 1';
+    protected $repeat = '1 1';
 
     /**
      * Image or video texture map.
@@ -63,21 +63,36 @@ class Flat extends ShaderAbstract implements ShaderInterface
      *
      * @var string|null $src
      */
-    public $src = null;
+    protected $src = null;
 
     /**
      * Width of video (in pixels), if defining a video texture.
      *
      * @var int $width
      */
-    public $width = 640;
-
+    protected $width = 640;
+    
+    /**
+     * Set shader defaults
+     *
+     * @return void
+     */
+    public function defaults()
+    {
+        $this->color('#fff');
+        $this->fog(true);
+        $this->height(360);
+        $this->repeat(1, 1);
+        $this->src();
+        $this->width(640);
+    }
+    
     /**
      * Base diffuse color
      *
      * @param string $color            
      */
-    public function color(string $color = '#fff')
+    public function color(string $color)
     {
         $this->color = $color;
     }
@@ -87,7 +102,7 @@ class Flat extends ShaderAbstract implements ShaderInterface
      *
      * @param bool $fog            
      */
-    public function fog(bool $fog = true)
+    public function fog(bool $fog)
     {
         $this->fog = $fog ? 'true' : 'false';
     }
@@ -97,17 +112,18 @@ class Flat extends ShaderAbstract implements ShaderInterface
      *
      * @param int $height            
      */
-    public function height(int $height = 360)
+    public function height(int $height)
     {
         $this->height = $height;
     }
 
     /**
-     *
-     * @param int|float $x            
-     * @param int|float $y            
+     * Repeat
+     * 
+     * @param float $x            
+     * @param float $y            
      */
-    public function repeat(float $x = 1, float $y = 1)
+    public function repeat(float $x, float $y)
     {
         $this->repeat = sprintf('%d %d', $x, $y);
     }
@@ -127,7 +143,7 @@ class Flat extends ShaderAbstract implements ShaderInterface
      *
      * @param int $width            
      */
-    public function width(int $width = 360)
+    public function width(int $width)
     {
         $this->width = $width;
     }

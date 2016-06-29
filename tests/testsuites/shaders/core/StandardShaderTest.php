@@ -38,13 +38,13 @@ class StandardShaderTest extends PHPUnit_Framework_TestCase
         
         $shader = $this->entity->material()->shader('standard');
         
-        $this->assertEquals($shader->color, '#000');
-        $this->assertEquals($shader->fog, 'false');
-        $this->assertEquals($shader->height, 1080);
-        $this->assertEquals($shader->repeat, '2 2');
-        $this->assertEquals($shader->src, 'video-url');
-        $this->assertEquals($shader->width, 1920);
-        $this->assertEquals($shader->envMap, '#env-map');
+        $this->assertAttributeEquals('#000','color',$shader);
+        $this->assertAttributeEquals('false','fog',$shader);
+        $this->assertAttributeEquals(1080,'height',$shader);
+        $this->assertAttributeEquals('2 2','repeat',$shader);
+        $this->assertAttributeEquals('video-url','src',$shader);
+        $this->assertAttributeEquals(1920,'width',$shader);
+        $this->assertAttributeEquals('#env-map','envMap',$shader);
     }
 
     public function test_properties2()
@@ -73,13 +73,15 @@ class StandardShaderTest extends PHPUnit_Framework_TestCase
         
         $shader = $this->entity->material()->shader('standard');
         
-        $this->assertEquals($shader->color, '#fff');
-        $this->assertEquals($shader->fog, 'true');
-        $this->assertEquals($shader->height, 100);
-        $this->assertEquals($shader->repeat, '5 2');
-        $this->assertEquals($shader->src, 'video-uri');
-        $this->assertEquals($shader->width, 20);
-        $this->assertEquals($shader->envMap, '#env-map-2');
+        $this->assertAttributeEquals('#fff','color',$shader);
+        $this->assertAttributeEquals('true','fog',$shader);
+        $this->assertAttributeEquals(100,'height',$shader);
+        $this->assertAttributeEquals('5 2','repeat',$shader);
+        $this->assertAttributeEquals('video-uri','src',$shader);
+        $this->assertAttributeEquals(20,'width',$shader);
+        $this->assertAttributeEquals('#env-map-2','envMap',$shader);
+        
+        $shader->defaults();
     }
 
     public function test_removeDefaultDOMAttributes()

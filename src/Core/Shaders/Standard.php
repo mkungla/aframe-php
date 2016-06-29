@@ -34,14 +34,14 @@ class Standard extends ShaderAbstract implements ShaderInterface
      *
      * @var string $color
      */
-    public $color = '#fff';
+    protected $color = '#fff';
 
     /**
      * Height of video (in pixels), if defining a video texture.
      *
      * @var int $height
      */
-    public $height = 360;
+    protected $height = 360;
 
     /**
      * Environment cubemap texture for reflections.
@@ -50,28 +50,28 @@ class Standard extends ShaderAbstract implements ShaderInterface
      *
      * @var string|null $envMap
      */
-    public $envMap = null;
+    protected $envMap = null;
 
     /**
      * Whether or not material is affected by fog.
      *
      * @var string $fog
      */
-    public $fog = 'true';
+    protected $fog = 'true';
 
     /**
      * How metallic the material is from 0 to 1.
      *
      * @var float $metalness
      */
-    public $metalness = 0.5;
+    protected $metalness = 0.5;
 
     /**
      * How many times a texture (defined by src) repeats in the X and Y direction.
      *
      * @var string $repeat
      */
-    public $repeat = '1 1';
+    protected $repeat = '1 1';
 
     /**
      * How rough the material is from 0 to 1.
@@ -80,7 +80,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
      *
      * @var float $roughness
      */
-    public $roughness = 0.5;
+    protected $roughness = 0.5;
 
     /**
      * Image or video texture map.
@@ -88,19 +88,21 @@ class Standard extends ShaderAbstract implements ShaderInterface
      *
      * @var string|null $src
      */
-    public $src = null;
+    protected $src = null;
 
     /**
      * Width of video (in pixels), if defining a video texture.
      *
      * @var int $width
      */
-    public $width = 640;
+    protected $width = 640;
 
     /**
-     * Construct and set shader defaults
+     * Set shader defaults
+     *
+     * @return void
      */
-    public function __construct()
+    public function defaults()
     {
         $this->color('#fff');
         $this->height(360);
@@ -112,7 +114,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
         $this->src();
         $this->width(640);
     }
-
+    
     /**
      * Base diffuse color
      *

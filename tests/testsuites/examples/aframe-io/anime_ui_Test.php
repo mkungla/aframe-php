@@ -41,13 +41,13 @@ class anime_ui_Test extends PHPUnit_Framework_TestCase
 
     public function test_page()
     {
-        $this->assertEquals(file_get_contents($this->ex_page_path), $this->aframe->scene()
+        $this->assertStringEqualsFile($this->ex_page_path, $this->aframe->scene()
             ->save());
     }
 
     public function test_scene()
     {
-        $this->assertEquals(file_get_contents($this->ex_scene_path), $this->aframe->scene()
+        $this->assertStringEqualsFile($this->ex_scene_path, $this->aframe->scene()
             ->save(true));
     }
 }
