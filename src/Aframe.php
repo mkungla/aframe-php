@@ -69,13 +69,13 @@ final class Aframe
     /**
      * Scene
      *
-     * Work with untitled scene or scene by name
+     * Work with untitled scene or scene by keyword
      *
-     * @param string $name            
+     * @param string $keyword            
      * @return \AframeVR\Core\Scene
      */
-    public function scene(string $name = 'untitled'): Scene
+    public function scene(string $keyword = 'untitled'): Scene
     {
-        return $this->scenes[$name] ?? $this->scenes[$name] = new Scene($name, $this->config());
+        return $this->scenes[$keyword] ?? $this->scenes[$keyword] = new Scene($keyword, $this->config());
     }
 }

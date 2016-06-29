@@ -183,7 +183,7 @@ class Entity implements EntityInterface
      * @param \DOMDocument $aframe_dom            
      * @return \DOMElement
      */
-    public function DOMElement(&$aframe_dom): DOMElement
+    public function domElement(&$aframe_dom): DOMElement
     {
         $a_entity = $aframe_dom->createElement('a-entity');
         foreach ($this->components as $component) {

@@ -91,11 +91,10 @@ abstract class AssetsAbstract implements AssetsInterface
      * @param \DOMDocument $aframe_dom            
      * @return \DOMElement
      */
-    public function DOMElement(&$aframe_dom): DOMElement
+    public function domElement(&$aframe_dom): DOMElement
     {
         $a_asset = $aframe_dom->createElement($this->element_name);
         $a_asset->setAttribute('id', $this->attr_id);
-        // $a_asset->setAttributeNode($this->idDOMAttr());
         return $a_asset;
     }
 }

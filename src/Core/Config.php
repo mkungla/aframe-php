@@ -41,14 +41,7 @@ final class Config
     private $config_data;
 
     /**
-     * Config arguments starting with (aframe-)
-     *
-     * @var array|null
-     */
-    private $config_args;
-
-    /**
-     * Useful config vars
+     * Config vars
      *
      * @var array
      */

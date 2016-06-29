@@ -251,7 +251,7 @@ final class AframeDOMDocument extends DOMImplementation
     public function appendAsset(AssetsInterface $asset)
     {
         $this->appendFormatComment('assets', "\n\t");
-        $this->assets->appendChild($asset->DOMElement($this->docObj));
+        $this->assets->appendChild($asset->domElement($this->docObj));
     }
 
     /**
@@ -265,7 +265,7 @@ final class AframeDOMDocument extends DOMImplementation
     public function appendEntity(Entity $entity)
     {
         $this->appendFormatComment('scene', "\n");
-        $this->scene->appendChild($entity->DOMElement($this->docObj));
+        $this->scene->appendChild($entity->domElement($this->docObj));
     }
 
     /**

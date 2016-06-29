@@ -80,6 +80,6 @@ interface EntityInterface
      * @param unknown $aframe_dom            
      * @return \DOMElement
      */
-    public function DOMElement(&$aframe_dom): DOMElement;
+    public function domElement(&$aframe_dom): DOMElement;
 }
  

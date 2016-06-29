@@ -38,7 +38,7 @@ final class Scene
      *
      * @var string $name
      */
-    private $name;
+    private $keyword;
 
     /**
      * Is scene prepared for rendering
@@ -66,12 +66,12 @@ final class Scene
     /**
      * Scene constructor
      *
-     * @param string $name            
+     * @param string $keyword            
      * @param Config $config            
      */
-    public function __construct(string $name, Config $config)
+    public function __construct(string $keyword, Config $config)
     {
-        $this->name = $name;
+        $this->keyword = $keyword;
         $this->aframeDomObj = new AframeDOMDocument($config);
         /* Initialize assests manager */
         $this->asset();
@@ -176,6 +176,16 @@ final class Scene
         $this->dom()->setDescription($description);
     }
 
+    /**
+     * Get scenes keyword
+     * 
+     * @return void
+     */
+    public function getKeyword()
+    {
+        return $this->keyword;
+    }
+    
     /**
      * Add everyting to DOM
      *

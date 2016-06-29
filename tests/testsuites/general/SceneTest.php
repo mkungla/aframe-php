@@ -70,4 +70,10 @@ class SceneTest extends PHPUnit_Framework_TestCase
         
         $this->assertFileExists($this->test_output_html);
     }
+
+    public function test_getKeyword()
+    {
+        $this->assertInternalType('string', $this->aframe->scene()
+            ->getKeyword());
+    }
 }
