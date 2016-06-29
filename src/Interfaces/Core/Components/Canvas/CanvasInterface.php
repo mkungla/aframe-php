@@ -36,7 +36,7 @@ interface CanvasInterface extends ComponentInterface
      * @param string $active            
      * @return void
      */
-    public function canvas(string $active = false);
+    public function canvas(string $active = null);
 
     /**
      * Canvas height
