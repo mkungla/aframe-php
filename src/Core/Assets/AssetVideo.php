@@ -44,6 +44,13 @@ final class AssetVideo extends AssetsAbstract implements AssetVideoInterface
     protected $attr_preload;
 
     /**
+     * Image crossorigin
+     *
+     * @var string
+     */
+    protected $attr_crossorigin;
+    
+    /**
      * Asset constructor set asset ID
      *
      * @param string $id            

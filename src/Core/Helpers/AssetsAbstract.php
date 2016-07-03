@@ -103,7 +103,7 @@ abstract class AssetsAbstract implements AssetsInterface
     /**
      * Set Dom element name
      *
-     * @param string $element_name            
+     * @param string $element_tag            
      * @return void
      */
     public function setDomElementTag(string $element_tag)

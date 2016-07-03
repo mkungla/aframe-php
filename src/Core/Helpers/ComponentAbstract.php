@@ -100,7 +100,7 @@ abstract class ComponentAbstract implements ComponentInterface
      */
     public function getDomAttributeString(): string
     {
-        $attrs = $this->getDOMAttributesArray();
+        $attrs       = $this->getDOMAttributesArray();
         $attr_format = implode(': %s; ', array_keys($attrs)) . ': %s;';
         
         return vsprintf($attr_format, array_values($attrs));

@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jul 3, 2016 - 7:10:37 PM
+ * Created by   Marko Kungla on Jul 3, 2016 - 8:36:14 PM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         AssetVideoInterface.php
+ * File         MockComponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  ^ @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,32 +21,28 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Core\Assets;
+namespace AframeVR\Core\Helpers;
 
-interface AssetVideoInterface
+final class MockComponent
 {
-
     /**
-     * Set crossorigin attribute of the video
+     * Record all menthod / args to be called when mixin is used on some entity
      *
-     * @param string $crossorigin            
-     * @return AssetVideoInterface
+     * @var array
      */
-    public function crossorigin(string $crossorigin = 'anonymous'): AssetVideoInterface;
-
+    protected $component_methods = array();
+    
     /**
-     * Autoplay video
+     * Call passes all calls to no existing methods to self::methodProvider
      *
-     * @param bool $autoplay            
-     * @return AssetVideoInterface
+     * @param string $method
+     * @param array $args
+     * @throws InvalidComponentMethodException
+     * @return object
      */
-    public function autoplay(bool $autoplay = true): AssetVideoInterface;
-
-    /**
-     * Preload video
-     *
-     * @param string $preload            
-     * @return AssetVideoInterface
-     */
-    public function preload(string $preload = 'auto'): AssetVideoInterface;
+    public function __call(string $method, $args)
+    {
+        $this->component_methods[$method] = $args;
+        return $this;
+    }
 }

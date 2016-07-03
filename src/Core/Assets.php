@@ -52,7 +52,7 @@ final class Assets
      * <a-scene><a-assets><audio>
      *
      * @param string $id            
-     * @return \AframeVR\Interfaces\Core\Assets\ItemInterface
+     * @return AssetAudioInterface
      */
     public function audio(string $id = 'untitled'): AssetAudioInterface
     {
@@ -63,7 +63,7 @@ final class Assets
      * <a-scene><a-assets><img>
      *
      * @param string $id            
-     * @return \AframeVR\Interfaces\Core\Assets\ItemInterface
+     * @return AssetImageInterface
      */
     public function img(string $id = 'untitled'): AssetImageInterface
     {
@@ -74,7 +74,7 @@ final class Assets
      * <a-scene><a-assets><a-asset-item>
      *
      * @param string $id            
-     * @return \AframeVR\Interfaces\Core\Assets\ItemInterface
+     * @return ItemInterface
      */
     public function item(string $id = 'untitled'): AssetItemInterface
     {
@@ -85,7 +85,7 @@ final class Assets
      * <a-scene><a-assets><video>
      *
      * @param string $id            
-     * @return \AframeVR\Interfaces\Core\Assets\ItemInterface
+     * @return AssetVideoInterface
      */
     public function video(string $id = 'untitled'): AssetVideoInterface
     {
@@ -99,7 +99,7 @@ final class Assets
      * mixin directly on element using this mixin.
      *
      * @param string $id            
-     * @return \AframeVR\Interfaces\Core\Assets\MixinInterface
+     * @return MixinInterface
      */
     public function mixin(string $id = 'untitled'): MixinInterface
     {
@@ -110,7 +110,7 @@ final class Assets
      * Setting a timeout
      *
      * @param int $milliseconds            
-     * @return Assets;
+     * @return Assets
      */
     public function timeout(int $milliseconds = 3000)
     {

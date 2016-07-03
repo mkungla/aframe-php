@@ -30,6 +30,15 @@ final class AssetImage extends AssetsAbstract implements AssetImageInterface
 {
 
     /**
+     * Image crossorigin
+     *
+     * @var string
+     */
+    protected $attr_crossorigin;
+
+    /**
+     * Image crossorigin
+     *
      * Asset constructor set asset ID
      *
      * @param string $id            
