@@ -235,7 +235,7 @@ trait AframeDOMProcessor
      */
     protected function appendCDN()
     {
-        $cdn_url = !empty($this->use_cdn) ? $this->cdn_url : sprintf('%s/aframe.min.js',$this->assets_uri);
+        $cdn_url    = !empty($this->use_cdn) ? $this->cdn_url : sprintf('%s/aframe.min.js',$this->assets_uri);
         $cdn_script = $this->docObj->createElement('script');
         $cdn_script->setAttribute('src', $cdn_url);
         $this->head->appendChild($cdn_script);

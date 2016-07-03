@@ -109,7 +109,7 @@ final class Config
     protected function loadComposerJson()
     {
         if($this->configExists()) {
-            $cfg_data = json_decode(file_get_contents($this->getConfigRealPath()), true);
+            $cfg_data       = json_decode(file_get_contents($this->getConfigRealPath()), true);
             $this->cfg_data = $cfg_data['config']['aframe'] ?? null;
         }
     }

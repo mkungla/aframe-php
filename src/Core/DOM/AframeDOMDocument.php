@@ -130,10 +130,7 @@ final class AframeDOMDocument extends DOMImplementation
     public function __construct(Config $config)
     {
         /* Config */
-        $this->format_output = is_bool($config->get('format_output')) ? $config->get('format_output') : false;
-        $this->cdn_url       = is_string($config->get('cdn_url')) ? $config->get('cdn_url') : null;
-        $this->use_cdn       = is_bool($config->get('use_cdn')) ? $config->get('use_cdn') : false;
-        $this->assets_uri    = is_string($config->get('assets_uri')) ? $config->get('assets_uri') : '/aframe';
+        $this->configOptions($config);
         
         /* Create HTML5 Document type */
         $this->createDocType('html');
@@ -263,5 +260,19 @@ final class AframeDOMDocument extends DOMImplementation
         $html_scene = $html->importNode($this->scene, true);
         $html->appendChild($html_scene);
         return $this->format_output ? $this->correctOutputFormat($html->saveHTML()) : $html->saveHTML();
+    }
+    
+    /**
+     * Set configuration option related to DOM
+     * 
+     * @param Config $config
+     * @return void
+     */
+    protected function configOptions(Config $config)
+    {
+        $this->format_output = is_bool($config->get('format_output')) ? $config->get('format_output') : false;
+        $this->cdn_url       = is_string($config->get('cdn_url')) ? $config->get('cdn_url') : null;
+        $this->use_cdn       = is_bool($config->get('use_cdn')) ? $config->get('use_cdn') : false;
+        $this->assets_uri    = is_string($config->get('assets_uri')) ? $config->get('assets_uri') : '/aframe';
     }
 }
