@@ -70,7 +70,6 @@ abstract class ComponentAbstract implements ComponentInterface
         $this->setMethodProvider();
     }
 
-    
     /**
      * Call passes all calls to no existing methods to self::methodProvider
      *
@@ -93,7 +92,7 @@ abstract class ComponentAbstract implements ComponentInterface
             throw new InvalidComponentMethodException($method, $class);
         }
     }
-    
+
     /**
      * Return DOM attribute contents
      *
@@ -101,12 +100,12 @@ abstract class ComponentAbstract implements ComponentInterface
      */
     public function getDomAttributeString(): string
     {
-        $attrs       = $this->getDOMAttributesArray();
+        $attrs = $this->getDOMAttributesArray();
         $attr_format = implode(': %s; ', array_keys($attrs)) . ': %s;';
-    
+        
         return vsprintf($attr_format, array_values($attrs));
     }
-    
+
     /**
      * Set class providing component methods
      *
@@ -190,10 +189,10 @@ abstract class ComponentAbstract implements ComponentInterface
     /**
      * Set Dom Attribute name
      *
-     * @param string $dom_attribute_name
+     * @param string $dom_attribute_name            
      * @return void
      */
-    public function setDomAttributeName(string $dom_attribute_name)
+    public function setDomAttribute(string $dom_attribute_name)
     {
         $this->dom_attribute_name = $dom_attribute_name;
     }

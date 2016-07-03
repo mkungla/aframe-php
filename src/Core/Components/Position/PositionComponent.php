@@ -44,7 +44,7 @@ class PositionComponent extends ComponentAbstract implements PositionInterface
      */
     public function initializeComponent(): bool
     {
-        $this->setDomAttributeName('position');
+        $this->setDomAttribute('position');
         
         return true;
     }

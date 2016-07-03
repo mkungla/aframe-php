@@ -45,7 +45,7 @@ class ScaleComponent extends ComponentAbstract implements ScaleInterface
      */
     public function initializeComponent(): bool
     {
-        $this->setDomAttributeName('scale');
+        $this->setDomAttribute('scale');
         return true;
     }
 

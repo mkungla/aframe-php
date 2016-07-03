@@ -35,9 +35,18 @@ use \Closure;
 
 class Entity implements EntityInterface
 {
-
+    /**
+     * Array of used components
+     * 
+     * @var array $components
+     */
     protected $components = array();
 
+    /**
+     * Array of used animations
+     * 
+     * @var array $animations
+     */
     protected $animations = array();
 
     public function __construct()

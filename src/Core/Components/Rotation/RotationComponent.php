@@ -47,7 +47,7 @@ class RotationComponent extends ComponentAbstract implements RotationInterface
      */
     public function initializeComponent(): bool
     {
-        $this->setDomAttributeName('rotation');
+        $this->setDomAttribute('rotation');
         return true;
     }
     

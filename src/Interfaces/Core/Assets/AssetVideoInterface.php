@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jun 28, 2016 - 3:44:21 PM
+ * Created by   Marko Kungla on Jul 3, 2016 - 7:10:37 PM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         ItemInterface.php
+ * File         AssetVideoInterface.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  ^ @issues      https://github.com/mkungla/aframe-php/issues
@@ -23,8 +23,30 @@
  * @formatter:on */
 namespace AframeVR\Interfaces\Core\Assets;
 
-use \AframeVR\Interfaces\AssetsInterface;
-
-interface ItemInterface extends AssetsInterface
+interface AssetVideoInterface
 {
+
+    /**
+     * Set crossorigin attribute of the video
+     *
+     * @param string $id            
+     * @return void
+     */
+    public function crossorigin(string $crossorigin = 'anonymous'): AssetVideoInterface;
+
+    /**
+     * Autoplay video
+     *
+     * @param bool $autoplay            
+     * @return void
+     */
+    public function autoplay(bool $autoplay = true): AssetVideoInterface;
+
+    /**
+     * Preload video
+     *
+     * @param string $preload            
+     * @return void
+     */
+    public function preload(string $preload = 'auto'): AssetVideoInterface;
 }

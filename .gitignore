@@ -2,7 +2,7 @@
 .buildpath
 composer.phar
 composer.lock
-/public/examples/devel/*
+/public/devel/*
 
 /tests/results/log/*
 /tests/results/report/*

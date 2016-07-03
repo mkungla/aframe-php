@@ -40,7 +40,6 @@ use \AframeVR\Core\Exceptions\InvalidComponentArgumentException;
  */
 class GeometryComponent extends ComponentAbstract implements GeometryInterface
 {
-
     /**
      * Initialize Component
      *
@@ -50,7 +49,7 @@ class GeometryComponent extends ComponentAbstract implements GeometryInterface
      */
     public function initializeComponent(): bool
     {
-        $this->setDomAttributeName('geometry');
+        $this->setDomAttribute('geometry');
         return true;
     }
     
