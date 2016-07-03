@@ -270,9 +270,22 @@ final class AframeDOMDocument extends DOMImplementation
      */
     protected function configOptions(Config $config)
     {
-        $this->format_output = is_bool($config->get('format_output')) ? $config->get('format_output') : false;
-        $this->cdn_url       = is_string($config->get('cdn_url')) ? $config->get('cdn_url') : null;
-        $this->use_cdn       = is_bool($config->get('use_cdn')) ? $config->get('use_cdn') : false;
-        $this->assets_uri    = is_string($config->get('assets_uri')) ? $config->get('assets_uri') : '/aframe';
+        $this->setConfigurationOption($config, 'format_output', false);
+        $this->setConfigurationOption($config, 'cdn_url', null);
+        $this->setConfigurationOption($config, 'use_cdn', false);
+        $this->setConfigurationOption($config, 'assets_uri', '/aframe');
+    }
+    
+    /**
+     * Set individual option
+     * 
+     * @param Config $config
+     * @param string $opt
+     * @param mixed $default
+     * @return void
+     */
+    protected function setConfigurationOption(Config $config, string $opt, $default)
+    {
+        $this->{$opt} = $config->get($opt) ?? $default;
     }
 }
