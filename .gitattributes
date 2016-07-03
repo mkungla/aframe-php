@@ -28,3 +28,4 @@ LICENSE text
 *.svg binary
 *.mtl binary
 *.obj binary
+public/aframe/aframe.min.js -diff binary minified

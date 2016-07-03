@@ -1,7 +1,4 @@
 # Files and directories to ignore
-# Never commit minified JS files
-*.min.js
-
 .buildpath
 composer.phar
 composer.lock
