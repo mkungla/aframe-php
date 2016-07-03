@@ -54,20 +54,6 @@ trait AframeDOMProcessor
     protected $scene_description = '';
     
     /**
-     * CDN Of aframe.js
-     *
-     * @var string
-     */
-    protected $aframe_cdn;
-    
-    /**
-     * Whether to use CDN
-     *
-     * @var bool $use_cdn
-     */
-    protected $use_cdn = false;
-    
-    /**
      * <head>
      *
      * @var \DOMElement
@@ -95,12 +81,37 @@ trait AframeDOMProcessor
      */
     protected $assets;
     
+    /************
+     * CONFIG
+     ***********/
+    
     /**
      * Nicely formats output with indentation and extra space.
      *
      * @var bool
      */
-    protected $formatOutput = false;
+    protected $format_output = false;
+
+    /**
+     * CDN Of aframe.js
+     *
+     * @var string
+     */
+    protected $cdn_url;
+    
+    /**
+     * Whether to use CDN
+     *
+     * @var bool $use_cdn
+     */
+    protected $use_cdn = false;
+    
+    /**
+     * aframe assets URI relative to App's base URL / domain
+     * 
+     * @var string assets_uri
+     */
+    protected $assets_uri;
     
     /**
      * \DOMImplementation::createDocumentType
@@ -136,7 +147,7 @@ trait AframeDOMProcessor
      */
     protected function appendFormatComment(string $element, string $comment)
     {
-        if ($this->formatOutput) {
+        if ($this->format_output) {
             $com = $this->docObj->createComment($comment);
             $this->{$element}->appendChild($com);
         }
@@ -224,11 +235,10 @@ trait AframeDOMProcessor
      */
     protected function appendCDN()
     {
-        if ($this->use_cdn) {
-            $cdn_script = $this->docObj->createElement('script');
-            $cdn_script->setAttribute('src', $this->aframe_cdn);
-            $this->head->appendChild($cdn_script);
-        }
+        $cdn_url = !empty($this->use_cdn) ? $this->cdn_url : sprintf('%s/aframe.min.js',$this->assets_uri);
+        $cdn_script = $this->docObj->createElement('script');
+        $cdn_script->setAttribute('src', $cdn_url);
+        $this->head->appendChild($cdn_script);
     }
 
     /**
@@ -285,7 +295,7 @@ trait AframeDOMProcessor
         /* Create <head> element */
         $this->head = $this->docObj->createElement('head');
         /* Create <body> element */
-        $this->body = $this->docObj->createElement('body', $this->formatOutput ? "\n" : '');
+        $this->body = $this->docObj->createElement('body', $this->format_output ? "\n" : '');
         /* Create <a-scene> element */
         $this->scene = $this->docObj->createElement('a-scene');
         /* Create <a-assets> element */

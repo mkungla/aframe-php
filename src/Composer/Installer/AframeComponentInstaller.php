@@ -372,7 +372,7 @@ class AframeComponentInstaller extends LibraryInstaller
     public function updateConfig()
     {
         $this->aframe_assets_url = $this->composer->getConfig()->get('aframe-url') ?? '/aframe';
-        ;
+        
         $composer_json = $this->getVendorDir() . DIRECTORY_SEPARATOR . 'mkungla' . DIRECTORY_SEPARATOR . 'aframe-php' . DIRECTORY_SEPARATOR . 'composer.json';
         
         if (file_exists($composer_json)) {

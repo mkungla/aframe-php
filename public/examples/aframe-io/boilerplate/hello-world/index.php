@@ -1,13 +1,13 @@
 <?php 
 /* Require autoloader */
-require dirname(__DIR__,4).DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
+require dirname(__DIR__,5).DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
 
 /* Initialize A-FRAME */
 $aframe = new AframeVR\Aframe();
 
 /* Examples specific configuration */
-$aframe->config()->set('formatOutput', true);
-$aframe->config()->set('useCDN', true);
+$aframe->config()->set('format_output', true)
+    ->set('use_cdn', true);
 
 /* $aframe->scene(); === Anonymous scene */
 $aframe->scene()->title('Hello, World! • A-Frame');

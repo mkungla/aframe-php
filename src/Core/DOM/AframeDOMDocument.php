@@ -63,20 +63,6 @@ final class AframeDOMDocument extends DOMImplementation
     protected $scene_description = '';
 
     /**
-     * CDN Of aframe.js
-     *
-     * @var string
-     */
-    protected $aframe_cdn;
-
-    /**
-     * Whether to use CDN
-     *
-     * @var bool $use_cdn
-     */
-    protected $use_cdn = false;
-
-    /**
      * <head>
      *
      * @var \DOMElement
@@ -104,13 +90,38 @@ final class AframeDOMDocument extends DOMImplementation
      */
     protected $assets;
 
+    /************
+     * CONFIG
+     ***********/
+    
     /**
      * Nicely formats output with indentation and extra space.
      *
      * @var bool
      */
-    protected $formatOutput = false;
+    protected $format_output = false;
 
+    /**
+     * CDN Of aframe.js
+     *
+     * @var string
+     */
+    protected $cdn_url;
+    
+    /**
+     * Whether to use CDN
+     *
+     * @var bool $use_cdn
+     */
+    protected $use_cdn = false;
+    
+    /**
+     * aframe assets URI relative to App's base URL / domain
+     * 
+     * @var string assets_uri
+     */
+    protected $assets_uri;
+    
     /**
      * A-Frame DOM
      *
@@ -119,8 +130,10 @@ final class AframeDOMDocument extends DOMImplementation
     public function __construct(Config $config)
     {
         /* Config */
-        $this->formatOutput = is_bool($config->get('formatOutput')) ? $config->get('formatOutput') : false;
-        $this->use_cdn      = is_bool($config->get('useCDN')) ? $config->get('useCDN') : false;
+        $this->format_output = is_bool($config->get('format_output')) ? $config->get('format_output') : false;
+        $this->cdn_url       = is_string($config->get('cdn_url')) ? $config->get('cdn_url') : null;
+        $this->use_cdn       = is_bool($config->get('use_cdn')) ? $config->get('use_cdn') : false;
+        $this->assets_uri    = is_string($config->get('assets_uri')) ? $config->get('assets_uri') : '/aframe';
         
         /* Create HTML5 Document type */
         $this->createDocType('html');
@@ -130,20 +143,6 @@ final class AframeDOMDocument extends DOMImplementation
         
         /* Create boostrap elements */
         $this->documentBootstrap();
-        
-        /* Set CDN of aframe.js */
-        $this->setCDN(is_string($config->get('CDN')) ? $config->get('CDN') : '');
-    }
-
-    /**
-     * Set CDN for aframe.js or min.js
-     *
-     * @param string $cdn            
-     * @return void
-     */
-    public function setCDN(string $cdn)
-    {
-        $this->aframe_cdn = $cdn;
     }
 
     /**
@@ -153,7 +152,7 @@ final class AframeDOMDocument extends DOMImplementation
      */
     public function render(): string
     {
-        $this->docObj->formatOutput = $this->formatOutput;
+        $this->docObj->formatOutput = $this->format_output;
         
         $html = $this->docObj->getElementsByTagName('html')->item(0);
         /* Make sure we do not add duplicates when render is called multiple times */
@@ -166,7 +165,7 @@ final class AframeDOMDocument extends DOMImplementation
             
             $html->appendChild($this->body);
         }
-        return $this->formatOutput ? $this->correctOutputFormat($this->docObj->saveHTML()) : $this->docObj->saveHTML();
+        return $this->format_output ? $this->correctOutputFormat($this->docObj->saveHTML()) : $this->docObj->saveHTML();
     }
 
     /**
@@ -213,7 +212,7 @@ final class AframeDOMDocument extends DOMImplementation
     public function appendAssets(array $assets)
     {
         if (! empty($assets)) {
-            if ($this->formatOutput) {
+            if ($this->format_output) {
                 $com = $this->docObj->createComment('');
                 $this->scene->appendChild($com);
             }
@@ -259,10 +258,10 @@ final class AframeDOMDocument extends DOMImplementation
     public function renderSceneOnly()
     {
         $html               = new DOMDocument();
-        $html->formatOutput = $this->formatOutput;
+        $html->formatOutput = $this->format_output;
         
         $html_scene = $html->importNode($this->scene, true);
         $html->appendChild($html_scene);
-        return $this->formatOutput ? $this->correctOutputFormat($html->saveHTML()) : $html->saveHTML();
+        return $this->format_output ? $this->correctOutputFormat($html->saveHTML()) : $html->saveHTML();
     }
 }

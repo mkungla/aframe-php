@@ -71,11 +71,13 @@ final class Config
      * Set configuration value
      *
      * @param string $key            
-     * @param mixed $val            
+     * @param mixed $val    
+     * @return Config        
      */
-    public function set(string $key, $val)
+    public function set(string $key, $val) : Config
     {
         $this->config_vars[$key] = $val;
+        return $this;
     }
 
     /**
@@ -100,14 +102,16 @@ final class Config
 
     /**
      * Load contents of aframe-php cmposer.json
+     * and read aframe config
      *
-     * @return array|null
+     * @return void
      */
     protected function loadComposerJson()
     {
-        return $this->configExists() 
-        ? $this->cfg_data = json_decode(file_get_contents($this->getConfigRealPath()), true) 
-        : null;
+        if($this->configExists()) {
+            $cfg_data = json_decode(file_get_contents($this->getConfigRealPath()), true);
+            $this->cfg_data = $cfg_data['config']['aframe'] ?? null;
+        }
     }
 
     /**
@@ -117,10 +121,9 @@ final class Config
      */
     protected function defineVars()
     {
-        $this->set('DIR', $this->cfg_data['config']['aframe-dir'] ?? 'public/aframe');
-        $this->set('URL', $this->cfg_data['config']['aframe-url'] ?? '/aframe');
-        $this->set('CDN', $this->cfg_data['config']['aframe-cdn'] ?? 'https://aframe.io/releases/latest/aframe.min.js');
-        $this->set('formatOutput',! empty($this->cfg_data['config']['aframe-formatOutput']) ? true : false);
-        $this->set('useCDN',! empty($this->cfg_data['config']['aframe-useCDN']) ? true : false);
+        $this->set('assets_uri', $this->cfg_data['assets_uri'] ?? '/aframe');
+        $this->set('cdn_url', $this->cfg_data['cdn_url'] ?? '');
+        $this->set('format_output',! empty($this->cfg_data['format_output']) ? true : false);
+        $this->set('use_cdn',! empty($this->cfg_data['use_cdn']) ? true : false);
     }
 }

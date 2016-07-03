@@ -1,14 +1,30 @@
 # Git attributes to ignore selection of files and directories
 # when publishing any of releases release.
-
-# Exclude git files and other files starting with .
 .* export-ignore
-
-# Exclude examples
-public/examples export-ignore
-
-# Exclude tests
-test export-ignore
-
-# Exclude vendor directory
+tests export-ignore
 vendor export-ignore
+
+# end-of-line normalization
+# how diffs are generated 
+# for which files we don't want git to compute or print a diff for changes
+*.php	diff=php
+* text=auto
+* eol=lf
+*.js text
+*.html text
+*.md text
+.gitattributes text
+.gitignore text
+.howiattributes text
+.scrutinizer.yml text
+.travis.yml text
+composer.json text
+LICENSE text
+
+# binary does unset -text and -diff
+*.jpg  binary image
+*.jpeg binary image
+*.png binary image
+*.svg binary
+*.mtl binary
+*.obj binary

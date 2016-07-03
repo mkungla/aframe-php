@@ -1,7 +1,7 @@
 {
 	"name" : "mkungla/aframe-php",
 	"description" : "Work in progress...",
-	"type" : "composer-plugin",
+	"type" : "library",
 	"license" : "MIT",
     "require": {
         	"php": ">= 7",
@@ -23,9 +23,12 @@
 	},
 	"config" : {
 		"optimize-autoloader" : true,
-		"aframe-dir": "public/aframe",
-		"aframe-url": "/aframe",
-		"aframe-cdn": "https://aframe.io/releases/0.2.0/aframe.min.js"
+		"aframe":{
+			"assets_uri": "/aframe",
+			"cdn_url":"https://aframe.io/releases/0.2.0/aframe.min.js",
+			"format_output": false,
+			"use_cdn": false
+		}
 	},
 	"homepage" : "https://github.com/mkungla/aframe-php",
 	"authors" : [{

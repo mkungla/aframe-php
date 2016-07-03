@@ -1,7 +1,7 @@
 filter:
     excluded_paths:
         - 'doc/*'
-        - 'public/examples/*'
+        - 'public/*'
         - 'src/Composer/Installer/*'
         - 'tests/*'
         - 'tmp/*'
