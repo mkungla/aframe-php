@@ -29,8 +29,6 @@ use \AframeVR\Core\Helpers\MeshAttributes;
 
 class Camera extends Entity implements CameraInterface
 {
-    use MeshAttributes;
-
     /**
      * Init <a-box>
      *
@@ -44,6 +42,8 @@ class Camera extends Entity implements CameraInterface
     public function init()
     {
         $this->entity()->component('Camera');
+        $this->lookControls(true);
+        $this->wasdControls(true);
     }
 
     /**
@@ -138,6 +138,20 @@ class Camera extends Entity implements CameraInterface
     public function wasdControls(bool $wasd_controls = true): CameraInterface
     {
         $this->entity()->component('WASDControls')->enabled($wasd_controls);
+        return $this;
+    }
+    
+    /**
+     * camera.zoom
+     * 
+     * {@inheritdoc}
+     * 
+     * @param int|float $zoom
+     * @return CameraInterface
+     */
+    public function zoom(float $zoom = 1): CameraInterface
+    {
+        $this->entity()->component('Camera')->zoom($zoom);
         return $this;
     }
 }

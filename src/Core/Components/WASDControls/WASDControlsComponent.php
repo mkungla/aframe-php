@@ -39,4 +39,17 @@ class WASDControlsComponent extends ComponentAbstract
         $this->setDomAttribute('wasd-controls');
         return true;
     }
+    
+    /**
+     * wasd-controls enabled
+     *
+     * Whether the WASD controls are enabled.
+     *
+     * @param bool $enabled
+     * @return void
+     */
+    public function enabled(bool $enabled = true)
+    {
+        $this->dom_attributes['enabled'] = $enabled ? 'true' : 'false';
+    }
 }

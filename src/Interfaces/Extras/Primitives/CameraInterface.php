@@ -74,4 +74,12 @@ interface CameraInterface extends PrimitiveInterface
      * @return CameraInterface
      */
     public function wasdControls(bool $wasd_controls = true): CameraInterface;
+    
+    /**
+     * camera.zoom
+     *
+     * @param int|float $zoom
+     * @return CameraInterface
+     */
+    public function zoom(float $zoom = 1): CameraInterface;
 }

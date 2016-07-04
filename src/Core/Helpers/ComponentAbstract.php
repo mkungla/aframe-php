@@ -32,31 +32,27 @@ use \DOMAttr;
 
 abstract class ComponentAbstract implements ComponentInterface
 {
-
     /**
      * Array of dom attributes
-     *
+     * 
      * @var array
      */
     protected $dom_attributes = array();
-
     /**
      * Array of component scripts
-     *
+     * 
      * @var array
      */
     protected $component_scripts = array();
-
     /**
      * Name of DOM attribute
-     *
+     * 
      * @var string
      */
     protected $dom_attribute_name;
-
     /**
      * Loaded Component Method object
-     *
+     * 
      * @var object
      */
     protected $methodProvider;
@@ -72,22 +68,22 @@ abstract class ComponentAbstract implements ComponentInterface
 
     /**
      * Call passes all calls to no existing methods to self::methodProvider
-     *
-     * @param string $method            
-     * @param array $args            
+     * 
+     * @param string $method
+     * @param array $args
      * @throws InvalidComponentMethodException
      */
-    public function __call(string $method, $args)
+    public function __call( string $method, $args)
     {
         if (is_object($this->methodProvider) && method_exists($this->methodProvider, $method)) {
             array_unshift($args, 0);
             $args[0] = &$this->dom_attributes;
-            
-            return call_user_func_array(array(
-                $this->methodProvider,
-                (string) $method
-            ), $args);
-        } else {
+            return call_user_func_array(
+                array(
+                    $this->methodProvider,
+                    (string) $method
+                ), $args);
+        } elseif (is_object($this->methodProvider)) {
             $class = is_object($this->methodProvider) ? get_class($this->methodProvider) : get_called_class();
             throw new InvalidComponentMethodException($method, $class);
         }
@@ -95,33 +91,31 @@ abstract class ComponentAbstract implements ComponentInterface
 
     /**
      * Return DOM attribute contents
-     *
+     * 
      * @return string
      */
     public function getDomAttributeString(): string
     {
-        $attrs       = $this->getDOMAttributesArray();
+        $attrs = $this->getDOMAttributesArray();
         $attr_format = implode(': %s; ', array_keys($attrs)) . ': %s;';
-        
         return vsprintf($attr_format, array_values($attrs));
     }
 
     /**
      * Set class providing component methods
-     *
-     * @param string $mp            
+     * 
+     * @param string $mp
      * @return void
      */
-    public function setMethodProvider(string $mp = 'DefaultMethods')
+    public function setMethodProvider( string $mp = 'DefaultMethods')
     {
         $mp_class = substr(get_called_class(), 0, strrpos(get_called_class(), '\\')) . '\Methods\\' . $mp;
-        
-        $this->methodProvider = new $mp_class();
+        $this->methodProvider = class_exists($mp_class) ? new $mp_class() : null;
     }
 
     /**
      * Does component have DOM Atributes
-     *
+     * 
      * {@inheritdoc}
      *
      * @return bool
@@ -133,7 +127,7 @@ abstract class ComponentAbstract implements ComponentInterface
 
     /**
      * Get component DOM Atributes array
-     *
+     * 
      * {@inheritdoc}
      *
      * @return array
@@ -145,7 +139,7 @@ abstract class ComponentAbstract implements ComponentInterface
 
     /**
      * Get Component scripts
-     *
+     * 
      * {@inheritdoc}
      *
      * @return array
@@ -157,18 +151,18 @@ abstract class ComponentAbstract implements ComponentInterface
 
     /**
      * Add component scripts
-     *
+     * 
      * {@inheritdoc}
      *
      */
-    public function addComponentScripts(string $vendor_component, string $script_name)
+    public function addComponentScripts( string $vendor_component, string $script_name)
     {
         $this->component_scripts[$vendor_component] = $script_name;
     }
 
     /**
      * Get DOMAttr for the entity
-     *
+     * 
      * @return DOMAttr
      */
     public function getDOMAttr(): DOMAttr
@@ -178,7 +172,7 @@ abstract class ComponentAbstract implements ComponentInterface
 
     /**
      * Get Dom attribute name
-     *
+     * 
      * @return string
      */
     public function getDomAttributeName(): string
@@ -188,11 +182,11 @@ abstract class ComponentAbstract implements ComponentInterface
 
     /**
      * Set Dom Attribute name
-     *
-     * @param string $dom_attribute_name            
+     * 
+     * @param string $dom_attribute_name
      * @return void
      */
-    public function setDomAttribute(string $dom_attribute_name)
+    public function setDomAttribute( string $dom_attribute_name)
     {
         $this->dom_attribute_name = $dom_attribute_name;
     }

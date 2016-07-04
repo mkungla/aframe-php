@@ -27,4 +27,46 @@ use \AframeVR\Interfaces\ComponentInterface;
 
 interface CameraInterface extends ComponentInterface
 {
+
+    /**
+     * Camera active
+     *
+     * Whether the camera is currently the active camera in a scene with multiple cameras.
+     *
+     * @param bool $active            
+     * @return void
+     */
+    public function active(bool $active = false);
+
+    /**
+     * Camera frustum far clipping plane.
+     *
+     * @param int|float $far            
+     * @return void
+     */
+    public function far(float $far = 10000);
+
+    /**
+     * Field of view (in degrees).
+     *
+     * @param int $fov            
+     * @return void
+     */
+    public function fov(int $fov = 80);
+
+    /**
+     * Camera frustum near clipping plane.
+     *
+     * @param float $near            
+     * @return void
+     */
+    public function near(float $near = 0.5);
+    
+    /**
+     * Camera zoom
+     *
+     * @param float $zoom
+     * @return void
+     */
+    public function zoom(float $zoom = 1);
 }

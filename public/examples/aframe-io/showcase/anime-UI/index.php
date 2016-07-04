@@ -60,7 +60,11 @@ $aframe->scene()->camera()
     ->rotation(0, 28, 0)
     ->near(0.1);
 
-
+$aframe->scene()->colladaModel()
+    ->src('#engine')
+    ->position(0, 0, -3)
+    ->rotation(90, 0, 0)
+    ->scale(18, 18, 18);
 /* Render scene */
 $aframe->scene()->render();
 

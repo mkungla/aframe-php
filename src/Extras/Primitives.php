@@ -29,7 +29,8 @@ use \AframeVR\Extras\Primitives\{
     Cylinder,
     Plane,
     Sky,
-    Camera
+    Camera,
+    ColladaModel
 };
 use \AframeVR\Core\Entity;
 
@@ -46,38 +47,45 @@ trait Primitives
     /**
      * Sphere primitives
      *
-     * @var array $spheres
+     * @var array
      */
     protected $spheres = array();
 
     /**
      * Box primitives
      * 
-     * @var array $boxes
+     * @var array
      */
     protected $boxes = array();
 
     /**
      * Cylinder primitives
      * 
-     * @var array $cylinders
+     * @var array
      */
     protected $cylinders = array();
 
     /**
      * Plane primitives
      * 
-     * @var array $planes
+     * @var array
      */
     protected $planes = array();
     
     /**
      * Camera primitives
      * 
-     * @var array $cameras
+     * @var array
      */
     protected $cameras = array();
 
+    /**
+     * collada-model primitives
+     * 
+     * @var array
+     */
+    protected $collada_models = array();
+    
     /**
      *
      * @var \AframeVR\Extras\Primitives\Sky $sky
@@ -140,6 +148,17 @@ trait Primitives
     }
     
     /**
+     * A-Frame Primitive collada-model
+     *
+     * @param string $name
+     * @return Entity
+     */
+    public function colladaModel(string $name = 'untitled'): Entity
+    {
+        return $this->collada_models[$name] ?? $this->collada_models[$name] = new ColladaModel();
+    }
+    
+    /**
      * A-Frame Primitive sky
      *
      * @return Entity
@@ -158,11 +177,11 @@ trait Primitives
     {
         /* Primitive collections */
         $this->aframeDomObj->appendEntities($this->cameras);
-        
         $this->aframeDomObj->appendEntities($this->boxes);
         $this->aframeDomObj->appendEntities($this->spheres);
         $this->aframeDomObj->appendEntities($this->cylinders);
         $this->aframeDomObj->appendEntities($this->planes);
+        $this->aframeDomObj->appendEntities($this->collada_models);
         
         /* Primitives which only one can be present */
         (! $this->sky) ?: $this->aframeDomObj->appendEntity($this->sky);

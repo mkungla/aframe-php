@@ -23,13 +23,15 @@
  * @formatter:on */
 namespace AframeVR\Core\Components\LookControls;
 
+use \AframeVR\Interfaces\Core\Components\LookControls\LookControlsInterface;
 use \AframeVR\Core\Helpers\ComponentAbstract;
 
-class LookControlsComponent extends ComponentAbstract 
+class LookControlsComponent extends ComponentAbstract implements LookControlsInterface
 {
+
     /**
      * Initialize Component
-     *
+     * 
      * {@inheritdoc}
      *
      * @return bool
@@ -38,5 +40,19 @@ class LookControlsComponent extends ComponentAbstract
     {
         $this->setDomAttribute('look-controls');
         return true;
+    }
+
+    /**
+     * look-controls enabled
+     * Whether look controls are enabled.
+     * 
+     * @param array $dom_attributes
+     * @param bool $enabled
+     * @return LookControlsAbstract
+     */
+    public function enabled( bool $enabled = true): LookControlsInterface
+    {
+        $this->dom_attributes['enabled'] = $enabled ? 'true' : 'false';
+        return $this;
     }
 }
