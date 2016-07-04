@@ -14,7 +14,7 @@
  * File         Camera.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
@@ -25,7 +25,6 @@ namespace AframeVR\Extras\Primitives;
 
 use \AframeVR\Interfaces\Extras\Primitives\CameraInterface;
 use \AframeVR\Core\Entity;
-use \AframeVR\Core\Helpers\MeshAttributes;
 
 class Camera extends Entity implements CameraInterface
 {

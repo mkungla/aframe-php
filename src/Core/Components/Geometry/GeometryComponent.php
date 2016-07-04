@@ -14,7 +14,7 @@
  * File         GeometryComponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
@@ -23,22 +23,11 @@
  * @formatter:on */
 namespace AframeVR\Core\Components\Geometry;
 
-use \AframeVR\Interfaces\Core\Components\Geometry\GeometryInterface;
+use \AframeVR\Interfaces\Core\Components\GeometryCMPTIF;
 use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Core\Exceptions\InvalidComponentArgumentException;
 
-/**
- * AframeVR\Core\Components\Geometry
- *
- * The geometry component provides a basic shape for an entity.
- * The general geometry is defined by the primitive property.
- * Geometric primitives, in computer graphics, means an extremely
- * basic shape. With the primitive defined, additional properties
- * are used to further define the geometry. A material component
- * is usually defined alongside to provide a appearance
- * alongside the shape to create a complete mesh.
- */
-class GeometryComponent extends ComponentAbstract implements GeometryInterface
+class GeometryComponent extends ComponentAbstract implements GeometryCMPTIF
 {
     /**
      * Initialize Component
@@ -56,7 +45,7 @@ class GeometryComponent extends ComponentAbstract implements GeometryInterface
     /**
      * Set geometry primitive
      *
-     * One of box, circle, cone, cylinder, plane, ring, sphere, torus, torusKnot.
+     * {@inheritdoc}
      *
      * @param string $primitive            
      * @throws InvalidComponentArgumentException

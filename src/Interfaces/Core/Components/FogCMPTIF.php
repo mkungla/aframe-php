@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jun 21, 2016 - 11:45:19 AM
+ * Created by   Marko Kungla on Jun 29, 2016 - 10:42:59 AM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         PrimitiveInterface.php
+ * File         FogCMPTIF.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  * @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,30 +21,36 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces;
+namespace AframeVR\Interfaces\Core\Components;
 
-use \AframeVR\Interfaces\EntityInterface;
+use \AframeVR\Interfaces\ComponentInterface;
 
-interface PrimitiveInterface extends EntityInterface
+/**
+ * Fog Component Interface
+ *
+ * The fog component obscures entities in fog given distance from the camera. The fog component applies only to the
+ * <a-scene> element.
+ */
+interface FogCMPTIF extends ComponentInterface
 {
 
     /**
-     * Init
+     * Fog type
      *
-     * Primitve init called from entir=ty constructor must load all components for this primitive
-     * Ex: $this->component('Position')
+     * Type of fog distribution. Can be linear or exponential.
      *
+     * @param string $type            
      * @return void
      */
-    public function init();
+    public function type(string $type = 'linear');
 
     /**
-     * Set defaults
+     * Fog color
      *
-     * Defaults method is called in primitvie constructor to set
-     * primitives default values for loaded components.
+     * Color of fog. For example, if set to black, far away objects will be rendered black.
      *
+     * @param string $color            
      * @return void
      */
-    public function defaults();
+    public function color(string $color = '#000');
 }

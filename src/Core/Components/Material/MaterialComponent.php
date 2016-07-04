@@ -14,7 +14,7 @@
  * File         MaterialComponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
@@ -23,23 +23,12 @@
  * @formatter:on */
 namespace AframeVR\Core\Components\Material;
 
-use \AframeVR\Interfaces\Core\Components\Material\MaterialInterface;
+use \AframeVR\Interfaces\Core\Components\MaterialCMPTIF;
 use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Core\Exceptions\BadShaderCallException;
 use \AframeVR\Interfaces\ShaderInterface;
 
-/**
- * AframeVR\Core\Components\Material
- *
- * The material component defines the appearance of an entity.
- * The built-in shaders allow us to define properties such as color,
- * opacity, or textures. Custom shaders can be registered to extend
- * the material component to allow for a wide range of visual effects.
- * The geometry component can be defined alongside to provide a shape alongside
- * the appearance to create a complete mesh. The material component is coupled to shaders.
- * Some of the built-in shading models will provide properties like color or texture to the material component.
- */
-class MaterialComponent extends ComponentAbstract implements MaterialInterface
+class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
 {
 
     private $shaderObj;
@@ -93,6 +82,58 @@ class MaterialComponent extends ComponentAbstract implements MaterialInterface
         return $this->shaderObj ?? null;
     }
 
+    /**
+     * opacity
+     *
+     * {@inheritdoc}
+     *
+     * @param float $opacity            
+     * @return void
+     */
+    public function opacity(float $opacity = 1.0)
+    {
+        $this->dom_attributes['opacity'] = $opacity;
+    }
+    
+    /**
+     * transparent
+     *
+     * {@inheritdoc}
+     *
+     * @param bool $transparent            
+     * @return void
+     */
+    public function transparent(bool $transparent = false)
+    {
+        $this->dom_attributes['transparent'] = $transparent ? 'true' : 'false';
+    }
+    
+    /**
+     * depthTest
+     *
+     * {@inheritdoc}
+     *
+     * @param bool $depth_test
+     * @return void
+     */
+    public function depthTest(bool $depth_test = true)
+    {
+        $this->dom_attributes['depthTest'] = $depth_test ? 'true' : 'false';
+    }
+    
+    /**
+     * side
+     *
+     * {@inheritdoc}
+     *
+     * @param string $side            
+     * @return void
+     */
+    public function side(string $side = 'front')
+    {
+        $this->dom_attributes['side'] = $side;
+    }
+    
     /**
      * Prepare Shader attributes
      *

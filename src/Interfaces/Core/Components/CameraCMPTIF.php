@@ -11,21 +11,29 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         CameraInterface.php
+ * File         CameraCMPTIF.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Core\Components\Camera;
+namespace AframeVR\Interfaces\Core\Components;
 
 use \AframeVR\Interfaces\ComponentInterface;
 
-interface CameraInterface extends ComponentInterface
+/**
+ * Camera Component Interface
+ *
+ * The camera component defines from which perspective the user views the scene.
+ * It is often paired with controls-related components that allow user input to move and rotate the camera.
+ * When the active property is toggled, the component will notify the camera system
+ * to change the current camera used by the renderer.
+ */
+interface CameraCMPTIF extends ComponentInterface
 {
 
     /**
@@ -34,39 +42,39 @@ interface CameraInterface extends ComponentInterface
      * Whether the camera is currently the active camera in a scene with multiple cameras.
      *
      * @param bool $active            
-     * @return void
+     * @return CameraCMPTIF
      */
-    public function active(bool $active = false);
+    public function active(bool $active = false): CameraCMPTIF;
 
     /**
      * Camera frustum far clipping plane.
      *
      * @param int|float $far            
-     * @return void
+     * @return CameraCMPTIF
      */
-    public function far(float $far = 10000);
+    public function far(float $far = 10000): CameraCMPTIF;
 
     /**
      * Field of view (in degrees).
      *
      * @param int $fov            
-     * @return void
+     * @return CameraCMPTIF
      */
-    public function fov(int $fov = 80);
+    public function fov(int $fov = 80): CameraCMPTIF;
 
     /**
      * Camera frustum near clipping plane.
      *
      * @param float $near            
-     * @return void
+     * @return CameraCMPTIF
      */
-    public function near(float $near = 0.5);
-    
+    public function near(float $near = 0.5): CameraCMPTIF;
+
     /**
      * Camera zoom
      *
-     * @param int|float $zoom
-     * @return void
+     * @param int|float $zoom            
+     * @return CameraCMPTIF
      */
-    public function zoom(float $zoom = 1);
+    public function zoom(float $zoom = 1): CameraCMPTIF;
 }

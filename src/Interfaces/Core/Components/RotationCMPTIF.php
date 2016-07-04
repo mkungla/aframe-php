@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jun 29, 2016 - 10:16:01 AM
+ * Created by   Marko Kungla on Jun 28, 2016 - 9:04:41 PM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,50 +11,50 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         CanvasInterface.php
+ * File         RotationCMPTIF.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Core\Components\Canvas;
+namespace AframeVR\Interfaces\Core\Components;
 
 use \AframeVR\Interfaces\ComponentInterface;
 
-interface CanvasInterface extends ComponentInterface
+/**
+ * Rotation Component Interface
+ *
+ * The rotation component defines the orientation of an entity. It takes the roll (x), pitch (y), and yaw (z) as three
+ * space-delimited numbers indicating degrees of rotation.
+ */
+interface RotationCMPTIF extends ComponentInterface
 {
 
     /**
-     * Canvas Selector
+     * Roll, rotation about the X-axis.
      *
-     * Selector to a canvas element that exists on the page.
-     *
-     * @param null|string $active            
+     * @param double $roll            
      * @return void
      */
-    public function canvas(string $active = null);
+    public function roll(float $roll);
 
     /**
-     * Canvas height
+     * Pitch, rotation about the Y-axis.
      *
-     * Height of the injected canvas, in percentage.
-     *
-     * @param int|float $height            
+     * @param double $pitch            
      * @return void
      */
-    public function height(float $height = 100);
+    public function pitch(float $pitch);
 
     /**
-     * Canvas width
+     * Yaw, rotation about the Z-axis.
      *
-     * Height of the injected canvas, in percentage.
-     *
-     * @param int|float $width            
+     * @param double $yaw            
      * @return void
      */
-    public function width(float $width = 100);
+    public function yaw(float $yaw);
 }

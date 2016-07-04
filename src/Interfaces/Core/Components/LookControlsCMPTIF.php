@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         LookControlsInterface.php
+ * File         LookControlsCMPTIF.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  * @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,19 +21,31 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Core\Components\LookControls;
+namespace AframeVR\Interfaces\Core\Components;
 
 use \AframeVR\Interfaces\ComponentInterface;
 
-interface LookControlsInterface extends ComponentInterface
+/**
+ * Look Controls Component Interface (look-controls)
+ *
+ * The look-controls component defines the following behavior of an entity. The look-controls component acts upon the
+ * HMD headset, mouse, and touchscreen inputs. A-Frame standard controls are grouped together based upon configuration
+ * and behavior rather than by individual input methods:
+ *
+ * - Rotate when the head-mounted display (HMD) is rotated.
+ * - Rotate when the mouse is clicked and dragged.
+ * - Rotate when the touchscreen is tapped and dragged.
+ */
+interface LookControlsCMPTIF extends ComponentInterface
 {
+
     /**
      * look-controls enabled
      *
      * Whether look controls are enabled.
      *
-     * @param bool $enabled
-     * @return LookControlsInterface
+     * @param bool $enabled            
+     * @return LookControlsCMPTIF
      */
-    public function enabled(bool $enabled = true) : LookControlsInterface;
+    public function enabled(bool $enabled = true): LookControlsCMPTIF;
 }

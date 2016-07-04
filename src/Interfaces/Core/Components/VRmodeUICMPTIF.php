@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jun 28, 2016 - 8:58:18 PM
+ * Created by   Marko Kungla on Jul 4, 2016 - 10:59:36 PM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,27 +11,36 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         PositionInterface.php
+ * File         VRmodeUICMPTIF.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Core\Components\Position;
+namespace AframeVR\Interfaces\Core\Components;
 
 use \AframeVR\Interfaces\ComponentInterface;
 
-interface PositionInterface extends ComponentInterface
+/**
+ * VRmodeUI Component Interface (vr-mode-ui)
+ *
+ * The vr-mode-ui component toggles UI such as an Enter VR button, compatibility modal, and orientation modal for
+ * mobile. The vr-mode-ui component applies only to the <a-scene> element.
+ */
+interface VRmodeUICMPTIF extends ComponentInterface
 {
 
     /**
-     * Get current position coordinates
+     * Enable vr-mode-ui
      *
-     * @return string
+     * Whether or not to display UI related to entering VR.
+     *
+     * @param bool $enabled            
+     * @return void
      */
-    public function getPosition(): string;
+    public function enabled(bool $enabled = true);
 }

@@ -50,11 +50,12 @@ class MaterialComponentTest extends PHPUnit_Framework_TestCase
         $this->component->opacity(2);
         $this->component->transparent(true);
         $this->component->side('front');
-        
+        $this->component->depthTest();
         $attrs = $this->component->getDOMAttributesArray();
         
         $this->assertArrayHasKey('opacity', $attrs);
         $this->assertArrayHasKey('transparent', $attrs);
         $this->assertArrayHasKey('side', $attrs);
+        $this->assertArrayHasKey('depthTest', $attrs);
     }
 }

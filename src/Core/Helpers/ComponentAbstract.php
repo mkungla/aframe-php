@@ -14,7 +14,7 @@
  * File         ComponentAbstract.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
@@ -63,7 +63,6 @@ abstract class ComponentAbstract implements ComponentInterface
     public function __construct()
     {
         $this->initializeComponent();
-        $this->setMethodProvider();
     }
 
     /**

@@ -14,7 +14,7 @@
  * File         CameraComponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
@@ -23,11 +23,12 @@
  * @formatter:on */
 namespace AframeVR\Core\Components\Camera;
 
-use \AframeVR\Interfaces\Core\Components\Camera\CameraInterface;
+use \AframeVR\Interfaces\Core\Components\CameraCMPTIF;
 use \AframeVR\Core\Helpers\ComponentAbstract;
 
-class CameraComponent extends ComponentAbstract implements CameraInterface
+class CameraComponent extends ComponentAbstract implements CameraCMPTIF
 {
+
     /**
      * Initialize Component
      *
@@ -40,61 +41,74 @@ class CameraComponent extends ComponentAbstract implements CameraInterface
         $this->setDomAttribute('camera');
         return true;
     }
-    
+
     /**
      * Camera active
      *
-     * Whether the camera is currently the active camera in a scene with multiple cameras.
+     * {@inheritdoc}
      *
-     * @param bool $active
-     * @return void
+     * @param bool $active            
+     * @return CameraCMPTIF
      */
-    public function active(bool $active = false)
+    public function active(bool $active = false): CameraCMPTIF
     {
         $this->dom_attributes['active'] = $active;
+        return $this;
     }
-    
+
     /**
      * Camera frustum far clipping plane.
      *
-     * @param int|float $far
-     * @return void
+     * {@inheritdoc}
+     *
+     * @param int|float $far            
+     * @return CameraCMPTIF
      */
-    public function far(float $far = 10000)
+    public function far(float $far = 10000): CameraCMPTIF
     {
         $this->dom_attributes['far'] = $far;
+        return $this;
     }
-    
+
     /**
      * Field of view (in degrees).
      *
-     * @param int $fov
-     * @return void
+     * {@inheritdoc}
+     *
+     * @param int $fov            
+     * @return CameraCMPTIF
      */
-    public function fov(int $fov = 80)
+    public function fov(int $fov = 80): CameraCMPTIF
     {
         $this->dom_attributes['fov'] = $fov;
+        return $this;
     }
-    
+
     /**
      * Camera frustum near clipping plane.
      *
-     * @param float $near
-     * @return void
+     * {@inheritdoc}
+     *
+     * @param float $near            
+     * @return CameraCMPTIF
      */
-    public function near(float $near = 0.5)
+    public function near(float $near = 0.5): CameraCMPTIF
     {
         $this->dom_attributes['near'] = $near;
+        return $this;
     }
-    
+
     /**
      * Camera zoom
      *
-     * @param int|float $zoom
-     * @return void
+     * {@inheritdoc}
+     *
+     * @param int|float $zoom            
+     * @return CameraCMPTIF
      */
-    public function zoom(float $zoom = 1)
+    public function zoom(float $zoom = 1): CameraCMPTIF
     {
         $this->dom_attributes['zoom'] = $zoom;
+        return $this;
     }
 }

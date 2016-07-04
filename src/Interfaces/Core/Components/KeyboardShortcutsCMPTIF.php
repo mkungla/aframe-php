@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jun 29, 2016 - 10:31:50 AM
+ * Created by   Marko Kungla on Jul 4, 2016 - 10:03:35 PM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,43 +11,46 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         CursorInterface.php
+ * File         KeyboardShortcutsCMPTIF.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Core\Components\Cursor;
+namespace AframeVR\Interfaces\Core\Components;
 
 use \AframeVR\Interfaces\ComponentInterface;
 
 /**
- * Note, to further customize the cursor component, we can set the properties of the raycaster component.
+ * Keyboard Shortcuts Component (keyboard-shortcuts)
+ *
+ * The keyboard-shortcuts component toggles global keyboard shortcuts. The keyboard-shortcuts component applies only to
+ * the <a-scene> element
  */
-interface CursorInterface extends ComponentInterface
+interface KeyboardShortcutsCMPTIF extends ComponentInterface
 {
 
     /**
-     * Whether cursor is fuse-based.
+     * enterVR
      *
-     * false on desktop, true on mobile
+     * Enables the shortcut to press ‘F’ to enter VR.
      *
-     * @param bool $fuse
-     * @return void            
+     * @param bool $enter_vr            
+     * @return void
      */
-    public function fuse(bool $fuse = false);
+    public function enterVR(bool $enter_vr);
 
     /**
-     * fuseTimeout
+     * resetSensor
      *
-     * How long to wait (in milliseconds) before triggering a fuse-based click event.
+     * Enables to shortcut to press ‘Z’ to reset the sensor.
      *
-     * @param int $timeout
+     * @param bool $reset_sensor
      * @return void            
      */
-    public function fuseTimeout(int $timeout = 1500);
+    public function resetSensor(bool $reset_sensor);
 }
