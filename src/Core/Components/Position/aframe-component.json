@@ -1,9 +1,4 @@
 {
 	"name":"position",
-	"description":"The position component defines where an entity is placed in the scene's world space. It takes a coordinate value as three space-delimited numbers.",
-	"desc-extra":{
-		"All entities inherently have the position component."
-	},
-	"doc":"",
-	"requires":{}
+	"description":"The position component defines where an entity is placed in the scene's world space. It takes a coordinate value as three space-delimited numbers."
 }

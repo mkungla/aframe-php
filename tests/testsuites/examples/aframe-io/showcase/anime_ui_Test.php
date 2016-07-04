@@ -8,15 +8,14 @@ class anime_ui_Test extends PHPUnit_Framework_TestCase
     // Setup function to instantiate de object to $this->scrap
     protected function setUp()
     {
-        $this->ex_root_path = dirname(__FILE__, 6) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 
+        $this->ex_root_path = dirname(__FILE__, 6) . DIRECTORY_SEPARATOR . 'tmp' . DIRECTORY_SEPARATOR . 
             'examples' . DIRECTORY_SEPARATOR . 'aframe-io' . DIRECTORY_SEPARATOR . 'showcase' . DIRECTORY_SEPARATOR . 'anime-UI';
         $this->ex_page_path = $this->ex_root_path . DIRECTORY_SEPARATOR . 'index.html';
         $this->ex_scene_path = $this->ex_root_path . DIRECTORY_SEPARATOR . 'scene.html';
         $aframe = new AframeVR\Aframe();
 
         /* Examples specific configuration */
-        $aframe->config()->set('format_output', true)
-            ->set('use_cdn', true);
+        $aframe->config()->set('format_output', true);
         
         /* $aframe->scene(); === Anonymous scene */
         $aframe->scene()->title('Anime UI');
@@ -70,6 +69,11 @@ class anime_ui_Test extends PHPUnit_Framework_TestCase
             ->src('img/text3.png');
         $aframe->scene()->asset()->img('text4')
             ->src('img/text4.png');
+        
+        $aframe->scene()->camera()
+            ->position(1.75, 0, 1.2)
+            ->rotation(0, 28, 0)
+            ->near(0.1);
         
         $this->aframe = $aframe;
     }

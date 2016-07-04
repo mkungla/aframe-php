@@ -77,8 +77,8 @@ interface EntityInterface
     /**
      * Create and add DOM element of the entity
      *
-     * @param unknown $aframe_dom            
+     * @param \DOMDocument $aframe_dom            
      * @return \DOMElement
      */
-    public function domElement(&$aframe_dom): DOMElement;
+    public function domElement(\DOMDocument &$aframe_dom): DOMElement;
 }

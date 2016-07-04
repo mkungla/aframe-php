@@ -25,6 +25,18 @@ namespace AframeVR\Core\Components\Position\Methods;
 
 class DefaultMethods
 {
+    /**
+     * When any position component methods are called then init others
+     *
+     * @param array $dom_attributes
+     * @return void
+     */
+    private function init(array &$dom_attributes)
+    {
+        $dom_attributes['x'] = $dom_attributes['x'] ?? 0;
+        $dom_attributes['y'] = $dom_attributes['y'] ?? 0;
+        $dom_attributes['z'] = $dom_attributes['z'] ?? 0;
+    }
 
     /**
      * Negative X axis extends left.
@@ -36,6 +48,7 @@ class DefaultMethods
      */
     public function positionX(array &$dom_attributes, float $x_axis)
     {
+        $this->init($dom_attributes);
         $dom_attributes['x'] = $x_axis;
     }
 
@@ -49,6 +62,7 @@ class DefaultMethods
      */
     public function positionY(array &$dom_attributes, float $y_axis)
     {
+        $this->init($dom_attributes);
         $dom_attributes['y'] = $y_axis;
     }
 
@@ -62,6 +76,7 @@ class DefaultMethods
      */
     public function positionZ(array &$dom_attributes, float $z_axis)
     {
+        $this->init($dom_attributes);
         $dom_attributes['z'] = $z_axis;
     }
 }

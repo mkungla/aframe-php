@@ -28,9 +28,9 @@ use \AframeVR\Extras\Primitives\{
     Box,
     Cylinder,
     Plane,
-    Sky
-}
-;
+    Sky,
+    Camera
+};
 use \AframeVR\Core\Entity;
 
 trait Primitives
@@ -44,28 +44,39 @@ trait Primitives
     protected $aframeDomObj;
 
     /**
+     * Sphere primitives
      *
      * @var array $spheres
      */
     protected $spheres = array();
 
     /**
-     *
+     * Box primitives
+     * 
      * @var array $boxes
      */
     protected $boxes = array();
 
     /**
-     *
+     * Cylinder primitives
+     * 
      * @var array $cylinders
      */
     protected $cylinders = array();
 
     /**
-     *
+     * Plane primitives
+     * 
      * @var array $planes
      */
     protected $planes = array();
+    
+    /**
+     * Camera primitives
+     * 
+     * @var array $cameras
+     */
+    protected $cameras = array();
 
     /**
      *
@@ -118,6 +129,17 @@ trait Primitives
     }
 
     /**
+     * A-Frame Primitive camera
+     *
+     * @param string $name
+     * @return Entity
+     */
+    public function camera(string $name = 'untitled'): Entity
+    {
+        return $this->cameras[$name] ?? $this->cameras[$name] = new Camera();
+    }
+    
+    /**
      * A-Frame Primitive sky
      *
      * @return Entity
@@ -135,6 +157,8 @@ trait Primitives
     protected function preparePrimitives()
     {
         /* Primitive collections */
+        $this->aframeDomObj->appendEntities($this->cameras);
+        
         $this->aframeDomObj->appendEntities($this->boxes);
         $this->aframeDomObj->appendEntities($this->spheres);
         $this->aframeDomObj->appendEntities($this->cylinders);

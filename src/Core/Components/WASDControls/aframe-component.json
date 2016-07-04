@@ -1,0 +1,4 @@
+{
+	"name":"wasd-controls",
+	"description":"The wasd-controls component defines the behavior of an entity to be controlled by the WASD keyboard keys. It is usually used alongside the camera component."
+}

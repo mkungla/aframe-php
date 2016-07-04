@@ -23,8 +23,8 @@
  * @formatter:on */
 namespace AframeVR\Core\Components\Geometry;
 
-use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Interfaces\Core\Components\Geometry\GeometryInterface;
+use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Core\Exceptions\InvalidComponentArgumentException;
 
 /**

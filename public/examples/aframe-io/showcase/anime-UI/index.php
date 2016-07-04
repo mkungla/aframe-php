@@ -1,13 +1,6 @@
 <?php
-/* Require autoloader */
-require dirname(__DIR__, 5) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
-
-/* Initialize A-FRAME */
-$aframe = new AframeVR\Aframe();
-
-/* Examples specific configuration */
-$aframe->config()->set('format_output', true)
-    ->set('use_cdn', true);
+/* Common bootstrap for examples */
+include dirname(__DIR__,3).DIRECTORY_SEPARATOR.'examples-bootstrap.php';
 
 /* $aframe->scene(); === Anonymous scene */
 $aframe->scene()->title('Anime UI');
@@ -62,10 +55,14 @@ $aframe->scene()->asset()->img('text3')
 $aframe->scene()->asset()->img('text4')
     ->src('img/text4.png');
 
-    
+$aframe->scene()->camera()
+    ->position(1.75, 0, 1.2)
+    ->rotation(0, 28, 0)
+    ->near(0.1);
+
+
 /* Render scene */
 $aframe->scene()->render();
 
-/* Update index HTML for documentation pages */
-$aframe->scene()->save(false, dirname(__FILE__).DIRECTORY_SEPARATOR.'index.html');
-$aframe->scene()->save(true, dirname(__FILE__).DIRECTORY_SEPARATOR.'scene.html');
+/* DEV: Save output for testsuites */
+save_output_files($aframe, '/aframe-io/showcase/anime-UI');

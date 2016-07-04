@@ -49,6 +49,13 @@ final class Assets
     protected $assets;
 
     /**
+     * Set assets timeout attribute
+     * 
+     * @var unknown
+     */
+    protected $attr_timeout;
+    
+    /**
      * <a-scene><a-assets><audio>
      *
      * @param string $id            
@@ -74,7 +81,7 @@ final class Assets
      * <a-scene><a-assets><a-asset-item>
      *
      * @param string $id            
-     * @return ItemInterface
+     * @return AssetItemInterface
      */
     public function item(string $id = 'untitled'): AssetItemInterface
     {

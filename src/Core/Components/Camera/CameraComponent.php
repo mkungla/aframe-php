@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jun 29, 2016 - 10:08:27 AM
+ * Created by   Marko Kungla on Jul 4, 2016 - 1:16:14 AM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         CameraInterface.php
+ * File         CameraComponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  ^ @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,10 +21,24 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Core\Components\Camera;
+namespace AframeVR\Core\Components\Camera;
 
-use \AframeVR\Interfaces\ComponentInterface;
+use \AframeVR\Interfaces\Core\Components\Camera\CameraInterface;
+use \AframeVR\Core\Helpers\ComponentAbstract;
 
-interface CameraInterface extends ComponentInterface
+class CameraComponent extends ComponentAbstract implements CameraInterface
 {
+
+    /**
+     * Initialize Component
+     *
+     * {@inheritdoc}
+     *
+     * @return bool
+     */
+    public function initializeComponent(): bool
+    {
+        $this->setDomAttribute('camera');
+        return true;
+    }
 }

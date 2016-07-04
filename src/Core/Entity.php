@@ -38,31 +38,30 @@ class Entity implements EntityInterface
     /**
      * Array of used components
      * 
-     * @var array $components
+     * @var array
      */
     protected $components = array();
 
     /**
      * Array of used animations
      * 
-     * @var array $animations
+     * @var array
      */
     protected $animations = array();
 
+    /**
+     * Child entities
+     *
+     * @var array
+     */
+    protected $entities = array();
+    
     public function __construct()
     {
         /* Components which All entities inherently have */
         $this->component('Position');
         $this->component('Rotation');
         $this->component('Scale');
-        
-        /*
-         * We initialize common entity components here since
-         * init and defaults are most cases overwritten by extending class
-         */
-        $this->position();
-        $this->rotation();
-        $this->scale();
         
         /* Extending entity components and init */
         $this->init();
@@ -77,6 +76,17 @@ class Entity implements EntityInterface
     public function defaults()
     {}
 
+    /**
+     * Child entity
+     *
+     * @param string $name
+     * @return Entity
+     */
+    public function entity(string $name = 'untitled'): Entity
+    {
+        return $this->entities[$name] ?? $this->entities[$name] = new Entity();
+    }
+    
     /**
      * Position component
      *
@@ -151,8 +161,6 @@ class Entity implements EntityInterface
      */
     public function component(string $component_name)
     {
-        $component_name = strtolower($component_name);
-        
         if (! array_key_exists($component_name, $this->components)) {
             $component = sprintf(
                 '\AframeVR\Core\Components\%s\%sComponent',
@@ -196,7 +204,7 @@ class Entity implements EntityInterface
      * @param \DOMDocument $aframe_dom            
      * @return \DOMElement
      */
-    public function domElement(&$aframe_dom): DOMElement
+    public function domElement(\DOMDocument &$aframe_dom): DOMElement
     {
         $a_entity = $aframe_dom->createElement('a-entity');
         foreach ($this->components as $component) {
@@ -207,6 +215,24 @@ class Entity implements EntityInterface
             if ($component->hasDOMAttributes())
                 $a_entity->setAttributeNode($component->getDOMAttr());
         }
+        
+        $this->appendChildren($aframe_dom, $a_entity);
+        
         return $a_entity;
+    }
+    
+    private function appendChildren(\DOMDocument &$aframe_dom, \DOMElement &$a_entity)
+    {
+        foreach($this->entities as $entity) {
+            if ($aframe_dom->formatOutput) {
+                $com = $aframe_dom->createComment("\n\t");
+                $a_entity->appendChild($com);
+            }
+            $a_entity->appendChild($entity->domElement($aframe_dom));
+            if ($aframe_dom->formatOutput) {
+                $com = $aframe_dom->createComment("\n");
+                $a_entity->appendChild($com);
+            }
+        }
     }
 }

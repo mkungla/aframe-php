@@ -25,6 +25,18 @@ namespace AframeVR\Core\Components\Scale\Methods;
 
 class DefaultMethods
 {
+    /**
+     * When any scale component methods are called then init others
+     * 
+     * @param array $dom_attributes
+     * @return void
+     */
+    private function init(array &$dom_attributes)
+    {
+        $dom_attributes['x'] = $dom_attributes['x'] ?? 0;
+        $dom_attributes['y'] = $dom_attributes['y'] ?? 0;
+        $dom_attributes['z'] = $dom_attributes['z'] ?? 0;
+    }
 
     /**
      * Scaling factor in the X direction.
@@ -35,6 +47,7 @@ class DefaultMethods
      */
     public function scaleX(array &$dom_attributes, float $scale_x)
     {
+        $this->init($dom_attributes);
         $dom_attributes['x'] = $scale_x;
     }
 
@@ -47,6 +60,7 @@ class DefaultMethods
      */
     public function scaleY(array &$dom_attributes, float $scale_y)
     {
+        $this->init($dom_attributes);
         $dom_attributes['y'] = $scale_y;
     }
 
@@ -59,6 +73,7 @@ class DefaultMethods
      */
     public function scaleZ(array &$dom_attributes, float $scale_z)
     {
+        $this->init($dom_attributes);
         $dom_attributes['z'] = $scale_z;
     }
 }
