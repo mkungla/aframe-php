@@ -11,6 +11,9 @@ class PositionComponentTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $aframe = new \AframeVR\Aframe();
+        $aframe->scene()
+            ->entity()
+            ->component('Position')->positionX(1);
         $this->component = $aframe->scene()
             ->entity()
             ->component('Position');

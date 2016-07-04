@@ -9,15 +9,14 @@ class hello_world_Test extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         
-        $this->ex_root_path = dirname(__FILE__, 6) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 
+        $this->ex_root_path = dirname(__FILE__, 6) . DIRECTORY_SEPARATOR . 'tmp' . DIRECTORY_SEPARATOR . 
             'examples' . DIRECTORY_SEPARATOR . 'aframe-io' . DIRECTORY_SEPARATOR . 'boilerplate' . DIRECTORY_SEPARATOR . 'hello-world';
         $this->ex_page_path = $this->ex_root_path . DIRECTORY_SEPARATOR . 'index.html';
         $this->ex_scene_path = $this->ex_root_path . DIRECTORY_SEPARATOR . 'scene.html';
         $this->aframe = new AframeVR\Aframe();
         
         /* Examples specific configuration */
-        $this->aframe->config()->set('format_output', true)
-            ->set('use_cdn', true);
+        $this->aframe->config()->set('format_output', true);
         
         /* $aframe->scene(); === Anonymous scene */
         $this->aframe->scene()->title('Hello, World! • A-Frame');

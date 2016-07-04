@@ -149,8 +149,6 @@ final class AframeDOMDocument extends DOMImplementation
      */
     public function render(): string
     {
-        $this->docObj->formatOutput = $this->format_output;
-        
         $html = $this->docObj->getElementsByTagName('html')->item(0);
         /* Make sure we do not add duplicates when render is called multiple times */
         if (! $html->hasChildNodes()) {

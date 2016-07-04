@@ -53,7 +53,7 @@ class MaterialComponent extends ComponentAbstract implements MaterialInterface
      */
     public function initializeComponent(): bool
     {
-        $this->setDomAttributeName('material');
+        $this->setDomAttribute('material');
         return true;
     }
 

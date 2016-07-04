@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jun 28, 2016 - 3:44:21 PM
+ * Created by   Marko Kungla on Jul 3, 2016 - 6:20:01 PM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         ItemInterface.php
+ * File         AssetAudioInterface.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  ^ @issues      https://github.com/mkungla/aframe-php/issues
@@ -23,8 +23,22 @@
  * @formatter:on */
 namespace AframeVR\Interfaces\Core\Assets;
 
-use \AframeVR\Interfaces\AssetsInterface;
-
-interface ItemInterface extends AssetsInterface
+interface AssetAudioInterface
 {
+
+    /**
+     * Autoplay video
+     *
+     * @param bool $autoplay            
+     * @return AssetAudioInterface
+     */
+    public function autoplay(bool $autoplay = true): AssetAudioInterface;
+
+    /**
+     * Preload video
+     *
+     * @param string $preload            
+     * @return AssetAudioInterface
+     */
+    public function preload(string $preload = 'auto'): AssetAudioInterface;
 }

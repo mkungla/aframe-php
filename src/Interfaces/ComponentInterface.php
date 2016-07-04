@@ -32,7 +32,7 @@ interface ComponentInterface
      * Set class providing component methods
      *
      * @api
-     * 
+     *
      * @param string $method_provider            
      * @return void
      */
@@ -95,8 +95,8 @@ interface ComponentInterface
      * @api
      *
      * @param string $vendor_component            
-     * @param string $script_name
-     * @return void            
+     * @param string $script_name            
+     * @return void
      */
     public function addComponentScripts(string $vendor_component, string $script_name);
 
@@ -119,14 +119,14 @@ interface ComponentInterface
     public function getDomAttributeName(): string;
 
     /**
-     * Set DOM Attribute name
+     * Set DOM Attribute
      *
      * @api
      *
      * @param string $dom_attribute_name            
      * @return void
      */
-    public function setDomAttributeName(string $dom_attribute_name);
+    public function setDomAttribute(string $dom_attribute_name);
 
     /**
      * Return DOM attribute contents

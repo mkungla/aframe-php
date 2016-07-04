@@ -25,7 +25,19 @@ namespace AframeVR\Core\Components\Rotation\Methods;
 
 class DefaultMethods
 {
-
+    /**
+     * When any rotation component methods are called then init others
+     *
+     * @param array $dom_attributes
+     * @return void
+     */
+    private function init(array &$dom_attributes)
+    {
+        $dom_attributes['x'] = $dom_attributes['x'] ?? 0;
+        $dom_attributes['y'] = $dom_attributes['y'] ?? 0;
+        $dom_attributes['z'] = $dom_attributes['z'] ?? 0;
+    }
+    
     /**
      * Roll, rotation about the X-axis.
      *
@@ -35,6 +47,7 @@ class DefaultMethods
      */
     public function roll(array &$dom_attributes, float $roll)
     {
+        $this->init($dom_attributes);
         $dom_attributes['x'] = $roll;
     }
 
@@ -47,6 +60,7 @@ class DefaultMethods
      */
     public function pitch(array &$dom_attributes, float $pitch)
     {
+        $this->init($dom_attributes);
         $dom_attributes['y'] = $pitch;
     }
 
@@ -59,6 +73,7 @@ class DefaultMethods
      */
     public function yaw(array &$dom_attributes, float $yaw)
     {
+        $this->init($dom_attributes);
         $dom_attributes['z'] = $yaw;
     }
 }

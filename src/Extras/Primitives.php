@@ -28,9 +28,10 @@ use \AframeVR\Extras\Primitives\{
     Box,
     Cylinder,
     Plane,
-    Sky
-}
-;
+    Sky,
+    Camera,
+    ColladaModel
+};
 use \AframeVR\Core\Entity;
 
 trait Primitives
@@ -44,29 +45,47 @@ trait Primitives
     protected $aframeDomObj;
 
     /**
+     * Sphere primitives
      *
-     * @var array $spheres
+     * @var array
      */
     protected $spheres = array();
 
     /**
-     *
-     * @var array $boxes
+     * Box primitives
+     * 
+     * @var array
      */
     protected $boxes = array();
 
     /**
-     *
-     * @var array $cylinders
+     * Cylinder primitives
+     * 
+     * @var array
      */
     protected $cylinders = array();
 
     /**
-     *
-     * @var array $planes
+     * Plane primitives
+     * 
+     * @var array
      */
     protected $planes = array();
+    
+    /**
+     * Camera primitives
+     * 
+     * @var array
+     */
+    protected $cameras = array();
 
+    /**
+     * collada-model primitives
+     * 
+     * @var array
+     */
+    protected $collada_models = array();
+    
     /**
      *
      * @var \AframeVR\Extras\Primitives\Sky $sky
@@ -118,6 +137,28 @@ trait Primitives
     }
 
     /**
+     * A-Frame Primitive camera
+     *
+     * @param string $name
+     * @return Entity
+     */
+    public function camera(string $name = 'untitled'): Entity
+    {
+        return $this->cameras[$name] ?? $this->cameras[$name] = new Camera();
+    }
+    
+    /**
+     * A-Frame Primitive collada-model
+     *
+     * @param string $name
+     * @return Entity
+     */
+    public function colladaModel(string $name = 'untitled'): Entity
+    {
+        return $this->collada_models[$name] ?? $this->collada_models[$name] = new ColladaModel();
+    }
+    
+    /**
      * A-Frame Primitive sky
      *
      * @return Entity
@@ -135,10 +176,12 @@ trait Primitives
     protected function preparePrimitives()
     {
         /* Primitive collections */
+        $this->aframeDomObj->appendEntities($this->cameras);
         $this->aframeDomObj->appendEntities($this->boxes);
         $this->aframeDomObj->appendEntities($this->spheres);
         $this->aframeDomObj->appendEntities($this->cylinders);
         $this->aframeDomObj->appendEntities($this->planes);
+        $this->aframeDomObj->appendEntities($this->collada_models);
         
         /* Primitives which only one can be present */
         (! $this->sky) ?: $this->aframeDomObj->appendEntity($this->sky);

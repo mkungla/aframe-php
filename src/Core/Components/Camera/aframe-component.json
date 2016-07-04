@@ -1,0 +1,4 @@
+{
+	"name":"camera",
+	"description":"The camera component defines from which perspective the user views the scene. It is often paired with controls-related components that allow user input to move and rotate the camera."
+}

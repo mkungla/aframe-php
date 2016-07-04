@@ -11,6 +11,10 @@ class ScaleComponentTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $aframe = new \AframeVR\Aframe();
+        $aframe->scene()
+            ->entity()
+            ->component('Scale')
+                ->scaleX(2);
         $this->component = $aframe->scene()
             ->entity()
             ->component('Scale');

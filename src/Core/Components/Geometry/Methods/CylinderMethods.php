@@ -79,7 +79,6 @@ class CylinderMethods
     public function openEnded(array &$dom_attributes, bool $openEnded = false)
     {
         $dom_attributes['openEnded'] = $openEnded ? 'true' : 'false';
-        ;
     }
 
     /**

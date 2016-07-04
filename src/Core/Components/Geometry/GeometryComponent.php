@@ -23,8 +23,8 @@
  * @formatter:on */
 namespace AframeVR\Core\Components\Geometry;
 
-use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Interfaces\Core\Components\Geometry\GeometryInterface;
+use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Core\Exceptions\InvalidComponentArgumentException;
 
 /**
@@ -40,7 +40,6 @@ use \AframeVR\Core\Exceptions\InvalidComponentArgumentException;
  */
 class GeometryComponent extends ComponentAbstract implements GeometryInterface
 {
-
     /**
      * Initialize Component
      *
@@ -50,7 +49,7 @@ class GeometryComponent extends ComponentAbstract implements GeometryInterface
      */
     public function initializeComponent(): bool
     {
-        $this->setDomAttributeName('geometry');
+        $this->setDomAttribute('geometry');
         return true;
     }
     

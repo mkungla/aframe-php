@@ -11,10 +11,10 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         ColladaModelInterface..php
+ * File         ColladaModelInterface.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
@@ -27,4 +27,11 @@ use \AframeVR\Interfaces\ComponentInterface;
 
 interface ColladaModelInterface extends ComponentInterface
 {
+    /**
+     * ColladaModel.src
+     *
+     * @param null|string $src
+     * @return void
+     */
+    public function src( string $src = null);
 }

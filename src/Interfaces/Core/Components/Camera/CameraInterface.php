@@ -61,4 +61,12 @@ interface CameraInterface extends ComponentInterface
      * @return void
      */
     public function near(float $near = 0.5);
+    
+    /**
+     * Camera zoom
+     *
+     * @param int|float $zoom
+     * @return void
+     */
+    public function zoom(float $zoom = 1);
 }

@@ -23,13 +23,12 @@
  * @formatter:on */
 namespace AframeVR\Core;
 
-use \AframeVR\Interfaces\Core\Assets\{
-    ItemInterface,
-    MixinInterface
-};
 use \AframeVR\Core\Assets\{
-    Mixin,
-    Item
+    AssetAudio,
+    AssetImage,
+    AssetItem,
+    AssetVideo,
+    Mixin
 };
 
 final class Assets
@@ -43,25 +42,80 @@ final class Assets
     protected $assets;
 
     /**
-     * mixin
-     *
-     * @param string $name            
-     * @return \AframeVR\Interfaces\Core\Assets\MixinInterface
+     * Set assets timeout attribute
+     * 
+     * @var int
      */
-    public function mixin(string $name = 'untitled'): MixinInterface
+    protected $attr_timeout;
+    
+    /**
+     * <a-scene><a-assets><audio>
+     *
+     * @param string $id            
+     * @return \AframeVR\Interfaces\Core\Assets\AssetAudioInterface
+     */
+    public function audio(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\AssetAudioInterface
     {
-        return $this->assets[$name] ?? $this->assets[$name] = new Mixin($name);
+        return $this->assets[$id] ?? $this->assets[$id] = new AssetAudio($id);
     }
 
     /**
-     * mixin
+     * <a-scene><a-assets><img>
      *
-     * @param string $name            
-     * @return \AframeVR\Interfaces\Core\Assets\ItemInterface
+     * @param string $id            
+     * @return \AframeVR\Interfaces\Core\Assets\AssetImageInterface
      */
-    public function item(string $name = 'untitled'): ItemInterface
+    public function img(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\AssetImageInterface
     {
-        return $this->assets[$name] ?? $this->assets[$name] = new Item($name);
+        return $this->assets[$id] ?? $this->assets[$id] = new AssetImage($id);
+    }
+
+    /**
+     * <a-scene><a-assets><a-asset-item>
+     *
+     * @param string $id            
+     * @return \AframeVR\Interfaces\Core\Assets\AssetItemInterface
+     */
+    public function item(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\AssetItemInterface
+    {
+        return $this->assets[$id] ?? $this->assets[$id] = new AssetItem($id);
+    }
+
+    /**
+     * <a-scene><a-assets><video>
+     *
+     * @param string $id            
+     * @return \AframeVR\Interfaces\Core\Assets\AssetVideoInterface
+     */
+    public function video(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\AssetVideoInterface
+    {
+        return $this->assets[$id] ?? $this->assets[$id] = new AssetVideo($id);
+    }
+
+    /**
+     * Mixin which will be directly applied to element usin it
+     *
+     * A-Frame PHP does not create <a-mixin>. Instead it is appling
+     * mixin directly on element using this mixin.
+     *
+     * @param string $id            
+     * @return \AframeVR\Interfaces\Core\Assets\MixinInterface
+     */
+    public function mixin(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\MixinInterface
+    {
+        return $this->assets[$id] ?? $this->assets[$id] = new Mixin($id);
+    }
+
+    /**
+     * Setting a timeout
+     *
+     * @param int $milliseconds            
+     * @return Assets
+     */
+    public function timeout(int $milliseconds = 3000)
+    {
+        $this->attr_timeout = $milliseconds;
+        return $this;
     }
 
     /**

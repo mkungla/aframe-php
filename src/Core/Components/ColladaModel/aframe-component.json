@@ -1,0 +1,4 @@
+{
+	"name":"collada-model",
+	"description":"The collada-model component loads a 3D model using a COLLADA (.DAE) file."
+}

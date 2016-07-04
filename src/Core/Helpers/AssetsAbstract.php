@@ -32,9 +32,9 @@ abstract class AssetsAbstract implements AssetsInterface
     /**
      * DOM tag name of asset item
      *
-     * @var string $element_name
+     * @var string
      */
-    protected $element_name = 'a-asset-item';
+    protected $element_tag = 'a-asset-item';
 
     /**
      * ID attribute
@@ -93,10 +93,21 @@ abstract class AssetsAbstract implements AssetsInterface
      */
     public function domElement(&$aframe_dom): DOMElement
     {
-        $a_asset = $aframe_dom->createElement($this->element_name);
+        $a_asset = $aframe_dom->createElement($this->element_tag);
         /* Asset must have a id */
         $a_asset->setAttribute('id', $this->attr_id);
         (empty($this->attr_src) ?: $a_asset->setAttribute('src', $this->attr_src));
         return $a_asset;
+    }
+
+    /**
+     * Set Dom element name
+     *
+     * @param string $element_tag            
+     * @return void
+     */
+    public function setDomElementTag(string $element_tag)
+    {
+        $this->element_tag = $element_tag;
     }
 }
