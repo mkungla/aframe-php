@@ -90,7 +90,7 @@ class CameraComponent extends ComponentAbstract implements CameraInterface
     /**
      * Camera zoom
      *
-     * @param float $zoom
+     * @param int|float $zoom
      * @return void
      */
     public function zoom(float $zoom = 1)

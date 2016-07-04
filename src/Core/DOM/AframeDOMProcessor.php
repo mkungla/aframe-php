@@ -283,6 +283,7 @@ trait AframeDOMProcessor
     protected function createAframeDocument()
     {
         $this->docObj = $this->createDocument(null, 'html', $this->doctypeObj);
+        
         $this->docObj->formatOutput = $this->format_output;
     }
 

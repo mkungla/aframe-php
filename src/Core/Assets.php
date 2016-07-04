@@ -23,13 +23,6 @@
  * @formatter:on */
 namespace AframeVR\Core;
 
-use \AframeVR\Interfaces\Core\Assets\{
-    AssetAudioInterface,
-    AssetImageInterface,
-    AssetItemInterface,
-    AssetVideoInterface,
-    MixinInterface
-};
 use \AframeVR\Core\Assets\{
     AssetAudio,
     AssetImage,
@@ -59,9 +52,9 @@ final class Assets
      * <a-scene><a-assets><audio>
      *
      * @param string $id            
-     * @return AssetAudioInterface
+     * @return \AframeVR\Interfaces\Core\Assets\AssetAudioInterface
      */
-    public function audio(string $id = 'untitled'): AssetAudioInterface
+    public function audio(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\AssetAudioInterface
     {
         return $this->assets[$id] ?? $this->assets[$id] = new AssetAudio($id);
     }
@@ -72,7 +65,7 @@ final class Assets
      * @param string $id            
      * @return AssetImageInterface
      */
-    public function img(string $id = 'untitled'): AssetImageInterface
+    public function img(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\AssetImageInterface
     {
         return $this->assets[$id] ?? $this->assets[$id] = new AssetImage($id);
     }
@@ -81,9 +74,9 @@ final class Assets
      * <a-scene><a-assets><a-asset-item>
      *
      * @param string $id            
-     * @return AssetItemInterface
+     * @return \AframeVR\Interfaces\Core\Assets\AssetItemInterface
      */
-    public function item(string $id = 'untitled'): AssetItemInterface
+    public function item(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\AssetItemInterface
     {
         return $this->assets[$id] ?? $this->assets[$id] = new AssetItem($id);
     }
@@ -92,9 +85,9 @@ final class Assets
      * <a-scene><a-assets><video>
      *
      * @param string $id            
-     * @return AssetVideoInterface
+     * @return \AframeVR\Interfaces\Core\Assets\AssetVideoInterface
      */
-    public function video(string $id = 'untitled'): AssetVideoInterface
+    public function video(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\AssetVideoInterface
     {
         return $this->assets[$id] ?? $this->assets[$id] = new AssetVideo($id);
     }
@@ -106,9 +99,9 @@ final class Assets
      * mixin directly on element using this mixin.
      *
      * @param string $id            
-     * @return MixinInterface
+     * @return \AframeVR\Interfaces\Core\Assets\MixinInterface
      */
-    public function mixin(string $id = 'untitled'): MixinInterface
+    public function mixin(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\MixinInterface
     {
         return $this->assets[$id] ?? $this->assets[$id] = new Mixin($id);
     }

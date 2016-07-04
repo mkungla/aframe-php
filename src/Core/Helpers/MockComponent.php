@@ -38,7 +38,7 @@ final class MockComponent
      * @param string $method
      * @param array $args
      * @throws InvalidComponentMethodException
-     * @return object
+     * @return MockComponent
      */
     public function __call(string $method, $args)
     {

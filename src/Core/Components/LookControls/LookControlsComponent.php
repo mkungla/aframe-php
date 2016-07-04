@@ -44,13 +44,13 @@ class LookControlsComponent extends ComponentAbstract implements LookControlsInt
 
     /**
      * look-controls enabled
-     * Whether look controls are enabled.
      * 
-     * @param array $dom_attributes
+     * {@inheritdoc}
+     * 
      * @param bool $enabled
-     * @return LookControlsAbstract
+     * @return LookControlsInterface
      */
-    public function enabled( bool $enabled = true): LookControlsInterface
+    public function enabled(bool $enabled = true): LookControlsInterface
     {
         $this->dom_attributes['enabled'] = $enabled ? 'true' : 'false';
         return $this;

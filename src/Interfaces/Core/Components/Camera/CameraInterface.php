@@ -65,7 +65,7 @@ interface CameraInterface extends ComponentInterface
     /**
      * Camera zoom
      *
-     * @param float $zoom
+     * @param int|float $zoom
      * @return void
      */
     public function zoom(float $zoom = 1);

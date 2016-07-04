@@ -83,7 +83,7 @@ abstract class ComponentAbstract implements ComponentInterface
                     $this->methodProvider,
                     (string) $method
                 ), $args);
-        } elseif (is_object($this->methodProvider)) {
+        } else {
             $class = is_object($this->methodProvider) ? get_class($this->methodProvider) : get_called_class();
             throw new InvalidComponentMethodException($method, $class);
         }
@@ -96,7 +96,7 @@ abstract class ComponentAbstract implements ComponentInterface
      */
     public function getDomAttributeString(): string
     {
-        $attrs = $this->getDOMAttributesArray();
+        $attrs       = $this->getDOMAttributesArray();
         $attr_format = implode(': %s; ', array_keys($attrs)) . ': %s;';
         return vsprintf($attr_format, array_values($attrs));
     }
@@ -110,6 +110,7 @@ abstract class ComponentAbstract implements ComponentInterface
     public function setMethodProvider( string $mp = 'DefaultMethods')
     {
         $mp_class = substr(get_called_class(), 0, strrpos(get_called_class(), '\\')) . '\Methods\\' . $mp;
+        
         $this->methodProvider = class_exists($mp_class) ? new $mp_class() : null;
     }
 

@@ -62,7 +62,7 @@ interface CameraInterface extends PrimitiveInterface
     /**
      * camera.near
      *
-     * @param int|float $near
+     * @param float $near
      * @return CameraInterface
      */
     public function near(float $near = 0.5): CameraInterface;

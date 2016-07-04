@@ -46,27 +46,25 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      * @throws \AframeVR\Core\Exceptions\BadComponentCallException
      * @return object|null
      */
-    public function component(string $component_name)
+    public function component(string $cmpnt_name)
     {
-        $component_name = strtolower($component_name);
-        
         /* Does this mixin already have this component loaded */
-        if (! array_key_exists($component_name, $this->mock_components)) {
-            $component = sprintf(
+        if (! array_key_exists($cmpnt_name, $this->mock_components)) {
+            $cmpnt = sprintf(
                 '\AframeVR\Core\Components\%s\%sComponent', 
-                ucfirst($component_name), 
-                ucfirst($component_name)
+                ucfirst($cmpnt_name), 
+                ucfirst($cmpnt_name)
             );
             /* Does called component exist */
-            if (class_exists($component)) {
+            if (class_exists($cmpnt)) {
                 /* Create Closure to mock compnent to be applied to entity using this mixin */
-                $this->mock_components[$component_name] = new MockComponent;
+                $this->mock_components[$cmpnt_name] = new MockComponent;
             } else {
-                throw new BadComponentCallException($component_name);
+                throw new BadComponentCallException($cmpnt);
             }
         }
         
-        return $this->mock_components[$component_name] ?? null;
+        return $this->mock_components[$cmpnt_name] ?? null;
     }
 
     /**

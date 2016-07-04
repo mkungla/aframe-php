@@ -27,4 +27,10 @@ use \AframeVR\Interfaces\ComponentInterface;
 
 interface ColladaModelInterface extends ComponentInterface
 {
+    /**
+     * ColladaModel.src
+     *
+     * @param null|string $src
+     */
+    public function src( string $src = null);
 }
