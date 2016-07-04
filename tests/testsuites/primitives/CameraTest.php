@@ -19,7 +19,8 @@ class CameraTest extends PHPUnit_Framework_TestCase implements PrimitiveTestInte
         'fov',
         'lookControls',
         'near',
-        'wasdControls'
+        'wasdControls',
+        'zoom'
     );
 
     /**
