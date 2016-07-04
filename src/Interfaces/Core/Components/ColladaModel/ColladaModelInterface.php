@@ -31,6 +31,7 @@ interface ColladaModelInterface extends ComponentInterface
      * ColladaModel.src
      *
      * @param null|string $src
+     * @return void
      */
     public function src( string $src = null);
 }

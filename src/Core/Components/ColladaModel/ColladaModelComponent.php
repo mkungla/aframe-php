@@ -47,6 +47,7 @@ class ColladaModelComponent extends ComponentAbstract implements ColladaModelInt
      * {@inheritdoc}
      * 
      * @param null|string $src
+     * @return void
      */
     public function src( string $src = null)
     {
