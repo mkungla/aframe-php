@@ -44,7 +44,7 @@ final class Assets
     /**
      * Set assets timeout attribute
      * 
-     * @var unknown
+     * @var int
      */
     protected $attr_timeout;
     
@@ -63,7 +63,7 @@ final class Assets
      * <a-scene><a-assets><img>
      *
      * @param string $id            
-     * @return AssetImageInterface
+     * @return \AframeVR\Interfaces\Core\Assets\AssetImageInterface
      */
     public function img(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\AssetImageInterface
     {

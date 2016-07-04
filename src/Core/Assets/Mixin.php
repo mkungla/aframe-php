@@ -42,7 +42,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
     /**
      * Load component for this Mixin
      *
-     * @param string $component_name            
+     * @param string $cmpnt_name            
      * @throws \AframeVR\Core\Exceptions\BadComponentCallException
      * @return object|null
      */
