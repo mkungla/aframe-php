@@ -9,7 +9,8 @@ before_script:
   - pip install --user codecov
   - cd /home/travis/build/mkungla/aframe-php
   - composer install
-  - cd /home/travis/build/mkungla/aframe-php/tests
+  - find "$TRAVIS_BUILD_DIR/public/examples" -type f -name *.php -exec php "{}" \;
+  - cd $TRAVIS_BUILD_DIR/tests
 
 script:
   - phpunit --coverage-clover="../coverage.clover"
