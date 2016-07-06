@@ -49,7 +49,7 @@ class VRmodeUIComponent extends ComponentAbstract implements VRmodeUICMPTIF
      * {@inheritdoc}
      *
      * @param bool $enabled            
-     * @return LookControlsCMPTIF
+     * @return VRmodeUICMPTIF
      */
     public function enabled(bool $enabled = true): VRmodeUICMPTIF
     {
