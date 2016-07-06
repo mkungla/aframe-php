@@ -1,0 +1,4 @@
+{
+	"name":"cursor",
+	"description":"The cursor component lets us interact with entities through clicking and gazing. It is a specific application of the raycaster component."
+}
