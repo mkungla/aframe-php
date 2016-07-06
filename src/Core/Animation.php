@@ -187,10 +187,17 @@ final class Animation implements AnimationInterface
      */
     private function appendAttributes(\DOMElement &$a_entity)
     {
-        foreach ($this->attrs as $attr => $val) {
-            if ($attr === 'id' && ($val === 'untitled' || is_numeric($val)))
-                continue;
-            $a_entity->setAttribute($attr, $val);
+        foreach ($this->attrs as $attribute => $val) {
+            $this->setAttribute($a_entity, $attribute, $val);
         }
     }
+    
+    private function setAttribute(&$a_entity, $attribute, $val)
+    {
+        if ($attribute === 'id' && ($val === 'untitled' || is_numeric($val)))
+            return;
+    
+        $a_entity->setAttribute($attribute, $val);
+    }
+    
 }
