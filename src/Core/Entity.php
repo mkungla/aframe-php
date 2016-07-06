@@ -277,10 +277,16 @@ class Entity implements EntityInterface
     private function appendAttributes(\DOMElement &$a_entity)
     {
         foreach ($this->attrs as $attr => $val) {
-            if ($attr === 'id' && ($val === 'untitled' || is_numeric($val)))
-                continue;
-            $a_entity->setAttribute($attr, $val);
+            $this->setAttribute($a_entity, $attr, $val);
         }
+    }
+
+    private function setAttribute(&$a_entity, $attr, $val)
+    {
+        if ($attr === 'id' && ($val === 'untitled' || is_numeric($val)))
+            return;
+        
+        $a_entity->setAttribute($attr, $val);
     }
 
     /**
@@ -314,13 +320,13 @@ class Entity implements EntityInterface
             $this->addFormatComment($aframe_dom, $a_entity, '');
         }
     }
-    
+
     /**
      * Add format comment
-     * 
-     * @param \DOMDocument $aframe_dom
-     * @param \DOMElement $a_entity
-     * @param string $content
+     *
+     * @param \DOMDocument $aframe_dom            
+     * @param \DOMElement $a_entity            
+     * @param string $content            
      */
     private function addFormatComment(\DOMDocument &$aframe_dom, \DOMElement &$a_entity, string $content)
     {
