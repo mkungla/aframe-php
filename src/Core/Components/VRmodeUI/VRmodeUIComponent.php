@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jul 4, 2016 - 3:14:06 AM
+ * Created by   Marko Kungla on Jul 7, 2016 - 1:48:03 AM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         LookControlsComponent.php
+ * File         VRmodeUIComponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  * @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,27 +21,13 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Core\Components\LookControls;
+namespace AframeVR\Core\Components\VRmodeUI;
 
-use \AframeVR\Interfaces\Core\Components\LookControlsCMPTIF;
+use \AframeVR\Interfaces\Core\Components\VRmodeUICMPTIF;
 use \AframeVR\Core\Helpers\ComponentAbstract;
 
-class LookControlsComponent extends ComponentAbstract implements LookControlsCMPTIF
+class VRmodeUIComponent extends ComponentAbstract implements VRmodeUICMPTIF
 {
-
-    /**
-     * Does component have DOM Atributes
-     *
-     * If compnent is called then we return true
-     *
-     * {@inheritdoc}
-     *
-     * @return bool
-     */
-    public function hasDOMAttributes(): bool
-    {
-        return true;
-    }
 
     /**
      * Initialize Component
@@ -52,7 +38,7 @@ class LookControlsComponent extends ComponentAbstract implements LookControlsCMP
      */
     public function initializeComponent(): bool
     {
-        $this->setDomAttribute('look-controls');
+        $this->setDomAttribute('vr-mode-ui');
         $this->enabled();
         return true;
     }
@@ -65,9 +51,23 @@ class LookControlsComponent extends ComponentAbstract implements LookControlsCMP
      * @param bool $enabled            
      * @return LookControlsCMPTIF
      */
-    public function enabled(bool $enabled = true): LookControlsCMPTIF
+    public function enabled(bool $enabled = true): VRmodeUICMPTIF
     {
         $this->dom_attributes['enabled'] = $enabled ? 'true' : 'false';
         return $this;
+    }
+    
+    /**
+     * Does component have DOM Atributes
+     *
+     * If compnent is called then we return true
+     *
+     * {@inheritdoc}
+     *
+     * @return bool
+     */
+    public function hasDOMAttributes(): bool
+    {
+        return true;
     }
 }
