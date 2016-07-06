@@ -14,7 +14,7 @@
  * File         ShaderAbstract.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
@@ -47,15 +47,23 @@ abstract class ShaderAbstract
         $vars     = get_object_vars($this);
         
         foreach ($vars as $name => $value) {
-            if (empty($value) || $value === $defaults[$name]) {
-                unset($this->$name);
-            }
+            $this->removeDOMAttributes($name, $value, $defaults);
         }
     }
-    
+
     public function getAttributes()
     {
         $this->removeDefaultDOMAttributes();
         return get_object_vars($this);
+    }
+
+    private function removeDOMAttributes($name, $value, $defaults)
+    {
+        if ($name === 'shader')
+            return;
+        
+        if (empty($value) || $value === $defaults[$name]) {
+            unset($this->$name);
+        }
     }
 }

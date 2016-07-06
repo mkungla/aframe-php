@@ -14,7 +14,7 @@
  * File         EntityInterface.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
@@ -28,6 +28,22 @@ use \AframeVR\Core\Entity;
 
 interface EntityInterface
 {
+
+    /**
+     * Set DOM attributes
+     *
+     * @param string $attr            
+     * @param string $val            
+     * @return void
+     */
+    public function attr(string $attr, string $val);
+
+    /**
+     * Child entity
+     *
+     * @return \AframeVR\Core\Helpers\EntityChildrenFactory
+     */
+    public function child(): \AframeVR\Core\Helpers\EntityChildrenFactory;
 
     /**
      * Position component

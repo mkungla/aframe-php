@@ -14,7 +14,7 @@
  * File         LookControlsComponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
@@ -23,15 +23,15 @@
  * @formatter:on */
 namespace AframeVR\Core\Components\LookControls;
 
-use \AframeVR\Interfaces\Core\Components\LookControls\LookControlsInterface;
+use \AframeVR\Interfaces\Core\Components\LookControlsCMPTIF;
 use \AframeVR\Core\Helpers\ComponentAbstract;
 
-class LookControlsComponent extends ComponentAbstract implements LookControlsInterface
+class LookControlsComponent extends ComponentAbstract implements LookControlsCMPTIF
 {
 
     /**
      * Initialize Component
-     * 
+     *
      * {@inheritdoc}
      *
      * @return bool
@@ -44,13 +44,13 @@ class LookControlsComponent extends ComponentAbstract implements LookControlsInt
 
     /**
      * look-controls enabled
-     * 
+     *
      * {@inheritdoc}
-     * 
-     * @param bool $enabled
-     * @return LookControlsInterface
+     *
+     * @param bool $enabled            
+     * @return LookControlsCMPTIF
      */
-    public function enabled(bool $enabled = true): LookControlsInterface
+    public function enabled(bool $enabled = true): LookControlsCMPTIF
     {
         $this->dom_attributes['enabled'] = $enabled ? 'true' : 'false';
         return $this;

@@ -14,7 +14,7 @@
  * File         Camera.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
@@ -23,12 +23,12 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\CameraInterface;
+use \AframeVR\Interfaces\Extras\Primitives\CameraPrimitiveIF;
 use \AframeVR\Core\Entity;
-use \AframeVR\Core\Helpers\MeshAttributes;
 
-class Camera extends Entity implements CameraInterface
+class Camera extends Entity implements CameraPrimitiveIF
 {
+
     /**
      * Init <a-box>
      *
@@ -41,7 +41,7 @@ class Camera extends Entity implements CameraInterface
      */
     public function init()
     {
-        $this->entity()->component('Camera');
+        $this->child()->entity()->component('Camera');
         $this->lookControls(true);
         $this->wasdControls(true);
     }
@@ -62,40 +62,49 @@ class Camera extends Entity implements CameraInterface
      *
      * {@inheritdoc}
      *
-     * @param bool $active
-     * @return CameraInterface
+     * @param bool $active            
+     * @return CameraPrimitiveIF
      */
-    public function active(bool $active = false): CameraInterface
+    public function active(bool $active = false): CameraPrimitiveIF
     {
-        $this->entity()->component('Camera')->active($active);
+        $this->child()
+            ->entity()
+            ->component('Camera')
+            ->active($active);
         return $this;
     }
-    
+
     /**
      * camera.far
      *
      * {@inheritdoc}
      *
-     * @param int|float $far
-     * @return CameraInterface
+     * @param int|float $far            
+     * @return CameraPrimitiveIF
      */
-    public function far(float $far = 10000): CameraInterface
+    public function far(float $far = 10000): CameraPrimitiveIF
     {
-        $this->entity()->component('Camera')->far($far);
+        $this->child()
+            ->entity()
+            ->component('Camera')
+            ->far($far);
         return $this;
     }
-    
+
     /**
      * camera.fov
      *
      * {@inheritdoc}
      *
-     * @param int|float $fov
-     * @return CameraInterface
+     * @param int|float $fov            
+     * @return CameraPrimitiveIF
      */
-    public function fov(float $fov = 10000): CameraInterface
+    public function fov(float $fov = 10000): CameraPrimitiveIF
     {
-        $this->entity()->component('Camera')->fov($fov);
+        $this->child()
+            ->entity()
+            ->component('Camera')
+            ->fov($fov);
         return $this;
     }
 
@@ -104,54 +113,66 @@ class Camera extends Entity implements CameraInterface
      *
      * {@inheritdoc}
      *
-     * @param bool $look_controls
-     * @return CameraInterface
+     * @param bool $look_controls            
+     * @return CameraPrimitiveIF
      */
-    public function lookControls(bool $look_controls = true): CameraInterface
+    public function lookControls(bool $look_controls = true): CameraPrimitiveIF
     {
-        $this->entity()->component('LookControls')->enabled($look_controls);
+        $this->child()
+            ->entity()
+            ->component('LookControls')
+            ->enabled($look_controls);
         return $this;
     }
-    
+
     /**
      * camera.near
      *
      * {@inheritdoc}
      *
-     * @param float $near
-     * @return CameraInterface
+     * @param float $near            
+     * @return CameraPrimitiveIF
      */
-    public function near(float $near = 0.5): CameraInterface
+    public function near(float $near = 0.5): CameraPrimitiveIF
     {
-        $this->entity()->component('Camera')->near($near);
+        $this->child()
+            ->entity()
+            ->component('Camera')
+            ->near($near);
         return $this;
     }
-    
+
     /**
      * wasd-controls.enabled
      *
      * {@inheritdoc}
      *
-     * @param bool $wasd_controls
-     * @return CameraInterface
+     * @param bool $wasd_controls            
+     * @return CameraPrimitiveIF
      */
-    public function wasdControls(bool $wasd_controls = true): CameraInterface
+    public function wasdControls(bool $wasd_controls = true): CameraPrimitiveIF
     {
-        $this->entity()->component('WASDControls')->enabled($wasd_controls);
+        $this->child()
+            ->entity()
+            ->component('WASDControls')
+            ->enabled($wasd_controls);
         return $this;
     }
-    
+
     /**
      * camera.zoom
-     * 
+     *
      * {@inheritdoc}
-     * 
-     * @param int|float $zoom
-     * @return CameraInterface
+     *
+     * @param int|float $zoom            
+     * @return CameraPrimitiveIF
      */
-    public function zoom(float $zoom = 1): CameraInterface
+    public function zoom(float $zoom = 1): CameraPrimitiveIF
     {
-        $this->entity()->component('Camera')->zoom($zoom);
+        $this->child()
+            ->entity()
+            ->component('Camera')
+            ->zoom($zoom);
         return $this;
     }
 }

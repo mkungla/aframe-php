@@ -23,14 +23,15 @@
  * @formatter:on */
 namespace AframeVR\Core\Components\ColladaModel;
 
-use \AframeVR\Interfaces\Core\Components\ColladaModel\ColladaModelInterface;
+use \AframeVR\Interfaces\Core\Components\ColladaModelCMPTIF;
 use \AframeVR\Core\Helpers\ComponentAbstract;
 
-class ColladaModelComponent extends ComponentAbstract implements ColladaModelInterface
+class ColladaModelComponent extends ComponentAbstract implements ColladaModelCMPTIF
 {
+
     /**
      * Initialize Component
-     * 
+     *
      * {@inheritdoc}
      *
      * @return bool
@@ -43,27 +44,27 @@ class ColladaModelComponent extends ComponentAbstract implements ColladaModelInt
 
     /**
      * pointing to an asset that specifies the src or url()
-     * 
+     *
      * {@inheritdoc}
-     * 
-     * @param null|string $src
-     * @return void
+     *
+     * @param null|string $src            
+     * @return ColladaModelCMPTIF
      */
-    public function src( string $src = null)
+    public function src(string $src = null): ColladaModelCMPTIF
     {
         $this->dom_attributes['src'] = $src;
+        return $this;
     }
 
     /**
      * Return DOM attribute contents
-     * 
+     *
      * @return string
      */
     public function getDomAttributeString(): string
     {
-        $attr = substr($this->dom_attributes['src'], 0, 1) === '#' 
-            ? $this->dom_attributes['src'] 
-            : sprintf('url(%s)', $this->dom_attributes['src']);
+        $attr = substr($this->dom_attributes['src'], 0, 1) === '#' ? $this->dom_attributes['src'] : sprintf('url(%s)', 
+            $this->dom_attributes['src']);
         return $attr;
     }
 }

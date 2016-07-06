@@ -14,7 +14,7 @@
  * File         Plane.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
@@ -23,12 +23,11 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\PlaneInterface;
+use \AframeVR\Interfaces\Extras\Primitives\PlanePrimitiveIF;
 use \AframeVR\Core\Entity;
 use \AframeVR\Core\Helpers\MeshAttributes;
 
-
-class Plane extends Entity implements PlaneInterface
+class Plane extends Entity implements PlanePrimitiveIF
 {
     use MeshAttributes;
 
@@ -38,9 +37,9 @@ class Plane extends Entity implements PlaneInterface
      * The plane primitive creates flat surfaces.
      * It is an entity that prescribes the geometry
      * with its geometric primitive set to plane.
-     * 
+     *
      * {@inheritdoc}
-     * 
+     *
      * @return void
      */
     public function init()
@@ -70,9 +69,9 @@ class Plane extends Entity implements PlaneInterface
      * {@inheritdoc}
      *
      * @param int|float $height            
-     * @return \AframeVR\Interfaces\Extras\Primitives\PlaneInterface
+     * @return \AframeVR\Interfaces\Extras\Primitives\PlanePrimitiveIF
      */
-    public function height(float $height = 1): PlaneInterface
+    public function height(float $height = 1): PlanePrimitiveIF
     {
         $this->component('Geometry')->height($height);
         return $this;
@@ -84,9 +83,9 @@ class Plane extends Entity implements PlaneInterface
      * {@inheritdoc}
      *
      * @param int|float $width            
-     * @return \AframeVR\Interfaces\Extras\Primitives\PlaneInterface
+     * @return \AframeVR\Interfaces\Extras\Primitives\PlanePrimitiveIF
      */
-    public function width(float $width = 1): PlaneInterface
+    public function width(float $width = 1): PlanePrimitiveIF
     {
         $this->component('Geometry')->width($width);
         return $this;

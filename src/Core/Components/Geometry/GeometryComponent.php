@@ -14,7 +14,7 @@
  * File         GeometryComponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
@@ -23,23 +23,13 @@
  * @formatter:on */
 namespace AframeVR\Core\Components\Geometry;
 
-use \AframeVR\Interfaces\Core\Components\Geometry\GeometryInterface;
+use \AframeVR\Interfaces\Core\Components\GeometryCMPTIF;
 use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Core\Exceptions\InvalidComponentArgumentException;
 
-/**
- * AframeVR\Core\Components\Geometry
- *
- * The geometry component provides a basic shape for an entity.
- * The general geometry is defined by the primitive property.
- * Geometric primitives, in computer graphics, means an extremely
- * basic shape. With the primitive defined, additional properties
- * are used to further define the geometry. A material component
- * is usually defined alongside to provide a appearance
- * alongside the shape to create a complete mesh.
- */
-class GeometryComponent extends ComponentAbstract implements GeometryInterface
+class GeometryComponent extends ComponentAbstract implements GeometryCMPTIF
 {
+
     /**
      * Initialize Component
      *
@@ -52,27 +42,30 @@ class GeometryComponent extends ComponentAbstract implements GeometryInterface
         $this->setDomAttribute('geometry');
         return true;
     }
-    
+
     /**
      * Set geometry primitive
      *
-     * One of box, circle, cone, cylinder, plane, ring, sphere, torus, torusKnot.
+     * {@inheritdoc}
      *
      * @param string $primitive            
      * @throws InvalidComponentArgumentException
-     * @return void
+     * @return GeometryCMPTIF
      */
-    public function primitive(string $primitive)
+    public function primitive(string $primitive): GeometryCMPTIF
     {
-        if (in_array($primitive, self::ALLOWED_PRIMITIVES)) {     
-            $this->dom_attributes              = array();
-            $method_provider                   = sprintf('%sMethods', ucfirst($primitive));
+        if (in_array($primitive, self::ALLOWED_PRIMITIVES)) {
+            $this->dom_attributes = array();
+            
+            $method_provider = sprintf('%sMethods', ucfirst($primitive));
+            
             $this->dom_attributes['primitive'] = $primitive;
             
             $this->setMethodProvider($method_provider);
         } else {
             throw new InvalidComponentArgumentException((string) $primitive, 'Geometry::primitive');
         }
+        return $this;
     }
 
     /**
@@ -83,11 +76,12 @@ class GeometryComponent extends ComponentAbstract implements GeometryInterface
      * @param int|float $x            
      * @param int|float $y            
      * @param int|float $z            
-     * @return void
+     * @return GeometryCMPTIF
      */
-    public function translate(float $x = 0, float $y = 0, float $z = 0)
+    public function translate(float $x = 0, float $y = 0, float $z = 0): GeometryCMPTIF
     {
         $this->dom_attributes['translate'] = sprintf('%d %d %d', $x, $y, $z);
+        return $this;
     }
 
     /**
@@ -96,11 +90,12 @@ class GeometryComponent extends ComponentAbstract implements GeometryInterface
      * {@inheritdoc}
      *
      * @param bool $buffer            
-     * @return void
+     * @return GeometryCMPTIF
      */
-    public function buffer(bool $buffer = true)
+    public function buffer(bool $buffer = true): GeometryCMPTIF
     {
         $this->dom_attributes['buffer'] = $buffer ? 'true' : 'false';
+        return $this;
     }
 
     /**
@@ -109,10 +104,11 @@ class GeometryComponent extends ComponentAbstract implements GeometryInterface
      * {@inheritdoc}
      *
      * @param bool $skipCache            
-     * @return void
+     * @return GeometryCMPTIF
      */
-    public function skipCache(bool $skipCache = false)
+    public function skipCache(bool $skipCache = false): GeometryCMPTIF
     {
         $this->dom_attributes['skipCache'] = $skipCache ? 'true' : 'false';
+        return $this;
     }
 }

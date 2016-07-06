@@ -14,7 +14,7 @@
  * File         Sky.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
@@ -23,7 +23,7 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\SkyInterface;
+use \AframeVR\Interfaces\Extras\Primitives\SkyPrimitiveIF;
 use \AframeVR\Extras\Primitives\Sphere;
 
 /**
@@ -32,7 +32,7 @@ use \AframeVR\Extras\Primitives\Sphere;
  * The sky primitive adds a background to a scene or display a 360-degree photo.
  * It is an entity that prescribes a large sphere with the material mapped to the inside.
  */
-final class Sky extends Sphere implements SkyInterface
+final class Sky extends Sphere implements SkyPrimitiveIF
 {
 
     /**

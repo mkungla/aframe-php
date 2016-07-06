@@ -14,7 +14,7 @@
  * File         RotationComponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
- ^ @issues      https://github.com/mkungla/aframe-php/issues
+ * @issues      https://github.com/mkungla/aframe-php/issues
  * ********************************************************************
  * Contributors:
  * @author Marko Kungla <marko@okramlabs.com>
@@ -23,11 +23,11 @@
  * @formatter:on */
 namespace AframeVR\Core\Components\Rotation;
 
-use \AframeVR\Interfaces\Core\Components\Rotation\RotationInterface;
+use \AframeVR\Interfaces\Core\Components\RotationCMPTIF;
 use \AframeVR\Core\Helpers\ComponentAbstract;
 use \AframeVR\Core\Helpers\ComponentHelper;
 
-class RotationComponent extends ComponentAbstract implements RotationInterface
+class RotationComponent extends ComponentAbstract implements RotationCMPTIF
 {
     use ComponentHelper;
 
@@ -50,7 +50,7 @@ class RotationComponent extends ComponentAbstract implements RotationInterface
         $this->setDomAttribute('rotation');
         return true;
     }
-    
+
     /**
      * Get Rotation
      *
@@ -62,7 +62,7 @@ class RotationComponent extends ComponentAbstract implements RotationInterface
     {
         return $this->getDomAttributeString();
     }
-    
+
     /**
      * Return DOM attribute contents
      *
@@ -77,4 +77,62 @@ class RotationComponent extends ComponentAbstract implements RotationInterface
         return $this->createCoordinateString($attrs['x'], $attrs['y'], $attrs['z']);
     }
 
+    /**
+     * Roll, rotation about the X-axis.
+     *
+     * {@inheritdoc}
+     *
+     * @param double $roll            
+     * @return RotationCMPTIF
+     */
+    public function roll(float $roll): RotationCMPTIF
+    {
+        $this->init();
+        $this->dom_attributes['x'] = $roll;
+        return $this;
+    }
+
+    /**
+     * Pitch, rotation about the Y-axis.
+     *
+     * {@inheritdoc}
+     *
+     * @param double $pitch            
+     * @return RotationCMPTIF
+     */
+    public function pitch(float $pitch): RotationCMPTIF
+    {
+        $this->init();
+        $this->dom_attributes['y'] = $pitch;
+        return $this;
+    }
+
+    /**
+     * Yaw, rotation about the Z-axis.
+     *
+     * {@inheritdoc}
+     *
+     * @param double $yaw            
+     * @return RotationCMPTIF
+     */
+    public function yaw(float $yaw): RotationCMPTIF
+    {
+        $this->init();
+        $this->dom_attributes['z'] = $yaw;
+        return $this;
+    }
+
+    /**
+     * When any rotation component methods are called then init others
+     *
+     * {@inheritdoc}
+     *
+     * @return void
+     */
+    private function init()
+    {
+        $this->dom_attributes['x'] = $this->dom_attributes['x'] ?? 0;
+        $this->dom_attributes['y'] = $this->dom_attributes['y'] ?? 0;
+        $this->dom_attributes['z'] = $this->dom_attributes['z'] ?? 0;
+    }
 }
