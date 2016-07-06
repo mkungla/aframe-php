@@ -325,7 +325,7 @@ class Entity implements EntityInterface
     private function addFormatComment(\DOMDocument &$aframe_dom, \DOMElement &$a_entity, string $content)
     {
         if ($aframe_dom->formatOutput) {
-            $com = $aframe_dom->createComment("\n\t");
+            $com = $aframe_dom->createComment($content);
             $a_entity->appendChild($com);
         }
     }

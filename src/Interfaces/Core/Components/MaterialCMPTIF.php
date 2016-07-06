@@ -77,11 +77,11 @@ interface MaterialCMPTIF extends ComponentInterface
      * Defaults to the built-in standard shading model.
      * Can be set to the built-in flat shading model or to a registered custom shader
      *
-     * @param string $shader            
+     * @param null|string $shader            
      * @throws BadShaderCallException
      * @return object|null
      */
-    public function shader(string $shader = 'standard');
+    public function shader(string $shader = null);
 
     /**
      * side

@@ -61,7 +61,7 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
      *
      * {@inheritdoc}
      *
-     * @param string $shader            
+     * @param null|string $shader            
      * @throws BadShaderCallException
      * @return object|null
      */
