@@ -23,7 +23,7 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\CylinderInterface;
+use \AframeVR\Interfaces\Extras\Primitives\CylinderPrimitiveIF;
 use \AframeVR\Core\Entity;
 use \AframeVR\Core\Helpers\MeshAttributes;
 
@@ -33,7 +33,7 @@ use \AframeVR\Core\Helpers\MeshAttributes;
  * The cylinder primitive is an entity that prescribes the geometry with its geometric primitive set to cylinder.
  * It can be used to create tubes and curved surfaces.
  */
-class Cylinder extends Entity implements CylinderInterface
+class Cylinder extends Entity implements CylinderPrimitiveIF
 {
     use MeshAttributes;
 
@@ -74,9 +74,9 @@ class Cylinder extends Entity implements CylinderInterface
      * {@inheritdoc}
      *
      * @param int|float $height            
-     * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
+     * @return CylinderPrimitiveIF
      */
-    public function height(float $height = 1): CylinderInterface
+    public function height(float $height = 1): CylinderPrimitiveIF
     {
         $this->component('Geometry')->height($height);
         return $this;
@@ -88,9 +88,9 @@ class Cylinder extends Entity implements CylinderInterface
      * {@inheritdoc}
      *
      * @param bool $openEnded            
-     * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
+     * @return CylinderPrimitiveIF
      */
-    public function openEnded(bool $openEnded = false): CylinderInterface
+    public function openEnded(bool $openEnded = false): CylinderPrimitiveIF
     {
         $this->component('Geometry')->openEnded($openEnded);
         return $this;
@@ -102,9 +102,9 @@ class Cylinder extends Entity implements CylinderInterface
      * {@inheritdoc}
      *
      * @param float $radius            
-     * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
+     * @return CylinderPrimitiveIF
      */
-    public function radius(float $radius = 0.75): CylinderInterface
+    public function radius(float $radius = 0.75): CylinderPrimitiveIF
     {
         $this->component('Geometry')->radius($radius);
         return $this;
@@ -116,9 +116,9 @@ class Cylinder extends Entity implements CylinderInterface
      * {@inheritdoc}
      *
      * @param int $segmentsHeight            
-     * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
+     * @return CylinderPrimitiveIF
      */
-    public function segmentsHeight(int $segmentsHeight = 1): CylinderInterface
+    public function segmentsHeight(int $segmentsHeight = 1): CylinderPrimitiveIF
     {
         $this->component('Geometry')->segmentsHeight($segmentsHeight);
         return $this;
@@ -130,9 +130,9 @@ class Cylinder extends Entity implements CylinderInterface
      * {@inheritdoc}
      *
      * @param int $segmentsRadial            
-     * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
+     * @return CylinderPrimitiveIF
      */
-    public function segmentsRadial(int $segmentsRadial = 36): CylinderInterface
+    public function segmentsRadial(int $segmentsRadial = 36): CylinderPrimitiveIF
     {
         $this->component('Geometry')->segmentsHeight($segmentsRadial);
         return $this;
@@ -144,9 +144,9 @@ class Cylinder extends Entity implements CylinderInterface
      * {@inheritdoc}
      *
      * @param int $thetaLength            
-     * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
+     * @return CylinderPrimitiveIF
      */
-    public function thetaLength(int $thetaLength = 360): CylinderInterface
+    public function thetaLength(int $thetaLength = 360): CylinderPrimitiveIF
     {
         $this->component('Geometry')->thetaLength($thetaLength);
         return $this;
@@ -158,9 +158,9 @@ class Cylinder extends Entity implements CylinderInterface
      * {@inheritdoc}
      *
      * @param int $thetaStart            
-     * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
+     * @return CylinderPrimitiveIF
      */
-    public function thetaStart(int $thetaStart = 0): CylinderInterface
+    public function thetaStart(int $thetaStart = 0): CylinderPrimitiveIF
     {
         $this->component('Geometry')->thetaStart($thetaStart);
         return $this;

@@ -62,9 +62,9 @@ interface GeometryCMPTIF extends ComponentInterface
      *
      * @param string $primitive            
      * @throws InvalidComponentArgumentException
-     * @return void
+     * @return GeometryCMPTIF
      */
-    public function primitive(string $primitive);
+    public function primitive(string $primitive): GeometryCMPTIF;
 
     /**
      * translate
@@ -76,9 +76,9 @@ interface GeometryCMPTIF extends ComponentInterface
      * @param int|float $x            
      * @param int|float $y            
      * @param int|float $z            
-     * @return void
+     * @return GeometryCMPTIF
      */
-    public function translate(float $x = 0, float $y = 0, float $z = 0);
+    public function translate(float $x = 0, float $y = 0, float $z = 0): GeometryCMPTIF;
 
     /**
      * Set Buffer
@@ -86,9 +86,9 @@ interface GeometryCMPTIF extends ComponentInterface
      * Transform geometry into a BufferGeometry to reduce memory usage at the cost of being harder to manipulate.
      *
      * @param bool $buffer            
-     * @return void
+     * @return GeometryCMPTIF
      */
-    public function buffer(bool $buffer = true);
+    public function buffer(bool $buffer = true): GeometryCMPTIF;
 
     /**
      * skipCache
@@ -96,7 +96,7 @@ interface GeometryCMPTIF extends ComponentInterface
      * Disable retrieving the shared geometry object from the cache.
      *
      * @param bool $skipCache            
-     * @return void
+     * @return GeometryCMPTIF
      */
-    public function skipCache(bool $skipCache = false);
+    public function skipCache(bool $skipCache = false): GeometryCMPTIF;
 }

@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jun 28, 2016 - 9:35:29 PM
+ * Created by   Marko Kungla on Jun 28, 2016 - 10:25:31 PM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         BoxInterface.php
+ * File         SpherePrimitiveIF.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  * @issues      https://github.com/mkungla/aframe-php/issues
@@ -25,29 +25,30 @@ namespace AframeVR\Interfaces\Extras\Primitives;
 
 use \AframeVR\Interfaces\PrimitiveInterface;
 
-interface BoxInterface extends PrimitiveInterface
+interface SpherePrimitiveIF extends PrimitiveInterface
 {
+
     /**
-     * geometry.depth
-     * 
-     * @param int|float $depth
-     * @return \AframeVR\Interfaces\Extras\Primitives\BoxInterface
+     * geometry.radius
+     *
+     * @param float $radius            
+     * @return SpherePrimitiveIF
      */
-    public function depth(float $depth = 1): BoxInterface;
-    
+    public function radius(float $radius = 0.85): SpherePrimitiveIF;
+
     /**
-     * geometry.height
-     * 
-     * @param int|float $height
-     * @return \AframeVR\Interfaces\Extras\Primitives\BoxInterface
+     * geometry.segmentsHeight
+     *
+     * @param int $segmentsHeigh            
+     * @return SpherePrimitiveIF
      */
-    public function height(float $height = 1): BoxInterface;
-    
+    public function segmentsHeight($segmentsHeigh = 18): SpherePrimitiveIF;
+
     /**
-     * geometry.width
-     * 
-     * @param int|float $width
-     * @return \AframeVR\Interfaces\Extras\Primitives\BoxInterface
+     * geometry.segmentsWidth
+     *
+     * @param int $segmentsWidth            
+     * @return SpherePrimitiveIF
      */
-    public function width(float $width = 1): BoxInterface;
+    public function segmentsWidth($segmentsWidth = 36): SpherePrimitiveIF;
 }

@@ -40,9 +40,9 @@ interface WASDControlsCMPTIF extends ComponentInterface
      * How fast the entity accelerates when holding the keys.
      *
      * @param int $acceleration            
-     * @return void
+     * @return WASDControlsCMPTIF
      */
-    public function acceleration(int $acceleration = 65);
+    public function acceleration(int $acceleration = 65): WASDControlsCMPTIF;
 
     /**
      * AD Axis
@@ -50,9 +50,9 @@ interface WASDControlsCMPTIF extends ComponentInterface
      * Axis that the A and D keys act upon.
      *
      * @param string $axis            
-     * @return void
+     * @return WASDControlsCMPTIF
      */
-    public function adAxis(string $axis = 'x');
+    public function adAxis(string $axis = 'x'): WASDControlsCMPTIF;
 
     /**
      * AD Inverted
@@ -60,9 +60,9 @@ interface WASDControlsCMPTIF extends ComponentInterface
      * Whether the axis that the A and D keys act upon are inverted.
      *
      * @param bool $inverted            
-     * @return void
+     * @return WASDControlsCMPTIF
      */
-    public function adInverted(bool $inverted = false);
+    public function adInverted(bool $inverted = false): WASDControlsCMPTIF;
 
     /**
      * Easing
@@ -70,9 +70,9 @@ interface WASDControlsCMPTIF extends ComponentInterface
      * How fast the entity decelerates after releasing the keys. Like friction.
      *
      * @param int $easing            
-     * @return void
+     * @return WASDControlsCMPTIF
      */
-    public function easing(int $easing = 20);
+    public function easing(int $easing = 20): WASDControlsCMPTIF;
 
     /**
      * Enaled
@@ -80,9 +80,9 @@ interface WASDControlsCMPTIF extends ComponentInterface
      * Whether the WASD controls are enabled.
      *
      * @param bool $enabled            
-     * @return void
+     * @return WASDControlsCMPTIF
      */
-    public function enabled(bool $enabled = true);
+    public function enabled(bool $enabled = true): WASDControlsCMPTIF;
 
     /**
      * Fly
@@ -90,9 +90,9 @@ interface WASDControlsCMPTIF extends ComponentInterface
      * Whether or not movement is restricted to the entity’s initial plane.
      *
      * @param bool $fly            
-     * @return void
+     * @return WASDControlsCMPTIF
      */
-    public function fly(bool $fly = false);
+    public function fly(bool $fly = false): WASDControlsCMPTIF;
 
     /**
      * WS Axis
@@ -100,9 +100,9 @@ interface WASDControlsCMPTIF extends ComponentInterface
      * Axis that the W and S keys act upon.
      *
      * @param string $axis            
-     * @return void
+     * @return WASDControlsCMPTIF
      */
-    public function wsAxis(string $axis = 'z');
+    public function wsAxis(string $axis = 'z'): WASDControlsCMPTIF;
 
     /**
      * WS Inverted
@@ -110,7 +110,7 @@ interface WASDControlsCMPTIF extends ComponentInterface
      * Whether the axis that the W and S keys act upon are inverted.
      *
      * @param bool $inverted            
-     * @return void
+     * @return WASDControlsCMPTIF
      */
-    public function wsInverted(bool $inverted = false);
+    public function wsInverted(bool $inverted = false): WASDControlsCMPTIF;
 }

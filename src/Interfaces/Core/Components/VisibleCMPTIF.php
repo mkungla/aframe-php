@@ -40,7 +40,7 @@ interface VisibleCMPTIF extends ComponentInterface
      * false The entity will not be rendered nor visible. The entity will still exist in the scene.
      *
      * @param bool $visible            
-     * @return void
+     * @return VisibleCMPTIF
      */
-    public function set(bool $visible = true);
+    public function set(bool $visible = true): VisibleCMPTIF;
 }

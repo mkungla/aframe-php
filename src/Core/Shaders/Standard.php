@@ -28,21 +28,27 @@ use \AframeVR\Core\Helpers\ShaderAbstract;
 
 class Standard extends ShaderAbstract implements ShaderInterface
 {
-
+    /**
+     * Shader
+     *
+     * @var string
+     */
+    protected $shader = 'standard';
+    
     /**
      * Base diffuse color.
      *
      * @var string $color
      */
     protected $color = '#fff';
-
+    
     /**
      * Height of video (in pixels), if defining a video texture.
      *
      * @var int $height
      */
     protected $height = 360;
-
+    
     /**
      * Environment cubemap texture for reflections.
      *
@@ -51,28 +57,28 @@ class Standard extends ShaderAbstract implements ShaderInterface
      * @var string|null $envMap
      */
     protected $envMap = null;
-
+    
     /**
      * Whether or not material is affected by fog.
      *
      * @var string $fog
      */
     protected $fog = 'true';
-
+    
     /**
      * How metallic the material is from 0 to 1.
      *
      * @var float $metalness
      */
     protected $metalness = 0.5;
-
+    
     /**
      * How many times a texture (defined by src) repeats in the X and Y direction.
      *
      * @var string $repeat
      */
     protected $repeat = '1 1';
-
+    
     /**
      * How rough the material is from 0 to 1.
      * A rougher material will scatter
@@ -81,7 +87,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
      * @var float $roughness
      */
     protected $roughness = 0.5;
-
+    
     /**
      * Image or video texture map.
      * Can either be a selector to an <img> or <video>, or an inline URL.
@@ -89,7 +95,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
      * @var string|null $src
      */
     protected $src = null;
-
+    
     /**
      * Width of video (in pixels), if defining a video texture.
      *
@@ -114,7 +120,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
         $this->src();
         $this->width(640);
     }
-    
+
     /**
      * Base diffuse color
      *

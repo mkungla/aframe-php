@@ -40,9 +40,9 @@ interface FogCMPTIF extends ComponentInterface
      * Type of fog distribution. Can be linear or exponential.
      *
      * @param string $type            
-     * @return void
+     * @return FogCMPTIF
      */
-    public function type(string $type = 'linear');
+    public function type(string $type = 'linear'): FogCMPTIF;
 
     /**
      * Fog color
@@ -50,7 +50,7 @@ interface FogCMPTIF extends ComponentInterface
      * Color of fog. For example, if set to black, far away objects will be rendered black.
      *
      * @param string $color            
-     * @return void
+     * @return FogCMPTIF
      */
-    public function color(string $color = '#000');
+    public function color(string $color = '#000'): FogCMPTIF;
 }

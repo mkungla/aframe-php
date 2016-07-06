@@ -40,17 +40,17 @@ interface KeyboardShortcutsCMPTIF extends ComponentInterface
      * Enables the shortcut to press ‘F’ to enter VR.
      *
      * @param bool $enter_vr            
-     * @return void
+     * @return KeyboardShortcutsCMPTIF
      */
-    public function enterVR(bool $enter_vr);
+    public function enterVR(bool $enter_vr): KeyboardShortcutsCMPTIF;
 
     /**
      * resetSensor
      *
      * Enables to shortcut to press ‘Z’ to reset the sensor.
      *
-     * @param bool $reset_sensor
-     * @return void            
+     * @param bool $reset_sensor            
+     * @return KeyboardShortcutsCMPTIF
      */
-    public function resetSensor(bool $reset_sensor);
+    public function resetSensor(bool $reset_sensor): KeyboardShortcutsCMPTIF;
 }

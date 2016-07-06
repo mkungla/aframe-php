@@ -38,23 +38,23 @@ interface RotationCMPTIF extends ComponentInterface
      * Roll, rotation about the X-axis.
      *
      * @param double $roll            
-     * @return void
+     * @return RotationCMPTIF
      */
-    public function roll(float $roll);
+    public function roll(float $roll): RotationCMPTIF;
 
     /**
      * Pitch, rotation about the Y-axis.
      *
      * @param double $pitch            
-     * @return void
+     * @return RotationCMPTIF
      */
-    public function pitch(float $pitch);
+    public function pitch(float $pitch): RotationCMPTIF;
 
     /**
      * Yaw, rotation about the Z-axis.
      *
      * @param double $yaw            
-     * @return void
+     * @return RotationCMPTIF
      */
-    public function yaw(float $yaw);
+    public function yaw(float $yaw): RotationCMPTIF;
 }

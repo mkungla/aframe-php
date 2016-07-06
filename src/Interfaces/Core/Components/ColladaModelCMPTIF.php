@@ -40,7 +40,7 @@ interface ColladaModelCMPTIF extends ComponentInterface
      * URI to a COLLADA file
      *
      * @param null|string $src            
-     * @return void
+     * @return ColladaModelCMPTIF
      */
-    public function src(string $src = null);
+    public function src(string $src = null): ColladaModelCMPTIF;
 }

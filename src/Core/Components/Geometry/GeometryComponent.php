@@ -29,6 +29,7 @@ use \AframeVR\Core\Exceptions\InvalidComponentArgumentException;
 
 class GeometryComponent extends ComponentAbstract implements GeometryCMPTIF
 {
+
     /**
      * Initialize Component
      *
@@ -41,7 +42,7 @@ class GeometryComponent extends ComponentAbstract implements GeometryCMPTIF
         $this->setDomAttribute('geometry');
         return true;
     }
-    
+
     /**
      * Set geometry primitive
      *
@@ -49,19 +50,20 @@ class GeometryComponent extends ComponentAbstract implements GeometryCMPTIF
      *
      * @param string $primitive            
      * @throws InvalidComponentArgumentException
-     * @return void
+     * @return GeometryCMPTIF
      */
-    public function primitive(string $primitive)
+    public function primitive(string $primitive): GeometryCMPTIF
     {
-        if (in_array($primitive, self::ALLOWED_PRIMITIVES)) {     
-            $this->dom_attributes              = array();
-            $method_provider                   = sprintf('%sMethods', ucfirst($primitive));
+        if (in_array($primitive, self::ALLOWED_PRIMITIVES)) {
+            $this->dom_attributes = array();
+            $method_provider = sprintf('%sMethods', ucfirst($primitive));
             $this->dom_attributes['primitive'] = $primitive;
             
             $this->setMethodProvider($method_provider);
         } else {
             throw new InvalidComponentArgumentException((string) $primitive, 'Geometry::primitive');
         }
+        return $this;
     }
 
     /**
@@ -72,11 +74,12 @@ class GeometryComponent extends ComponentAbstract implements GeometryCMPTIF
      * @param int|float $x            
      * @param int|float $y            
      * @param int|float $z            
-     * @return void
+     * @return GeometryCMPTIF
      */
-    public function translate(float $x = 0, float $y = 0, float $z = 0)
+    public function translate(float $x = 0, float $y = 0, float $z = 0): GeometryCMPTIF
     {
         $this->dom_attributes['translate'] = sprintf('%d %d %d', $x, $y, $z);
+        return $this;
     }
 
     /**
@@ -85,11 +88,12 @@ class GeometryComponent extends ComponentAbstract implements GeometryCMPTIF
      * {@inheritdoc}
      *
      * @param bool $buffer            
-     * @return void
+     * @return GeometryCMPTIF
      */
-    public function buffer(bool $buffer = true)
+    public function buffer(bool $buffer = true): GeometryCMPTIF
     {
         $this->dom_attributes['buffer'] = $buffer ? 'true' : 'false';
+        return $this;
     }
 
     /**
@@ -98,10 +102,11 @@ class GeometryComponent extends ComponentAbstract implements GeometryCMPTIF
      * {@inheritdoc}
      *
      * @param bool $skipCache            
-     * @return void
+     * @return GeometryCMPTIF
      */
-    public function skipCache(bool $skipCache = false)
+    public function skipCache(bool $skipCache = false): GeometryCMPTIF
     {
         $this->dom_attributes['skipCache'] = $skipCache ? 'true' : 'false';
+        return $this;
     }
 }

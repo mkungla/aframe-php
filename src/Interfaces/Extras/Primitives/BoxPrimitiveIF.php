@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jul 4, 2016 - 10:53:44 PM
+ * Created by   Marko Kungla on Jun 28, 2016 - 9:35:29 PM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         StatsCMPTIF.php
+ * File         BoxPrimitiveIF.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  * @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,24 +21,34 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Core\Components;
+namespace AframeVR\Interfaces\Extras\Primitives;
 
-use \AframeVR\Interfaces\ComponentInterface;
+use \AframeVR\Interfaces\PrimitiveInterface;
 
-/**
- * Stats Component Interface
- *
- * The stats component displays a UI that displays performance measurements such as framerate. The stats component
- * applies only to the <a-scene> element.
- */
-interface StatsCMPTIF extends ComponentInterface
+interface BoxPrimitiveIF extends PrimitiveInterface
 {
 
     /**
-     * Apply stats component for scene
+     * geometry.depth
      *
-     * @param bool $enabled            
-     * @return StatsCMPTIF
+     * @param int|float $depth            
+     * @return BoxPrimitiveIF
      */
-    public function enabled(bool $enabled = false): StatsCMPTIF;
+    public function depth(float $depth = 1): BoxPrimitiveIF;
+
+    /**
+     * geometry.height
+     *
+     * @param int|float $height            
+     * @return BoxPrimitiveIF
+     */
+    public function height(float $height = 1): BoxPrimitiveIF;
+
+    /**
+     * geometry.width
+     *
+     * @param int|float $width            
+     * @return BoxPrimitiveIF
+     */
+    public function width(float $width = 1): BoxPrimitiveIF;
 }

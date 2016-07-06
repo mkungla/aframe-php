@@ -1,0 +1,4 @@
+{
+	"name":"sound",
+	"description":"The sound component defines the entity as a source of sound or audio. The sound component is positional and is therefore affected by the components-position."
+}

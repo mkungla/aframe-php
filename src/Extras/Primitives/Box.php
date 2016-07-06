@@ -23,11 +23,11 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\BoxInterface;
+use \AframeVR\Interfaces\Extras\Primitives\BoxPrimitiveIF;
 use \AframeVR\Core\Entity;
 use \AframeVR\Core\Helpers\MeshAttributes;
 
-class Box extends Entity implements BoxInterface
+class Box extends Entity implements BoxPrimitiveIF
 {
     use MeshAttributes;
 
@@ -67,9 +67,9 @@ class Box extends Entity implements BoxInterface
      * {@inheritdoc}
      *
      * @param int|float $depth            
-     * @return \AframeVR\Interfaces\Extras\Primitives\BoxInterface
+     * @return BoxPrimitiveIF
      */
-    public function depth(float $depth = 1): BoxInterface
+    public function depth(float $depth = 1): BoxPrimitiveIF
     {
         $this->component('Geometry')->depth($depth);
         return $this;
@@ -81,9 +81,9 @@ class Box extends Entity implements BoxInterface
      * {@inheritdoc}
      *
      * @param int|float $height            
-     * @return \AframeVR\Interfaces\Extras\Primitives\BoxInterface
+     * @return BoxPrimitiveIF
      */
-    public function height(float $height = 1): BoxInterface
+    public function height(float $height = 1): BoxPrimitiveIF
     {
         $this->component('Geometry')->height($height);
         return $this;
@@ -95,9 +95,9 @@ class Box extends Entity implements BoxInterface
      * {@inheritdoc}
      *
      * @param int|float $width            
-     * @return \AframeVR\Interfaces\Extras\Primitives\BoxInterface
+     * @return BoxPrimitiveIF
      */
-    public function width(float $width = 1): BoxInterface
+    public function width(float $width = 1): BoxPrimitiveIF
     {
         $this->component('Geometry')->width($width);
         return $this;

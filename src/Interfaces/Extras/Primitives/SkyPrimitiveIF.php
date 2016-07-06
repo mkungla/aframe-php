@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         SkyInterface.php
+ * File         SkyPrimitiveIF.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  * @issues      https://github.com/mkungla/aframe-php/issues
@@ -25,6 +25,6 @@ namespace AframeVR\Interfaces\Extras\Primitives;
 
 use \AframeVR\Interfaces\PrimitiveInterface;
 
-interface SkyInterface extends PrimitiveInterface
+interface SkyPrimitiveIF extends PrimitiveInterface
 {
 }

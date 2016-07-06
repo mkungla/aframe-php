@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         CylinderInterface.php
+ * File         CylinderPrimitiveIF.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  * @issues      https://github.com/mkungla/aframe-php/issues
@@ -25,62 +25,62 @@ namespace AframeVR\Interfaces\Extras\Primitives;
 
 use \AframeVR\Interfaces\PrimitiveInterface;
 
-interface CylinderInterface extends PrimitiveInterface
+interface CylinderPrimitiveIF extends PrimitiveInterface
 {
 
     /**
      * geometry.height
      *
      * @param int|float $height            
-     * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
+     * @return CylinderPrimitiveIF
      */
-    public function height(float $height = 1): CylinderInterface;
+    public function height(float $height = 1): CylinderPrimitiveIF;
 
     /**
      * geometry.openEnded
      *
      * @param bool $openEnded            
-     * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
+     * @return CylinderPrimitiveIF
      */
-    public function openEnded(bool $openEnded = false): CylinderInterface;
+    public function openEnded(bool $openEnded = false): CylinderPrimitiveIF;
 
     /**
      * geometry.radius
      *
      * @param float $radius            
-     * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
+     * @return CylinderPrimitiveIF
      */
-    public function radius(float $radius = 0.75): CylinderInterface;
+    public function radius(float $radius = 0.75): CylinderPrimitiveIF;
 
     /**
      * geometry.segmentsHeight
      *
      * @param int $segmentsHeight            
-     * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
+     * @return CylinderPrimitiveIF
      */
-    public function segmentsHeight(int $segmentsHeight = 1): CylinderInterface;
+    public function segmentsHeight(int $segmentsHeight = 1): CylinderPrimitiveIF;
 
     /**
      * geometry.segmentsRadial
      *
      * @param int $segmentsRadial            
-     * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
+     * @return CylinderPrimitiveIF
      */
-    public function segmentsRadial(int $segmentsRadial = 36): CylinderInterface;
+    public function segmentsRadial(int $segmentsRadial = 36): CylinderPrimitiveIF;
 
     /**
      * geometry.thetaLength
      *
      * @param int $thetaLength            
-     * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
+     * @return CylinderPrimitiveIF
      */
-    public function thetaLength(int $thetaLength = 360): CylinderInterface;
+    public function thetaLength(int $thetaLength = 360): CylinderPrimitiveIF;
 
     /**
      * geometry.thetaStart
      *
      * @param int $thetaStart            
-     * @return \AframeVR\Interfaces\Extras\Primitives\CylinderInterface
+     * @return CylinderPrimitiveIF
      */
-    public function thetaStart(int $thetaStart = 0): CylinderInterface;
+    public function thetaStart(int $thetaStart = 0): CylinderPrimitiveIF;
 }

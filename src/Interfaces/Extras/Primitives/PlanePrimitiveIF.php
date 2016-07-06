@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jun 28, 2016 - 10:25:31 PM
+ * Created by   Marko Kungla on Jun 28, 2016 - 10:08:00 PM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         SphereInterface.php
+ * File         PlanePrimitiveIF.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  * @issues      https://github.com/mkungla/aframe-php/issues
@@ -25,30 +25,22 @@ namespace AframeVR\Interfaces\Extras\Primitives;
 
 use \AframeVR\Interfaces\PrimitiveInterface;
 
-interface SphereInterface extends PrimitiveInterface
+interface PlanePrimitiveIF extends PrimitiveInterface
 {
 
     /**
-     * geometry.radius
+     * geometry.height
      *
-     * @param float $radius            
-     * @return \AframeVR\Interfaces\Extras\Primitives\SphereInterface
+     * @param int|float $height            
+     * @return PlanePrimitiveIF
      */
-    public function radius(float $radius = 0.85): SphereInterface;
+    public function height(float $height = 1): PlanePrimitiveIF;
 
     /**
-     * geometry.segmentsHeight
+     * geometry.width
      *
-     * @param int $segmentsHeigh            
-     * @return \AframeVR\Interfaces\Extras\Primitives\SphereInterface
+     * @param int|float $width            
+     * @return PlanePrimitiveIF
      */
-    public function segmentsHeight($segmentsHeigh = 18): SphereInterface;
-
-    /**
-     * geometry.segmentsWidth
-     *
-     * @param int $segmentsWidth            
-     * @return \AframeVR\Interfaces\Extras\Primitives\SphereInterface
-     */
-    public function segmentsWidth($segmentsWidth = 36): SphereInterface;
+    public function width(float $width = 1): PlanePrimitiveIF;
 }

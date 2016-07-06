@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jul 4, 2016 - 10:53:44 PM
+ * Created by   Marko Kungla on Jul 6, 2016 - 2:28:38 AM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         StatsCMPTIF.php
+ * File         Image.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  * @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,24 +21,32 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Core\Components;
+namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\ComponentInterface;
+use \AframeVR\Interfaces\Extras\Primitives\ImagePrimitiveIF;
 
-/**
- * Stats Component Interface
- *
- * The stats component displays a UI that displays performance measurements such as framerate. The stats component
- * applies only to the <a-scene> element.
- */
-interface StatsCMPTIF extends ComponentInterface
+class Image extends Plane implements ImagePrimitiveIF
 {
 
+    public function init()
+    {
+        parent::init();
+        $this->component('Material')->shader('flat');
+        $this->component('Material')->side('double');
+        $this->color('#FFF');
+        $this->transparent(true);
+    }
+
     /**
-     * Apply stats component for scene
+     * Set defaults
      *
-     * @param bool $enabled            
-     * @return StatsCMPTIF
+     * {@inheritdoc}
+     *
+     * @return void
      */
-    public function enabled(bool $enabled = false): StatsCMPTIF;
+    public function defaults()
+    {
+        $this->height(1.75);
+        $this->width(1.75);
+    }
 }

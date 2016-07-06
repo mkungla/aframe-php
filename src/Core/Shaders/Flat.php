@@ -28,35 +28,41 @@ use \AframeVR\Core\Helpers\ShaderAbstract;
 
 class Flat extends ShaderAbstract implements ShaderInterface
 {
-
+    /**
+     * Shader
+     *
+     * @var string
+     */
+    protected $shader = 'flat';
+    
     /**
      * Base diffuse color.
      *
      * @var string $color
      */
     protected $color = '#fff';
-
+    
     /**
      * Whether or not material is affected by fog.
      *
      * @var string $fog
      */
     protected $fog = 'true';
-
+    
     /**
      * Height of video (in pixels), if defining a video texture.
      *
      * @var int $height
      */
     protected $height = 360;
-
+    
     /**
      * How many times a texture (defined by src) repeats in the X and Y direction.
      *
      * @var string $repeat
      */
     protected $repeat = '1 1';
-
+    
     /**
      * Image or video texture map.
      * Can either be a selector to an <img> or <video>, or an inline URL.
@@ -64,14 +70,14 @@ class Flat extends ShaderAbstract implements ShaderInterface
      * @var string|null $src
      */
     protected $src = null;
-
+    
     /**
      * Width of video (in pixels), if defining a video texture.
      *
      * @var int $width
      */
     protected $width = 640;
-    
+
     /**
      * Set shader defaults
      *
@@ -86,7 +92,7 @@ class Flat extends ShaderAbstract implements ShaderInterface
         $this->src();
         $this->width(640);
     }
-    
+
     /**
      * Base diffuse color
      *
@@ -119,7 +125,7 @@ class Flat extends ShaderAbstract implements ShaderInterface
 
     /**
      * Repeat
-     * 
+     *
      * @param float $x            
      * @param float $y            
      */

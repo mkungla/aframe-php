@@ -48,7 +48,7 @@ class PositionComponent extends ComponentAbstract implements PositionCMPTIF
         
         return true;
     }
-    
+
     /**
      * Return DOM attribute contents
      *
@@ -75,46 +75,49 @@ class PositionComponent extends ComponentAbstract implements PositionCMPTIF
     {
         return $this->getDomAttributeString();
     }
-    
+
     /**
      * Negative X axis extends left.
      * Positive X Axis extends right.
      *
-     * @param float $x_axis
-     * @return void
+     * @param float $x_axis            
+     * @return PositionCMPTIF
      */
-    public function positionX(float $x_axis)
+    public function positionX(float $x_axis): PositionCMPTIF
     {
         $this->init();
         $this->dom_attributes['x'] = $x_axis;
+        return $this;
     }
-    
+
     /**
      * Negative Y axis extends up.
      * Positive Y Axis extends down.
      *
-     * @param float $y_axis
-     * @return void
+     * @param float $y_axis            
+     * @return PositionCMPTIF
      */
-    public function positionY(float $y_axis)
+    public function positionY(float $y_axis): PositionCMPTIF
     {
         $this->init();
         $this->dom_attributes['y'] = $y_axis;
+        return $this;
     }
-    
+
     /**
      * Negative Z axis extends in.
      * Positive Z Axis extends out.
      *
-     * @param float $z_axis
-     * @return void
+     * @param float $z_axis            
+     * @return PositionCMPTIF
      */
-    public function positionZ(float $z_axis)
+    public function positionZ(float $z_axis): PositionCMPTIF
     {
         $this->init();
         $this->dom_attributes['z'] = $z_axis;
+        return $this;
     }
-    
+
     /**
      * When any position component methods are called then init others
      *

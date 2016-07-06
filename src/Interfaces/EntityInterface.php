@@ -30,6 +30,22 @@ interface EntityInterface
 {
 
     /**
+     * Set DOM attributes
+     *
+     * @param string $attr            
+     * @param string $val            
+     * @return void
+     */
+    public function attr(string $attr, string $val);
+
+    /**
+     * Child entity
+     *
+     * @return \AframeVR\Core\Helpers\EntityChildrenFactory
+     */
+    public function child(): \AframeVR\Core\Helpers\EntityChildrenFactory;
+
+    /**
      * Position component
      *
      * All entities inherently have the position component.

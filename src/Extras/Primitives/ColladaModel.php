@@ -23,14 +23,14 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\ColladaModelInterface;
+use \AframeVR\Interfaces\Extras\Primitives\ColladaModelPrimitiveIF;
 use \AframeVR\Core\Entity;
 use \AframeVR\Core\Helpers\MeshAttributes;
 
-class ColladaModel extends Entity implements ColladaModelInterface
+class ColladaModel extends Entity implements ColladaModelPrimitiveIF
 {
     use MeshAttributes;
-    
+
     /**
      * Init <a-box>
      *
@@ -43,7 +43,7 @@ class ColladaModel extends Entity implements ColladaModelInterface
      */
     public function init()
     {
-        $this->entity()->component('ColladaModel');
+        $this->child()->entity()->component('ColladaModel');
     }
 
     /**
@@ -55,50 +55,51 @@ class ColladaModel extends Entity implements ColladaModelInterface
      */
     public function defaults()
     {
-
     }
-    
+
     /**
      * Rotation component
      *
      * {@inheritdoc}
      *
-     * @param int|float $roll
-     * @param int|float $pitch
-     * @param int|float $yaw
+     * @param int|float $roll            
+     * @param int|float $pitch            
+     * @param int|float $yaw            
      * @return Entity
      */
     public function rotation(float $roll = 0, float $pitch = 0, float $yaw = 0): Entity
     {
-        $this->entity()->rotation($roll, $pitch, $yaw);
+        $this->child()->entity()->rotation($roll, $pitch, $yaw);
         return $this;
     }
-    
+
     /**
      * Scale component
      *
      * {@inheritdoc}
      *
-     * @param int|float $scale_x
-     * @param int|float $scale_y
-     * @param int|float $scale_z
+     * @param int|float $scale_x            
+     * @param int|float $scale_y            
+     * @param int|float $scale_z            
      * @return Entity
      */
     public function scale(float $scale_x = 1, float $scale_y = 1, float $scale_z = 1): Entity
     {
-        $this->entity()->scale($scale_x, $scale_y, $scale_z);
+        $this->child()->entity()->scale($scale_x, $scale_y, $scale_z);
         return $this;
     }
-    
+
     /**
      * ColladaModel.src
      *
      * @param null|string $src            
-     * @return ColladaModelInterface
+     * @return ColladaModelPrimitiveIF
      */
-    public function src(string $src = null): ColladaModelInterface
+    public function src(string $src = null): ColladaModelPrimitiveIF
     {
-        $this->entity()->component('ColladaModel')
+        $this->child()
+            ->entity()
+            ->component('ColladaModel')
             ->src($src);
         return $this;
     }

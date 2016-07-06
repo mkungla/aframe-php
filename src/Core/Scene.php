@@ -32,30 +32,35 @@ final class Scene
 {
     /* All scenes can use primitives */
     use Primitives;
-
+    
     /**
      * Name with what you can retrieve this scene while working with multiple scenes
      *
      * @var string $name
      */
     private $keyword;
-
+    
     /**
      * Is scene prepared for rendering
      *
      * @var bool
      */
     private $prepared;
-
+    
+    /**
+     * Assets
+     * 
+     * @var unknown
+     */
     protected $assets;
-
+    
     /**
      * Aframe Document Object Model
      *
      * @var \AframeVR\Core\DOM\AframeDOMDocument
      */
     protected $aframeDomObj;
-
+    
     /**
      * A-Frame scene entities
      *
@@ -71,7 +76,7 @@ final class Scene
      */
     public function __construct(string $keyword, Config $config)
     {
-        $this->keyword      = $keyword;
+        $this->keyword = $keyword;
         $this->aframeDomObj = new AframeDOMDocument($config);
         /* Initialize assests manager */
         $this->asset();
@@ -94,12 +99,12 @@ final class Scene
      *
      * @api
      *
-     * @param string $name            
+     * @param string $id            
      * @return \AframeVR\Core\Entity
      */
-    public function entity(string $name = 'untitled'): Entity
+    public function entity(string $id = 'untitled'): Entity
     {
-        return $this->entities[$name] ?? $this->entities[$name] = new Entity();
+        return $this->entities[$id] ?? $this->entities[$id] = new Entity($id);
     }
 
     /**
@@ -178,14 +183,14 @@ final class Scene
 
     /**
      * Get scenes keyword
-     * 
+     *
      * @return string
      */
     public function getKeyword()
     {
         return $this->keyword;
     }
-    
+
     /**
      * Add everyting to DOM
      *

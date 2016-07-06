@@ -48,11 +48,12 @@ class ColladaModelComponent extends ComponentAbstract implements ColladaModelCMP
      * {@inheritdoc}
      *
      * @param null|string $src            
-     * @return void
+     * @return ColladaModelCMPTIF
      */
-    public function src(string $src = null)
+    public function src(string $src = null): ColladaModelCMPTIF
     {
         $this->dom_attributes['src'] = $src;
+        return $this;
     }
 
     /**

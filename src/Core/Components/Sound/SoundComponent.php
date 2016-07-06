@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jul 4, 2016 - 10:47:35 PM
+ * Created by   Marko Kungla on Jul 6, 2016 - 9:38:05 PM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         SoundCMPTIF.php
+ * File         SoundComponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  * @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,18 +21,26 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Core\Components;
+namespace AframeVR\Core\Components\Sound;
 
-use \AframeVR\Interfaces\ComponentInterface;
+use \AframeVR\Interfaces\Core\Components\SoundCMPTIF;
+use \AframeVR\Core\Helpers\ComponentAbstract;
 
-/**
- * Sound Component Interface
- *
- * The sound component defines the entity as a source of sound or audio. The sound component is positional and is
- * therefore affected by the components-position.
- */
-interface SoundCMPTIF extends ComponentInterface
+class SoundComponent extends ComponentAbstract implements SoundCMPTIF
 {
+
+    /**
+     * Initialize Component
+     *
+     * {@inheritdoc}
+     *
+     * @return bool
+     */
+    public function initializeComponent(): bool
+    {
+        $this->setDomAttribute('sound');
+        return true;
+    }
 
     /**
      * Autoplay sound
@@ -42,7 +50,11 @@ interface SoundCMPTIF extends ComponentInterface
      * @param bool $autoplay            
      * @return SoundCMPTIF
      */
-    public function autoplay(bool $autoplay = false): SoundCMPTIF;
+    public function autoplay(bool $autoplay = false): SoundCMPTIF
+    {
+        $this->dom_attributes['autoplay'] = $autoplay ? 'true' : 'false';
+        return $this;
+    }
 
     /**
      * Play event
@@ -52,7 +64,11 @@ interface SoundCMPTIF extends ComponentInterface
      * @param string $event            
      * @return SoundCMPTIF
      */
-    public function on(string $event = 'click'): SoundCMPTIF;
+    public function on(string $event = 'click'): SoundCMPTIF
+    {
+        $this->dom_attributes['on'] = $event;
+        return $this;
+    }
 
     /**
      * Loop sound
@@ -62,7 +78,11 @@ interface SoundCMPTIF extends ComponentInterface
      * @param bool $loop            
      * @return SoundCMPTIF
      */
-    public function loop(bool $loop = false): SoundCMPTIF;
+    public function loop(bool $loop = false): SoundCMPTIF
+    {
+        $this->dom_attributes['loop'] = $loop ? 'true' : 'false';
+        return $this;
+    }
 
     /**
      * Audio source
@@ -72,7 +92,11 @@ interface SoundCMPTIF extends ComponentInterface
      * @param null|string $src            
      * @return SoundCMPTIF
      */
-    public function src(string $src = null): SoundCMPTIF;
+    public function src(string $src = null): SoundCMPTIF
+    {
+        $this->dom_attributes['src'] = $src;
+        return $this;
+    }
 
     /**
      * Volume
@@ -82,5 +106,9 @@ interface SoundCMPTIF extends ComponentInterface
      * @param int|float $vol            
      * @return SoundCMPTIF
      */
-    public function volume(float $vol = 1): SoundCMPTIF;
+    public function volume(float $vol = 1): SoundCMPTIF
+    {
+        $this->dom_attributes['volume'] = $vol;
+        return $this;
+    }
 }

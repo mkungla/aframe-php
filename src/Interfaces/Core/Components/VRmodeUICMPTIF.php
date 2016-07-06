@@ -40,7 +40,7 @@ interface VRmodeUICMPTIF extends ComponentInterface
      * Whether or not to display UI related to entering VR.
      *
      * @param bool $enabled            
-     * @return void
+     * @return VRmodeUICMPTIF
      */
-    public function enabled(bool $enabled = true);
+    public function enabled(bool $enabled = true): VRmodeUICMPTIF;
 }

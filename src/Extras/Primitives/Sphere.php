@@ -23,11 +23,11 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\SphereInterface;
+use \AframeVR\Interfaces\Extras\Primitives\SpherePrimitiveIF;
 use \AframeVR\Core\Entity;
 use \AframeVR\Core\Helpers\MeshAttributes;
 
-class Sphere extends Entity implements SphereInterface
+class Sphere extends Entity implements SpherePrimitiveIF
 {
     use MeshAttributes;
 
@@ -70,9 +70,9 @@ class Sphere extends Entity implements SphereInterface
      * {@inheritdoc}
      *
      * @param float $radius            
-     * @return \AframeVR\Interfaces\Extras\Primitives\SphereInterface
+     * @return \AframeVR\Interfaces\Extras\Primitives\SpherePrimitiveIF
      */
-    public function radius(float $radius = 0.85): SphereInterface
+    public function radius(float $radius = 0.85): SpherePrimitiveIF
     {
         $this->component('Geometry')->radius($radius);
         return $this;
@@ -84,9 +84,9 @@ class Sphere extends Entity implements SphereInterface
      * {@inheritdoc}
      *
      * @param int $segmentsHeigh            
-     * @return \AframeVR\Interfaces\Extras\Primitives\SphereInterface
+     * @return \AframeVR\Interfaces\Extras\Primitives\SpherePrimitiveIF
      */
-    public function segmentsHeight($segmentsHeigh = 18): SphereInterface
+    public function segmentsHeight($segmentsHeigh = 18): SpherePrimitiveIF
     {
         $this->component('Geometry')->segmentsHeight($segmentsHeigh);
         return $this;
@@ -98,9 +98,9 @@ class Sphere extends Entity implements SphereInterface
      * {@inheritdoc}
      *
      * @param int $segmentsWidth            
-     * @return \AframeVR\Interfaces\Extras\Primitives\SphereInterface
+     * @return \AframeVR\Interfaces\Extras\Primitives\SpherePrimitiveIF
      */
-    public function segmentsWidth($segmentsWidth = 36): SphereInterface
+    public function segmentsWidth($segmentsWidth = 36): SpherePrimitiveIF
     {
         $this->component('Geometry')->segmentsWidth($segmentsWidth);
         return $this;

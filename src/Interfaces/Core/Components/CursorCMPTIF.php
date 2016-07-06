@@ -41,9 +41,9 @@ interface CursorCMPTIF extends ComponentInterface
      * false on desktop, true on mobile
      *
      * @param bool $fuse            
-     * @return void
+     * @return CursorCMPTIF
      */
-    public function fuse(bool $fuse = false);
+    public function fuse(bool $fuse = false): CursorCMPTIF;
 
     /**
      * fuseTimeout
@@ -51,7 +51,7 @@ interface CursorCMPTIF extends ComponentInterface
      * How long to wait (in milliseconds) before triggering a fuse-based click event.
      *
      * @param int $timeout            
-     * @return void
+     * @return CursorCMPTIF
      */
-    public function fuseTimeout(int $timeout = 1500);
+    public function fuseTimeout(int $timeout = 1500): CursorCMPTIF;
 }

@@ -30,6 +30,7 @@ use \AframeVR\Interfaces\{
     AnimationInterface
 };
 use \AframeVR\Core\Animation;
+use \AframeVR\Core\Helpers\EntityChildrenFactory;
 use \DOMElement;
 use \Closure;
 
@@ -37,27 +38,48 @@ class Entity implements EntityInterface
 {
     /**
      * Array of used components
-     * 
-     * @var array
-     */
-    protected $components = array();
-
-    /**
-     * Array of used animations
-     * 
-     * @var array
-     */
-    protected $animations = array();
-
-    /**
-     * Child entities
      *
      * @var array
      */
-    protected $entities = array();
+    protected $components = array();
     
-    public function __construct()
+    /**
+     * Array of used animations
+     *
+     * @var array
+     */
+    protected $animations = array();
+    
+    /**
+     * Dom element attributes
+     *
+     * @var unknown
+     */
+    protected $attrs = array();
+    
+    /**
+     * Children Factory
+     *
+     * @var array
+     */
+    protected $childrenFactory;
+    
+    /**
+     * Indent used when rendering formated outout
+     *
+     * @var unknown
+     */
+    private $indentation = 0;
+
+    /**
+     * Constructor
+     *
+     * @param string $id            
+     */
+    public function __construct(string $id = 'untitled')
     {
+        $this->attr('id', $id);
+        
         /* Components which All entities inherently have */
         $this->component('Position');
         $this->component('Rotation');
@@ -71,22 +93,35 @@ class Entity implements EntityInterface
     }
 
     public function init()
-    {}
+    {
+    }
 
     public function defaults()
-    {}
+    {
+    }
 
     /**
-     * Child entity
+     * Set DOM attributes
      *
-     * @param string $name
-     * @return Entity
+     * @param string $attr            
+     * @param string $val            
+     * @return void
      */
-    public function entity(string $name = 'untitled'): Entity
+    public function attr(string $attr, string $val)
     {
-        return $this->entities[$name] ?? $this->entities[$name] = new Entity();
+        $this->attrs[$attr] = $val;
     }
-    
+
+    /**
+     * Child entity / primitive
+     *
+     * @return EntityChildrenFactory
+     */
+    public function child(): EntityChildrenFactory
+    {
+        return $this->childrenFactory ?? $this->childrenFactory = new EntityChildrenFactory();
+    }
+
     /**
      * Position component
      *
@@ -144,12 +179,24 @@ class Entity implements EntityInterface
     /**
      * Animations
      *
-     * @param string $name            
+     * @param mixed $name            
      * @return \AframeVR\Interfaces\AnimationInterface
      */
-    public function animation(string $name = 'untitled'): AnimationInterface
+    public function animation($name = 'untitled'): AnimationInterface
     {
         return $this->animations[$name] ?? $this->animations[$name] = new Animation();
+    }
+
+    /**
+     * Set mixin attribute
+     *
+     * @param string $id            
+     * @return \AframeVR\Core\Entity
+     */
+    public function mixin(string $id)
+    {
+        $this->attr('mixin', $id);
+        return $this;
     }
 
     /**
@@ -162,11 +209,8 @@ class Entity implements EntityInterface
     public function component(string $component_name)
     {
         if (! array_key_exists($component_name, $this->components)) {
-            $component = sprintf(
-                '\AframeVR\Core\Components\%s\%sComponent',
-                ucfirst($component_name),
-                ucfirst($component_name)
-            );
+            $component = sprintf('\AframeVR\Core\Components\%s\%sComponent', ucfirst($component_name), 
+                ucfirst($component_name));
             if (class_exists($component)) {
                 $this->components[$component_name] = new $component();
             } else {
@@ -190,9 +234,10 @@ class Entity implements EntityInterface
     public function __call(string $component_name, array $args)
     {
         if (! method_exists($this, $component_name)) {
-            $this->{$component_name} = Closure::bind(function () use ($component_name) {
-                return $this->component($component_name);
-            }, $this, get_class());
+            $this->{$component_name} = Closure::bind(
+                function () use ($component_name) {
+                    return $this->component($component_name);
+                }, $this, get_class());
         }
         
         return call_user_func($this->{$component_name}, $args);
@@ -207,6 +252,9 @@ class Entity implements EntityInterface
     public function domElement(\DOMDocument &$aframe_dom): DOMElement
     {
         $a_entity = $aframe_dom->createElement('a-entity');
+        
+        $this->appendAttributes($a_entity);
+        
         foreach ($this->components as $component) {
             /*
              * Check does component has any attributes to add to DOM element.
@@ -217,20 +265,63 @@ class Entity implements EntityInterface
         }
         
         $this->appendChildren($aframe_dom, $a_entity);
-        
+        $this->appendAnimations($aframe_dom, $a_entity);
         return $a_entity;
     }
-    
+
+    /**
+     * Append DOM attributes no set by components
+     *
+     * @param \DOMElement $a_entity            
+     */
+    private function appendAttributes(\DOMElement &$a_entity)
+    {
+        foreach ($this->attrs as $attr => $val) {
+            if ($attr === 'id' && ($val === 'untitled' || is_numeric($val)))
+                continue;
+            $a_entity->setAttribute($attr, $val);
+        }
+    }
+
+    /**
+     * Append childern to entities DOM element
+     *
+     * @param \DOMDocument $aframe_dom            
+     * @param \DOMElement $a_entity            
+     */
     private function appendChildren(\DOMDocument &$aframe_dom, \DOMElement &$a_entity)
     {
-        foreach($this->entities as $entity) {
+        if ($this->childrenFactory instanceof EntityChildrenFactory) {
+            foreach ($this->childrenFactory->getChildern() as $child) {
+                if ($aframe_dom->formatOutput) {
+                    $com = $aframe_dom->createComment("\n\t");
+                    $a_entity->appendChild($com);
+                }
+                $a_entity->appendChild($child->domElement($aframe_dom));
+                if ($aframe_dom->formatOutput) {
+                    $com = $aframe_dom->createComment("");
+                    $a_entity->appendChild($com);
+                }
+            }
+        }
+    }
+
+    /**
+     * Append childern to entities DOM element
+     *
+     * @param \DOMDocument $aframe_dom            
+     * @param \DOMElement $a_entity            
+     */
+    private function appendAnimations(\DOMDocument &$aframe_dom, \DOMElement &$a_entity)
+    {
+        foreach ($this->animations as $animations) {
             if ($aframe_dom->formatOutput) {
                 $com = $aframe_dom->createComment("\n\t");
                 $a_entity->appendChild($com);
             }
-            $a_entity->appendChild($entity->domElement($aframe_dom));
+            $a_entity->appendChild($animations->domElement($aframe_dom));
             if ($aframe_dom->formatOutput) {
-                $com = $aframe_dom->createComment("\n");
+                $com = $aframe_dom->createComment("");
                 $a_entity->appendChild($com);
             }
         }

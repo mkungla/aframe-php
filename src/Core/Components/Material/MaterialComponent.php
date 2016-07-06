@@ -30,7 +30,6 @@ use \AframeVR\Interfaces\ShaderInterface;
 
 class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
 {
-
     private $shaderObj;
 
     /**
@@ -88,52 +87,56 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
      * {@inheritdoc}
      *
      * @param float $opacity            
-     * @return void
+     * @return MaterialCMPTIF
      */
-    public function opacity(float $opacity = 1.0)
+    public function opacity(float $opacity = 1.0): MaterialCMPTIF
     {
         $this->dom_attributes['opacity'] = $opacity;
+        return $this;
     }
-    
+
     /**
      * transparent
      *
      * {@inheritdoc}
      *
      * @param bool $transparent            
-     * @return void
+     * @return MaterialCMPTIF
      */
-    public function transparent(bool $transparent = false)
+    public function transparent(bool $transparent = false): MaterialCMPTIF
     {
         $this->dom_attributes['transparent'] = $transparent ? 'true' : 'false';
+        return $this;
     }
-    
+
     /**
      * depthTest
      *
      * {@inheritdoc}
      *
-     * @param bool $depth_test
-     * @return void
+     * @param bool $depth_test            
+     * @return MaterialCMPTIF
      */
-    public function depthTest(bool $depth_test = true)
+    public function depthTest(bool $depth_test = true): MaterialCMPTIF
     {
         $this->dom_attributes['depthTest'] = $depth_test ? 'true' : 'false';
+        return $this;
     }
-    
+
     /**
      * side
      *
      * {@inheritdoc}
      *
      * @param string $side            
-     * @return void
+     * @return MaterialCMPTIF
      */
-    public function side(string $side = 'front')
+    public function side(string $side = 'front'): MaterialCMPTIF
     {
         $this->dom_attributes['side'] = $side;
+        return $this;
     }
-    
+
     /**
      * Prepare Shader attributes
      *

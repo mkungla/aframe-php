@@ -76,4 +76,36 @@ class SceneTest extends PHPUnit_Framework_TestCase
         $this->assertInternalType('string', $this->aframe->scene()
             ->getKeyword());
     }
+    
+    public function test_images()
+    {
+        $this->assertInstanceOf('\AframeVR\Extras\Primitives\Image', $this->aframe->scene()
+            ->image());
+    }
+    public function test_EntityChildrenFactory()
+    {
+        $this->assertInstanceOf('\AframeVR\Extras\Primitives\Box', $this->aframe->scene()
+            ->entity()->child()->box(1));
+        
+        $this->assertInstanceOf('\AframeVR\Extras\Primitives\Sphere', $this->aframe->scene()
+            ->entity()->child()->sphere(2));
+        
+        $this->assertInstanceOf('\AframeVR\Extras\Primitives\Cylinder', $this->aframe->scene()
+            ->entity()->child()->cylinder(3));
+        
+        $this->assertInstanceOf('\AframeVR\Extras\Primitives\Plane', $this->aframe->scene()
+            ->entity()->child()->plane(4));
+        
+        $this->assertInstanceOf('\AframeVR\Extras\Primitives\Camera', $this->aframe->scene()
+            ->entity()->child()->camera(5));
+        
+        $this->assertInstanceOf('\AframeVR\Extras\Primitives\ColladaModel', $this->aframe->scene()
+            ->entity()->child()->colladaModel(6));
+        
+        $this->assertInstanceOf('\AframeVR\Extras\Primitives\Image', $this->aframe->scene()
+            ->entity()->child()->image(7));
+        
+        $this->assertInstanceOf('\AframeVR\Extras\Primitives\Sky', $this->aframe->scene()
+            ->entity()->child()->sky(8));
+    }
 }

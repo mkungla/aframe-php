@@ -43,9 +43,9 @@ interface RaycasterCMPTIF extends ComponentInterface
      * Maximum distance under which resulting entities are returned. Cannot be lower then near.
      *
      * @param string $distance            
-     * @return void
+     * @return RaycasterCMPTIF
      */
-    public function far(string $distance = 'Infinity');
+    public function far(string $distance = 'Infinity'): RaycasterCMPTIF;
 
     /**
      * Number of milliseconds
@@ -54,9 +54,9 @@ interface RaycasterCMPTIF extends ComponentInterface
      * Higher number is better for performance.
      *
      * @param int $ms            
-     * @return void
+     * @return RaycasterCMPTIF
      */
-    public function interval(int $ms = 100);
+    public function interval(int $ms = 100): RaycasterCMPTIF;
 
     /**
      * Minimum distance
@@ -64,19 +64,19 @@ interface RaycasterCMPTIF extends ComponentInterface
      * Minimum distance over which resuilting entities are returned. Cannot be lower than 0.
      *
      * @param int $distance            
-     * @return void
+     * @return RaycasterCMPTIF
      */
-    public function near(int $distance = 0);
+    public function near(int $distance = 0): RaycasterCMPTIF;
 
     /**
      * Query selector
      *
      * Query selector to pick which objects to test for intersection. If not specified, all entities will be tested.
      *
-     * @param string $selector            
-     * @return void
+     * @param null|string $selector            
+     * @return RaycasterCMPTIF
      */
-    public function objects(string $selector = null);
+    public function objects(string $selector = null): RaycasterCMPTIF;
 
     /**
      * Recursive
@@ -84,7 +84,7 @@ interface RaycasterCMPTIF extends ComponentInterface
      * Checks all children of objects if set. Else only checks intersections with root objects.
      *
      * @param bool $r            
-     * @return void
+     * @return RaycasterCMPTIF
      */
-    public function recursive(bool $r = true);
+    public function recursive(bool $r = true): RaycasterCMPTIF;
 }

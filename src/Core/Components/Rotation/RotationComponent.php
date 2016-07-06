@@ -83,12 +83,13 @@ class RotationComponent extends ComponentAbstract implements RotationCMPTIF
      * {@inheritdoc}
      *
      * @param double $roll            
-     * @return void
+     * @return RotationCMPTIF
      */
-    public function roll(float $roll)
+    public function roll(float $roll): RotationCMPTIF
     {
         $this->init();
         $this->dom_attributes['x'] = $roll;
+        return $this;
     }
 
     /**
@@ -97,12 +98,13 @@ class RotationComponent extends ComponentAbstract implements RotationCMPTIF
      * {@inheritdoc}
      *
      * @param double $pitch            
-     * @return void
+     * @return RotationCMPTIF
      */
-    public function pitch(float $pitch)
+    public function pitch(float $pitch): RotationCMPTIF
     {
         $this->init();
         $this->dom_attributes['y'] = $pitch;
+        return $this;
     }
 
     /**
@@ -111,12 +113,13 @@ class RotationComponent extends ComponentAbstract implements RotationCMPTIF
      * {@inheritdoc}
      *
      * @param double $yaw            
-     * @return void
+     * @return RotationCMPTIF
      */
-    public function yaw(float $yaw)
+    public function yaw(float $yaw): RotationCMPTIF
     {
         $this->init();
         $this->dom_attributes['z'] = $yaw;
+        return $this;
     }
 
     /**
@@ -124,7 +127,6 @@ class RotationComponent extends ComponentAbstract implements RotationCMPTIF
      *
      * {@inheritdoc}
      *
-     * @param array $dom_attributes            
      * @return void
      */
     private function init()

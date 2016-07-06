@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         ColladaModelInterface.php
+ * File         ColladaModelPrimitiveIF.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  * @issues      https://github.com/mkungla/aframe-php/issues
@@ -25,37 +25,38 @@ namespace AframeVR\Interfaces\Extras\Primitives;
 
 use \AframeVR\Interfaces\PrimitiveInterface;
 
-interface ColladaModelInterface extends PrimitiveInterface
+interface ColladaModelPrimitiveIF extends PrimitiveInterface
 {
+
     /**
      * Rotation component
      *
      * Apply rotation on child instead
      *
-     * @param int|float $roll
-     * @param int|float $pitch
-     * @param int|float $yaw
+     * @param int|float $roll            
+     * @param int|float $pitch            
+     * @param int|float $yaw            
      * @return \AframeVR\Core\Entity
      */
     public function rotation(float $roll = 0, float $pitch = 0, float $yaw = 0): \AframeVR\Core\Entity;
-    
+
     /**
      * Scale component
      *
      * Apply scale on child intead
      *
-     * @param int|float $scale_x
-     * @param int|float $scale_y
-     * @param int|float $scale_z
+     * @param int|float $scale_x            
+     * @param int|float $scale_y            
+     * @param int|float $scale_z            
      * @return \AframeVR\Core\Entity
      */
     public function scale(float $scale_x = 1, float $scale_y = 1, float $scale_z = 1): \AframeVR\Core\Entity;
-    
+
     /**
      * ColladaModel.src
      *
-     * @param null|string $src
-     * @return ColladaModelInterface
+     * @param null|string $src            
+     * @return ColladaModelPrimitiveIF
      */
-    public function src(string $src = null): ColladaModelInterface;
+    public function src(string $src = null): ColladaModelPrimitiveIF;
 }

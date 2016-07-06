@@ -45,9 +45,9 @@ interface MaterialCMPTIF extends ComponentInterface
      * Whether depth testing is enabled when rendering the material.
      *
      * @param bool $depth_test            
-     * @return void
+     * @return MaterialCMPTIF
      */
-    public function depthTest(bool $depth_test = true);
+    public function depthTest(bool $depth_test = true): MaterialCMPTIF;
 
     /**
      * opacity
@@ -56,9 +56,9 @@ interface MaterialCMPTIF extends ComponentInterface
      * opacity will only affect color.
      *
      * @param float $opacity            
-     * @return void
+     * @return MaterialCMPTIF
      */
-    public function opacity(float $opacity = 1.0);
+    public function opacity(float $opacity = 1.0): MaterialCMPTIF;
 
     /**
      * transparent
@@ -66,9 +66,9 @@ interface MaterialCMPTIF extends ComponentInterface
      * Whether material is transparent. Transparent entities are rendered after non-transparent entities.
      *
      * @param bool $transparent            
-     * @return void
+     * @return MaterialCMPTIF
      */
-    public function transparent(bool $transparent = false);
+    public function transparent(bool $transparent = false): MaterialCMPTIF;
 
     /**
      * Material Shader
@@ -89,7 +89,7 @@ interface MaterialCMPTIF extends ComponentInterface
      * Which sides of the mesh to render. Can be one of front, back, or double.
      *
      * @param string $side            
-     * @return void
+     * @return MaterialCMPTIF
      */
-    public function side(string $side = 'front');
+    public function side(string $side = 'front'): MaterialCMPTIF;
 }

@@ -46,25 +46,25 @@ interface PositionCMPTIF extends ComponentInterface
      * Positive X Axis extends right.
      *
      * @param float $x_axis            
-     * @return void
+     * @return PositionCMPTIF
      */
-    public function positionX(float $x_axis);
+    public function positionX(float $x_axis): PositionCMPTIF;
 
     /**
      * Negative Y axis extends up.
      * Positive Y Axis extends down.
      *
      * @param float $y_axis            
-     * @return void
+     * @return PositionCMPTIF
      */
-    public function positionY(float $y_axis);
+    public function positionY(float $y_axis): PositionCMPTIF;
 
     /**
      * Negative Z axis extends in.
      * Positive Z Axis extends out.
      *
      * @param float $z_axis            
-     * @return void
+     * @return PositionCMPTIF
      */
-    public function positionZ(float $z_axis);
+    public function positionZ(float $z_axis): PositionCMPTIF;
 }

@@ -33,30 +33,31 @@ use \AframeVR\Interfaces\ComponentInterface;
  */
 interface ScaleCMPTIF extends ComponentInterface
 {
+
     /**
      * Scaling factor in the X direction.
-     *            
+     *
      * @param double $scale_x            
-     * @return void
+     * @return ScaleCMPTIF
      */
-    public function scaleX(float $scale_x);
+    public function scaleX(float $scale_x): ScaleCMPTIF;
 
     /**
      * Scaling factor in the Y direction..
-     *          
+     *
      * @param double $scale_y            
-     * @return void
+     * @return ScaleCMPTIF
      */
-    public function scaleY(float $scale_y);
+    public function scaleY(float $scale_y): ScaleCMPTIF;
 
     /**
      * Scaling factor in the Z direction.
-     *           
+     *
      * @param double $scale_z            
-     * @return void
+     * @return ScaleCMPTIF
      */
-    public function scaleZ(float $scale_z);
-    
+    public function scaleZ(float $scale_z): ScaleCMPTIF;
+
     /**
      * Get scale
      *

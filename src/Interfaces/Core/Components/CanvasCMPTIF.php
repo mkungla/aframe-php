@@ -40,9 +40,9 @@ interface CanvasCMPTIF extends ComponentInterface
      * Selector to a canvas element that exists on the page.
      *
      * @param null|string $active            
-     * @return void
+     * @return CanvasCMPTIF
      */
-    public function canvas(string $active = null);
+    public function canvas(string $active = null): CanvasCMPTIF;
 
     /**
      * Canvas height
@@ -50,9 +50,9 @@ interface CanvasCMPTIF extends ComponentInterface
      * Height of the injected canvas, in percentage.
      *
      * @param int|float $height            
-     * @return void
+     * @return CanvasCMPTIF
      */
-    public function height(float $height = 100);
+    public function height(float $height = 100): CanvasCMPTIF;
 
     /**
      * Canvas width
@@ -60,7 +60,7 @@ interface CanvasCMPTIF extends ComponentInterface
      * Height of the injected canvas, in percentage.
      *
      * @param int|float $width            
-     * @return void
+     * @return CanvasCMPTIF
      */
-    public function width(float $width = 100);
+    public function width(float $width = 100): CanvasCMPTIF;
 }
