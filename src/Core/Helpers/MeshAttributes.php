@@ -142,10 +142,10 @@ trait MeshAttributes
     /**
      * material.transparent
      *
-     * @param string $transparent            
+     * @param bool $transparent            
      * @return \AframeVR\Interfaces\PrimitiveInterface
      */
-    public function transparent(string $transparent = 'false'): PrimitiveInterface
+    public function transparent(bool $transparent = false): PrimitiveInterface
     {
         $this->component('Material')->transparent($transparent);
         return $this;

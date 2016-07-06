@@ -60,7 +60,7 @@ class LightComponent extends ComponentAbstract implements LightCMPTIF
      * Light color
      *
      * @param string $color            
-     * @return void
+     * @return LightCMPTIF
      */
     public function color(string $color = '#fff'): LightCMPTIF
     {
@@ -73,8 +73,8 @@ class LightComponent extends ComponentAbstract implements LightCMPTIF
      *
      * Maximum extent of spot light from its direction (in degrees).
      *
-     * @param float $angle            
-     * @return LightPrimitiveIF
+     * @param int|float $angle            
+     * @return LightCMPTIF
      */
     public function angle(float $angle = 60): LightCMPTIF
     {
@@ -86,7 +86,7 @@ class LightComponent extends ComponentAbstract implements LightCMPTIF
      * Amount the light dims along the distance of the light.
      *
      * @param int $decay            
-     * @return LightPrimitiveIF
+     * @return LightCMPTIF
      */
     public function decay(int $decay = 1): LightCMPTIF
     {
@@ -100,7 +100,7 @@ class LightComponent extends ComponentAbstract implements LightCMPTIF
      * Distance where intensity becomes 0. If distance is 0, then the point light does not decay with distance.
      *
      * @param float $distance            
-     * @return LightPrimitiveIF
+     * @return LightCMPTIF
      */
     public function distance(float $distance = 0.0): LightCMPTIF
     {
@@ -114,7 +114,7 @@ class LightComponent extends ComponentAbstract implements LightCMPTIF
      * Rapidity of falloff of light from its target direction.
      *
      * @param float $exponent            
-     * @return LightPrimitiveIF
+     * @return LightCMPTIF
      */
     public function exponent(float $exponent = 10.0): LightCMPTIF
     {
@@ -126,7 +126,7 @@ class LightComponent extends ComponentAbstract implements LightCMPTIF
      * Light color from below.
      *
      * @param string $ground_color            
-     * @return LightPrimitiveIF
+     * @return LightCMPTIF
      */
     public function groundColor(string $ground_color = '#fff'): LightCMPTIF
     {
@@ -138,7 +138,7 @@ class LightComponent extends ComponentAbstract implements LightCMPTIF
      * Light strength.
      *
      * @param float $intensity            
-     * @return LightPrimitiveIF
+     * @return LightCMPTIF
      */
     public function intensity(float $intensity = 1.0): LightCMPTIF
     {

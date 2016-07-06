@@ -62,7 +62,7 @@ interface LightCMPTIF extends ComponentInterface
      *
      * Maximum extent of spot light from its direction (in degrees).
      *
-     * @param float $angle            
+     * @param int|float $angle            
      * @return LightCMPTIF
      */
     public function angle(float $angle = 60): LightCMPTIF;

@@ -56,7 +56,9 @@ class GeometryComponent extends ComponentAbstract implements GeometryCMPTIF
     {
         if (in_array($primitive, self::ALLOWED_PRIMITIVES)) {
             $this->dom_attributes = array();
+            
             $method_provider = sprintf('%sMethods', ucfirst($primitive));
+            
             $this->dom_attributes['primitive'] = $primitive;
             
             $this->setMethodProvider($method_provider);

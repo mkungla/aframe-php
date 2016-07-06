@@ -51,7 +51,7 @@ class Light extends Entity implements LightPrimitiveIF
      *
      * {@inheritdoc}
      *
-     * @param float $angle            
+     * @param int|float $angle            
      * @return LightPrimitiveIF
      */
     public function angle(float $angle = 60): LightPrimitiveIF

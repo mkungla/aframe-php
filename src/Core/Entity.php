@@ -60,7 +60,7 @@ class Entity implements EntityInterface
     /**
      * Children Factory
      *
-     * @var array
+     * @var EntityChildrenFactory
      */
     protected $childrenFactory;
     
@@ -293,15 +293,9 @@ class Entity implements EntityInterface
     {
         if ($this->childrenFactory instanceof EntityChildrenFactory) {
             foreach ($this->childrenFactory->getChildern() as $child) {
-                if ($aframe_dom->formatOutput) {
-                    $com = $aframe_dom->createComment("\n\t");
-                    $a_entity->appendChild($com);
-                }
+                $this->addFormatComment($aframe_dom, $a_entity, "\n\t");
                 $a_entity->appendChild($child->domElement($aframe_dom));
-                if ($aframe_dom->formatOutput) {
-                    $com = $aframe_dom->createComment("");
-                    $a_entity->appendChild($com);
-                }
+                $this->addFormatComment($aframe_dom, $a_entity, '');
             }
         }
     }
@@ -315,15 +309,24 @@ class Entity implements EntityInterface
     private function appendAnimations(\DOMDocument &$aframe_dom, \DOMElement &$a_entity)
     {
         foreach ($this->animations as $animations) {
-            if ($aframe_dom->formatOutput) {
-                $com = $aframe_dom->createComment("\n\t");
-                $a_entity->appendChild($com);
-            }
+            $this->addFormatComment($aframe_dom, $a_entity, "\n\t");
             $a_entity->appendChild($animations->domElement($aframe_dom));
-            if ($aframe_dom->formatOutput) {
-                $com = $aframe_dom->createComment("");
-                $a_entity->appendChild($com);
-            }
+            $this->addFormatComment($aframe_dom, $a_entity, '');
+        }
+    }
+    
+    /**
+     * Add format comment
+     * 
+     * @param \DOMDocument $aframe_dom
+     * @param \DOMElement $a_entity
+     * @param string $content
+     */
+    private function addFormatComment(\DOMDocument &$aframe_dom, \DOMElement &$a_entity, string $content)
+    {
+        if ($aframe_dom->formatOutput) {
+            $com = $aframe_dom->createComment("\n\t");
+            $a_entity->appendChild($com);
         }
     }
 }

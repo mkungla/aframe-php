@@ -65,14 +65,14 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
      * @throws BadShaderCallException
      * @return object|null
      */
-    public function shader(string $shader = 'standard')
+    public function shader(string $shader = null)
     {
-        $this->dom_attributes['shader'] = $shader;
-        
+        $this->dom_attributes['shader'] = $this->dom_attributes['shader'] ?? $shader ?? 'standard';
+     
         if ($this->shaderObj instanceof ShaderInterface)
             return $this->shaderObj;
         
-        $shader = sprintf('\AframeVR\Core\Shaders\%s', ucfirst($shader));
+        $shader = sprintf('\AframeVR\Core\Shaders\%s', ucfirst($this->dom_attributes['shader']));
         if (class_exists($shader)) {
             $this->shaderObj = new $shader();
         } else {

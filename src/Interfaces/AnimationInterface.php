@@ -42,7 +42,7 @@ interface AnimationInterface
      *
      * Delay (in milliseconds) or event name to wait on before beginning animation
      *
-     * @param mixed $ms            
+     * @param int|string $ms            
      * @return AnimationInterface
      */
     public function begin($ms = 0): AnimationInterface;

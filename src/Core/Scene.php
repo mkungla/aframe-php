@@ -50,7 +50,7 @@ final class Scene
     /**
      * Assets
      * 
-     * @var unknown
+     * @var \AframeVR\Core\Assets
      */
     protected $assets;
     
@@ -76,7 +76,7 @@ final class Scene
      */
     public function __construct(string $keyword, Config $config)
     {
-        $this->keyword = $keyword;
+        $this->keyword      = $keyword;
         $this->aframeDomObj = new AframeDOMDocument($config);
         /* Initialize assests manager */
         $this->asset();
