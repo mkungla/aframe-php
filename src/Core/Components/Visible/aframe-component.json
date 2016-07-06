@@ -1,0 +1,4 @@
+{
+	"name":"visible",
+	"description":"The visible component defines whether or not an entity is rendered."
+}
