@@ -37,7 +37,8 @@ use \AframeVR\Extras\Primitives\{
     Video,
     Torus,
     Ring,
-    ObjModel
+    ObjModel,
+    Curvedimage
 };
 use \AframeVR\Core\Entity;
 
@@ -126,22 +127,27 @@ trait Primitives
     
     /**
      *
-     * @var toruses
+     * @var $toruses
      */
     protected $toruses = array();
     
     /**
      *
-     * @var rings
+     * @var $rings
      */
     protected $rings = array();
 
     /**
      *
-     * @var rings
+     * @var $objmodels
      */
     protected $objmodels = array();
     
+    /**
+     *
+     * @var $curvedimages
+     */
+    protected $curvedimages = array();
     /**
      * A-Frame Primitive box
      *
@@ -294,6 +300,15 @@ trait Primitives
     }
     
     /**
+     * A-Frame Primitive curvedimage
+     *
+     * @return Entity
+     */
+    public function curvedimage(string $id = 'untitled'): Entity
+    {
+        return $this->curvedimages[$id] ?? $this->curvedimages[$id] = new Curvedimage($id);
+    }
+    /**
      * Add all used primitevs to the scene
      *
      * @return void
@@ -313,6 +328,7 @@ trait Primitives
         $this->aframeDomObj->appendEntities($this->toruses);
         $this->aframeDomObj->appendEntities($this->rings);
         $this->aframeDomObj->appendEntities($this->objmodels);
+        $this->aframeDomObj->appendEntities($this->curvedimages);
         /* Primitives which only one can be present */
         (! $this->sky) ?: $this->aframeDomObj->appendEntity($this->sky);
         (! $this->videosphere) ?: $this->aframeDomObj->appendEntity($this->videosphere);
