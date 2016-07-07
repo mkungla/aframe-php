@@ -35,4 +35,15 @@ class BadComponentCallExceptionTest extends PHPUnit_Framework_TestCase
             ->mixin()
             ->InvalidComponentName();
     }
+    
+    /**
+     * Test Scene::component
+     */
+    public function test_Scene()
+    {
+        $this->setExpectedException('\AframeVR\Core\Exceptions\BadComponentCallException');
+    
+        $this->aframe->scene()
+        ->InvalidComponentName();
+    }
 }

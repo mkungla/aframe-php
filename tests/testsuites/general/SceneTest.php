@@ -108,4 +108,35 @@ class SceneTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\AframeVR\Extras\Primitives\Sky', $this->aframe->scene()
             ->entity()->child()->sky(8));
     }
+    
+    public function test_scene_components()
+    {
+        /* canvas */
+        $canvas = '\AframeVR\Core\Components\ascene\Canvas\CanvasComponent';
+        $aframe = new \AframeVR\Aframe();
+        $this->assertInstanceOf($canvas, $aframe->scene()
+        ->canvas()->canvas()->height(100)->width(100));
+        
+        /* stats */
+        $stats = '\AframeVR\Core\Components\ascene\Stats\StatsComponent';
+        $this->assertInstanceOf($stats, $aframe->scene()
+            ->stats());
+        
+        /* stats */
+        $VRmodeUI = '\AframeVR\Core\Components\ascene\VRmodeUI\VRmodeUIComponent';
+        $this->assertInstanceOf($VRmodeUI, $aframe->scene()
+            ->VRmodeUI());
+        
+        /* fog */
+        $fog = '\AframeVR\Core\Components\ascene\Fog\FogComponent';
+        $this->assertInstanceOf($fog, $aframe->scene()
+            ->fog()->near()->far()->density());
+        
+        /* Keyboard Shortcuts */
+        $fog = '\AframeVR\Core\Components\ascene\KeyboardShortcuts\KeyboardShortcutsComponent';
+        $this->assertInstanceOf($fog, $aframe->scene()
+            ->KeyboardShortcuts());
+        
+        $aframe->scene()->save();
+    }
 }

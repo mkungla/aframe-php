@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jun 29, 2016 - 10:42:59 AM
+ * Created by   Marko Kungla on Jul 4, 2016 - 10:59:36 PM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         FogCMPTIF.php
+ * File         VRmodeUICMPTIF.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  * @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,36 +21,26 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Core\Components;
+namespace AframeVR\Interfaces\Core\Components\ascene;
 
 use \AframeVR\Interfaces\ComponentInterface;
 
 /**
- * Fog Component Interface
+ * VRmodeUI Component Interface (vr-mode-ui)
  *
- * The fog component obscures entities in fog given distance from the camera. The fog component applies only to the
- * <a-scene> element.
+ * The vr-mode-ui component toggles UI such as an Enter VR button, compatibility modal, and orientation modal for
+ * mobile. The vr-mode-ui component applies only to the <a-scene> element.
  */
-interface FogCMPTIF extends ComponentInterface
+interface VRmodeUICMPTIF extends ComponentInterface
 {
 
     /**
-     * Fog type
+     * Enable vr-mode-ui
      *
-     * Type of fog distribution. Can be linear or exponential.
+     * Whether or not to display UI related to entering VR.
      *
-     * @param string $type            
-     * @return FogCMPTIF
+     * @param bool $enabled            
+     * @return VRmodeUICMPTIF
      */
-    public function type(string $type = 'linear'): FogCMPTIF;
-
-    /**
-     * Fog color
-     *
-     * Color of fog. For example, if set to black, far away objects will be rendered black.
-     *
-     * @param string $color            
-     * @return FogCMPTIF
-     */
-    public function color(string $color = '#000'): FogCMPTIF;
+    public function enabled(bool $enabled = true): VRmodeUICMPTIF;
 }

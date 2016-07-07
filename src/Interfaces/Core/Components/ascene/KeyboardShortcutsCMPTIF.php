@@ -21,7 +21,7 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Core\Components;
+namespace AframeVR\Interfaces\Core\Components\ascene;
 
 use \AframeVR\Interfaces\ComponentInterface;
 
@@ -42,7 +42,7 @@ interface KeyboardShortcutsCMPTIF extends ComponentInterface
      * @param bool $enter_vr            
      * @return KeyboardShortcutsCMPTIF
      */
-    public function enterVR(bool $enter_vr): KeyboardShortcutsCMPTIF;
+    public function enterVR(bool $enter_vr = true): KeyboardShortcutsCMPTIF;
 
     /**
      * resetSensor
@@ -52,5 +52,5 @@ interface KeyboardShortcutsCMPTIF extends ComponentInterface
      * @param bool $reset_sensor            
      * @return KeyboardShortcutsCMPTIF
      */
-    public function resetSensor(bool $reset_sensor): KeyboardShortcutsCMPTIF;
+    public function resetSensor(bool $reset_sensor = true): KeyboardShortcutsCMPTIF;
 }

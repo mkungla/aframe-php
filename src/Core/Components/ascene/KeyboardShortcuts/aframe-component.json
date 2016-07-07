@@ -1,0 +1,4 @@
+{
+	"name":"keyboard-shortcuts",
+	"description":"The keyboard-shortcuts component toggles global keyboard shortcuts. The keyboard-shortcuts component applies only to the <a-scene> element"
+}

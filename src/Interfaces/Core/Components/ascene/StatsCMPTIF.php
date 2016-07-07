@@ -21,7 +21,7 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Core\Components;
+namespace AframeVR\Interfaces\Core\Components\ascene;
 
 use \AframeVR\Interfaces\ComponentInterface;
 
@@ -33,12 +33,4 @@ use \AframeVR\Interfaces\ComponentInterface;
  */
 interface StatsCMPTIF extends ComponentInterface
 {
-
-    /**
-     * Apply stats component for scene
-     *
-     * @param bool $enabled            
-     * @return StatsCMPTIF
-     */
-    public function enabled(bool $enabled = false): StatsCMPTIF;
 }
