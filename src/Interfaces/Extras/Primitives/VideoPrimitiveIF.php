@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jul 7, 2016 - 4:45:06 AM
+ * Created by   Marko Kungla on Jul 7, 2016 - 5:42:58 AM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         VideospherePrimitiveIF.php
+ * File         VideoPrimitiveIF.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  * @issues      https://github.com/mkungla/aframe-php/issues
@@ -25,29 +25,22 @@ namespace AframeVR\Interfaces\Extras\Primitives;
 
 use \AframeVR\Interfaces\PrimitiveInterface;
 
-interface VideospherePrimitiveIF extends PrimitiveInterface
+interface VideoPrimitiveIF extends PrimitiveInterface
 {
+
     /**
-     * geometry.radius
+     * geometry.height
      *
-     * @param int|float $radius
-     * @return VideospherePrimitiveIF
+     * @param int|float $height            
+     * @return VideoPrimitiveIF
      */
-    public function radius(float $radius = 100): VideospherePrimitiveIF;
-    
+    public function height(float $height = 1.75): VideoPrimitiveIF;
+
     /**
-     * geometry.segmentsHeight
+     * geometry.width
      *
-     * @param int $segmentsHeigh
-     * @return VideospherePrimitiveIF
+     * @param int|float $width            
+     * @return VideoPrimitiveIF
      */
-    public function segmentsHeight($segmentsHeigh = 64): VideospherePrimitiveIF;
-    
-    /**
-     * geometry.segmentsWidth
-     *
-     * @param int $segmentsWidth
-     * @return VideospherePrimitiveIF
-     */
-    public function segmentsWidth($segmentsWidth = 64): VideospherePrimitiveIF;
+    public function width(float $width = 3): VideoPrimitiveIF;
 }
