@@ -34,7 +34,9 @@ use \AframeVR\Extras\Primitives\{
     Camera,
     ColladaModel,
     Videosphere,
-    Video
+    Video,
+    Torus,
+    Ring
 };
 use \AframeVR\Core\Entity;
 
@@ -120,6 +122,18 @@ trait Primitives
      * @var videos
      */
     protected $videos = array();
+    
+    /**
+     *
+     * @var toruses
+     */
+    protected $toruses = array();
+    
+    /**
+     *
+     * @var rings
+     */
+    protected $rings = array();
 
     /**
      * A-Frame Primitive box
@@ -221,6 +235,28 @@ trait Primitives
     }
     
     /**
+     * A-Frame Primitive torus
+     *
+     * @param string $id
+     * @return Entity
+     */
+    public function torus(string $id = 'untitled'): Entity
+    {
+        return $this->toruses[$id] ?? $this->toruses[$id] = new Torus($id);
+    }
+    
+    /**
+     * A-Frame Primitive ring
+     *
+     * @param string $id
+     * @return Entity
+     */
+    public function ring(string $id = 'untitled'): Entity
+    {
+        return $this->rings[$id] ?? $this->rings[$id] = new Ring($id);
+    }
+    
+    /**
      * A-Frame Primitive sky
      *
      * @return Entity
@@ -257,6 +293,8 @@ trait Primitives
         $this->aframeDomObj->appendEntities($this->images);
         $this->aframeDomObj->appendEntities($this->lights);
         $this->aframeDomObj->appendEntities($this->videos);
+        $this->aframeDomObj->appendEntities($this->toruses);
+        $this->aframeDomObj->appendEntities($this->rings);
         /* Primitives which only one can be present */
         (! $this->sky) ?: $this->aframeDomObj->appendEntity($this->sky);
         (! $this->videosphere) ?: $this->aframeDomObj->appendEntity($this->videosphere);
