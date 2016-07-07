@@ -59,7 +59,7 @@ interface FogCMPTIF extends ComponentInterface
      *
      * Minimum distance to start applying fog. Objects closer than this won’t be affected by fog.
      *
-     * @param string $near
+     * @param int $near
      * @return FogCMPTIF
      */
     public function near(int $near = 1): FogCMPTIF;

@@ -1,0 +1,4 @@
+{
+	"name":"obj-model",
+	"description":"The obj-model component loads a 3D model and material using a Wavefront (.OBJ) file and a .MTL file."
+}

@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jul 7, 2016 - 3:29:20 AM
+ * Created by   Marko Kungla on Jul 7, 2016 - 4:12:47 AM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         KeyboardShortcutsComponent.php
+ * File         ObjModelComponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  * @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,16 +21,14 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Core\Components\ascene\KeyboardShortcuts;
+namespace AframeVR\Core\Components\ObjModel;
 
-use \AframeVR\Interfaces\Core\Components\ascene\KeyboardShortcutsCMPTIF;
+use \AframeVR\Interfaces\Core\Components\ObjModelCMPTIF;
 use \AframeVR\Core\Helpers\ComponentAbstract;
 
-class KeyboardShortcutsComponent extends ComponentAbstract implements KeyboardShortcutsCMPTIF
+class ObjModelComponent extends ComponentAbstract implements ObjModelCMPTIF
 {
 
-
-    
     /**
      * Initialize Component
      *
@@ -40,38 +38,36 @@ class KeyboardShortcutsComponent extends ComponentAbstract implements KeyboardSh
      */
     public function initializeComponent(): bool
     {
-        $this->setDomAttribute('keyboard-shortcuts');
-        $this->enterVR();
-        $this->resetSensor();
+        $this->setDomAttribute('obj-model');
         return true;
     }
 
-
-     /**
-     * enterVR
+    /**
+     * Selector to obj
      *
-     * Enables the shortcut to press ‘F’ to enter VR.
+     * Selector to an <a-asset-item> pointing to a .OBJ file or an inline path to a .OBJ file.
      *
-     * @param bool $enter_vr            
-     * @return KeyboardShortcutsCMPTIF
+     * @param string $selector
+     * @return ObjModelCMPTIF
      */
-    public function enterVR(bool $enter_vr = true): KeyboardShortcutsCMPTIF
+    public function obj(string $selector): ObjModelCMPTIF
     {
-        $this->dom_attributes['enterVR'] = $enter_vr ? 'true' : 'false';
+        $this->dom_attributes['obj'] = $selector;
         return $this;
     }
-
+    
     /**
-     * resetSensor
+     * Selector to mtl
      *
-     * Enables to shortcut to press ‘Z’ to reset the sensor.
+     * Selector to an <a-asset-item> pointing to a .MTL file or an inline path to a .MTL file. Optional if you wish to
+     * use the material component instead.
      *
-     * @param bool $reset_sensor            
-     * @return KeyboardShortcutsCMPTIF
+     * @param string $selector
+     * @return ObjModelCMPTIF
      */
-    public function resetSensor(bool $reset_sensor = true): KeyboardShortcutsCMPTIF
+    public function mtl(string $selector): ObjModelCMPTIF
     {
-        $this->dom_attributes['resetSensor'] = $reset_sensor ? 'true' : 'false';
+        $this->dom_attributes['mtl'] = $selector;
         return $this;
     }
 }
