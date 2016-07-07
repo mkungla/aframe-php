@@ -140,7 +140,7 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
     /**
      * Do not apply fog to certain entities, we can disable fog for certain materials.
      *
-     * @param string $fog
+     * @param bool $fog
      * @return MaterialCMPTIF
      */
     public function fog(bool $fog = true): MaterialCMPTIF

@@ -57,7 +57,7 @@ class KeyboardShortcutsComponent extends ComponentAbstract implements KeyboardSh
      */
     public function enterVR(bool $enter_vr = true): KeyboardShortcutsCMPTIF
     {
-        $this->dom_attributes['enterVR'] = $enter_vr ? 'true' : 'false';;
+        $this->dom_attributes['enterVR'] = $enter_vr ? 'true' : 'false';
         return $this;
     }
 
@@ -71,7 +71,7 @@ class KeyboardShortcutsComponent extends ComponentAbstract implements KeyboardSh
      */
     public function resetSensor(bool $reset_sensor = true): KeyboardShortcutsCMPTIF
     {
-        $this->dom_attributes['resetSensor'] = $reset_sensor ? 'true' : 'false';;
+        $this->dom_attributes['resetSensor'] = $reset_sensor ? 'true' : 'false';
         return $this;
     }
 }
