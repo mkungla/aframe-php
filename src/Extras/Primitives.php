@@ -36,7 +36,8 @@ use \AframeVR\Extras\Primitives\{
     Videosphere,
     Video,
     Torus,
-    Ring
+    Ring,
+    ObjModel
 };
 use \AframeVR\Core\Entity;
 
@@ -135,6 +136,12 @@ trait Primitives
      */
     protected $rings = array();
 
+    /**
+     *
+     * @var rings
+     */
+    protected $objmodels = array();
+    
     /**
      * A-Frame Primitive box
      *
@@ -277,6 +284,16 @@ trait Primitives
     }
     
     /**
+     * A-Frame Primitive obj model
+     *
+     * @return Entity
+     */
+    public function objmodel(string $id = 'untitled'): Entity
+    {
+        return $this->objmodels[$id] ?? $this->objmodels[$id] = new ObjModel($id);
+    }
+    
+    /**
      * Add all used primitevs to the scene
      *
      * @return void
@@ -295,6 +312,7 @@ trait Primitives
         $this->aframeDomObj->appendEntities($this->videos);
         $this->aframeDomObj->appendEntities($this->toruses);
         $this->aframeDomObj->appendEntities($this->rings);
+        $this->aframeDomObj->appendEntities($this->objmodels);
         /* Primitives which only one can be present */
         (! $this->sky) ?: $this->aframeDomObj->appendEntity($this->sky);
         (! $this->videosphere) ?: $this->aframeDomObj->appendEntity($this->videosphere);

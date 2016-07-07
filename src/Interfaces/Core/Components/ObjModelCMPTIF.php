@@ -38,10 +38,10 @@ interface ObjModelCMPTIF extends ComponentInterface
      *
      * Selector to an <a-asset-item> pointing to a .OBJ file or an inline path to a .OBJ file.
      *
-     * @param string $selector            
+     * @param null|string $selector            
      * @return ObjModelCMPTIF
      */
-    public function obj(string $selector): ObjModelCMPTIF;
+    public function obj(string $selector = null): ObjModelCMPTIF;
 
     /**
      * Selector to mtl
@@ -49,8 +49,8 @@ interface ObjModelCMPTIF extends ComponentInterface
      * Selector to an <a-asset-item> pointing to a .MTL file or an inline path to a .MTL file. Optional if you wish to
      * use the material component instead.
      *
-     * @param string $selector            
+     * @param null|string $selector            
      * @return ObjModelCMPTIF
      */
-    public function mtl(string $selector): ObjModelCMPTIF;
+    public function mtl(string $selector = null): ObjModelCMPTIF;
 }
