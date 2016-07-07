@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jul 4, 2016 - 10:03:35 PM
+ * Created by   Marko Kungla on Jul 7, 2016 - 3:29:20 AM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         KeyboardShortcutsCMPTIF.php
+ * File         KeyboardShortcutsComponent.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  * @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,20 +21,33 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Core\Components\ascene;
+namespace AframeVR\Core\Components\ascene\KeyboardShortcuts;
 
-use \AframeVR\Interfaces\ComponentInterface;
+use \AframeVR\Interfaces\Core\Components\ascene\KeyboardShortcutsCMPTIF;
+use \AframeVR\Core\Helpers\ComponentAbstract;
 
-/**
- * Keyboard Shortcuts Component (keyboard-shortcuts)
- *
- * The keyboard-shortcuts component toggles global keyboard shortcuts. The keyboard-shortcuts component applies only to
- * the <a-scene> element
- */
-interface KeyboardShortcutsCMPTIF extends ComponentInterface
+class KeyboardShortcutsComponent extends ComponentAbstract implements KeyboardShortcutsCMPTIF
 {
 
+
+    
     /**
+     * Initialize Component
+     *
+     * {@inheritdoc}
+     *
+     * @return bool
+     */
+    public function initializeComponent(): bool
+    {
+        $this->setDomAttribute('keyboard-shortcuts');
+        $this->enterVR();
+        $this->resetSensor();
+        return true;
+    }
+
+
+     /**
      * enterVR
      *
      * Enables the shortcut to press ‘F’ to enter VR.
@@ -42,7 +55,11 @@ interface KeyboardShortcutsCMPTIF extends ComponentInterface
      * @param bool $enter_vr            
      * @return KeyboardShortcutsCMPTIF
      */
-    public function enterVR(bool $enter_vr = true): KeyboardShortcutsCMPTIF;
+    public function enterVR(bool $enter_vr = true): KeyboardShortcutsCMPTIF
+    {
+        $this->dom_attributes['enterVR'] = $enter_vr ? 'true' : 'false';;
+        return $this;
+    }
 
     /**
      * resetSensor
@@ -52,5 +69,9 @@ interface KeyboardShortcutsCMPTIF extends ComponentInterface
      * @param bool $reset_sensor            
      * @return KeyboardShortcutsCMPTIF
      */
-    public function resetSensor(bool $reset_sensor = true): KeyboardShortcutsCMPTIF;
+    public function resetSensor(bool $reset_sensor = true): KeyboardShortcutsCMPTIF
+    {
+        $this->dom_attributes['resetSensor'] = $reset_sensor ? 'true' : 'false';;
+        return $this;
+    }
 }

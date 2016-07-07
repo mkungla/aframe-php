@@ -130,7 +130,13 @@ class SceneTest extends PHPUnit_Framework_TestCase
         /* fog */
         $fog = '\AframeVR\Core\Components\ascene\Fog\FogComponent';
         $this->assertInstanceOf($fog, $aframe->scene()
-            ->fog());
+            ->fog()->near()->far()->density());
+        
+        /* Keyboard Shortcuts */
+        $fog = '\AframeVR\Core\Components\ascene\KeyboardShortcuts\KeyboardShortcutsComponent';
+        $this->assertInstanceOf($fog, $aframe->scene()
+            ->KeyboardShortcuts());
+        
         $aframe->scene()->save();
     }
 }

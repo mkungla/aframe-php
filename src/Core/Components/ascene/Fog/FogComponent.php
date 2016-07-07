@@ -71,5 +71,47 @@ class FogComponent extends ComponentAbstract implements FogCMPTIF
         $this->dom_attributes['color'] = $color;
         return $this;
     }
+    
+    /**
+     * Fog near
+     *
+     * Minimum distance to start applying fog. Objects closer than this won’t be affected by fog.
+     *
+     * @param string $near
+     * @return FogCMPTIF
+     */
+    public function near(int $near = 1): FogCMPTIF
+    {
+        $this->dom_attributes['near'] = $near;
+        return $this;
+    }
+    
+    /**
+     * Fog far
+     *
+     * Maximum distance to stop applying fog. Objects farther than this won’t be affected by fog.
+     *
+     * @param int $far
+     * @return FogCMPTIF
+     */
+    public function far(int $far = 1000): FogCMPTIF
+    {
+        $this->dom_attributes['far'] = $far;
+        return $this;
+    }
+    
+    /**
+     * Fog density
+     *
+     * How quickly the fog grows dense.
+     *
+     * @param float $density
+     * @return FogCMPTIF
+     */
+    public function density(float $density = 0.00025): FogCMPTIF
+    {
+        $this->dom_attributes['density'] = $density;
+        return $this;
+    }
   
 }

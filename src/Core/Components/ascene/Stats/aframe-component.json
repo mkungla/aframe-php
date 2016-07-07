@@ -1,0 +1,4 @@
+{
+	"name":"stats",
+	"description":"The stats component displays a UI that displays performance measurements such as framerate. The stats component applies only to the <a-scene> element."
+}

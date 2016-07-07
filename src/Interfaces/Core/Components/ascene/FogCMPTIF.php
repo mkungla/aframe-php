@@ -53,4 +53,34 @@ interface FogCMPTIF extends ComponentInterface
      * @return FogCMPTIF
      */
     public function color(string $color = '#000'): FogCMPTIF;
+    
+    /**
+     * Fog near
+     *
+     * Minimum distance to start applying fog. Objects closer than this won’t be affected by fog.
+     *
+     * @param string $near
+     * @return FogCMPTIF
+     */
+    public function near(int $near = 1): FogCMPTIF;
+    
+    /**
+     * Fog far
+     *
+     * Maximum distance to stop applying fog. Objects farther than this won’t be affected by fog.
+     *
+     * @param int $far
+     * @return FogCMPTIF
+     */
+    public function far(int $far = 1000): FogCMPTIF;
+    
+    /**
+     * Fog density
+     *
+     * How quickly the fog grows dense.
+     *
+     * @param float $density
+     * @return FogCMPTIF
+     */
+    public function density(float $density = 0.00025): FogCMPTIF;
 }
