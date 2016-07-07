@@ -69,19 +69,31 @@ final class AssetVideo extends AssetsAbstract implements AssetVideoInterface
      */
     public function autoplay(bool $autoplay = true): AssetVideoInterface
     {
-        $this->attr_autoplay = $autoplay;
+        $this->attrs['autoplay'] = $autoplay ? 'true' : 'false';
         return $this;
     }
 
     /**
-     * Preload video
+     * loop video
      *
      * @param string $preload            
      * @return AssetVideoInterface
      */
+    public function loop(bool $loop = true): AssetVideoInterface
+    {
+        $this->attrs['loop'] = $loop ? 'true' : 'false';
+        return $this;
+    }
+    
+    /**
+     * Preload video
+     *
+     * @param string $preload
+     * @return AssetVideoInterface
+     */
     public function preload(string $preload = 'auto'): AssetVideoInterface
     {
-        $this->attr_preload = $preload;
+        $this->attrs['preload'] = $preload;
         return $this;
     }
 
@@ -93,7 +105,7 @@ final class AssetVideo extends AssetsAbstract implements AssetVideoInterface
      */
     public function crossorigin(string $crossorigin = 'anonymous'): AssetVideoInterface
     {
-        $this->attr_crossorigin = $crossorigin;
+        $this->attrs['crossorigin'] = $crossorigin;
         return $this;
     }
 }

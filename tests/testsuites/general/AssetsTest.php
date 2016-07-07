@@ -55,10 +55,12 @@ class AssetsTest extends PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf('AframeVR\Interfaces\Core\Assets\AssetVideoInterface', $this->aframe->scene()
             ->asset()
-            ->video()
+            ->video(10)
             ->autoplay()
             ->preload()
+            ->loop()
             ->crossorigin());
+        $this->aframe->scene()->save();
     }
 
     public function test_mixin()

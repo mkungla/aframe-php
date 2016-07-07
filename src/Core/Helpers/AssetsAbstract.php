@@ -35,21 +35,8 @@ abstract class AssetsAbstract implements AssetsInterface
      * @var string
      */
     protected $element_tag = 'a-asset-item';
-
-    /**
-     * ID attribute
-     *
-     * @var string
-     */
-    protected $attr_id;
-
-    /**
-     * SRC attribute
-     *
-     * @var string
-     */
-    protected $attr_src;
-
+    
+    protected $attrs = array();
     /**
      * Asset constructor set asset ID
      *
@@ -67,9 +54,10 @@ abstract class AssetsAbstract implements AssetsInterface
      *
      * @param string $id            
      */
-    public function id(string $id = 'untitled')
+    public function id(string $id = 'untitled'): AssetsInterface
     {
-        $this->attr_id = $id;
+        $this->attrs['id'] = $id;
+        return $this;
     }
 
     /**
@@ -80,9 +68,10 @@ abstract class AssetsAbstract implements AssetsInterface
      * @param null|string $src            
      * @return void
      */
-    public function src(string $src = null)
+    public function src(string $src = null): AssetsInterface
     {
-        $this->attr_src = $src;
+        $this->attrs['src'] = $src;
+        return $this;
     }
 
     /**
@@ -95,8 +84,7 @@ abstract class AssetsAbstract implements AssetsInterface
     {
         $a_asset = $aframe_dom->createElement($this->element_tag);
         /* Asset must have a id */
-        $a_asset->setAttribute('id', $this->attr_id);
-        (empty($this->attr_src) ?: $a_asset->setAttribute('src', $this->attr_src));
+        $this->appendAttributes($a_asset);
         return $a_asset;
     }
 
@@ -109,5 +97,25 @@ abstract class AssetsAbstract implements AssetsInterface
     public function setDomElementTag(string $element_tag)
     {
         $this->element_tag = $element_tag;
+    }
+    
+    /**
+     * Append DOM attributes no set by components
+     *
+     * @param \DOMElement $a_entity
+     */
+    private function appendAttributes(\DOMElement &$a_entity)
+    {
+        foreach ($this->attrs as $attr => $val) {
+            $this->setAttribute($a_entity, $attr, $val);
+        }
+    }
+    
+    private function setAttribute(&$a_entity, $attr, $val)
+    {
+        if ($attr === 'id' && ($val === 'untitled' || is_numeric($val)))
+            return;
+    
+            $a_entity->setAttribute($attr, $val);
     }
 }

@@ -32,7 +32,9 @@ use \AframeVR\Extras\Primitives\{
     Plane,
     Sky,
     Camera,
-    ColladaModel
+    ColladaModel,
+    Videosphere,
+    Video
 };
 use \AframeVR\Core\Entity;
 
@@ -96,6 +98,13 @@ trait Primitives
     
     /**
      *
+     * @var \AframeVR\Extras\Primitives\Videosphere $videosphere
+     */
+    protected $videosphere;
+    
+    
+    /**
+     *
      * @var array
      */
     protected $images = array();
@@ -105,6 +114,12 @@ trait Primitives
      * @var lights
      */
     protected $lights = array();
+    
+    /**
+     *
+     * @var videos
+     */
+    protected $videos = array();
 
     /**
      * A-Frame Primitive box
@@ -195,6 +210,17 @@ trait Primitives
     }
 
     /**
+     * A-Frame Primitive video
+     *
+     * @param string $id
+     * @return Entity
+     */
+    public function video(string $id = 'untitled'): Entity
+    {
+        return $this->videos[$id] ?? $this->videos[$id] = new Video($id);
+    }
+    
+    /**
      * A-Frame Primitive sky
      *
      * @return Entity
@@ -204,6 +230,16 @@ trait Primitives
         return $this->sky = new Sky();
     }
 
+    /**
+     * A-Frame Primitive sky
+     *
+     * @return Entity
+     */
+    public function videosphere(): Entity
+    {
+        return $this->videosphere = new Videosphere();
+    }
+    
     /**
      * Add all used primitevs to the scene
      *
@@ -220,7 +256,9 @@ trait Primitives
         $this->aframeDomObj->appendEntities($this->collada_models);
         $this->aframeDomObj->appendEntities($this->images);
         $this->aframeDomObj->appendEntities($this->lights);
+        $this->aframeDomObj->appendEntities($this->videos);
         /* Primitives which only one can be present */
         (! $this->sky) ?: $this->aframeDomObj->appendEntity($this->sky);
+        (! $this->videosphere) ?: $this->aframeDomObj->appendEntity($this->videosphere);
     }
 }
