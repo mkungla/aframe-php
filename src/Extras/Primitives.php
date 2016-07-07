@@ -32,7 +32,8 @@ use \AframeVR\Extras\Primitives\{
     Plane,
     Sky,
     Camera,
-    ColladaModel
+    ColladaModel,
+    Videosphere
 };
 use \AframeVR\Core\Entity;
 
@@ -93,6 +94,13 @@ trait Primitives
      * @var \AframeVR\Extras\Primitives\Sky $sky
      */
     protected $sky;
+    
+    /**
+     *
+     * @var \AframeVR\Extras\Primitives\Videosphere $videosphere
+     */
+    protected $videosphere;
+    
     
     /**
      *
@@ -205,6 +213,16 @@ trait Primitives
     }
 
     /**
+     * A-Frame Primitive sky
+     *
+     * @return Entity
+     */
+    public function videosphere(): Entity
+    {
+        return $this->videosphere = new Videosphere();
+    }
+    
+    /**
      * Add all used primitevs to the scene
      *
      * @return void
@@ -222,5 +240,6 @@ trait Primitives
         $this->aframeDomObj->appendEntities($this->lights);
         /* Primitives which only one can be present */
         (! $this->sky) ?: $this->aframeDomObj->appendEntity($this->sky);
+        (! $this->videosphere) ?: $this->aframeDomObj->appendEntity($this->videosphere);
     }
 }
