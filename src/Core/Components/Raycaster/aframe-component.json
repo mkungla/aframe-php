@@ -1,0 +1,4 @@
+{
+	"name":"raycaster",
+	"description":"The raycaster component does general intersection testing with a raycaster. Raycasting is the method of extending a line from an origin towards a direction, and checking whether that line intersects with other entites. The raycaster component is a wrapper on top of the three.js raycaster."
+}
