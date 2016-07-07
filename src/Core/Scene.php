@@ -27,6 +27,8 @@ use \AframeVR\Extras\Primitives;
 use \AframeVR\Core\Entity;
 use \AframeVR\Core\DOM\AframeDOMDocument;
 use \AframeVR\Core\Assets;
+use \Closure;
+use \AframeVR\Core\Exceptions\BadComponentCallException;
 
 final class Scene
 {
@@ -68,6 +70,13 @@ final class Scene
      */
     protected $entities = array();
 
+    /**
+     * Scene components
+     * 
+     * @var array $components
+     */
+    protected $components = array();
+    
     /**
      * Scene constructor
      *
@@ -192,6 +201,51 @@ final class Scene
     }
 
     /**
+     * Load component for this entity
+     *
+     * @param string $component_name
+     * @throws \AframeVR\Core\Exceptions\BadComponentCallException
+     * @return object|null
+     */
+    public function component(string $component_name)
+    {
+        if (! array_key_exists($component_name, $this->components)) {
+            $component = sprintf('\AframeVR\Core\Components\ascene\%s\%sComponent', ucfirst($component_name),
+                ucfirst($component_name));
+            if (class_exists($component)) {
+                $this->components[$component_name] = new $component();
+            } else {
+                throw new BadComponentCallException($component_name);
+            }
+        }
+    
+        return $this->components[$component_name] ?? null;
+    }
+    
+    /**
+     * Handle scene components
+     *
+     * Since we might need to customize these to have
+     * custom components loaded as $this->methosd aswell therefore
+     * we have these placeholder magic methods here
+     *
+     * @param string $component_name
+     * @param array $args
+     */
+    public function __call(string $component_name, array $args)
+    {
+        if (! method_exists($this, $component_name)) {
+            $this->{$component_name} = Closure::bind(
+                function () use ($component_name) {
+                    return $this->component($component_name);
+                }, $this, get_class());
+        }
+    
+        return call_user_func($this->{$component_name}, $args);
+    }
+    
+    
+    /**
      * Add everyting to DOM
      *
      * @return void
@@ -210,6 +264,7 @@ final class Scene
         
         /* Append all entities */
         $this->aframeDomObj->appendEntities($this->entities);
+        $this->aframeDomObj->appendSceneComponents($this->components);
         $this->prepared = true;
     }
 }

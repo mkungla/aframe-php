@@ -21,9 +21,9 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Core\Components\VRmodeUI;
+namespace AframeVR\Core\Components\ascene\VRmodeUI;
 
-use \AframeVR\Interfaces\Core\Components\VRmodeUICMPTIF;
+use \AframeVR\Interfaces\Core\Components\ascene\VRmodeUICMPTIF;
 use \AframeVR\Core\Helpers\ComponentAbstract;
 
 class VRmodeUIComponent extends ComponentAbstract implements VRmodeUICMPTIF

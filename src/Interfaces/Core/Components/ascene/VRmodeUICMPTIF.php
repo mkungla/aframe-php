@@ -21,7 +21,7 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Interfaces\Core\Components;
+namespace AframeVR\Interfaces\Core\Components\ascene;
 
 use \AframeVR\Interfaces\ComponentInterface;
 

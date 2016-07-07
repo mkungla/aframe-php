@@ -261,6 +261,24 @@ final class AframeDOMDocument extends DOMImplementation
     }
     
     /**
+     * Add scene components
+     * 
+     * @param array $components
+     * @return void
+     */
+    public function appendSceneComponents(array $components)
+    {
+        foreach ($components as $component) {
+            /*
+             * Check does component has any attributes to add to scene DOM element.
+             * default attributes most of cases are ommited so we might not have any attributes to add
+             */
+            if ($component->hasDOMAttributes())
+                $this->scene->setAttributeNode($component->getDOMAttr());
+        }
+    }
+    
+    /**
      * Set configuration option related to DOM
      * 
      * @param Config $config
