@@ -34,7 +34,12 @@ use \AframeVR\Extras\Primitives\{
     Camera,
     ColladaModel,
     Videosphere,
-    Video
+    Video,
+    Torus,
+    Ring,
+    ObjModel,
+    Curvedimage,
+    Cone
 };
 use \AframeVR\Core\Entity;
 
@@ -120,7 +125,37 @@ trait Primitives
      * @var videos
      */
     protected $videos = array();
+    
+    /**
+     *
+     * @var $toruses
+     */
+    protected $toruses = array();
+    
+    /**
+     *
+     * @var $rings
+     */
+    protected $rings = array();
 
+    /**
+     *
+     * @var $objmodels
+     */
+    protected $objmodels = array();
+    
+    /**
+     *
+     * @var $curvedimages
+     */
+    protected $curvedimages = array();
+    
+    /**
+     *
+     * @var $cones
+     */
+    protected $cones = array();
+    
     /**
      * A-Frame Primitive box
      *
@@ -221,15 +256,27 @@ trait Primitives
     }
     
     /**
-     * A-Frame Primitive sky
+     * A-Frame Primitive torus
      *
+     * @param string $id
      * @return Entity
      */
-    public function sky(): Entity
+    public function torus(string $id = 'untitled'): Entity
     {
-        return $this->sky = new Sky();
+        return $this->toruses[$id] ?? $this->toruses[$id] = new Torus($id);
     }
-
+    
+    /**
+     * A-Frame Primitive ring
+     *
+     * @param string $id
+     * @return Entity
+     */
+    public function ring(string $id = 'untitled'): Entity
+    {
+        return $this->rings[$id] ?? $this->rings[$id] = new Ring($id);
+    }
+    
     /**
      * A-Frame Primitive sky
      *
@@ -239,6 +286,48 @@ trait Primitives
     {
         return $this->videosphere = new Videosphere();
     }
+    
+    /**
+     * A-Frame Primitive obj model
+     *
+     * @return Entity
+     */
+    public function objmodel(string $id = 'untitled'): Entity
+    {
+        return $this->objmodels[$id] ?? $this->objmodels[$id] = new ObjModel($id);
+    }
+    
+    /**
+     * A-Frame Primitive curvedimage
+     *
+     * @return Entity
+     */
+    public function curvedimage(string $id = 'untitled'): Entity
+    {
+        return $this->curvedimages[$id] ?? $this->curvedimages[$id] = new Curvedimage($id);
+    }
+    
+    /**
+     * A-Frame Primitive curvedimage
+     *
+     * @return Entity
+     */
+    public function cone(string $id = 'untitled'): Entity
+    {
+        return $this->cones[$id] ?? $this->cones[$id] = new Cone($id);
+    }
+    
+    
+    /**
+     * A-Frame Primitive sky
+     *
+     * @return Entity
+     */
+    public function sky(): Entity
+    {
+        return $this->sky = new Sky();
+    }
+
     
     /**
      * Add all used primitevs to the scene
@@ -257,6 +346,11 @@ trait Primitives
         $this->aframeDomObj->appendEntities($this->images);
         $this->aframeDomObj->appendEntities($this->lights);
         $this->aframeDomObj->appendEntities($this->videos);
+        $this->aframeDomObj->appendEntities($this->toruses);
+        $this->aframeDomObj->appendEntities($this->rings);
+        $this->aframeDomObj->appendEntities($this->objmodels);
+        $this->aframeDomObj->appendEntities($this->curvedimages);
+        $this->aframeDomObj->appendEntities($this->cones);
         /* Primitives which only one can be present */
         (! $this->sky) ?: $this->aframeDomObj->appendEntity($this->sky);
         (! $this->videosphere) ?: $this->aframeDomObj->appendEntity($this->videosphere);

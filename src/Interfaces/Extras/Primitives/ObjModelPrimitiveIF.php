@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jul 7, 2016 - 4:12:47 AM
+ * Created by   Marko Kungla on Jul 7, 2016 - 9:23:01 PM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         ObjModelComponent.php
+ * File         ObjModelPrimitiveIF.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  * @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,53 +21,31 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Core\Components\ObjModel;
+namespace AframeVR\Interfaces\Extras\Primitives;
 
-use \AframeVR\Interfaces\Core\Components\ObjModelCMPTIF;
-use \AframeVR\Core\Helpers\ComponentAbstract;
+use \AframeVR\Interfaces\PrimitiveInterface;
 
-class ObjModelComponent extends ComponentAbstract implements ObjModelCMPTIF
+interface ObjModelPrimitiveIF extends PrimitiveInterface
 {
-
-    /**
-     * Initialize Component
-     *
-     * {@inheritdoc}
-     *
-     * @return bool
-     */
-    public function initializeComponent(): bool
-    {
-        $this->setDomAttribute('obj-model');
-        return true;
-    }
 
     /**
      * Selector to obj
      *
      * Selector to an <a-asset-item> pointing to a .OBJ file or an inline path to a .OBJ file.
      *
-     * @param null|string $selector
+     * @param null|string $selector            
      * @return ObjModelCMPTIF
      */
-    public function obj(string $selector = null): ObjModelCMPTIF
-    {
-        $this->dom_attributes['obj'] = $selector;
-        return $this;
-    }
-    
+    public function obj(string $selector = null): ObjModelPrimitiveIF;
+
     /**
      * Selector to mtl
      *
      * Selector to an <a-asset-item> pointing to a .MTL file or an inline path to a .MTL file. Optional if you wish to
      * use the material component instead.
      *
-     * @param null|string $selector
+     * @param null|string $selector            
      * @return ObjModelCMPTIF
      */
-    public function mtl(string $selector = null): ObjModelCMPTIF
-    {
-        $this->dom_attributes['mtl'] = $selector;
-        return $this;
-    }
+    public function mtl(string $selector = null): ObjModelPrimitiveIF;
 }

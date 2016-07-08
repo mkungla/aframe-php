@@ -53,7 +53,7 @@ class CursorComponent extends ComponentAbstract implements CursorCMPTIF
      */
     public function fuse(bool $fuse = false): CursorCMPTIF
     {
-        $this->dom_attributes['fuse'] = $fuse;
+        $this->dom_attributes['fuse'] = $fuse ? 'true' : 'false';
         return $this;
     }
 

@@ -32,6 +32,9 @@ class CameraTest extends PHPUnit_Framework_TestCase implements PrimitiveTestInte
             $this->assertInstanceOf(self::A_INSTANCE, $this->a_get_instance()
                 ->$component_name());
         }
+        
+        $this->assertInstanceOf('AframeVR\Extras\Primitives\Cursor', $this->a_get_instance()
+            ->cursor());
     }
     
     public function test_primitive_attributes()
