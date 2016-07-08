@@ -28,10 +28,13 @@ use \AframeVR\Core\Entity;
 use \AframeVR\Core\Helpers\MeshAttributes;
 
 /**
- * <a-obj-model>
+ * <a-curvedimage>
  *
- * The .OBJ model primitive displays a 3D Wavefront model. It is an entity that maps the src and mtl attributes to the
- * obj-model component’s obj and mtl properties respectively.
+ * he curved image primitive creates images that bend around the user. Curved images arranged around the camera can be
+ * pleasing for legibility since each pixel sits at the same distance from the user. They can be a better choice than
+ * angled flat planes for complex layouts because they ensure a smooth surface rather than a series of awkward seams
+ * between planes. It is an entity that prescribes a double-sided open-ended cylinder with the geometry component and
+ * rendering textures on the inside of the cylinder with the material component.
  */
 final class Curvedimage extends Entity implements CurvedimagePrimitiveIF
 {
@@ -43,7 +46,6 @@ final class Curvedimage extends Entity implements CurvedimagePrimitiveIF
      *
      * Selector to an <a-asset-item> pointing to a .OBJ file or an inline path to a .OBJ file.
      *
-     * @param null|string $selector            
      * @return ObjModelPrimitiveIF
      */
     public function init()
@@ -60,11 +62,8 @@ final class Curvedimage extends Entity implements CurvedimagePrimitiveIF
         $this->color('#fff');
         $this->component('Material')->side('double');
         $this->component('Material')->transparent(true);
-
-        $this->component('Material')
-        ->shader()
-        ->repeat(-1, 1);
+        
+        $this->component('Material')->shader()->repeat(- 1, 1);
         return $this;
     }
-
 }

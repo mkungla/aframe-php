@@ -52,7 +52,7 @@ class CameraComponent extends ComponentAbstract implements CameraCMPTIF
      */
     public function active(bool $active = false): CameraCMPTIF
     {
-        $this->dom_attributes['active'] = $active;
+        $this->dom_attributes['active'] = $active ? 'true' : 'false';
         return $this;
     }
 

@@ -105,8 +105,26 @@ class SceneTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\AframeVR\Extras\Primitives\Image', $this->aframe->scene()
             ->entity()->child()->image(7));
         
-        $this->assertInstanceOf('\AframeVR\Extras\Primitives\Sky', $this->aframe->scene()
-            ->entity()->child()->sky(8));
+        $this->assertInstanceOf('\AframeVR\Extras\Primitives\Light', $this->aframe->scene()
+            ->entity()->child()->light(8));
+        
+        $this->assertInstanceOf('\AframeVR\Extras\Primitives\Video', $this->aframe->scene()
+            ->entity()->child()->video(9));
+        
+        $this->assertInstanceOf('\AframeVR\Extras\Primitives\Torus', $this->aframe->scene()
+            ->entity()->child()->torus(10));
+        
+        $this->assertInstanceOf('\AframeVR\Extras\Primitives\Ring', $this->aframe->scene()
+            ->entity()->child()->ring(11));
+        
+        $this->assertInstanceOf('\AframeVR\Extras\Primitives\ObjModel', $this->aframe->scene()
+            ->entity()->child()->objmodel(12));
+        
+        $this->assertInstanceOf('\AframeVR\Extras\Primitives\Curvedimage', $this->aframe->scene()
+            ->entity()->child()->curvedimage(13));
+        
+        $this->assertInstanceOf('\AframeVR\Extras\Primitives\Cone', $this->aframe->scene()
+            ->entity()->child()->cone(14));
     }
     
     public function test_scene_components()

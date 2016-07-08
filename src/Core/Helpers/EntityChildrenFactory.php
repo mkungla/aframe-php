@@ -32,7 +32,16 @@ use \AframeVR\Extras\Primitives\{
     Plane,
     Sky,
     Camera,
-    ColladaModel
+    ColladaModel,
+    Videosphere,
+    Video,
+    Torus,
+    Ring,
+    ObjModel,
+    Curvedimage,
+    Cursor,
+    Light,
+    Cone
 };
 
 class EntityChildrenFactory
@@ -135,15 +144,90 @@ class EntityChildrenFactory
     }
 
     /**
-     * A-Frame Primitive sky
+     * A-Frame Primitive light
+     *
+     * @param string $id
+     * @return Entity
+     */
+    public function light(string $id = 'untitled'): Entity
+    {
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Light($id);
+    }
+    
+    /**
+     * A-Frame Primitive video
+     *
+     * @param string $id
+     * @return Entity
+     */
+    public function video(string $id = 'untitled'): Entity
+    {
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Video($id);
+    }
+    
+    /**
+     * A-Frame Primitive torus
+     *
+     * @param string $id
+     * @return Entity
+     */
+    public function torus(string $id = 'untitled'): Entity
+    {
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Torus($id);
+    }
+    
+    /**
+     * A-Frame Primitive ring
+     *
+     * @param string $id
+     * @return Entity
+     */
+    public function ring(string $id = 'untitled'): Entity
+    {
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Ring($id);
+    }
+    
+
+    /**
+     * A-Frame Primitive obj model
      *
      * @return Entity
      */
-    public function sky(string $id = 'untitled'): Entity
+    public function objmodel(string $id = 'untitled'): Entity
     {
-        return $this->childrens[$id] = new Sky($id);
+        return $this->childrens[$id] ?? $this->childrens[$id] = new ObjModel($id);
     }
-
+    
+    /**
+     * A-Frame Primitive curvedimage
+     *
+     * @return Entity
+     */
+    public function curvedimage(string $id = 'untitled'): Entity
+    {
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Curvedimage($id);
+    }
+    
+    /**
+     * A-Frame Primitive curvedimage
+     *
+     * @return Entity
+     */
+    public function cursor(string $id = 'untitled'): Entity
+    {
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Cursor($id);
+    }
+    
+    /**
+     * A-Frame Primitive cone
+     *
+     * @return Entity
+     */
+    public function cone(string $id = 'untitled'): Entity
+    {
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Cone($id);
+    }
+    
     public function getChildern()
     {
         return $this->childrens;

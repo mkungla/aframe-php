@@ -38,7 +38,8 @@ use \AframeVR\Extras\Primitives\{
     Torus,
     Ring,
     ObjModel,
-    Curvedimage
+    Curvedimage,
+    Cone
 };
 use \AframeVR\Core\Entity;
 
@@ -148,6 +149,13 @@ trait Primitives
      * @var $curvedimages
      */
     protected $curvedimages = array();
+    
+    /**
+     *
+     * @var $cones
+     */
+    protected $cones = array();
+    
     /**
      * A-Frame Primitive box
      *
@@ -274,16 +282,6 @@ trait Primitives
      *
      * @return Entity
      */
-    public function sky(): Entity
-    {
-        return $this->sky = new Sky();
-    }
-
-    /**
-     * A-Frame Primitive sky
-     *
-     * @return Entity
-     */
     public function videosphere(): Entity
     {
         return $this->videosphere = new Videosphere();
@@ -308,6 +306,29 @@ trait Primitives
     {
         return $this->curvedimages[$id] ?? $this->curvedimages[$id] = new Curvedimage($id);
     }
+    
+    /**
+     * A-Frame Primitive curvedimage
+     *
+     * @return Entity
+     */
+    public function cone(string $id = 'untitled'): Entity
+    {
+        return $this->cones[$id] ?? $this->cones[$id] = new Cone($id);
+    }
+    
+    
+    /**
+     * A-Frame Primitive sky
+     *
+     * @return Entity
+     */
+    public function sky(): Entity
+    {
+        return $this->sky = new Sky();
+    }
+
+    
     /**
      * Add all used primitevs to the scene
      *
@@ -329,6 +350,7 @@ trait Primitives
         $this->aframeDomObj->appendEntities($this->rings);
         $this->aframeDomObj->appendEntities($this->objmodels);
         $this->aframeDomObj->appendEntities($this->curvedimages);
+        $this->aframeDomObj->appendEntities($this->cones);
         /* Primitives which only one can be present */
         (! $this->sky) ?: $this->aframeDomObj->appendEntity($this->sky);
         (! $this->videosphere) ?: $this->aframeDomObj->appendEntity($this->videosphere);

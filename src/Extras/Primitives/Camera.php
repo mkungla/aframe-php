@@ -42,6 +42,8 @@ class Camera extends Entity implements CameraPrimitiveIF
     public function init()
     {
         $this->child()->entity()->component('Camera');
+        $this->far();
+        $this->fov();
         $this->lookControls(true);
         $this->wasdControls(true);
     }
@@ -99,7 +101,7 @@ class Camera extends Entity implements CameraPrimitiveIF
      * @param int|float $fov            
      * @return CameraPrimitiveIF
      */
-    public function fov(float $fov = 10000): CameraPrimitiveIF
+    public function fov(float $fov = 80): CameraPrimitiveIF
     {
         $this->child()
             ->entity()
@@ -174,6 +176,19 @@ class Camera extends Entity implements CameraPrimitiveIF
             ->component('Camera')
             ->zoom($zoom);
         return $this;
+    }
+
+    /**
+     * Camera child cursor entity
+     * 
+     * @return \AframeVR\Interfaces\Core\Components\CursorCMPTIF
+     */
+    public function cursor()
+    {
+        return $this->child()
+            ->entity()
+            ->child()
+            ->cursor();
     }
 }
 
