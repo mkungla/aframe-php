@@ -29,13 +29,19 @@ use \AframeVR\Interfaces\{
     EntityInterface,
     AnimationInterface
 };
+use \AframeVR\Core\Helpers\{
+    EntityChildrenFactory,
+    MeshAttributes,
+    Helper
+};
 use \AframeVR\Core\Animation;
-use \AframeVR\Core\Helpers\EntityChildrenFactory;
 use \DOMElement;
 use \Closure;
 
 class Entity implements EntityInterface
 {
+    use MeshAttributes;
+    
     /**
      * Array of used components
      *
@@ -80,24 +86,23 @@ class Entity implements EntityInterface
     {
         $this->attr('id', $id);
         
+        /* Extending entity reset | initial setup */
+        $this->reset();
+    }
+
+    /**
+     * Reset primitive default attributtes
+     *
+     * {@inheritdoc}
+     *
+     * @return void
+     */
+    public function reset()
+    {
         /* Components which All entities inherently have */
         $this->component('Position');
         $this->component('Rotation');
         $this->component('Scale');
-        
-        /* Extending entity components and init */
-        $this->init();
-        
-        /* Extending entity defaults */
-        $this->defaults();
-    }
-
-    public function init()
-    {
-    }
-
-    public function defaults()
-    {
     }
 
     /**
@@ -130,9 +135,9 @@ class Entity implements EntityInterface
      * @param int|float $x_axis            
      * @param int|float $y_axis            
      * @param int|float $z_axis            
-     * @return \AframeVR\Core\Entity
+     * @return EntityInterface
      */
-    public function position(float $x_axis = 0, float $y_axis = 0, float $z_axis = 0): Entity
+    public function position(float $x_axis = 0, float $y_axis = 0, float $z_axis = 0): EntityInterface
     {
         $this->component('Position')->positionX($x_axis);
         $this->component('Position')->positionY($y_axis);
@@ -148,9 +153,9 @@ class Entity implements EntityInterface
      * @param int|float $roll            
      * @param int|float $pitch            
      * @param int|float $yaw            
-     * @return \AframeVR\Core\Entity
+     * @return EntityInterface
      */
-    public function rotation(float $roll = 0, float $pitch = 0, float $yaw = 0): Entity
+    public function rotation(float $roll = 0, float $pitch = 0, float $yaw = 0): EntityInterface
     {
         $this->component('Rotation')->roll($roll);
         $this->component('Rotation')->pitch($pitch);
@@ -166,9 +171,9 @@ class Entity implements EntityInterface
      * @param int|float $scale_x            
      * @param int|float $scale_y            
      * @param int|float $scale_z            
-     * @return \AframeVR\Core\Entity
+     * @return EntityInterface
      */
-    public function scale(float $scale_x = 1, float $scale_y = 1, float $scale_z = 1): Entity
+    public function scale(float $scale_x = 1, float $scale_y = 1, float $scale_z = 1): EntityInterface
     {
         $this->component('Scale')->scaleX($scale_x);
         $this->component('Scale')->scaleY($scale_y);
@@ -268,6 +273,8 @@ class Entity implements EntityInterface
         $this->appendAnimations($aframe_dom, $a_entity);
         return $a_entity;
     }
+
+    
 
     /**
      * Append DOM attributes no set by components

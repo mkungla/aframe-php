@@ -23,28 +23,18 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\TorusPrimitiveIF;
 use \AframeVR\Core\Entity;
-use \AframeVR\Core\Helpers\MeshAttributes;
+use \AframeVR\Interfaces\EntityInterface;
 
-/**
- * <a-torus>
- *
- * The torus primitive creates a donut or circular tube shape. It is an entity that prescribes the geometry with its
- * geometric primitive set to torus.
- */
-final class Torus extends Entity implements TorusPrimitiveIF
+final class Torus extends Entity implements EntityInterface
 {
 
-    use MeshAttributes;
-    
     /**
-     * Init <a-sphere>
+     * Init <a-torus>
      *
-     * The sphere primitive creates a spherical or polyhedron shapes.
-     * It wraps an entity that prescribes the geometry component with its geometric primitive set to sphere.
-     *
-     * {@inheritdoc}
+     * The torus primitive creates a donut or circular tube shape. It is an entity that prescribes the geometry with
+     * its
+     * geometric primitive set to torus.
      *
      * @return void
      */
@@ -53,68 +43,67 @@ final class Torus extends Entity implements TorusPrimitiveIF
         /* Load defaults */
         $this->component('Geometry')->primitive('torus');
         
-        
         $this->radius();
         $this->radiusTubular();
         $this->segmentsRadial();
         $this->segmentsTubular();
         $this->arc();
     }
-    
+
     /**
      * Radius of the outer edge of the torus.
      *
-     * @param int|float $radius
+     * @param int|float $radius            
      * @return TorusPrimitiveIF
      */
-    public function radius(float $radius = 1): TorusPrimitiveIF
+    public function radius(float $radius = 1): self
     {
         $this->component('Geometry')->radius($radius);
         return $this;
     }
-    
+
     /**
      * Radius of the tube.
      *
-     * @param double $radiusTubular
-     * @return TorusPrimitiveIF
+     * @param float $radiusTubular            
+     * @return self
      */
-    public function radiusTubular(float $radiusTubular = 0.2): TorusPrimitiveIF
+    public function radiusTubular(float $radiusTubular = 0.2): self
     {
         $this->component('Geometry')->radiusTubular($radiusTubular);
         return $this;
     }
-    
+
     /**
      * Number of segments along the circumference of the tube ends.
      * A higher number means the tube will be more round.
      *
-     * @param int $segmentsRadial
-     * @return TorusPrimitiveIF
+     * @param int $segmentsRadial            
+     * @return self
      */
-    public function segmentsRadial(int $segmentsRadial = 36): TorusPrimitiveIF
+    public function segmentsRadial(int $segmentsRadial = 36): self
     {
         $this->component('Geometry')->segmentsRadial($segmentsRadial);
         return $this;
     }
-    
+
     /**
      * Number of segments along the circumference of the tube face.
      * A higher number means the tube will be more round.
      *
-     * @param int $segmentsTubular
-     * @return TorusPrimitiveIF
+     * @param int $segmentsTubular            
+     * @return self
      */
-    public function segmentsTubular(int $segmentsTubular = 8): TorusPrimitiveIF
+    public function segmentsTubular(int $segmentsTubular = 8): self
     {
         $this->component('Geometry')->segmentsTubular($segmentsTubular);
         return $this;
     }
-    
+
     /**
      * Central angle.
      *
-     * @param int|float $arc
+     * @param int|float $arc            
      * @return TorusPrimitiveIF
      */
     public function arc(float $arc = 360): TorusPrimitiveIF

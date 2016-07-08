@@ -23,33 +23,26 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\CurvedimagePrimitiveIF;
 use \AframeVR\Core\Entity;
-use \AframeVR\Core\Helpers\MeshAttributes;
+use \AframeVR\Interfaces\EntityInterface;
 
-/**
- * <a-curvedimage>
- *
- * he curved image primitive creates images that bend around the user. Curved images arranged around the camera can be
- * pleasing for legibility since each pixel sits at the same distance from the user. They can be a better choice than
- * angled flat planes for complex layouts because they ensure a smooth surface rather than a series of awkward seams
- * between planes. It is an entity that prescribes a double-sided open-ended cylinder with the geometry component and
- * rendering textures on the inside of the cylinder with the material component.
- */
-final class Curvedimage extends Entity implements CurvedimagePrimitiveIF
+final class Curvedimage extends Entity implements EntityInterface
 {
-    
-    use MeshAttributes;
 
     /**
-     * Selector to obj
+     * <a-curvedimage>
      *
-     * Selector to an <a-asset-item> pointing to a .OBJ file or an inline path to a .OBJ file.
+     * he curved image primitive creates images that bend around the user. Curved images arranged around the camera can
+     * be pleasing for legibility since each pixel sits at the same distance from the user. They can be a better choice
+     * than angled flat planes for complex layouts because they ensure a smooth surface rather than a series of awkward
+     * seams between planes. It is an entity that prescribes a double-sided open-ended cylinder with the geometry
+     * component and rendering textures on the inside of the cylinder with the material component.
      *
-     * @return ObjModelPrimitiveIF
+     * @return void
      */
-    public function init()
+    public function reset()
     {
+        parent::reset();
         $this->component('Geometry')->primitive('cylinder');
         $this->component('Geometry')->height(1);
         $this->component('Geometry')->radius(2);
@@ -64,6 +57,5 @@ final class Curvedimage extends Entity implements CurvedimagePrimitiveIF
         $this->component('Material')->transparent(true);
         
         $this->component('Material')->shader()->repeat(- 1, 1);
-        return $this;
     }
 }

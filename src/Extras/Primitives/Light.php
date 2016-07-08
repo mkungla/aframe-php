@@ -23,38 +23,34 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\LightPrimitiveIF;
 use \AframeVR\Core\Entity;
+use \AframeVR\Interfaces\EntityInterface;
 
-class Light extends Entity implements LightPrimitiveIF
+class Light extends Entity implements EntityInterface
 {
 
     /**
-     * Init
+     * Init <a-light>
      *
-     * {@inheritdoc}
-     *
+     * The light primitive adjusts the lighting setup of the scene. It is an entity that maps attributes to properties
+     * of the light component.
+     * 
      * @return void
      */
-    public function init()
+    public function reset()
     {
-        $this->component('Position');
+        parent::reset();
         $this->component('Light');
-    }
-
-    public function defaults()
-    {
+        
     }
 
     /**
      * light.angle
      *
-     * {@inheritdoc}
-     *
      * @param int|float $angle            
-     * @return LightPrimitiveIF
+     * @return self
      */
-    public function angle(float $angle = 60): LightPrimitiveIF
+    public function angle(float $angle = 60): self
     {
         $this->component('Light')->angle($angle);
         return $this;
@@ -63,12 +59,10 @@ class Light extends Entity implements LightPrimitiveIF
     /**
      * light.color
      *
-     * {@inheritdoc}
-     *
      * @param string $color            
-     * @return LightPrimitiveIF
+     * @return self
      */
-    public function color(string $color = '#fff'): LightPrimitiveIF
+    public function color(string $color = '#fff'): EntityInterface
     {
         $this->component('Light')->color($color);
         return $this;
@@ -77,12 +71,10 @@ class Light extends Entity implements LightPrimitiveIF
     /**
      * light.decay
      *
-     * {@inheritdoc}
-     *
      * @param int $decay            
-     * @return LightPrimitiveIF
+     * @return self
      */
-    public function decay(int $decay = 1): LightPrimitiveIF
+    public function decay(int $decay = 1): self
     {
         $this->component('Light')->decay($decay);
         return $this;
@@ -91,12 +83,10 @@ class Light extends Entity implements LightPrimitiveIF
     /**
      * light.distance
      *
-     * {@inheritdoc}
-     *
      * @param float $distance            
-     * @return LightPrimitiveIF
+     * @return self
      */
-    public function distance(float $distance = 0.0): LightPrimitiveIF
+    public function distance(float $distance = 0.0): self
     {
         $this->component('Light')->distance($distance);
         return $this;
@@ -105,12 +95,10 @@ class Light extends Entity implements LightPrimitiveIF
     /**
      * light.exponent
      *
-     * {@inheritdoc}
-     *
      * @param float $exponent            
-     * @return LightPrimitiveIF
+     * @return self
      */
-    public function exponent(float $exponent = 10.0): LightPrimitiveIF
+    public function exponent(float $exponent = 10.0): self
     {
         $this->component('Light')->exponent($exponent);
         return $this;
@@ -119,12 +107,10 @@ class Light extends Entity implements LightPrimitiveIF
     /**
      * light.groundColor
      *
-     * {@inheritdoc}
-     *
      * @param string $ground_color            
-     * @return LightPrimitiveIF
+     * @return self
      */
-    public function groundColor(string $ground_color = '#fff'): LightPrimitiveIF
+    public function groundColor(string $ground_color = '#fff'): self
     {
         $this->component('Light')->groundColor($ground_color);
         return $this;
@@ -133,12 +119,10 @@ class Light extends Entity implements LightPrimitiveIF
     /**
      * light.intensity
      *
-     * {@inheritdoc}
-     *
      * @param float $intensity            
-     * @return LightPrimitiveIF
+     * @return self
      */
-    public function intensity(float $intensity = 1.0): LightPrimitiveIF
+    public function intensity(float $intensity = 1.0): self
     {
         $this->component('Light')->intensity($intensity);
         return $this;
@@ -147,12 +131,10 @@ class Light extends Entity implements LightPrimitiveIF
     /**
      * light.type
      *
-     * {@inheritdoc}
-     *
      * @param string $type            
-     * @return LightPrimitiveIF
+     * @return self
      */
-    public function type(string $type = 'directional'): LightPrimitiveIF
+    public function type(string $type = 'directional'): self
     {
         $this->component('Light')->type($type);
         return $this;

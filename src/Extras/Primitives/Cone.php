@@ -24,29 +24,22 @@
 namespace AframeVR\Extras\Primitives;
 
 use \AframeVR\Core\Entity;
-use \AframeVR\Core\Helpers\MeshAttributes;
-use \AframeVR\Interfaces\PrimitiveInterface;
+use \AframeVR\Interfaces\EntityInterface;
 
-/**
- * <a-cone>
- *
- * The cone primitive creates a cone shape. It is an entity that prescribes the geometry with its geometric primitive
- * set to cone.
- */
-final class Cone extends Entity implements PrimitiveInterface
+final class Cone extends Entity implements EntityInterface
 {
-    
-    use MeshAttributes;
 
     /**
-     * Selector to obj
+     * <a-cone>
      *
-     * Selector to an <a-asset-item> pointing to a .OBJ file or an inline path to a .OBJ file.
-     *
-     * @return ObjModelPrimitiveIF
+     * The cone primitive creates a cone shape. It is an entity that prescribes the geometry with its geometric
+     * primitive set to cone.
+     * 
+     * @return void
      */
-    public function init()
+    public function reset()
     {
+        parent::reset();
         $this->component('Geometry')->primitive('cone');
         $this->component('Geometry')->height(1);
         $this->component('Geometry')->openEnded(false);
@@ -56,6 +49,5 @@ final class Cone extends Entity implements PrimitiveInterface
         $this->component('Geometry')->segmentsRadial(36);
         $this->component('Geometry')->thetaLength(360);
         $this->component('Geometry')->thetaStart(0);
-        return $this;
     }
 }

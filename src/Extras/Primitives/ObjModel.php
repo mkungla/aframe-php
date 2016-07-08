@@ -23,30 +23,32 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\ObjModelPrimitiveIF;
 use \AframeVR\Core\Entity;
-use \AframeVR\Core\Helpers\MeshAttributes;
+use \AframeVR\Interfaces\EntityInterface;
 
-/**
- * <a-obj-model>
- *
- * The .OBJ model primitive displays a 3D Wavefront model. It is an entity that maps the src and mtl attributes to the
- * obj-model component’s obj and mtl properties respectively.
- */
-final class ObjModel extends Entity implements ObjModelPrimitiveIF
+final class ObjModel extends Entity implements EntityInterface
 {
+    /**
+     * Init <a-obj-model>
+     *
+     * The obj-model component loads a 3D model and material using a Wavefront (.OBJ) file and a .MTL file.
+     * 
+     * @return void
+     */
+    public function reset()
+    {
+        parent::reset();
+    }
     
-    use MeshAttributes;
-
     /**
      * Selector to obj
      *
      * Selector to an <a-asset-item> pointing to a .OBJ file or an inline path to a .OBJ file.
      *
-     * @param null|string $selector            
-     * @return ObjModelPrimitiveIF
+     * @param string $selector            
+     * @return self
      */
-    public function obj(string $selector = null): ObjModelPrimitiveIF
+    public function obj(string $selector): self
     {
         $this->component('ObjModel')->obj($selector);
         return $this;
@@ -58,10 +60,10 @@ final class ObjModel extends Entity implements ObjModelPrimitiveIF
      * Selector to an <a-asset-item> pointing to a .MTL file or an inline path to a .MTL file. Optional if you wish to
      * use the material component instead.
      *
-     * @param null|string $selector            
-     * @return ObjModelPrimitiveIF
+     * @param string $selector            
+     * @return self
      */
-    public function mtl(string $selector = null): ObjModelPrimitiveIF
+    public function mtl(string $selector): self
     {
         $this->component('ObjModel')->mtl($selector);
         return $this;

@@ -23,21 +23,17 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\VideospherePrimitiveIF;
 use \AframeVR\Core\Entity;
-use \AframeVR\Core\Helpers\MeshAttributes;
+use \AframeVR\Interfaces\EntityInterface;
 
-class Videosphere extends Entity implements VideospherePrimitiveIF
+class Videosphere extends Entity implements EntityInterface
 {
-    use MeshAttributes;
 
     /**
-     * Init <a-sphere>
+     * Init <a-video>
      *
-     * The sphere primitive creates a spherical or polyhedron shapes.
-     * It wraps an entity that prescribes the geometry component with its geometric primitive set to sphere.
-     *
-     * {@inheritdoc}
+     * The video primitive displays a video on a flat plane as a texture. It is an entity that prescribes the geometry
+     * with its geometric primitive set to plane.
      *
      * @return void
      */
@@ -64,18 +60,16 @@ class Videosphere extends Entity implements VideospherePrimitiveIF
         $this->component('Geometry')->segmentsWidth(64);
         $this->component('Geometry')->segmentsWidth(20);
         
-        $this->scale(-1, 1, 1);
+        $this->scale(- 1, 1, 1);
     }
 
     /**
      * geometry.radius
      *
-     * {@inheritdoc}
-     *
      * @param float $radius            
-     * @return VideospherePrimitiveIF
+     * @return self
      */
-    public function radius(float $radius = 100): VideospherePrimitiveIF
+    public function radius(float $radius = 100): self
     {
         $this->component('Geometry')->radius($radius);
         return $this;
@@ -84,24 +78,22 @@ class Videosphere extends Entity implements VideospherePrimitiveIF
     /**
      * Autoplay video
      *
-     * @param bool $autoplay
-     * @return AssetVideoInterface
+     * @param bool $autoplay            
+     * @return self
      */
-    public function autoplay(bool $autoplay = true): VideospherePrimitiveIF
+    public function autoplay(bool $autoplay = true): self
     {
         $this->attrs['autoplay'] = $autoplay ? 'true' : 'false';
         return $this;
     }
-    
+
     /**
      * geometry.segmentsHeight
      *
-     * {@inheritdoc}
-     *
      * @param int $segmentsHeigh            
-     * @return VideospherePrimitiveIF
+     * @return self
      */
-    public function segmentsHeight($segmentsHeigh = 64): VideospherePrimitiveIF
+    public function segmentsHeight($segmentsHeigh = 64): self
     {
         $this->component('Geometry')->segmentsHeight($segmentsHeigh);
         return $this;
@@ -110,12 +102,10 @@ class Videosphere extends Entity implements VideospherePrimitiveIF
     /**
      * geometry.segmentsWidth
      *
-     * {@inheritdoc}
-     *
      * @param int $segmentsWidth            
-     * @return VideospherePrimitiveIF
+     * @return self
      */
-    public function segmentsWidth($segmentsWidth = 64): VideospherePrimitiveIF
+    public function segmentsWidth($segmentsWidth = 64): self
     {
         $this->component('Geometry')->segmentsWidth($segmentsWidth);
         return $this;

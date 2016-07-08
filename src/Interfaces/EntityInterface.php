@@ -30,6 +30,17 @@ interface EntityInterface
 {
 
     /**
+     * Reset primitive default attributtes
+     *
+     * Primitve reset called from entity constructor must load all components for this primitive
+     * Ex: $this->component('Position')
+     * This method is called from entity contructor at first and could be used to reset primitive any given time
+     *
+     * @return void
+     */
+    public function reset();
+    
+    /**
      * Set DOM attributes
      *
      * @param string $attr            
@@ -53,9 +64,9 @@ interface EntityInterface
      * @param int|float $x_axis            
      * @param int|float $y_axis            
      * @param int|float $z_axis            
-     * @return \AframeVR\Core\Entity
+     * @return EntityInterface
      */
-    public function position(float $x_axis = 0, float $y_axis = 0, float $z_axis = 0): Entity;
+    public function position(float $x_axis = 0, float $y_axis = 0, float $z_axis = 0): EntityInterface;
 
     /**
      * Rotation component
@@ -65,9 +76,9 @@ interface EntityInterface
      * @param int|float $roll            
      * @param int|float $pitch            
      * @param int|float $yaw            
-     * @return \AframeVR\Core\Entity
+     * @return EntityInterface
      */
-    public function rotation(float $roll = 0, float $pitch = 0, float $yaw = 0): Entity;
+    public function rotation(float $roll = 0, float $pitch = 0, float $yaw = 0): EntityInterface;
 
     /**
      * Scale component
@@ -77,16 +88,16 @@ interface EntityInterface
      * @param int|float $scale_x            
      * @param int|float $scale_y            
      * @param int|float $scale_z            
-     * @return \AframeVR\Core\Entity
+     * @return EntityInterface
      */
-    public function scale(float $scale_x = 0, float $scale_y = 0, float $scale_z = 0): Entity;
+    public function scale(float $scale_x = 0, float $scale_y = 0, float $scale_z = 0): EntityInterface;
 
     /**
      * Load component for this entity
      *
      * @param string $component_name            
      * @throws BadComponentCallException
-     * @return \AframeVR\Core\Entity
+     * @return object
      */
     public function component(string $component_name);
 

@@ -23,27 +23,23 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\SkyPrimitiveIF;
 use \AframeVR\Extras\Primitives\Sphere;
+use \AframeVR\Interfaces\EntityInterface;
 
-/**
- * <a-sky>
- *
- * The sky primitive adds a background to a scene or display a 360-degree photo.
- * It is an entity that prescribes a large sphere with the material mapped to the inside.
- */
-final class Sky extends Sphere implements SkyPrimitiveIF
+final class Sky extends Sphere implements EntityInterface
 {
 
     /**
-     * Set defaults
+     * Reset <a-sky>
      *
-     * {@inheritdoc}
+     * The sky primitive adds a background to a scene or display a 360-degree photo.
+     * It is an entity that prescribes a large sphere with the material mapped to the inside.
      *
      * @return void
      */
-    public function defaults()
+    public function reset()
     {
+        parent::reset();
         $this->radius(100);
         $this->segmentsHeight(20);
         $this->segmentsWidth(64);

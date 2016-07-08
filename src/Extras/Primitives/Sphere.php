@@ -23,42 +23,24 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\SpherePrimitiveIF;
 use \AframeVR\Core\Entity;
-use \AframeVR\Core\Helpers\MeshAttributes;
+use \AframeVR\Interfaces\EntityInterface;
 
-class Sphere extends Entity implements SpherePrimitiveIF
+class Sphere extends Entity implements EntityInterface
 {
-    use MeshAttributes;
-
     /**
      * Init <a-sphere>
      *
      * The sphere primitive creates a spherical or polyhedron shapes.
      * It wraps an entity that prescribes the geometry component with its geometric primitive set to sphere.
      *
-     * {@inheritdoc}
-     *
      * @return void
      */
-    public function init()
+    public function reset()
     {
         $this->component('Material');
         $this->component('Geometry')->primitive('sphere');
         
-        /* Load defaults */
-        $this->defaults();
-    }
-
-    /**
-     * Set defaults
-     *
-     * {@inheritdoc}
-     *
-     * @return void
-     */
-    public function defaults()
-    {
         $this->radius();
         $this->segmentsHeight();
         $this->segmentsWidth();
@@ -67,12 +49,10 @@ class Sphere extends Entity implements SpherePrimitiveIF
     /**
      * geometry.radius
      *
-     * {@inheritdoc}
-     *
      * @param float $radius            
      * @return \AframeVR\Interfaces\Extras\Primitives\SpherePrimitiveIF
      */
-    public function radius(float $radius = 0.85): SpherePrimitiveIF
+    public function radius(float $radius = 0.85): self
     {
         $this->component('Geometry')->radius($radius);
         return $this;
@@ -81,12 +61,10 @@ class Sphere extends Entity implements SpherePrimitiveIF
     /**
      * geometry.segmentsHeight
      *
-     * {@inheritdoc}
-     *
      * @param int $segmentsHeigh            
-     * @return \AframeVR\Interfaces\Extras\Primitives\SpherePrimitiveIF
+     * @return self
      */
-    public function segmentsHeight($segmentsHeigh = 18): SpherePrimitiveIF
+    public function segmentsHeight($segmentsHeigh = 18): self
     {
         $this->component('Geometry')->segmentsHeight($segmentsHeigh);
         return $this;
@@ -95,12 +73,10 @@ class Sphere extends Entity implements SpherePrimitiveIF
     /**
      * geometry.segmentsWidth
      *
-     * {@inheritdoc}
-     *
      * @param int $segmentsWidth            
-     * @return \AframeVR\Interfaces\Extras\Primitives\SpherePrimitiveIF
+     * @return self
      */
-    public function segmentsWidth($segmentsWidth = 36): SpherePrimitiveIF
+    public function segmentsWidth($segmentsWidth = 36): self
     {
         $this->component('Geometry')->segmentsWidth($segmentsWidth);
         return $this;

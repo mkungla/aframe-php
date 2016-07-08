@@ -23,110 +23,102 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\RingPrimitiveIF;
 use \AframeVR\Core\Entity;
-use \AframeVR\Core\Helpers\MeshAttributes;
+use \AframeVR\Interfaces\EntityInterface;
 
-/**
- * <a-ring>
- *
- * The ring primitive creates a ring or disc shape. It is an entity that prescribes the geometry with its geometric
- * primitive set to ring.
- */
-final class Ring extends Entity implements RingPrimitiveIF
+final class Ring extends Entity implements EntityInterface
 {
 
-    use MeshAttributes;
-    
     /**
-     * Set defaults
+     * Reset <a-ring>
      *
-     * {@inheritdoc}
+     * The ring primitive creates a ring or disc shape. It is an entity that prescribes the geometry with its geometric
+     * primitive set to ring.
      *
      * @return void
      */
-    public function init()
+    public function reset()
     {
+        parent::reset();
         $this->component('Geometry')->primitive('ring');
-        $this->radiusInner();
-        $this->radiusOuter();
-        $this->segmentsPhi();
-        $this->segmentsTheta();
-        $this->thetaLength();
-        $this->thetaStart();
+        $this->radiusInner(0.8);
+        $this->radiusOuter(1.2);
+        $this->segmentsPhi(10);
+        $this->segmentsTheta(32);
+        $this->thetaLength(360);
+        $this->thetaStart(0);
     }
-    
+
     /**
      * Radius of the inner hole of the ring.
      *
-     * @param int|float $radiusInner
-     * @return RingPrimitiveIF
+     * @param float $radiusInner            
+     * @return self
      */
-    public function radiusInner(float $radiusInner = 1): RingPrimitiveIF
+    public function radiusInner(float $radiusInner): self
     {
         $this->component('Geometry')->radiusInner($radiusInner);
         return $this;
     }
-    
+
     /**
      * Radius of the outer edge of the ring.
      *
-     * @param int|float $radiusOuter
-     * @return RingPrimitiveIF
+     * @param float $radiusOuter            
+     * @return self
      */
-    public function radiusOuter(float $radiusOuter = 2): RingPrimitiveIF
+    public function radiusOuter(float $radiusOuter): self
     {
         $this->component('Geometry')->radiusOuter($radiusOuter);
         return $this;
     }
-    
+
     /**
      * Number of triangles within each face defined by segmentsTheta.
      *
-     * @param int $segmentsPhi
-     * @return RingPrimitiveIF
+     * @param int $segmentsPhi            
+     * @return self
      */
-    public function segmentsPhi(int $segmentsPhi = 8): RingPrimitiveIF
+    public function segmentsPhi(int $segmentsPhi): self
     {
         $this->component('Geometry')->segmentsPhi($segmentsPhi);
         return $this;
     }
-    
+
     /**
      * Number of segments.
      * A higher number means the ring will be more round.
      *
-     * @param int $segmentsTheta
-     * @return RingPrimitiveIF
+     * @param int $segmentsTheta            
+     * @return self
      */
-    public function segmentsTheta(int $segmentsTheta = 32): RingPrimitiveIF
+    public function segmentsTheta(int $segmentsTheta): self
     {
         $this->component('Geometry')->segmentsTheta($segmentsTheta);
         return $this;
     }
-    
+
     /**
      * Central angle in degrees.
      *
-     * @param int|float $thetaLength
-     * @return RingPrimitiveIF
+     * @param float $thetaLength            
+     * @return self
      */
-    public function thetaLength(float $thetaLength = 360): RingPrimitiveIF
+    public function thetaLength(float $thetaLength): self
     {
         $this->component('Geometry')->thetaLength($thetaLength);
         return $this;
     }
-    
+
     /**
      * Starting angle in degrees.
      *
-     * @param int|float $thetaStart
-     * @return RingPrimitiveIF
+     * @param float $thetaStart            
+     * @return self
      */
-    public function thetaStart(float $thetaStart = 0): RingPrimitiveIF
+    public function thetaStart(float $thetaStart): self
     {
         $this->component('Geometry')->thetaStart($thetaStart);
         return $this;
     }
-    
 }

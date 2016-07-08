@@ -4,7 +4,7 @@ use \AframeVR\Tests\CommonHelper;
 class CursorComponentTest extends PHPUnit_Framework_TestCase
 {
     use CommonHelper;
-
+    
     protected $component;
     
     // Setup function to instantiate de object to $this->scrap
@@ -26,6 +26,7 @@ class CursorComponentTest extends PHPUnit_Framework_TestCase
     public function test_general()
     {
         $aframe = new \AframeVR\Aframe();
+        
         
         $aframe->scene()
             ->entity()

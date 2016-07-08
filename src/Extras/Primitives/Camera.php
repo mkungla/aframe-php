@@ -23,51 +23,40 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\CameraPrimitiveIF;
 use \AframeVR\Core\Entity;
+use \AframeVR\Interfaces\EntityInterface;
 
-class Camera extends Entity implements CameraPrimitiveIF
+class Camera extends Entity implements EntityInterface
 {
 
     /**
-     * Init <a-box>
+     * Init <a-camera>
      *
-     * The box primitive, formerly called <a-cube>, creates shapes such as boxes, cubes, or walls.
-     * It is an entity that prescribes the geometry with its geometric primitive set to box.
-     *
-     * {@inheritdoc}
+     * The camera primitive places the user somewhere within the scene. It is an entity that prescribes the camera
+     * component with mappings to controls-related components.
      *
      * @return void
      */
-    public function init()
+    public function reset()
     {
+        parent::reset();
         $this->child()->entity()->component('Camera');
-        $this->far();
-        $this->fov();
+        $this->active(false);
+        $this->far(10000);
+        $this->fov(80);
         $this->lookControls(true);
         $this->wasdControls(true);
-    }
-
-    /**
-     * Set defaults
-     *
-     * {@inheritdoc}
-     *
-     * @return void
-     */
-    public function defaults()
-    {
+        $this->near(0.5);
+        $this->zoom(1);
     }
 
     /**
      * camera.active
      *
-     * {@inheritdoc}
-     *
      * @param bool $active            
-     * @return CameraPrimitiveIF
+     * @return self
      */
-    public function active(bool $active = false): CameraPrimitiveIF
+    public function active(bool $active): self
     {
         $this->child()
             ->entity()
@@ -79,12 +68,10 @@ class Camera extends Entity implements CameraPrimitiveIF
     /**
      * camera.far
      *
-     * {@inheritdoc}
-     *
-     * @param int|float $far            
-     * @return CameraPrimitiveIF
+     * @param float $far            
+     * @return self
      */
-    public function far(float $far = 10000): CameraPrimitiveIF
+    public function far(float $far): self
     {
         $this->child()
             ->entity()
@@ -96,12 +83,10 @@ class Camera extends Entity implements CameraPrimitiveIF
     /**
      * camera.fov
      *
-     * {@inheritdoc}
-     *
-     * @param int|float $fov            
-     * @return CameraPrimitiveIF
+     * @param float $fov            
+     * @return self
      */
-    public function fov(float $fov = 80): CameraPrimitiveIF
+    public function fov(float $fov): self
     {
         $this->child()
             ->entity()
@@ -113,12 +98,10 @@ class Camera extends Entity implements CameraPrimitiveIF
     /**
      * look-controls.enabled
      *
-     * {@inheritdoc}
-     *
      * @param bool $look_controls            
-     * @return CameraPrimitiveIF
+     * @return self
      */
-    public function lookControls(bool $look_controls = true): CameraPrimitiveIF
+    public function lookControls(bool $look_controls): self
     {
         $this->child()
             ->entity()
@@ -130,12 +113,10 @@ class Camera extends Entity implements CameraPrimitiveIF
     /**
      * camera.near
      *
-     * {@inheritdoc}
-     *
      * @param float $near            
-     * @return CameraPrimitiveIF
+     * @return self
      */
-    public function near(float $near = 0.5): CameraPrimitiveIF
+    public function near(float $near): self
     {
         $this->child()
             ->entity()
@@ -150,9 +131,9 @@ class Camera extends Entity implements CameraPrimitiveIF
      * {@inheritdoc}
      *
      * @param bool $wasd_controls            
-     * @return CameraPrimitiveIF
+     * @return self
      */
-    public function wasdControls(bool $wasd_controls = true): CameraPrimitiveIF
+    public function wasdControls(bool $wasd_controls = true): self
     {
         $this->child()
             ->entity()
@@ -167,9 +148,9 @@ class Camera extends Entity implements CameraPrimitiveIF
      * {@inheritdoc}
      *
      * @param int|float $zoom            
-     * @return CameraPrimitiveIF
+     * @return self
      */
-    public function zoom(float $zoom = 1): CameraPrimitiveIF
+    public function zoom(float $zoom): self
     {
         $this->child()
             ->entity()
@@ -180,7 +161,7 @@ class Camera extends Entity implements CameraPrimitiveIF
 
     /**
      * Camera child cursor entity
-     * 
+     *
      * @return \AframeVR\Interfaces\Core\Components\CursorCMPTIF
      */
     public function cursor()

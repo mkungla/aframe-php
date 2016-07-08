@@ -22,30 +22,26 @@
  * Comments:
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
+use \AframeVR\Interfaces\EntityInterface;
 
-use \AframeVR\Interfaces\Extras\Primitives\ImagePrimitiveIF;
-
-class Image extends Plane implements ImagePrimitiveIF
+class Image extends Plane implements EntityInterface
 {
 
-    public function init()
+    /**
+     * <a-plane>
+     *
+     * The plane primitive creates flat surfaces. It is an entity that prescribes the geometry with its geometric
+     * primitive set to plane.
+     * 
+     * @return void
+     */
+    public function reset()
     {
-        parent::init();
+        parent::reset();
         $this->component('Material')->shader('flat');
         $this->component('Material')->side('double');
         $this->color('#FFF');
         $this->transparent(true);
-    }
-
-    /**
-     * Set defaults
-     *
-     * {@inheritdoc}
-     *
-     * @return void
-     */
-    public function defaults()
-    {
         $this->height(1.75);
         $this->width(1.75);
     }

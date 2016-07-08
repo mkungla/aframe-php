@@ -23,53 +23,36 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\BoxPrimitiveIF;
 use \AframeVR\Core\Entity;
-use \AframeVR\Core\Helpers\MeshAttributes;
+use \AframeVR\Interfaces\EntityInterface;
 
-class Box extends Entity implements BoxPrimitiveIF
+class Box extends Entity implements EntityInterface
 {
-    use MeshAttributes;
 
     /**
      * Init <a-box>
      *
-     * The box primitive, formerly called <a-cube>, creates shapes such as boxes, cubes, or walls.
-     * It is an entity that prescribes the geometry with its geometric primitive set to box.
-     *
-     * {@inheritdoc}
+     * The box primitive, formerly called <a-cube>, creates shapes such as boxes, cubes, or walls. It is an entity that
+     * prescribes the geometry with its geometric primitive set to box.
      *
      * @return void
      */
-    public function init()
+    public function reset()
     {
-        $this->component('Material');
+        parent::reset();
         $this->component('Geometry')->primitive('box');
-    }
-
-    /**
-     * Set defaults
-     *
-     * {@inheritdoc}
-     *
-     * @return void
-     */
-    public function defaults()
-    {
-        $this->depth();
-        $this->height();
-        $this->width();
+        $this->depth(1);
+        $this->height(1);
+        $this->width(1);
     }
 
     /**
      * geometry.depth
      *
-     * {@inheritdoc}
-     *
-     * @param int|float $depth            
-     * @return BoxPrimitiveIF
+     * @param float $depth            
+     * @return self
      */
-    public function depth(float $depth = 1): BoxPrimitiveIF
+    public function depth(float $depth): self
     {
         $this->component('Geometry')->depth($depth);
         return $this;
@@ -78,12 +61,10 @@ class Box extends Entity implements BoxPrimitiveIF
     /**
      * geometry.height
      *
-     * {@inheritdoc}
-     *
-     * @param int|float $height            
-     * @return BoxPrimitiveIF
+     * @param float $height            
+     * @return self
      */
-    public function height(float $height = 1): BoxPrimitiveIF
+    public function height(float $height): self
     {
         $this->component('Geometry')->height($height);
         return $this;
@@ -92,14 +73,48 @@ class Box extends Entity implements BoxPrimitiveIF
     /**
      * geometry.width
      *
-     * {@inheritdoc}
-     *
-     * @param int|float $width            
-     * @return BoxPrimitiveIF
+     * @param float $height            
+     * @return self
      */
-    public function width(float $width = 1): BoxPrimitiveIF
+    public function width(float $width): self
     {
         $this->component('Geometry')->width($width);
+        return $this;
+    }
+
+    /**
+     * Optional: geometry.segmentsHeight
+     *
+     * @param int $height            
+     * @return self
+     */
+    public function segmentsHeight(int $height): self
+    {
+        $this->component('Geometry')->segmentsHeight($height);
+        return $this;
+    }
+
+    /**
+     * Optional: geometry.segmentsWidth
+     *
+     * @param int $width            
+     * @return self
+     */
+    public function segmentsWidth(int $width): self
+    {
+        $this->component('Geometry')->segmentsWidth($width);
+        return $this;
+    }
+
+    /**
+     * Optional: geometry.segmentsDepth
+     *
+     * @param int $depth            
+     * @return self
+     */
+    public function segmentsDepth(int $depth): self
+    {
+        $this->component('Geometry')->segmentsDepth($depth);
         return $this;
     }
 }
