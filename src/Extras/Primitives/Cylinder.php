@@ -23,60 +23,34 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\CylinderPrimitiveIF;
 use \AframeVR\Core\Entity;
-use \AframeVR\Core\Helpers\MeshAttributes;
+use \AframeVR\Interfaces\EntityInterface;
 
-/**
- * <a-cylinder>
- *
- * The cylinder primitive is an entity that prescribes the geometry with its geometric primitive set to cylinder.
- * It can be used to create tubes and curved surfaces.
- */
-class Cylinder extends Entity implements CylinderPrimitiveIF
+class Cylinder extends Entity implements EntityInterface
 {
-    use MeshAttributes;
 
     /**
-     * Init
+     * <a-cylinder>
      *
-     * {@inheritdoc}
-     *
+     * The cylinder primitive is an entity that prescribes the geometry with its geometric primitive set to cylinder.
+     * It can be used to create tubes and curved surfaces.
+     * 
      * @return void
      */
-    public function init()
+    public function reset()
     {
+        parent::reset();
         $this->component('Material');
         $this->component('Geometry')->primitive('cylinder');
     }
 
     /**
-     * Set defaults
-     *
-     * {@inheritdoc}
-     *
-     * @return void
-     */
-    public function defaults()
-    {
-        $this->height();
-        $this->openEnded();
-        $this->radius();
-        $this->segmentsHeight();
-        $this->segmentsRadial();
-        $this->thetaLength();
-        $this->thetaStart();
-    }
-
-    /**
      * geometry.height
      *
-     * {@inheritdoc}
-     *
      * @param int|float $height            
-     * @return CylinderPrimitiveIF
+     * @return self
      */
-    public function height(float $height = 1): CylinderPrimitiveIF
+    public function height(float $height)
     {
         $this->component('Geometry')->height($height);
         return $this;
@@ -85,12 +59,10 @@ class Cylinder extends Entity implements CylinderPrimitiveIF
     /**
      * geometry.openEnded
      *
-     * {@inheritdoc}
-     *
      * @param bool $openEnded            
-     * @return CylinderPrimitiveIF
+     * @return self
      */
-    public function openEnded(bool $openEnded = false): CylinderPrimitiveIF
+    public function openEnded(bool $openEnded = false)
     {
         $this->component('Geometry')->openEnded($openEnded);
         return $this;
@@ -99,12 +71,10 @@ class Cylinder extends Entity implements CylinderPrimitiveIF
     /**
      * geometry.radius
      *
-     * {@inheritdoc}
-     *
      * @param float $radius            
-     * @return CylinderPrimitiveIF
+     * @return self
      */
-    public function radius(float $radius = 0.75): CylinderPrimitiveIF
+    public function radius(float $radius)
     {
         $this->component('Geometry')->radius($radius);
         return $this;
@@ -113,12 +83,10 @@ class Cylinder extends Entity implements CylinderPrimitiveIF
     /**
      * geometry.segmentsHeight
      *
-     * {@inheritdoc}
-     *
      * @param int $segmentsHeight            
-     * @return CylinderPrimitiveIF
+     * @return self
      */
-    public function segmentsHeight(int $segmentsHeight = 1): CylinderPrimitiveIF
+    public function segmentsHeight(int $segmentsHeight)
     {
         $this->component('Geometry')->segmentsHeight($segmentsHeight);
         return $this;
@@ -127,26 +95,22 @@ class Cylinder extends Entity implements CylinderPrimitiveIF
     /**
      * geometry.segmentsRadial
      *
-     * {@inheritdoc}
-     *
      * @param int $segmentsRadial            
-     * @return CylinderPrimitiveIF
+     * @return self
      */
-    public function segmentsRadial(int $segmentsRadial = 36): CylinderPrimitiveIF
+    public function segmentsRadial(int $segmentsRadial)
     {
-        $this->component('Geometry')->segmentsHeight($segmentsRadial);
+        $this->component('Geometry')->segmentsRadial($segmentsRadial);
         return $this;
     }
 
     /**
      * geometry.thetaLength
      *
-     * {@inheritdoc}
-     *
      * @param int $thetaLength            
-     * @return CylinderPrimitiveIF
+     * @return self
      */
-    public function thetaLength(int $thetaLength = 360): CylinderPrimitiveIF
+    public function thetaLength(int $thetaLength)
     {
         $this->component('Geometry')->thetaLength($thetaLength);
         return $this;
@@ -155,12 +119,10 @@ class Cylinder extends Entity implements CylinderPrimitiveIF
     /**
      * geometry.thetaStart
      *
-     * {@inheritdoc}
-     *
      * @param int $thetaStart            
-     * @return CylinderPrimitiveIF
+     * @return self
      */
-    public function thetaStart(int $thetaStart = 0): CylinderPrimitiveIF
+    public function thetaStart(int $thetaStart)
     {
         $this->component('Geometry')->thetaStart($thetaStart);
         return $this;

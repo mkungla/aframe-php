@@ -86,7 +86,7 @@ class StandardShaderTest extends PHPUnit_Framework_TestCase
 
     public function test_removeDefaultDOMAttributes()
     {
-        $this->assertNull($this->entity->material()
+        $this->assertNotNull($this->entity->material()
             ->shader('standard')
             ->removeDefaultDOMAttributes());
     }

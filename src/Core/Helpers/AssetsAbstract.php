@@ -37,10 +37,13 @@ abstract class AssetsAbstract implements AssetsInterface
     protected $element_tag = 'a-asset-item';
     
     protected $attrs = array();
+    
+    protected $components = array();
     /**
      * Asset constructor set asset ID
      *
-     * @param string $id            
+     * @param string $id   
+     * @return void         
      */
     public function __construct(string $id)
     {
@@ -52,7 +55,8 @@ abstract class AssetsAbstract implements AssetsInterface
      *
      * {@inheritdoc}
      *
-     * @param string $id            
+     * @param string $id
+     * @return AssetsInterface            
      */
     public function id(string $id = 'untitled'): AssetsInterface
     {
@@ -66,7 +70,7 @@ abstract class AssetsAbstract implements AssetsInterface
      * {@inheritdoc}
      *
      * @param null|string $src            
-     * @return void
+     * @return AssetsInterface
      */
     public function src(string $src = null): AssetsInterface
     {
@@ -80,11 +84,21 @@ abstract class AssetsAbstract implements AssetsInterface
      * @param \DOMDocument $aframe_dom            
      * @return \DOMElement
      */
-    public function domElement(&$aframe_dom): DOMElement
+    public function domElement(\DOMDocument &$aframe_dom): DOMElement
     {
         $a_asset = $aframe_dom->createElement($this->element_tag);
         /* Asset must have a id */
         $this->appendAttributes($a_asset);
+        
+        foreach ($this->components as $component) {
+            /*
+             * Check does component has any attributes to add to DOM element.
+             * default attributes most of cases are ommited so we might not have any attributes to add
+             */
+            if ($component->hasDOMAttributes())
+                $a_asset->setAttributeNode($component->getDOMAttr());
+        }
+        
         return $a_asset;
     }
 

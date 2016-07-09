@@ -23,51 +23,37 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\ColladaModelPrimitiveIF;
 use \AframeVR\Core\Entity;
-use \AframeVR\Core\Helpers\MeshAttributes;
+use \AframeVR\Interfaces\EntityInterface;
 
-class ColladaModel extends Entity implements ColladaModelPrimitiveIF
+class ColladaModel extends Entity implements EntityInterface
 {
-    use MeshAttributes;
 
     /**
-     * Init <a-box>
+     * Init <a-collada-model>
      *
-     * The box primitive, formerly called <a-cube>, creates shapes such as boxes, cubes, or walls.
-     * It is an entity that prescribes the geometry with its geometric primitive set to box.
-     *
-     * {@inheritdoc}
+     * The COLLADA model primitive displays a 3D COLLADA model created from a 3D modeling program or downloaded from
+     * the web. It is an entity that maps the src attribute to the collada-model component.
      *
      * @return void
      */
-    public function init()
+    public function reset()
     {
+        parent::reset();
         $this->child()->entity()->component('ColladaModel');
-    }
-
-    /**
-     * Set defaults
-     *
-     * {@inheritdoc}
-     *
-     * @return void
-     */
-    public function defaults()
-    {
     }
 
     /**
      * Rotation component
      *
-     * {@inheritdoc}
+     * Apply rotation on child instead
      *
      * @param int|float $roll            
      * @param int|float $pitch            
      * @param int|float $yaw            
-     * @return Entity
+     * @return EntityInterface
      */
-    public function rotation(float $roll = 0, float $pitch = 0, float $yaw = 0): Entity
+    public function rotation(float $roll = 0, float $pitch = 0, float $yaw = 0): EntityInterface
     {
         $this->child()->entity()->rotation($roll, $pitch, $yaw);
         return $this;
@@ -76,14 +62,14 @@ class ColladaModel extends Entity implements ColladaModelPrimitiveIF
     /**
      * Scale component
      *
-     * {@inheritdoc}
+     * Apply scale on child intead
      *
      * @param int|float $scale_x            
      * @param int|float $scale_y            
      * @param int|float $scale_z            
-     * @return Entity
+     * @return EntityInterface
      */
-    public function scale(float $scale_x = 1, float $scale_y = 1, float $scale_z = 1): Entity
+    public function scale(float $scale_x = 1, float $scale_y = 1, float $scale_z = 1): EntityInterface
     {
         $this->child()->entity()->scale($scale_x, $scale_y, $scale_z);
         return $this;
@@ -93,9 +79,9 @@ class ColladaModel extends Entity implements ColladaModelPrimitiveIF
      * ColladaModel.src
      *
      * @param null|string $src            
-     * @return ColladaModelPrimitiveIF
+     * @return EntityInterface
      */
-    public function src(string $src = null): ColladaModelPrimitiveIF
+    public function src(string $src = null): EntityInterface
     {
         $this->child()
             ->entity()

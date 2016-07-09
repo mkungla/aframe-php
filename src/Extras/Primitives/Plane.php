@@ -23,14 +23,11 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\PlanePrimitiveIF;
 use \AframeVR\Core\Entity;
-use \AframeVR\Core\Helpers\MeshAttributes;
+use \AframeVR\Interfaces\EntityInterface;
 
-class Plane extends Entity implements PlanePrimitiveIF
+class Plane extends Entity implements EntityInterface
 {
-    use MeshAttributes;
-
     /**
      * Init <a-plane>
      *
@@ -38,40 +35,22 @@ class Plane extends Entity implements PlanePrimitiveIF
      * It is an entity that prescribes the geometry
      * with its geometric primitive set to plane.
      *
-     * {@inheritdoc}
-     *
      * @return void
      */
-    public function init()
+    public function reset()
     {
+        parent::reset();
         $this->component('Material');
         $this->component('Geometry')->primitive('plane');
-        
-        /* Load defaults */
-    }
-
-    /**
-     * Set defaults
-     *
-     * {@inheritdoc}
-     *
-     * @return void
-     */
-    public function defaults()
-    {
-        $this->height();
-        $this->width();
     }
 
     /**
      * geometry.height
      *
-     * {@inheritdoc}
-     *
-     * @param int|float $height            
-     * @return \AframeVR\Interfaces\Extras\Primitives\PlanePrimitiveIF
+     * @param float $height            
+     * @return self
      */
-    public function height(float $height = 1): PlanePrimitiveIF
+    public function height(float $height): self
     {
         $this->component('Geometry')->height($height);
         return $this;
@@ -80,12 +59,10 @@ class Plane extends Entity implements PlanePrimitiveIF
     /**
      * geometry.width
      *
-     * {@inheritdoc}
-     *
-     * @param int|float $width            
-     * @return \AframeVR\Interfaces\Extras\Primitives\PlanePrimitiveIF
+     * @param float $width            
+     * @return self
      */
-    public function width(float $width = 1): PlanePrimitiveIF
+    public function width(float $width): self
     {
         $this->component('Geometry')->width($width);
         return $this;

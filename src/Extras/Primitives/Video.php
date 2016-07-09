@@ -23,39 +23,21 @@
  * @formatter:on */
 namespace AframeVR\Extras\Primitives;
 
-use \AframeVR\Interfaces\Extras\Primitives\VideoPrimitiveIF;
 use \AframeVR\Core\Entity;
-use \AframeVR\Core\Helpers\MeshAttributes;
+use \AframeVR\Interfaces\EntityInterface;
 
-class Video extends Entity implements VideoPrimitiveIF
+class Video extends Entity implements EntityInterface
 {
-    use MeshAttributes;
-
     /**
-     * Init <a-sphere>
+     * Init <a-video>
      *
-     * The sphere primitive creates a spherical or polyhedron shapes.
-     * It wraps an entity that prescribes the geometry component with its geometric primitive set to sphere.
-     *
-     * {@inheritdoc}
+     * The video primitive displays a video on a flat plane as a texture. It is an entity that prescribes the geometry with its geometric primitive set to plane.
      *
      * @return void
      */
-    public function init()
+    public function reset()
     {
-        /* Load defaults */
-        $this->defaults();
-    }
-
-    /**
-     * Set defaults
-     *
-     * {@inheritdoc}
-     *
-     * @return void
-     */
-    public function defaults()
-    {
+        parent::reset();
         $this->component('Material')->shader('flat');
         $this->color('#FFF');
         $this->component('Material')->side('double');
@@ -64,18 +46,15 @@ class Video extends Entity implements VideoPrimitiveIF
         $this->component('Geometry')->primitive('plane');
         $this->height(1.75);
         $this->width(3);
-
     }
 
     /**
      * geometry.height
      *
-     * {@inheritdoc}
-     *
-     * @param int|float $height
-     * @return VideoPrimitiveIF
+     * @param float $height
+     * @return self
      */
-    public function height(float $height = 1.75): VideoPrimitiveIF
+    public function height(float $height = 1.75): self
     {
         $this->component('Geometry')->height($height);
         return $this;
@@ -84,12 +63,10 @@ class Video extends Entity implements VideoPrimitiveIF
     /**
      * geometry.width
      *
-     * {@inheritdoc}
-     *
-     * @param int|float $width
-     * @return VideoPrimitiveIF
+     * @param float $width
+     * @return self
      */
-    public function width(float $width = 3): VideoPrimitiveIF
+    public function width(float $width = 3): self
     {
         $this->component('Geometry')->width($width);
         return $this;

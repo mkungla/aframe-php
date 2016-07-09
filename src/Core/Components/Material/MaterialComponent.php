@@ -25,7 +25,10 @@ namespace AframeVR\Core\Components\Material;
 
 use \AframeVR\Interfaces\Core\Components\MaterialCMPTIF;
 use \AframeVR\Core\Helpers\ComponentAbstract;
-use \AframeVR\Core\Exceptions\BadShaderCallException;
+use \AframeVR\Core\Exceptions\{
+    BadShaderCallException,
+    InvalidShaderMethodException
+};
 use \AframeVR\Interfaces\ShaderInterface;
 
 class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
@@ -57,6 +60,32 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
     }
 
     /**
+     * Call passes all calls to no existing methods to self::methodProvider
+     *
+     * @param string $method            
+     * @param array $args            
+     * @throws InvalidComponentMethodException
+     */
+    public function __call(string $method, $args)
+    {
+        /* Well then it should be passed to shader, but lets make sure
+         * that shader is loaded and let shader either to throw any throwable */
+        (is_object($this->shaderObj) ?: $this->shader());
+        
+        if (is_object($this->shaderObj) && method_exists($this->shaderObj, $method)) {
+            call_user_func_array(
+                array(
+                    $this->shaderObj,
+                    (string) $method
+                ), $args);
+            return $this;
+        } else {
+            $class = is_object($this->shaderObj) ? get_class($this->shaderObj) : get_called_class();
+            throw new InvalidShaderMethodException($method, $class);
+        }
+    }
+
+    /**
      * Material Shader
      *
      * {@inheritdoc}
@@ -68,7 +97,7 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
     public function shader(string $shader = null)
     {
         $this->dom_attributes['shader'] = $this->dom_attributes['shader'] ?? $shader ?? 'standard';
-     
+        
         if ($this->shaderObj instanceof ShaderInterface)
             return $this->shaderObj;
         
@@ -78,7 +107,7 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
         } else {
             throw new BadShaderCallException($shader);
         }
-        return $this->shaderObj ?? null;
+        return $this;
     }
 
     /**
@@ -136,11 +165,11 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
         $this->dom_attributes['side'] = $side;
         return $this;
     }
-    
+
     /**
      * Do not apply fog to certain entities, we can disable fog for certain materials.
      *
-     * @param bool $fog
+     * @param bool $fog            
      * @return MaterialCMPTIF
      */
     public function fog(bool $fog = true): MaterialCMPTIF

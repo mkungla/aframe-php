@@ -1,56 +1,70 @@
 <?php
 use \AframeVR\Tests\interfaces\PrimitiveTestInterface;
-use \AframeVR\Tests\CommonHelper;
 
 class CameraTest extends PHPUnit_Framework_TestCase implements PrimitiveTestInterface
 {
-    use CommonHelper;
 
-    const A_INSTANCE = 'AframeVR\Core\Entity';
-
-    const A_ALLOWED_CORE_COMPONENTS = array(
-        'position',
-        'rotation'
-    );
+    const A_INSTANCE = 'AframeVR\Extras\Primitives\Camera';
 
     const A_PRIMITIVE_ATTRIBUTES = array(
+        /* Mesh attriburtes */
+        'color',
+        'metalness',
+        'opacity',
+        'roughness',
+        'shader',
+        'src',
+        'translate',
+        'transparent',
+        /* Box primitive attributes */
         'active',
         'far',
         'fov',
-        'lookControls',
         'near',
-        'wasdControls',
-        'zoom'
+        'zoom',
+        'lookcontrols',
+        'wasdcontrols',
+        'cursor'
     );
+    protected $aframe;
+    protected $camera;
 
-    /**
-     * Test is instance
-     */
-    public function test_core_components()
+    protected function setUp()
     {
-        foreach (self::A_ALLOWED_CORE_COMPONENTS as $component_name) {
-            $this->assertInstanceOf(self::A_INSTANCE, $this->a_get_instance()
-                ->$component_name());
-        }
+        $this->aframe = new \AframeVR\Aframe();
+        $this->camera = $this->aframe->scene()
+            ->camera('new-camera')
+            ->active(true)
+            ->far(10000)
+            ->fov(80)
+            ->lookcontrols(true)
+            ->near(0.5)
+            ->wasdcontrols(true)
+            ->zoom(1)
+            ->cursor(1);
+    }
+
+    public function test_instance()
+    {
+        $this->assertInstanceOf(self::A_INSTANCE, $this->camera);
+        $this->assertInstanceOf('AframeVR\Core\Entity', $this->camera);
+    }
+
+    public function test_dom()
+    {
+        libxml_use_internal_errors(true);
+        $doc = new DOMDocument();
+        $dom = $doc->loadHTML($this->aframe->scene()->save(true));
+        $camera = $doc->getElementById('new-camera');
+        $camera_child = $camera->getElementsByTagName('a-entity')[0];
+        $this->assertTrue($camera_child->hasAttribute('camera'));
+        $this->assertTrue($camera_child->hasAttribute('look-controls'));
+        $this->assertTrue($camera_child->hasAttribute('wasd-controls'));
         
-        $this->assertInstanceOf('AframeVR\Extras\Primitives\Cursor', $this->a_get_instance()
-            ->cursor());
-    }
-    
-    public function test_primitive_attributes()
-    {
-        $primitive = $this->a_get_instance();
-    
-        foreach (self::A_PRIMITIVE_ATTRIBUTES as $attribute) {
-            $this->assertTrue(method_exists($primitive, $attribute), sprintf('Class %s should have method %s since this is defined attribute self::A_PRIMITIVE_ATTRIBUTES', get_class($primitive), $attribute));
-            $this->assertInstanceOf(self::A_INSTANCE, $this->a_get_instance()
-                ->{$attribute}());
-        }
-    }
-    
-    public function a_get_instance()
-    {
-        $aframe = new \AframeVR\Aframe();
-        return $aframe->scene()->camera();
+        $this->assertEquals('active: true; far: 10000; fov: 80; near: 0.5; zoom: 1;', 
+            $camera_child->getAttribute('camera'));
+        $this->assertEquals('enabled: true;', $camera_child->getAttribute('look-controls'));
+        $this->assertEquals('enabled: true;', $camera_child->getAttribute('wasd-controls'));
+        libxml_use_internal_errors(false);
     }
 }

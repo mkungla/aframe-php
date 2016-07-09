@@ -129,6 +129,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
     public function color(string $color)
     {
         $this->color = $color;
+        return $this;
     }
 
     /**
@@ -139,6 +140,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
     public function height($height)
     {
         $this->height = $height;
+        return $this;
     }
 
     /**
@@ -152,6 +154,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
     public function envMap(string $envMap = null)
     {
         $this->envMap = $envMap;
+        return $this;
     }
 
     /**
@@ -162,6 +165,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
     public function fog($fog)
     {
         $this->fog = $fog ? 'true' : 'false';
+        return $this;
     }
 
     /**
@@ -172,6 +176,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
     public function metalness($metalness)
     {
         $this->metalness = $metalness;
+        return $this;
     }
 
     /**
@@ -183,6 +188,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
     public function repeat(float $x, float $y)
     {
         $this->repeat = sprintf('%d %d', $x, $y);
+        return $this;
     }
 
     /**
@@ -195,6 +201,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
     public function roughness(float $roughness)
     {
         $this->roughness = $roughness;
+        return $this;
     }
 
     /**
@@ -205,6 +212,7 @@ class Standard extends ShaderAbstract implements ShaderInterface
     public function src(string $src = null)
     {
         $this->src = $src;
+        return $this;
     }
 
     /**
@@ -215,5 +223,6 @@ class Standard extends ShaderAbstract implements ShaderInterface
     public function width(int $width)
     {
         $this->width = $width;
+        return $this;
     }
 }

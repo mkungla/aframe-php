@@ -24,30 +24,23 @@
 namespace AframeVR\Extras\Primitives;
 
 use \AframeVR\Core\Entity;
-use \AframeVR\Core\Helpers\MeshAttributes;
-use \AframeVR\Interfaces\PrimitiveInterface;
+use \AframeVR\Interfaces\EntityInterface;
 
-/**
- * <a-cursor>
- *
- * The cursor primitive places a reticle or crosshair to add clicking and interactivity with the scene. It is an entity
- * that prescribes the cursor component and a default ring-shaped geometry. The cursor is usually placed as a child of
- * the camera.
- */
-final class Cursor extends Entity implements PrimitiveInterface
+final class Cursor extends Entity implements EntityInterface
 {
-    
-    use MeshAttributes;
 
     /**
-     * Selector to obj
+     * <a-cursor>
      *
-     * Selector to an <a-asset-item> pointing to a .OBJ file or an inline path to a .OBJ file.
-     *
-     * @return ObjModelPrimitiveIF
+     * The cursor primitive places a reticle or crosshair to add clicking and interactivity with the scene. It is an
+     * entity that prescribes the cursor component and a default ring-shaped geometry. The cursor is usually placed as
+     * a child of the camera.
+     * 
+     * @return void
      */
-    public function init()
+    public function reset()
     {
+        parent::reset();
         $this->component('Geometry')->primitive('ring');
         $this->component('Geometry')->radiusOuter(0.016);
         $this->component('Geometry')->radiusInner(0.01);
@@ -57,11 +50,10 @@ final class Cursor extends Entity implements PrimitiveInterface
         $this->color('#000');
         $this->component('Material')->opacity(0.8);
         
-        $this->position(0, 0, -1);
+        $this->position(0, 0, - 1);
         
         $this->component('Cursor')->fuse(true);
         $this->component('Raycaster')->far(1000);
         $this->component('Cursor')->fuseTimeout(1500);
-        return $this;
     }
 }
