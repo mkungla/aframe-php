@@ -29,7 +29,7 @@ final class InvalidShaderMethodException extends \BadMethodCallException
      * InvalidComponentMethodException
      *
      * @param string $message
-     * @param string $component_method
+     * @param string $shader_method
      */
     public function __construct(string $message = 'null', string $shader_method = 'unknown')
     {
