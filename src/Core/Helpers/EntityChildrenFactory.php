@@ -24,25 +24,7 @@
 namespace AframeVR\Core\Helpers;
 
 use \AframeVR\Core\Entity;
-use \AframeVR\Extras\Primitives\{
-    Sphere,
-    Box,
-    Cylinder,
-    Image,
-    Plane,
-    Sky,
-    Camera,
-    ColladaModel,
-    Videosphere,
-    Video,
-    Torus,
-    Ring,
-    ObjModel,
-    Curvedimage,
-    Cursor,
-    Light,
-    Cone
-};
+use \AframeVR\Core\Exceptions\BadPrimitiveCallException;
 
 class EntityChildrenFactory
 {
@@ -67,165 +49,23 @@ class EntityChildrenFactory
     }
 
     /**
-     * A-Frame Primitive box
+     * Call
      *
-     * @param string $id            
-     * @return Entity
+     * @param string $method
+     * @param array $args
+     * @throws BadShaderCallException
+     * @return Entity|\AframeVR\Interfaces\ComponentInterface
      */
-    public function box(string $id = 'untitled'): Entity
+    public function __call(string $method, array $args)
     {
-        return $this->childrens[$id] ?? $this->childrens[$id] = new Box($id);
-    }
-
-    /**
-     * A-Frame Primitive sphere
-     *
-     * @param string $id            
-     * @return Entity
-     */
-    public function sphere(string $id = 'untitled'): Entity
-    {
-        return $this->childrens[$id] ?? $this->childrens[$id] = new Sphere($id);
-    }
-
-    /**
-     * A-Frame Primitive cylinder
-     *
-     * @param string $id            
-     * @return Entity
-     */
-    public function cylinder(string $id = 'untitled'): Entity
-    {
-        return $this->childrens[$id] ?? $this->childrens[$id] = new Cylinder($id);
-    }
-
-    /**
-     * A-Frame Primitive plane
-     *
-     * @param string $id            
-     * @return Entity
-     */
-    public function plane(string $id = 'untitled'): Entity
-    {
-        return $this->childrens[$id] ?? $this->childrens[$id] = new Plane($id);
-    }
-
-    /**
-     * A-Frame Primitive camera
-     *
-     * @param string $id            
-     * @return Entity
-     */
-    public function camera(string $id = 'untitled'): Entity
-    {
-        return $this->childrens[$id] ?? $this->childrens[$id] = new Camera($id);
-    }
-
-    /**
-     * A-Frame Primitive collada-model
-     *
-     * @param string $id            
-     * @return Entity
-     */
-    public function colladaModel(string $id = 'untitled'): Entity
-    {
-        return $this->childrens[$id] ?? $this->childrens[$id] = new ColladaModel($id);
-    }
-
-    /**
-     * A-Frame Primitive image
-     *
-     * @param string $id            
-     * @return Entity
-     */
-    public function image(string $id = 'untitled'): Entity
-    {
-        return $this->childrens[$id] ?? $this->childrens[$id] = new Image($id);
-    }
-
-    /**
-     * A-Frame Primitive light
-     *
-     * @param string $id
-     * @return Entity
-     */
-    public function light(string $id = 'untitled'): Entity
-    {
-        return $this->childrens[$id] ?? $this->childrens[$id] = new Light($id);
-    }
+        $id        = $args[0] ?? 'untitled';
+        $primitive = sprintf('\AframeVR\Extras\Primitives\%s',  ucfirst($method));
     
-    /**
-     * A-Frame Primitive video
-     *
-     * @param string $id
-     * @return Entity
-     */
-    public function video(string $id = 'untitled'): Entity
-    {
-        return $this->childrens[$id] ?? $this->childrens[$id] = new Video($id);
-    }
-    
-    /**
-     * A-Frame Primitive torus
-     *
-     * @param string $id
-     * @return Entity
-     */
-    public function torus(string $id = 'untitled'): Entity
-    {
-        return $this->childrens[$id] ?? $this->childrens[$id] = new Torus($id);
-    }
-    
-    /**
-     * A-Frame Primitive ring
-     *
-     * @param string $id
-     * @return Entity
-     */
-    public function ring(string $id = 'untitled'): Entity
-    {
-        return $this->childrens[$id] ?? $this->childrens[$id] = new Ring($id);
-    }
-    
-
-    /**
-     * A-Frame Primitive obj model
-     *
-     * @return Entity
-     */
-    public function objmodel(string $id = 'untitled'): Entity
-    {
-        return $this->childrens[$id] ?? $this->childrens[$id] = new ObjModel($id);
-    }
-    
-    /**
-     * A-Frame Primitive curvedimage
-     *
-     * @return Entity
-     */
-    public function curvedimage(string $id = 'untitled'): Entity
-    {
-        return $this->childrens[$id] ?? $this->childrens[$id] = new Curvedimage($id);
-    }
-    
-    /**
-     * A-Frame Primitive curvedimage
-     *
-     * @return Entity
-     */
-    public function cursor(string $id = 'untitled'): Entity
-    {
-        return $this->childrens[$id] ?? $this->childrens[$id] = new Cursor($id);
-    }
-    
-    /**
-     * A-Frame Primitive cone
-     *
-     * @return Entity
-     */
-    public function cone(string $id = 'untitled'): Entity
-    {
-        return $this->childrens[$id] ?? $this->childrens[$id] = new Cone($id);
+        if (class_exists($primitive)) {
+            return $this->childrens[$id] ?? $this->childrens[$id] = new $primitive($id);
+        } else {
+            throw new BadPrimitiveCallException($method);
+        }
     }
     
     public function getChildern()
