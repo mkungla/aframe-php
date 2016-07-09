@@ -80,6 +80,7 @@ class EntityChildrenFactory
     public function __call(string $method, array $args)
     {
         $id = $args[0] ?? 'untitled';
+        
         $primitive = sprintf('\AframeVR\Extras\Primitives\%s', ucfirst($method));
         
         if (class_exists($primitive)) {
