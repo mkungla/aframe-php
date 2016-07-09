@@ -18,3 +18,5 @@ $aframe = new AframeVR\Aframe();
 
 /* Examples specific configuration */
 $aframe->config()->set('format_output', true);
+$aframe->config()->set('use_cdn', true);
+$aframe->config()->set('cdn_url', '/aframe/aframe.min.js');

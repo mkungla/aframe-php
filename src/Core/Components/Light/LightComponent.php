@@ -145,4 +145,16 @@ class LightComponent extends ComponentAbstract implements LightCMPTIF
         $this->dom_attributes['intensity'] = $intensity;
         return $this;
     }
+    
+    /**
+     * Light penumbra
+     *
+     * @param float $penumbra
+     * @return self
+     */
+    public function penumbra(float $penumbra)
+    {
+        $this->dom_attributes['penumbra'] = $penumbra;
+        return $this;
+    }
 }

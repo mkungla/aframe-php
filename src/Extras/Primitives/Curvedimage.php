@@ -44,18 +44,5 @@ final class Curvedimage extends Entity implements EntityInterface
     {
         parent::reset();
         $this->component('Geometry')->primitive('cylinder');
-        $this->component('Geometry')->height(1);
-        $this->component('Geometry')->radius(2);
-        $this->component('Geometry')->segmentsRadial(48);
-        $this->component('Geometry')->thetaLength(270);
-        $this->component('Geometry')->openEnded(true);
-        $this->component('Geometry')->thetaStart(0);
-        
-        $this->component('Material')->shader('flat');
-        $this->color('#fff');
-        $this->component('Material')->side('double');
-        $this->component('Material')->transparent(true);
-        
-        $this->component('Material')->shader()->repeat(- 1, 1);
     }
 }

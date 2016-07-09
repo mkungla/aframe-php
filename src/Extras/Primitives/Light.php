@@ -50,7 +50,7 @@ class Light extends Entity implements EntityInterface
      * @param int|float $angle            
      * @return self
      */
-    public function angle(float $angle = 60): self
+    public function angle(float $angle = 60)
     {
         $this->component('Light')->angle($angle);
         return $this;
@@ -74,7 +74,7 @@ class Light extends Entity implements EntityInterface
      * @param int $decay            
      * @return self
      */
-    public function decay(int $decay = 1): self
+    public function decay(int $decay = 1)
     {
         $this->component('Light')->decay($decay);
         return $this;
@@ -86,7 +86,7 @@ class Light extends Entity implements EntityInterface
      * @param float $distance            
      * @return self
      */
-    public function distance(float $distance = 0.0): self
+    public function distance(float $distance = 0.0)
     {
         $this->component('Light')->distance($distance);
         return $this;
@@ -98,7 +98,7 @@ class Light extends Entity implements EntityInterface
      * @param float $exponent            
      * @return self
      */
-    public function exponent(float $exponent = 10.0): self
+    public function exponent(float $exponent = 10.0)
     {
         $this->component('Light')->exponent($exponent);
         return $this;
@@ -110,7 +110,7 @@ class Light extends Entity implements EntityInterface
      * @param string $ground_color            
      * @return self
      */
-    public function groundColor(string $ground_color = '#fff'): self
+    public function groundColor(string $ground_color = '#fff')
     {
         $this->component('Light')->groundColor($ground_color);
         return $this;
@@ -122,19 +122,32 @@ class Light extends Entity implements EntityInterface
      * @param float $intensity            
      * @return self
      */
-    public function intensity(float $intensity = 1.0): self
+    public function intensity(float $intensity = 1.0)
     {
         $this->component('Light')->intensity($intensity);
         return $this;
     }
 
     /**
+     * light.penumbra
+     *
+     * @param float $penumbra
+     * @return self
+     */
+    public function penumbra(float $penumbra)
+    {
+        $this->component('Light')->penumbra($penumbra);
+        return $this;
+    }
+    
+    
+    /**
      * light.type
      *
      * @param string $type            
      * @return self
      */
-    public function type(string $type = 'directional'): self
+    public function type(string $type = 'directional')
     {
         $this->component('Light')->type($type);
         return $this;

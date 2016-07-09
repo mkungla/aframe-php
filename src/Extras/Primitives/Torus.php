@@ -38,8 +38,9 @@ final class Torus extends Entity implements EntityInterface
      *
      * @return void
      */
-    public function init()
+    public function reset()
     {
+        parent::reset();
         /* Load defaults */
         $this->component('Geometry')->primitive('torus');
         
@@ -94,7 +95,7 @@ final class Torus extends Entity implements EntityInterface
      * @param int $segmentsTubular            
      * @return self
      */
-    public function segmentsTubular(int $segmentsTubular = 8): self
+    public function segmentsTubular(int $segmentsTubular = 32): self
     {
         $this->component('Geometry')->segmentsTubular($segmentsTubular);
         return $this;
@@ -104,9 +105,9 @@ final class Torus extends Entity implements EntityInterface
      * Central angle.
      *
      * @param int|float $arc            
-     * @return TorusPrimitiveIF
+     * @return self
      */
-    public function arc(float $arc = 360): TorusPrimitiveIF
+    public function arc(float $arc = 360): self
     {
         $this->component('Geometry')->arc($arc);
         return $this;

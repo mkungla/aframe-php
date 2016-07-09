@@ -255,10 +255,9 @@ final class Scene
         if ($this->prepared)
             return;
             
-            /* Append all assets */
+        /* Append all assets */
         $assets = $this->assets->getAssets();
         (! $assets) ?: $this->aframeDomObj->appendAssets($assets);
-        
         /* Append all primitives */
         $this->preparePrimitives();
         

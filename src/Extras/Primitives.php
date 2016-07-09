@@ -26,6 +26,7 @@ namespace AframeVR\Extras;
 use \AframeVR\Extras\Primitives\{
     Sphere,
     Box,
+    Circle,
     Cylinder,
     Image,
     Light,
@@ -40,7 +41,8 @@ use \AframeVR\Extras\Primitives\{
     ObjModel,
     Curvedimage,
     Cone
-};
+}
+;
 use \AframeVR\Core\Entity;
 
 trait Primitives
@@ -52,7 +54,7 @@ trait Primitives
      * @var \AframeVR\Core\DOM\AframeDOMDocument
      */
     protected $aframeDomObj;
-    
+    protected $childrens = array();
     /**
      * Sphere primitives
      *
@@ -107,7 +109,6 @@ trait Primitives
      */
     protected $videosphere;
     
-    
     /**
      *
      * @var array
@@ -137,7 +138,7 @@ trait Primitives
      * @var $rings
      */
     protected $rings = array();
-
+    
     /**
      *
      * @var $objmodels
@@ -155,7 +156,8 @@ trait Primitives
      * @var $cones
      */
     protected $cones = array();
-    
+    protected $circles = array();
+
     /**
      * A-Frame Primitive box
      *
@@ -164,7 +166,7 @@ trait Primitives
      */
     public function box(string $id = 'untitled'): Entity
     {
-        return $this->boxes[$id] ?? $this->boxes[$id] = new Box($id);
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Box($id);
     }
 
     /**
@@ -175,7 +177,7 @@ trait Primitives
      */
     public function sphere(string $id = 'untitled'): Entity
     {
-        return $this->spheres[$id] ?? $this->spheres[$id] = new Sphere($id);
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Sphere($id);
     }
 
     /**
@@ -186,7 +188,7 @@ trait Primitives
      */
     public function cylinder(string $id = 'untitled'): Entity
     {
-        return $this->cylinders[$id] ?? $this->cylinders[$id] = new Cylinder($id);
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Cylinder($id);
     }
 
     /**
@@ -197,7 +199,7 @@ trait Primitives
      */
     public function plane(string $id = 'untitled'): Entity
     {
-        return $this->planes[$id] ?? $this->planes[$id] = new Plane($id);
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Plane($id);
     }
 
     /**
@@ -208,7 +210,7 @@ trait Primitives
      */
     public function camera(string $id = 'untitled'): Entity
     {
-        return $this->cameras[$id] ?? $this->cameras[$id] = new Camera($id);
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Camera($id);
     }
 
     /**
@@ -219,7 +221,7 @@ trait Primitives
      */
     public function colladaModel(string $id = 'untitled'): Entity
     {
-        return $this->collada_models[$id] ?? $this->collada_models[$id] = new ColladaModel($id);
+        return $this->childrens[$id] ?? $this->childrens[$id] = new ColladaModel($id);
     }
 
     /**
@@ -230,7 +232,7 @@ trait Primitives
      */
     public function image(string $id = 'untitled'): Entity
     {
-        return $this->images[$id] ?? $this->images[$id] = new Image($id);
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Image($id);
     }
 
     /**
@@ -241,52 +243,42 @@ trait Primitives
      */
     public function light(string $id = 'untitled'): Entity
     {
-        return $this->lights[$id] ?? $this->lights[$id] = new Light($id);
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Light($id);
     }
 
     /**
      * A-Frame Primitive video
      *
-     * @param string $id
+     * @param string $id            
      * @return Entity
      */
     public function video(string $id = 'untitled'): Entity
     {
-        return $this->videos[$id] ?? $this->videos[$id] = new Video($id);
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Video($id);
     }
-    
+
     /**
      * A-Frame Primitive torus
      *
-     * @param string $id
+     * @param string $id            
      * @return Entity
      */
     public function torus(string $id = 'untitled'): Entity
     {
-        return $this->toruses[$id] ?? $this->toruses[$id] = new Torus($id);
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Torus($id);
     }
-    
+
     /**
      * A-Frame Primitive ring
      *
-     * @param string $id
+     * @param string $id            
      * @return Entity
      */
     public function ring(string $id = 'untitled'): Entity
     {
-        return $this->rings[$id] ?? $this->rings[$id] = new Ring($id);
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Ring($id);
     }
-    
-    /**
-     * A-Frame Primitive sky
-     *
-     * @return Entity
-     */
-    public function videosphere(): Entity
-    {
-        return $this->videosphere = new Videosphere();
-    }
-    
+
     /**
      * A-Frame Primitive obj model
      *
@@ -294,9 +286,9 @@ trait Primitives
      */
     public function objmodel(string $id = 'untitled'): Entity
     {
-        return $this->objmodels[$id] ?? $this->objmodels[$id] = new ObjModel($id);
+        return $this->childrens[$id] ?? $this->childrens[$id] = new ObjModel($id);
     }
-    
+
     /**
      * A-Frame Primitive curvedimage
      *
@@ -304,31 +296,49 @@ trait Primitives
      */
     public function curvedimage(string $id = 'untitled'): Entity
     {
-        return $this->curvedimages[$id] ?? $this->curvedimages[$id] = new Curvedimage($id);
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Curvedimage($id);
     }
-    
+
     /**
-     * A-Frame Primitive curvedimage
+     * A-Frame Primitive cone
      *
      * @return Entity
      */
     public function cone(string $id = 'untitled'): Entity
     {
-        return $this->cones[$id] ?? $this->cones[$id] = new Cone($id);
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Cone($id);
     }
-    
-    
+
+    /**
+     * A-Frame Primitive circle
+     *
+     * @return Entity
+     */
+    public function circle(string $id = 'untitled'): Entity
+    {
+        return $this->childrens[$id] ?? $this->childrens[$id] = new Circle($id);
+    }
+
     /**
      * A-Frame Primitive sky
      *
      * @return Entity
      */
-    public function sky(): Entity
+    public function sky(string $id = 'untitled'): Entity
     {
-        return $this->sky = new Sky();
+        return $this->sky = new Sky($id);
     }
 
-    
+    /**
+     * A-Frame Primitive videosphere
+     *
+     * @return Entity
+     */
+    public function videosphere(string $id = 'untitled'): Entity
+    {
+        return $this->videosphere = new Videosphere($id);
+    }
+
     /**
      * Add all used primitevs to the scene
      *
@@ -337,20 +347,7 @@ trait Primitives
     protected function preparePrimitives()
     {
         /* Primitive collections */
-        $this->aframeDomObj->appendEntities($this->cameras);
-        $this->aframeDomObj->appendEntities($this->boxes);
-        $this->aframeDomObj->appendEntities($this->spheres);
-        $this->aframeDomObj->appendEntities($this->cylinders);
-        $this->aframeDomObj->appendEntities($this->planes);
-        $this->aframeDomObj->appendEntities($this->collada_models);
-        $this->aframeDomObj->appendEntities($this->images);
-        $this->aframeDomObj->appendEntities($this->lights);
-        $this->aframeDomObj->appendEntities($this->videos);
-        $this->aframeDomObj->appendEntities($this->toruses);
-        $this->aframeDomObj->appendEntities($this->rings);
-        $this->aframeDomObj->appendEntities($this->objmodels);
-        $this->aframeDomObj->appendEntities($this->curvedimages);
-        $this->aframeDomObj->appendEntities($this->cones);
+        $this->aframeDomObj->appendEntities($this->childrens);
         /* Primitives which only one can be present */
         (! $this->sky) ?: $this->aframeDomObj->appendEntity($this->sky);
         (! $this->videosphere) ?: $this->aframeDomObj->appendEntity($this->videosphere);

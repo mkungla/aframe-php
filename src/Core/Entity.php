@@ -259,7 +259,7 @@ class Entity implements EntityInterface
         $a_entity = $aframe_dom->createElement('a-entity');
         
         $this->appendAttributes($a_entity);
-        
+ 
         foreach ($this->components as $component) {
             /*
              * Check does component has any attributes to add to DOM element.
@@ -273,8 +273,6 @@ class Entity implements EntityInterface
         $this->appendAnimations($aframe_dom, $a_entity);
         return $a_entity;
     }
-
-    
 
     /**
      * Append DOM attributes no set by components
@@ -330,7 +328,7 @@ class Entity implements EntityInterface
 
     /**
      * Add format comment
-     *
+     * 
      * @param \DOMDocument $aframe_dom            
      * @param \DOMElement $a_entity            
      * @param string $content            

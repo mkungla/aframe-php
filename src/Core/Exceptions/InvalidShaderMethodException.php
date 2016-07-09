@@ -1,7 +1,7 @@
 <?php
 /** @formatter:off
  * ******************************************************************
- * Created by   Marko Kungla on Jul 3, 2016 - 8:36:14 PM
+ * Created by   Marko Kungla on Jun 21, 2016 - 3:40:17 AM
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
@@ -11,7 +11,7 @@
  * 
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
- * File         MockComponent.php
+ * File         InvalidComponentMethodException.php
  * Code format  PSR-2 and 12
  * @link        https://github.com/mkungla/aframe-php
  * @issues      https://github.com/mkungla/aframe-php/issues
@@ -21,28 +21,24 @@
  * ********************************************************************
  * Comments:
  * @formatter:on */
-namespace AframeVR\Core\Helpers;
+namespace AframeVR\Core\Exceptions;
 
-final class MockComponent
+final class InvalidShaderMethodException extends \BadMethodCallException
 {
     /**
-     * Record all menthod / args to be called when mixin is used on some entity
+     * InvalidComponentMethodException
      *
-     * @var array
+     * @param string $message
+     * @param string $component_method
      */
-    protected $component_methods = array();
-    
-    /**
-     * Call passes all calls to no existing methods to self::methodProvider
-     *
-     * @param string $method
-     * @param array $args
-     * @throws InvalidComponentMethodException
-     * @return MockComponent
-     */
-    public function __call(string $method, $args)
+    public function __construct(string $message = 'null', string $shader_method = 'unknown')
     {
-        $this->component_methods[$method] = $args;
-        return $this;
+        $this->message = sprintf(
+            "Called invalid method (%s) for %s!\nFile: %s on line: %s", 
+            $message, 
+            $shader_method, 
+            $this->getFile(), 
+            $this->getLine()
+        );
     }
 }

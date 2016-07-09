@@ -101,6 +101,7 @@ class Flat extends ShaderAbstract implements ShaderInterface
     public function color(string $color)
     {
         $this->color = $color;
+        return $this;
     }
 
     /**
@@ -111,6 +112,7 @@ class Flat extends ShaderAbstract implements ShaderInterface
     public function fog(bool $fog)
     {
         $this->fog = $fog ? 'true' : 'false';
+        return $this;
     }
 
     /**
@@ -121,6 +123,7 @@ class Flat extends ShaderAbstract implements ShaderInterface
     public function height(int $height)
     {
         $this->height = $height;
+        return $this;
     }
 
     /**
@@ -132,6 +135,7 @@ class Flat extends ShaderAbstract implements ShaderInterface
     public function repeat(float $x, float $y)
     {
         $this->repeat = sprintf('%d %d', $x, $y);
+        return $this;
     }
 
     /**
@@ -142,6 +146,7 @@ class Flat extends ShaderAbstract implements ShaderInterface
     public function src(string $src = null)
     {
         $this->src = $src;
+        return $this;
     }
 
     /**
@@ -152,5 +157,6 @@ class Flat extends ShaderAbstract implements ShaderInterface
     public function width(int $width)
     {
         $this->width = $width;
+        return $this;
     }
 }

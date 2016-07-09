@@ -37,28 +37,15 @@ class Videosphere extends Entity implements EntityInterface
      *
      * @return void
      */
-    public function init()
-    {
-        /* Load defaults */
-        $this->defaults();
-    }
-
-    /**
-     * Set defaults
-     *
-     * {@inheritdoc}
-     *
-     * @return void
-     */
-    public function defaults()
+    public function reset()
     {
         $this->component('Material')->shader('flat');
         $this->color('#FFF');
         
         $this->component('Geometry')->primitive('sphere');
-        $this->component('Geometry')->radius(5000);
-        $this->component('Geometry')->segmentsWidth(64);
-        $this->component('Geometry')->segmentsWidth(20);
+        $this->radius(5000);
+        $this->segmentsHeight(64);
+        $this->segmentsWidth(20);
         
         $this->scale(- 1, 1, 1);
     }

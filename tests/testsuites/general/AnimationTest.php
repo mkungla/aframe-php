@@ -25,6 +25,7 @@ class AnimationTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->aframe = new \AframeVR\Aframe();
+        $this->aframe->config()->set('format_output', true);
     }
 
     public function a_get_instance()
@@ -43,5 +44,7 @@ class AnimationTest extends PHPUnit_Framework_TestCase
             $this->assertInstanceOf(self::A_INSTANCE, $this->a_get_instance()
                 ->{$attribute}());
         }
+        
+        $this->aframe->scene()->save();
     }
 }

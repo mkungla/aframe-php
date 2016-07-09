@@ -42,21 +42,15 @@ class Camera extends Entity implements EntityInterface
         parent::reset();
         $this->child()->entity()->component('Camera');
         $this->active(false);
-        $this->far(10000);
-        $this->fov(80);
-        $this->lookControls(true);
-        $this->wasdControls(true);
-        $this->near(0.5);
-        $this->zoom(1);
     }
 
     /**
      * camera.active
      *
      * @param bool $active            
-     * @return self
+     * @return \AframeVR\Extras\Primitives\Camera
      */
-    public function active(bool $active): self
+    public function active(bool $active)
     {
         $this->child()
             ->entity()
@@ -69,9 +63,9 @@ class Camera extends Entity implements EntityInterface
      * camera.far
      *
      * @param float $far            
-     * @return self
+     * @return \AframeVR\Extras\Primitives\Camera
      */
-    public function far(float $far): self
+    public function far(float $far)
     {
         $this->child()
             ->entity()
@@ -84,9 +78,9 @@ class Camera extends Entity implements EntityInterface
      * camera.fov
      *
      * @param float $fov            
-     * @return self
+     * @return \AframeVR\Extras\Primitives\Camera
      */
-    public function fov(float $fov): self
+    public function fov(float $fov)
     {
         $this->child()
             ->entity()
@@ -99,9 +93,9 @@ class Camera extends Entity implements EntityInterface
      * look-controls.enabled
      *
      * @param bool $look_controls            
-     * @return self
+     * @return \AframeVR\Extras\Primitives\Camera
      */
-    public function lookControls(bool $look_controls): self
+    public function lookControls(bool $look_controls)
     {
         $this->child()
             ->entity()
@@ -114,9 +108,9 @@ class Camera extends Entity implements EntityInterface
      * camera.near
      *
      * @param float $near            
-     * @return self
+     * @return \AframeVR\Extras\Primitives\Camera
      */
-    public function near(float $near): self
+    public function near(float $near)
     {
         $this->child()
             ->entity()
@@ -128,12 +122,10 @@ class Camera extends Entity implements EntityInterface
     /**
      * wasd-controls.enabled
      *
-     * {@inheritdoc}
-     *
      * @param bool $wasd_controls            
-     * @return self
+     * @return \AframeVR\Extras\Primitives\Camera
      */
-    public function wasdControls(bool $wasd_controls = true): self
+    public function wasdControls(bool $wasd_controls = true)
     {
         $this->child()
             ->entity()
@@ -145,12 +137,10 @@ class Camera extends Entity implements EntityInterface
     /**
      * camera.zoom
      *
-     * {@inheritdoc}
-     *
      * @param int|float $zoom            
-     * @return self
+     * @return \AframeVR\Extras\Primitives\Camera
      */
-    public function zoom(float $zoom): self
+    public function zoom(float $zoom)
     {
         $this->child()
             ->entity()
@@ -160,16 +150,17 @@ class Camera extends Entity implements EntityInterface
     }
 
     /**
-     * Camera child cursor entity
+     * Activate cursor
      *
-     * @return \AframeVR\Interfaces\Core\Components\CursorCMPTIF
+     * @return \AframeVR\Extras\Primitives\Camera
      */
     public function cursor()
     {
-        return $this->child()
+        $this->child()
             ->entity()
             ->child()
             ->cursor();
+        return $this;
     }
 }
 

@@ -45,30 +45,12 @@ class Cylinder extends Entity implements EntityInterface
     }
 
     /**
-     * Set defaults
-     *
-     * {@inheritdoc}
-     *
-     * @return void
-     */
-    public function defaults()
-    {
-        $this->height(1);
-        $this->openEnded(false);
-        $this->radius(1);
-        $this->segmentsHeight(18);
-        $this->segmentsRadial(36);
-        $this->thetaLength(360);
-        $this->thetaStart(0);
-    }
-
-    /**
      * geometry.height
      *
      * @param int|float $height            
      * @return self
      */
-    public function height(float $height): self
+    public function height(float $height)
     {
         $this->component('Geometry')->height($height);
         return $this;
@@ -80,7 +62,7 @@ class Cylinder extends Entity implements EntityInterface
      * @param bool $openEnded            
      * @return self
      */
-    public function openEnded(bool $openEnded = false): self
+    public function openEnded(bool $openEnded = false)
     {
         $this->component('Geometry')->openEnded($openEnded);
         return $this;
@@ -92,7 +74,7 @@ class Cylinder extends Entity implements EntityInterface
      * @param float $radius            
      * @return self
      */
-    public function radius(float $radius = 0.75): self
+    public function radius(float $radius)
     {
         $this->component('Geometry')->radius($radius);
         return $this;
@@ -104,7 +86,7 @@ class Cylinder extends Entity implements EntityInterface
      * @param int $segmentsHeight            
      * @return self
      */
-    public function segmentsHeight(int $segmentsHeight = 1): self
+    public function segmentsHeight(int $segmentsHeight)
     {
         $this->component('Geometry')->segmentsHeight($segmentsHeight);
         return $this;
@@ -116,9 +98,9 @@ class Cylinder extends Entity implements EntityInterface
      * @param int $segmentsRadial            
      * @return self
      */
-    public function segmentsRadial(int $segmentsRadial = 36): self
+    public function segmentsRadial(int $segmentsRadial)
     {
-        $this->component('Geometry')->segmentsHeight($segmentsRadial);
+        $this->component('Geometry')->segmentsRadial($segmentsRadial);
         return $this;
     }
 
@@ -128,7 +110,7 @@ class Cylinder extends Entity implements EntityInterface
      * @param int $thetaLength            
      * @return self
      */
-    public function thetaLength(int $thetaLength = 360): self
+    public function thetaLength(int $thetaLength)
     {
         $this->component('Geometry')->thetaLength($thetaLength);
         return $this;
@@ -140,7 +122,7 @@ class Cylinder extends Entity implements EntityInterface
      * @param int $thetaStart            
      * @return self
      */
-    public function thetaStart(int $thetaStart = 0): self
+    public function thetaStart(int $thetaStart)
     {
         $this->component('Geometry')->thetaStart($thetaStart);
         return $this;

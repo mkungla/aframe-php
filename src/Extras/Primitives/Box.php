@@ -41,18 +41,15 @@ class Box extends Entity implements EntityInterface
     {
         parent::reset();
         $this->component('Geometry')->primitive('box');
-        $this->depth(1);
-        $this->height(1);
-        $this->width(1);
     }
 
     /**
      * geometry.depth
      *
      * @param float $depth            
-     * @return self
+     * @return \AframeVR\Extras\Primitives\Box
      */
-    public function depth(float $depth): self
+    public function depth(float $depth)
     {
         $this->component('Geometry')->depth($depth);
         return $this;
@@ -62,9 +59,9 @@ class Box extends Entity implements EntityInterface
      * geometry.height
      *
      * @param float $height            
-     * @return self
+     * @return \AframeVR\Extras\Primitives\Box
      */
-    public function height(float $height): self
+    public function height(float $height)
     {
         $this->component('Geometry')->height($height);
         return $this;
@@ -74,9 +71,9 @@ class Box extends Entity implements EntityInterface
      * geometry.width
      *
      * @param float $height            
-     * @return self
+     * @return \AframeVR\Extras\Primitives\Box
      */
-    public function width(float $width): self
+    public function width(float $width)
     {
         $this->component('Geometry')->width($width);
         return $this;
@@ -86,9 +83,9 @@ class Box extends Entity implements EntityInterface
      * Optional: geometry.segmentsHeight
      *
      * @param int $height            
-     * @return self
+     * @return \AframeVR\Extras\Primitives\Box
      */
-    public function segmentsHeight(int $height): self
+    public function segmentsHeight(int $height)
     {
         $this->component('Geometry')->segmentsHeight($height);
         return $this;
@@ -98,9 +95,9 @@ class Box extends Entity implements EntityInterface
      * Optional: geometry.segmentsWidth
      *
      * @param int $width            
-     * @return self
+     * @return \AframeVR\Extras\Primitives\Box
      */
-    public function segmentsWidth(int $width): self
+    public function segmentsWidth(int $width)
     {
         $this->component('Geometry')->segmentsWidth($width);
         return $this;
@@ -110,9 +107,9 @@ class Box extends Entity implements EntityInterface
      * Optional: geometry.segmentsDepth
      *
      * @param int $depth            
-     * @return self
+     * @return \AframeVR\Extras\Primitives\Box
      */
-    public function segmentsDepth(int $depth): self
+    public function segmentsDepth(int $depth)
     {
         $this->component('Geometry')->segmentsDepth($depth);
         return $this;
