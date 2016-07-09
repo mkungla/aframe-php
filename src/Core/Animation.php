@@ -65,10 +65,10 @@ final class Animation implements AnimationInterface
      *
      * Delay (in milliseconds) or event name to wait on before beginning animation
      *
-     * @param int|string $ms            
+     * @param string $ms            
      * @return AnimationInterface
      */
-    public function begin($ms = 0): AnimationInterface
+    public function begin($ms = '0'): AnimationInterface
     {
         $this->attrs['begin'] = $ms;
         return $this;

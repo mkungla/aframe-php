@@ -42,7 +42,8 @@ abstract class AssetsAbstract implements AssetsInterface
     /**
      * Asset constructor set asset ID
      *
-     * @param string $id            
+     * @param string $id   
+     * @return void         
      */
     public function __construct(string $id)
     {
@@ -54,7 +55,8 @@ abstract class AssetsAbstract implements AssetsInterface
      *
      * {@inheritdoc}
      *
-     * @param string $id            
+     * @param string $id
+     * @return AssetsInterface            
      */
     public function id(string $id = 'untitled'): AssetsInterface
     {
@@ -68,7 +70,7 @@ abstract class AssetsAbstract implements AssetsInterface
      * {@inheritdoc}
      *
      * @param null|string $src            
-     * @return void
+     * @return AssetsInterface
      */
     public function src(string $src = null): AssetsInterface
     {
