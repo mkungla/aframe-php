@@ -141,9 +141,6 @@ checks:
             maximum: '20'
         align_assignments: true
         remove_extra_empty_lines: true
-        return_in_constructor: true
-        overriding_parameter: true
-        comparison_always_same_result: true
         check_method_contracts:
             verify_interface_like_constraints: true
             verify_documented_constraints: true
