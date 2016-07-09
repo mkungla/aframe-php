@@ -43,6 +43,7 @@ class BoxTest extends PHPUnit_Framework_TestCase implements PrimitiveTestInterfa
             ->segmentsHeight(1)
             ->segmentsWidth(1)
             ->segmentsDepth(1);
+        
     }
 
     public function test_instance()

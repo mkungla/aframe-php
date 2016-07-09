@@ -222,8 +222,29 @@ final class Scene
         return $this->components[$component_name] ?? null;
     }
     
+
     /**
-     * Handle scene components
+     * Call
+     *
+     * @param string $method
+     * @param array $args
+     * @throws BadShaderCallException
+     * @return Entity|\AframeVR\Interfaces\ComponentInterface
+     */
+    public function __call(string $method, array $args)
+    {
+        $id        = $args[0] ?? 'untitled';
+        $primitive = sprintf('\AframeVR\Extras\Primitives\%s',  ucfirst($method));
+    
+        if (class_exists($primitive)) {
+            return $this->childrens[$id] ?? $this->childrens[$id] = new $primitive($id);
+        } else {
+            return $this->callComponent($method, $args);
+        }
+    }
+    
+    /**
+     * Handle entity components
      *
      * Since we might need to customize these to have
      * custom components loaded as $this->methosd aswell therefore
@@ -232,7 +253,7 @@ final class Scene
      * @param string $component_name
      * @param array $args
      */
-    public function __call(string $component_name, array $args)
+    public function callComponent(string $component_name, array $args)
     {
         if (! method_exists($this, $component_name)) {
             $this->{$component_name} = Closure::bind(
@@ -243,7 +264,6 @@ final class Scene
     
         return call_user_func($this->{$component_name}, $args);
     }
-    
     
     /**
      * Add everyting to DOM

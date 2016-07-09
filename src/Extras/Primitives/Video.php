@@ -56,7 +56,7 @@ class Video extends Entity implements EntityInterface
      * @param float $height            
      * @return Video
      */
-    public function height(float $height = 1.75)
+    public function height(float $height)
     {
         $this->component('Geometry')->height($height);
         return $this;
@@ -68,7 +68,7 @@ class Video extends Entity implements EntityInterface
      * @param float $width            
      * @return Video
      */
-    public function width(float $width = 3)
+    public function width(float $width)
     {
         $this->component('Geometry')->width($width);
         return $this;
