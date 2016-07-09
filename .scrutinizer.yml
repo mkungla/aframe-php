@@ -141,11 +141,6 @@ checks:
             maximum: '20'
         align_assignments: true
         remove_extra_empty_lines: true
-        check_method_contracts:
-            verify_interface_like_constraints: true
-            verify_documented_constraints: true
-            verify_parent_constraints: true
-
 tools:
     external_code_coverage: true
     php_cs_fixer:
