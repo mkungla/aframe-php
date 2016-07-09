@@ -28,6 +28,7 @@ final class BadPrimitiveCallException extends \BadMethodCallException
 
     public function __construct(string $message = 'null')
     {
-        $this->message = sprintf("Requested primitive (%s) do not exist or can not be used as child of entity!\n", $message);
+        $this->message = sprintf("Requested primitive (%s) do not exist or can not be used as child of entity!\n", 
+            $message);
     }
 }
