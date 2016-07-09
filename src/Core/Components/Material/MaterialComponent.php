@@ -68,11 +68,10 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
      */
     public function __call(string $method, $args)
     {
-        /* Well then it should be passed to shader, but lets make sure
+        /* Well then this call should be passed to shader, but lets make sure
          * that shader is loaded and let shader either to throw any throwable */
-        (is_object($this->shaderObj) ?: $this->shader());
-        
-        if (is_object($this->shaderObj) && method_exists($this->shaderObj, $method)) {
+        $this->shader();
+        if (method_exists($this->shaderObj, $method)) {
             call_user_func_array(
                 array(
                     $this->shaderObj,
@@ -80,7 +79,7 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
                 ), $args);
             return $this;
         } else {
-            $class = is_object($this->shaderObj) ? get_class($this->shaderObj) : get_called_class();
+            $class = get_class($this->shaderObj);
             throw new InvalidShaderMethodException($method, $class);
         }
     }
