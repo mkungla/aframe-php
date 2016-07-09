@@ -78,9 +78,9 @@ class BoxMethods
      * segmentsHeight
      * 
      * @param array $dom_attributes
-     * @param number $int
+     * @param int $int
      */
-    public function segmentsHeight(array &$dom_attributes, $int = 0)
+    public function segmentsHeight(array &$dom_attributes, int $int)
     {
         $dom_attributes['segmentsHeight'] = $int;
     }
@@ -89,9 +89,9 @@ class BoxMethods
      * segmentsWidth
      * 
      * @param array $dom_attributes
-     * @param number $int
+     * @param int $int
      */
-    public function segmentsWidth(array &$dom_attributes, $int = 0)
+    public function segmentsWidth(array &$dom_attributes, int $int)
     {
         $dom_attributes['segmentsWidth'] = $int;
     }
@@ -100,9 +100,9 @@ class BoxMethods
      * segmentsDepth
      * 
      * @param array $dom_attributes
-     * @param number $int
+     * @param int $int
      */
-    public function segmentsDepth(array &$dom_attributes, $int = 0)
+    public function segmentsDepth(array &$dom_attributes, int $int)
     {
         $dom_attributes['segmentsDepth'] = $int;
     }

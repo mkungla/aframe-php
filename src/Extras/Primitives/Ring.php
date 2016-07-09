@@ -53,9 +53,9 @@ final class Ring extends Entity implements EntityInterface
      * Radius of the inner hole of the ring.
      *
      * @param float $radiusInner            
-     * @return self
+     * @return Ring
      */
-    public function radiusInner(float $radiusInner): self
+    public function radiusInner(float $radiusInner)
     {
         $this->component('Geometry')->radiusInner($radiusInner);
         return $this;
@@ -65,9 +65,9 @@ final class Ring extends Entity implements EntityInterface
      * Radius of the outer edge of the ring.
      *
      * @param float $radiusOuter            
-     * @return self
+     * @return Ring
      */
-    public function radiusOuter(float $radiusOuter): self
+    public function radiusOuter(float $radiusOuter)
     {
         $this->component('Geometry')->radiusOuter($radiusOuter);
         return $this;
@@ -77,9 +77,9 @@ final class Ring extends Entity implements EntityInterface
      * Number of triangles within each face defined by segmentsTheta.
      *
      * @param int $segmentsPhi            
-     * @return self
+     * @return Ring
      */
-    public function segmentsPhi(int $segmentsPhi): self
+    public function segmentsPhi(int $segmentsPhi)
     {
         $this->component('Geometry')->segmentsPhi($segmentsPhi);
         return $this;
@@ -90,9 +90,9 @@ final class Ring extends Entity implements EntityInterface
      * A higher number means the ring will be more round.
      *
      * @param int $segmentsTheta            
-     * @return self
+     * @return Ring
      */
-    public function segmentsTheta(int $segmentsTheta): self
+    public function segmentsTheta(int $segmentsTheta)
     {
         $this->component('Geometry')->segmentsTheta($segmentsTheta);
         return $this;
@@ -102,9 +102,9 @@ final class Ring extends Entity implements EntityInterface
      * Central angle in degrees.
      *
      * @param float $thetaLength            
-     * @return self
+     * @return Ring
      */
-    public function thetaLength(float $thetaLength): self
+    public function thetaLength(float $thetaLength)
     {
         $this->component('Geometry')->thetaLength($thetaLength);
         return $this;
@@ -114,9 +114,9 @@ final class Ring extends Entity implements EntityInterface
      * Starting angle in degrees.
      *
      * @param float $thetaStart            
-     * @return self
+     * @return Ring
      */
-    public function thetaStart(float $thetaStart): self
+    public function thetaStart(float $thetaStart)
     {
         $this->component('Geometry')->thetaStart($thetaStart);
         return $this;

@@ -51,7 +51,7 @@ final class Cone extends Entity implements EntityInterface
      */
     public function height(int $height)
     {
-        $this->component('Geometry')->height(1);
+        $this->component('Geometry')->height($height);
         return $this;
     }
 
@@ -106,7 +106,7 @@ final class Cone extends Entity implements EntityInterface
     /**
      * geometry.segmentsRadial
      *
-     * @param in $s_radial            
+     * @param int $s_radial            
      * @return \AframeVR\Extras\Primitives\Cone
      */
     public function segmentsRadial(int $s_radial)
@@ -123,7 +123,7 @@ final class Cone extends Entity implements EntityInterface
      */
     public function thetaLength(float $t_lenght)
     {
-        $this->component('Geometry')->thetaLength(360);
+        $this->component('Geometry')->thetaLength($t_lenght);
         return $this;
     }
 
@@ -135,7 +135,7 @@ final class Cone extends Entity implements EntityInterface
      */
     public function thetaStart(float $t_start)
     {
-        $this->component('Geometry')->thetaStart(0);
+        $this->component('Geometry')->thetaStart($t_start);
         return $this;
     }
 }

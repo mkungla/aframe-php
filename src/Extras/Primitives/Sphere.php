@@ -50,9 +50,9 @@ class Sphere extends Entity implements EntityInterface
      * geometry.radius
      *
      * @param float $radius            
-     * @return \AframeVR\Interfaces\Extras\Primitives\SpherePrimitiveIF
+     * @return Sphere
      */
-    public function radius(float $radius = 0.85): self
+    public function radius(float $radius = 0.85)
     {
         $this->component('Geometry')->radius($radius);
         return $this;
@@ -62,9 +62,9 @@ class Sphere extends Entity implements EntityInterface
      * geometry.segmentsHeight
      *
      * @param int $segmentsHeigh            
-     * @return self
+     * @return Sphere
      */
-    public function segmentsHeight($segmentsHeigh = 18): self
+    public function segmentsHeight($segmentsHeigh = 18)
     {
         $this->component('Geometry')->segmentsHeight($segmentsHeigh);
         return $this;
@@ -74,9 +74,9 @@ class Sphere extends Entity implements EntityInterface
      * geometry.segmentsWidth
      *
      * @param int $segmentsWidth            
-     * @return self
+     * @return Sphere
      */
-    public function segmentsWidth($segmentsWidth = 36): self
+    public function segmentsWidth($segmentsWidth = 36)
     {
         $this->component('Geometry')->segmentsWidth($segmentsWidth);
         return $this;

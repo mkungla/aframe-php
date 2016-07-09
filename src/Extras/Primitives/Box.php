@@ -70,7 +70,7 @@ class Box extends Entity implements EntityInterface
     /**
      * geometry.width
      *
-     * @param float $height            
+     * @param float $width            
      * @return \AframeVR\Extras\Primitives\Box
      */
     public function width(float $width)

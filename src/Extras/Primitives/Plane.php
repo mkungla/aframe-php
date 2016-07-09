@@ -48,9 +48,9 @@ class Plane extends Entity implements EntityInterface
      * geometry.height
      *
      * @param float $height            
-     * @return self
+     * @return Plane
      */
-    public function height(float $height): self
+    public function height(float $height)
     {
         $this->component('Geometry')->height($height);
         return $this;
@@ -60,9 +60,9 @@ class Plane extends Entity implements EntityInterface
      * geometry.width
      *
      * @param float $width            
-     * @return self
+     * @return Plane
      */
-    public function width(float $width): self
+    public function width(float $width)
     {
         $this->component('Geometry')->width($width);
         return $this;

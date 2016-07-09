@@ -46,9 +46,9 @@ final class ObjModel extends Entity implements EntityInterface
      * Selector to an <a-asset-item> pointing to a .OBJ file or an inline path to a .OBJ file.
      *
      * @param string $selector            
-     * @return self
+     * @return ObjModel
      */
-    public function obj(string $selector): self
+    public function obj(string $selector)
     {
         $this->component('ObjModel')->obj($selector);
         return $this;
@@ -61,9 +61,9 @@ final class ObjModel extends Entity implements EntityInterface
      * use the material component instead.
      *
      * @param string $selector            
-     * @return self
+     * @return ObjModel
      */
-    public function mtl(string $selector): self
+    public function mtl(string $selector)
     {
         $this->component('ObjModel')->mtl($selector);
         return $this;

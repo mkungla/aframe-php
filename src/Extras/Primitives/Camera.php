@@ -137,7 +137,7 @@ class Camera extends Entity implements EntityInterface
     /**
      * camera.zoom
      *
-     * @param int|float $zoom            
+     * @param float $zoom            
      * @return \AframeVR\Extras\Primitives\Camera
      */
     public function zoom(float $zoom)

@@ -55,9 +55,9 @@ final class Torus extends Entity implements EntityInterface
      * Radius of the outer edge of the torus.
      *
      * @param int|float $radius            
-     * @return TorusPrimitiveIF
+     * @return Torus
      */
-    public function radius(float $radius = 1): self
+    public function radius(float $radius = 1)
     {
         $this->component('Geometry')->radius($radius);
         return $this;
@@ -67,9 +67,9 @@ final class Torus extends Entity implements EntityInterface
      * Radius of the tube.
      *
      * @param float $radiusTubular            
-     * @return self
+     * @return Torus
      */
-    public function radiusTubular(float $radiusTubular = 0.2): self
+    public function radiusTubular(float $radiusTubular = 0.2)
     {
         $this->component('Geometry')->radiusTubular($radiusTubular);
         return $this;
@@ -80,9 +80,9 @@ final class Torus extends Entity implements EntityInterface
      * A higher number means the tube will be more round.
      *
      * @param int $segmentsRadial            
-     * @return self
+     * @return Torus
      */
-    public function segmentsRadial(int $segmentsRadial = 36): self
+    public function segmentsRadial(int $segmentsRadial = 36)
     {
         $this->component('Geometry')->segmentsRadial($segmentsRadial);
         return $this;
@@ -93,9 +93,9 @@ final class Torus extends Entity implements EntityInterface
      * A higher number means the tube will be more round.
      *
      * @param int $segmentsTubular            
-     * @return self
+     * @return Torus
      */
-    public function segmentsTubular(int $segmentsTubular = 32): self
+    public function segmentsTubular(int $segmentsTubular = 32)
     {
         $this->component('Geometry')->segmentsTubular($segmentsTubular);
         return $this;
@@ -105,9 +105,9 @@ final class Torus extends Entity implements EntityInterface
      * Central angle.
      *
      * @param int|float $arc            
-     * @return self
+     * @return Torus
      */
-    public function arc(float $arc = 360): self
+    public function arc(float $arc = 360)
     {
         $this->component('Geometry')->arc($arc);
         return $this;

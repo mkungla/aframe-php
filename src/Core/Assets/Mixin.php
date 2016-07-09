@@ -93,7 +93,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      * material.color
      *
      * @param string $color
-     * @return EntityInterface
+     * @return Mixin
      */
     public function color(string $color = 'gray')
     {
@@ -107,7 +107,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      * material.metalness
      *
      * @param int|float $metalness
-     * @return EntityInterface
+     * @return Mixin
      */
     public function metalness(float $metalness = 0)
     {
@@ -121,7 +121,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      * material.roughness
      *
      * @param float $roughness
-     * @return EntityInterface
+     * @return Mixin
      */
     public function roughness(float $roughness = 0.5)
     {
@@ -135,7 +135,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      * material.src
      *
      * @param null|string $src
-     * @return EntityInterface
+     * @return Mixin
      */
     public function src(string $src = null)
     {
@@ -151,7 +151,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      * @param int|float $x
      * @param int|float $y
      * @param int|float $z
-     * @return EntityInterface
+     * @return Mixin
      */
     public function translate(float $x = 0, float $y = 0, float $z = 0)
     {
@@ -163,7 +163,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      * material.shader
      *
      * @param string $shader
-     * @return EntityInterface
+     * @return Mixin
      */
     public function shader($shader = 'standard')
     {
@@ -175,7 +175,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      * material.opacity
      *
      * @param float $opacity
-     * @return EntityInterface
+     * @return Mixin
      */
     public function opacity(float $opacity = 1.0)
     {
@@ -187,7 +187,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      * material.transparent
      *
      * @param bool $transparent
-     * @return EntityInterface
+     * @return Mixin
      */
     public function transparent(bool $transparent = false)
     {

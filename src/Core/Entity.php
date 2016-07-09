@@ -66,7 +66,7 @@ class Entity implements EntityInterface
     /**
      * Children Factory
      *
-     * @var EntityChildrenFactory
+     * @var \AframeVR\Core\Helpers\EntityChildrenFactory
      */
     protected $childrenFactory;
     
@@ -120,7 +120,7 @@ class Entity implements EntityInterface
     /**
      * Child entity / primitive
      *
-     * @return EntityChildrenFactory
+     * @return \AframeVR\Core\Helpers\EntityChildrenFactory
      */
     public function child(): EntityChildrenFactory
     {
@@ -135,7 +135,7 @@ class Entity implements EntityInterface
      * @param int|float $x_axis            
      * @param int|float $y_axis            
      * @param int|float $z_axis            
-     * @return EntityInterface
+     * @return \AframeVR\Interfaces\EntityInterface
      */
     public function position(float $x_axis = 0, float $y_axis = 0, float $z_axis = 0): EntityInterface
     {
@@ -153,7 +153,7 @@ class Entity implements EntityInterface
      * @param int|float $roll            
      * @param int|float $pitch            
      * @param int|float $yaw            
-     * @return EntityInterface
+     * @return \AframeVR\Interfaces\EntityInterface
      */
     public function rotation(float $roll = 0, float $pitch = 0, float $yaw = 0): EntityInterface
     {
@@ -171,7 +171,7 @@ class Entity implements EntityInterface
      * @param int|float $scale_x            
      * @param int|float $scale_y            
      * @param int|float $scale_z            
-     * @return EntityInterface
+     * @return \AframeVR\Interfaces\EntityInterface
      */
     public function scale(float $scale_x = 1, float $scale_y = 1, float $scale_z = 1): EntityInterface
     {

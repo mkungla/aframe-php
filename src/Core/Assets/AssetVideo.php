@@ -76,7 +76,7 @@ final class AssetVideo extends AssetsAbstract implements AssetVideoInterface
     /**
      * loop video
      *
-     * @param string $loop            
+     * @param bool $loop            
      * @return AssetVideoInterface
      */
     public function loop(bool $loop = true): AssetVideoInterface

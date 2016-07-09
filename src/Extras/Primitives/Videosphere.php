@@ -54,9 +54,9 @@ class Videosphere extends Entity implements EntityInterface
      * geometry.radius
      *
      * @param float $radius            
-     * @return self
+     * @return Videosphere
      */
-    public function radius(float $radius = 100): self
+    public function radius(float $radius)
     {
         $this->component('Geometry')->radius($radius);
         return $this;
@@ -66,9 +66,9 @@ class Videosphere extends Entity implements EntityInterface
      * Autoplay video
      *
      * @param bool $autoplay            
-     * @return self
+     * @return Videosphere
      */
-    public function autoplay(bool $autoplay = true): self
+    public function autoplay(bool $autoplay = true)
     {
         $this->attrs['autoplay'] = $autoplay ? 'true' : 'false';
         return $this;
@@ -78,9 +78,9 @@ class Videosphere extends Entity implements EntityInterface
      * geometry.segmentsHeight
      *
      * @param int $segmentsHeigh            
-     * @return self
+     * @return Videosphere
      */
-    public function segmentsHeight($segmentsHeigh = 64): self
+    public function segmentsHeight(int $segmentsHeigh)
     {
         $this->component('Geometry')->segmentsHeight($segmentsHeigh);
         return $this;
@@ -90,9 +90,9 @@ class Videosphere extends Entity implements EntityInterface
      * geometry.segmentsWidth
      *
      * @param int $segmentsWidth            
-     * @return self
+     * @return Videosphere
      */
-    public function segmentsWidth($segmentsWidth = 64): self
+    public function segmentsWidth(int $segmentsWidth)
     {
         $this->component('Geometry')->segmentsWidth($segmentsWidth);
         return $this;

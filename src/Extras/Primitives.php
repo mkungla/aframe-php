@@ -54,49 +54,14 @@ trait Primitives
      * @var \AframeVR\Core\DOM\AframeDOMDocument
      */
     protected $aframeDomObj;
+    
+    /**
+     * Children entities
+     * 
+     * @var array $childrens
+     */
     protected $childrens = array();
-    /**
-     * Sphere primitives
-     *
-     * @var array
-     */
-    protected $spheres = array();
-    
-    /**
-     * Box primitives
-     *
-     * @var array
-     */
-    protected $boxes = array();
-    
-    /**
-     * Cylinder primitives
-     *
-     * @var array
-     */
-    protected $cylinders = array();
-    
-    /**
-     * Plane primitives
-     *
-     * @var array
-     */
-    protected $planes = array();
-    
-    /**
-     * Camera primitives
-     *
-     * @var array
-     */
-    protected $cameras = array();
-    
-    /**
-     * collada-model primitives
-     *
-     * @var array
-     */
-    protected $collada_models = array();
-    
+
     /**
      *
      * @var \AframeVR\Extras\Primitives\Sky $sky
@@ -109,54 +74,6 @@ trait Primitives
      */
     protected $videosphere;
     
-    /**
-     *
-     * @var array
-     */
-    protected $images = array();
-    
-    /**
-     *
-     * @var lights
-     */
-    protected $lights = array();
-    
-    /**
-     *
-     * @var videos
-     */
-    protected $videos = array();
-    
-    /**
-     *
-     * @var $toruses
-     */
-    protected $toruses = array();
-    
-    /**
-     *
-     * @var $rings
-     */
-    protected $rings = array();
-    
-    /**
-     *
-     * @var $objmodels
-     */
-    protected $objmodels = array();
-    
-    /**
-     *
-     * @var $curvedimages
-     */
-    protected $curvedimages = array();
-    
-    /**
-     *
-     * @var $cones
-     */
-    protected $cones = array();
-    protected $circles = array();
 
     /**
      * A-Frame Primitive box

@@ -92,7 +92,7 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
      *
      * @param null|string $shader            
      * @throws BadShaderCallException
-     * @return object|null
+     * @return MaterialCMPTIF
      */
     public function shader(string $shader = null)
     {

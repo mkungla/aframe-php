@@ -47,7 +47,7 @@ class Cylinder extends Entity implements EntityInterface
     /**
      * geometry.height
      *
-     * @param int|float $height            
+     * @param float $height            
      * @return self
      */
     public function height(float $height)

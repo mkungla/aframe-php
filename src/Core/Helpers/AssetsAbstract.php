@@ -42,8 +42,7 @@ abstract class AssetsAbstract implements AssetsInterface
     /**
      * Asset constructor set asset ID
      *
-     * @param string $id   
-     * @return void         
+     * @param string $id  
      */
     public function __construct(string $id)
     {

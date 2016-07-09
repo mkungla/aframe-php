@@ -28,10 +28,12 @@ use \AframeVR\Interfaces\EntityInterface;
 
 class Video extends Entity implements EntityInterface
 {
+
     /**
      * Init <a-video>
      *
-     * The video primitive displays a video on a flat plane as a texture. It is an entity that prescribes the geometry with its geometric primitive set to plane.
+     * The video primitive displays a video on a flat plane as a texture. It is an entity that prescribes the geometry
+     * with its geometric primitive set to plane.
      *
      * @return void
      */
@@ -51,22 +53,22 @@ class Video extends Entity implements EntityInterface
     /**
      * geometry.height
      *
-     * @param float $height
-     * @return self
+     * @param float $height            
+     * @return Video
      */
-    public function height(float $height = 1.75): self
+    public function height(float $height = 1.75)
     {
         $this->component('Geometry')->height($height);
         return $this;
     }
-    
+
     /**
      * geometry.width
      *
-     * @param float $width
-     * @return self
+     * @param float $width            
+     * @return Video
      */
-    public function width(float $width = 3): self
+    public function width(float $width = 3)
     {
         $this->component('Geometry')->width($width);
         return $this;

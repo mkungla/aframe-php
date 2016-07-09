@@ -55,7 +55,7 @@ class Circle extends Entity implements EntityInterface
     /**
      * geometry.segments
      *
-     * @param int $segments            
+     * @param float $segments            
      * @return \AframeVR\Extras\Primitives\Circle
      */
     public function segments(float $segments)
@@ -79,7 +79,7 @@ class Circle extends Entity implements EntityInterface
     /**
      * geometry.thetaStart
      *
-     * @param int $theta_start            
+     * @param float $theta_start            
      * @return \AframeVR\Extras\Primitives\Circle
      */
     public function thetaStart(float $theta_start)
