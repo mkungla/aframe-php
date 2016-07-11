@@ -9,7 +9,7 @@ class AnimationTest extends PHPUnit_Framework_TestCase
     
     const ATTRIBUTES = array(
         'attribute',
-        'begin',
+        'delay',
         'direction',
         'dur',
         'easing',

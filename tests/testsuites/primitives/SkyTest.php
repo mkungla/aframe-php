@@ -47,7 +47,7 @@ class SkyTest extends PHPUnit_Framework_TestCase implements PrimitiveTestInterfa
         $this->assertTrue($sky->hasAttribute('geometry'));
     
         $this->assertEquals(
-            'primitive: sphere; radius: 100; segmentsHeight: 20; segmentsWidth: 64;',
+            'primitive: sphere; radius: 5000; segmentsHeight: 20; segmentsWidth: 64;',
             $sky->getAttribute('geometry'));
         libxml_use_internal_errors(false);
     }

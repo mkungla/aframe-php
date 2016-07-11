@@ -25,25 +25,6 @@ namespace AframeVR\Core\Components\Geometry\Methods;
 
 class TorusMethods
 {
-
-    /**
-     * The torus primitive defines a donut shape.
-     */
-    const DEFAULTS = array(
-        /* Radius of the outer edge of the torus. */
-        'radius' => 1,
-        /* Radius of the tube. */
-        'radiusTubular' => 0.2,
-        /* Number of segments along the circumference of the tube ends. 
-         * A higher number means the tube will be more round. */
-        'segmentsRadial' => 36,
-        /* Number of segments along the circumference of the tube face. 
-         * A higher number means the tube will be more round. */
-        'segmentsTubular' => 32,
-        /* Central angle. */
-        'arc' => 360
-    );
-
     /**
      * Radius of the outer edge of the torus.
      *

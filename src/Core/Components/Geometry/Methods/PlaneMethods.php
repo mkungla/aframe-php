@@ -25,19 +25,6 @@ namespace AframeVR\Core\Components\Geometry\Methods;
 
 class PlaneMethods
 {
-
-    /**
-     * The plane primitive defines a flat surface.
-     * Note that because it is flat,
-     * only a single side of the plane will be rendered if side: double is not specified on the material component.
-     */
-    const DEFAULTS = array(
-        /* Width along the X axis. */
-        'width' => 1,
-        /* Height along the Y axis. */
-        'height' => 1
-    );
-
     /**
      * Height along the Y axis.
      *

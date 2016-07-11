@@ -72,12 +72,6 @@ class Standard extends ShaderAbstract implements ShaderInterface
      */
     protected $metalness = 0.5;
     
-    /**
-     * How many times a texture (defined by src) repeats in the X and Y direction.
-     *
-     * @var string $repeat
-     */
-    protected $repeat = '1 1';
     
     /**
      * How rough the material is from 0 to 1.
@@ -115,7 +109,6 @@ class Standard extends ShaderAbstract implements ShaderInterface
         $this->envMap();
         $this->fog(true);
         $this->metalness(0.5);
-        $this->repeat(1, 1);
         $this->roughness(0.5);
         $this->src();
         $this->width(640);
@@ -176,18 +169,6 @@ class Standard extends ShaderAbstract implements ShaderInterface
     public function metalness($metalness)
     {
         $this->metalness = $metalness;
-        return $this;
-    }
-
-    /**
-     * repeat
-     *
-     * @param float $x            
-     * @param float $y            
-     */
-    public function repeat(float $x, float $y)
-    {
-        $this->repeat = sprintf('%d %d', $x, $y);
         return $this;
     }
 

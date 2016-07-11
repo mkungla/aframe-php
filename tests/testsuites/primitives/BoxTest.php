@@ -35,7 +35,6 @@ class BoxTest extends PHPUnit_Framework_TestCase implements PrimitiveTestInterfa
             ->opacity(.4)
             ->roughness(.4)
             ->src('#some-src')
-            ->translate(0, 1, 0)
             ->transparent(true)
             ->depth(2)
             ->height(2)
@@ -63,7 +62,7 @@ class BoxTest extends PHPUnit_Framework_TestCase implements PrimitiveTestInterfa
         $this->assertTrue($box->hasAttribute('material'));
         
         $this->assertEquals(
-            'primitive: box; translate: 0 1 0; depth: 2; height: 2; width: 2; segmentsHeight: 1; segmentsWidth: 1; segmentsDepth: 1;', 
+            'primitive: box; depth: 2; height: 2; width: 2; segmentsHeight: 1; segmentsWidth: 1; segmentsDepth: 1;', 
             $box->getAttribute('geometry'));
         $this->assertEquals(
             'shader: standard; opacity: 0.4; transparent: true; color: rgb(239,45,94); metalness: 0.6; roughness: 0.4; src: #some-src;', 

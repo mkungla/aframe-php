@@ -27,18 +27,6 @@ class BoxMethods
 {
 
     /**
-     * The box primitive defines boxes (i.e., any quadilateral, not just cubes).
-     */
-    const DEFAULTS = array(
-        /* Width (in meters) of the sides on the X axis. */
-        'width' => 1,
-        /* Height (in meters) of the sides on the Y axis. */
-        'height' => 1,
-        /* Depth (in meters) of the sides on the Z axis. */
-        'depth' => 1
-    );
-
-    /**
      * Depth (in meters) of the sides on the Z axis.
      *
      * @param array $dom_attributes            
@@ -73,34 +61,34 @@ class BoxMethods
     {
         $dom_attributes['width'] = $width;
     }
-    
+
     /**
      * segmentsHeight
-     * 
-     * @param array $dom_attributes
-     * @param int $int
+     *
+     * @param array $dom_attributes            
+     * @param int $int            
      */
     public function segmentsHeight(array &$dom_attributes, int $int)
     {
         $dom_attributes['segmentsHeight'] = $int;
     }
-    
+
     /**
      * segmentsWidth
-     * 
-     * @param array $dom_attributes
-     * @param int $int
+     *
+     * @param array $dom_attributes            
+     * @param int $int            
      */
     public function segmentsWidth(array &$dom_attributes, int $int)
     {
         $dom_attributes['segmentsWidth'] = $int;
     }
-    
+
     /**
      * segmentsDepth
-     * 
-     * @param array $dom_attributes
-     * @param int $int
+     *
+     * @param array $dom_attributes            
+     * @param int $int            
      */
     public function segmentsDepth(array &$dom_attributes, int $int)
     {

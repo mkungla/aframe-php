@@ -51,7 +51,7 @@ class CylinderTest extends PHPUnit_Framework_TestCase implements PrimitiveTestIn
             ->repeat(0, 0)
             ->roughness(0.5)
             ->side('double')
-            ->src('$src-selector')
+            ->src('#src-selector')
             ->transparent(true);
         $this->curvedimage = $this->aframe->scene()
             ->cylinder('new-cylinder');
@@ -77,7 +77,7 @@ class CylinderTest extends PHPUnit_Framework_TestCase implements PrimitiveTestIn
             'primitive: cylinder; height: 1; radius: 1; segmentsRadial: 36; segmentsHeight: 18; thetaLength: 90; openEnded: true; thetaStart: 135;', 
             $cylinder->getAttribute('geometry'));
         $this->assertEquals(
-            'shader: standard; opacity: 1; side: double; transparent: true; color: #000; repeat: 0 0; src: $src-selector;', 
+            'shader: standard; opacity: 1; repeat: 0 0; roughness: 0.5; side: double; transparent: true; color: #000; src: #src-selector;', 
             $cylinder->getAttribute('material'));
         libxml_use_internal_errors(false);
     }

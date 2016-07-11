@@ -11,6 +11,7 @@ $aframe->scene()->asset()->item('engine')
 
 $aframe->scene()->asset()->mixin('image')
     ->geometry()
+        ->primitive('plane')
         ->height(2)
         ->width(2);
 
@@ -34,11 +35,12 @@ $aframe->scene()->asset()->img('text3')->src('img/text3.png');
 $aframe->scene()->asset()->img('text4')->src('img/text4.png');
 
 $aframe->scene()->camera()
+    ->active(true)
     ->position(1.75, 0, 1.2)
     ->rotation(0, 28, 0)
     ->near(0.1);
 
-$aframe->scene()->colladaModel()
+$aframe->scene()->colladamodel()
     ->src('#engine')
     ->position(0, 0, -3)
     ->rotation(90, 0, 0)
@@ -46,13 +48,13 @@ $aframe->scene()->colladaModel()
 
 /* Wall lights */
 $aframe->scene()->entity('wall-lights')->position(-7.25, 1.5, 2.9)->rotation(0, 90, 0)->scale(1.25, 1.25, 1.25);
-$begin = 300;
+$delay = 300;
 for($x = 0; $x <= 13; $x++) {
     $aframe->scene()->entity('wall-lights')->child()->entity($x)
         ->position($x, 0, 0)->scale(0.05, 0.05, 0.05);
     $aframe->scene()->entity('wall-lights')->child()->entity($x)->child()->plane(1)
         ->width(1)->height(4)->shader('flat')->color('#B4E2F8')
-        ->animation()->attribute('visible')->from('false')->to('true')->begin($begin+=50)->dur(1)->fill('both');
+        ->animation()->attribute('visible')->from('false')->to('true')->delay($delay+=50)->dur(1)->fill('both');
     $aframe->scene()->entity('wall-lights')->child()->entity($x)->child()->plane(2)
         ->position(0, 0, -.01)->width(6)->height(4)->opacity(0.6)->color('#586266');
 }
@@ -61,101 +63,101 @@ for($x = 0; $x <= 13; $x++) {
 $aframe->scene()->entity('schematic-2')->position(0, 0, -6)->scale(0.7, 0.7, 0.7);
 $aframe->scene()->entity('schematic-2')->child()->image(1)
     ->mixin('image')->src('#glow1')->position(0, 0, -2)->scale(5, 5, 5)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(1500)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(1500)->dur(1)->fill('both');
 $aframe->scene()->entity('schematic-2')->child()->image(2)
     ->mixin('image')->src('#ring2')->position(0, 0, -1.2)->scale(1.75, 1.75, 1.75)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(1400)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(1400)->dur(1)->fill('both');
 $aframe->scene()->entity('schematic-2')->child()->image(3)
     ->mixin('image')->src('#ring5')->position(0, -1.5, -2.1)->scale(1.2, 1.2, 1.2)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(1550)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(1550)->dur(1)->fill('both');
 $aframe->scene()->entity('schematic-2')->child()->image(4)
     ->mixin('image')->src('#schematic5')->position(2.5, 0, -1.02)->scale(2, 2, 2)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(1500)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(1500)->dur(1)->fill('both');
 $aframe->scene()->entity('schematic-2')->child()->image(5)
     ->mixin('image')->src('#schematic4')->position(0, -3, -1.01)->scale(1.5, 1.5, 1.5)->rotation(0, 0, 90)->opacity(0.75)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(1500)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(1500)->dur(1)->fill('both');
 $aframe->scene()->entity('schematic-2')->child()->image(6)
     ->mixin('image')->src('#schematic3')->position(0, 2.7, -1)->scale(1, 1, 1)->opacity(0.75)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(1450)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(1450)->dur(1)->fill('both');
 $aframe->scene()->entity('schematic-2')->child()->image(7)
     ->mixin('image')->src('#schematic1')->scale(2, 2, 2)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(1400)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(1400)->dur(1)->fill('both');
 $aframe->scene()->entity('schematic-2')->child()->image(8)
     ->mixin('image')->src('#text2')->position(-1, 3, .02)->scale(.5, .5, .5)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(1350)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(1350)->dur(1)->fill('both');
 $aframe->scene()->entity('schematic-2')->child()->image(9)
     ->mixin('image')->src('#text4')->position(-2, -2, .03)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(1300)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(1300)->dur(1)->fill('both');
 
 /* schematic-1 */
 $aframe->scene()->entity('schematic-1')->position(0, 0, -3);
 $aframe->scene()->entity('schematic-1')->child()->image(1)
     ->mixin('image')->src('#schematic2')->scale(0.7, 0.7, 0.7)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(1200)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(1200)->dur(1)->fill('both');
 $aframe->scene()->entity('schematic-1')->child()->image(2)
     ->mixin('image')->src('#text1')->scale(0.2, 0.2, 0.2)->position(2, 0, .02)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(1200)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(1200)->dur(1)->fill('both');
 $aframe->scene()->entity('schematic-1')->child()->image(3)
     ->mixin('image')->src('#text3')->scale(0.4, 0.4, 0.4)->position(-1, 1, .01)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(1200)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(1200)->dur(1)->fill('both');
 
 /* rings-group-3 */
 $aframe->scene()->entity('rings-group-3')->position(0, 0, -2)->scale(0.5, 0.5, 0.5);
 $aframe->scene()->entity('rings-group-3')->child()->image(1)
     ->mixin('image')->src('#ring3')->scale(.8, .8, .8)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(1000)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(1000)->dur(1)->fill('both');
 $aframe->scene()->entity('rings-group-3')->child()->image(2)
     ->mixin('image')->src('#ring5')->scale(.9, .9, .9)->position(0, 0, .01)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(1100)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(1100)->dur(1)->fill('both');
 $aframe->scene()->entity('rings-group-3')->child()->image(3)
     ->mixin('image')->src('#ring3')->position(0, 0, .02)
-    ->animation(1)->attribute('visible')->from('false')->to('true')->begin(1100)->dur(1)->fill('both');
+    ->animation(1)->attribute('visible')->from('false')->to('true')->delay(1100)->dur(1)->fill('both');
     $aframe->scene()->entity('rings-group-3')->child()->image(3)
-    ->animation(2)->attribute('scale')->from('1 1 1')->to('1.2 1.2 1.2')->begin(1100)->dur(250)->fill('both')->easing('ease-out');
+    ->animation(2)->attribute('scale')->from('1 1 1')->to('1.2 1.2 1.2')->delay(1100)->dur(250)->fill('both')->easing('ease-out');
     
 /* rings-group-2 */
 $aframe->scene()->entity('rings-group-2')->position(0, 0, -1)->scale(0.5, 0.5, 0.5);
 $aframe->scene()->entity('rings-group-2')->child()->image(1)
     ->mixin('image')->src('#ring2')->scale(1.2, 1.2, 1.2)->position(0, 0, .01)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(800)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(800)->dur(1)->fill('both');
 $aframe->scene()->entity('rings-group-2')->child()->image(2)
     ->mixin('image')->src('#text1')->scale(0.3, 0.3, 0.3)->position(0, 0, .02)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(900)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(900)->dur(1)->fill('both');
 
 /* rings-group-1 */
 $aframe->scene()->entity('rings-group-1')->scale(0.6, 0.6, 0.6);  
 $aframe->scene()->entity('rings-group-1')->child()->image(1)
     ->mixin('image')->src('#ring5')->scale(1.2, 1.2, 1.2)->position(0, 0, 0)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(600)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(600)->dur(1)->fill('both');
 $aframe->scene()->entity('rings-group-1')->child()->image(2)
     ->mixin('image')->src('#ring4')->scale(1.2, 1.2, 1.2)->position(0, 0, .01)
-    ->animation()->attribute('visible')->from('false')->to('true')->begin(600)->dur(1)->fill('both');
+    ->animation()->attribute('visible')->from('false')->to('true')->delay(600)->dur(1)->fill('both');
 $aframe->scene()->entity('rings-group-1')->child()->image(3)
     ->mixin('image')->src('#ring3')->position(0, 0, .02)
-    ->animation(1)->attribute('visible')->from('false')->to('true')->begin(700)->dur(1)->fill('both');
+    ->animation(1)->attribute('visible')->from('false')->to('true')->delay(700)->dur(1)->fill('both');
     $aframe->scene()->entity('rings-group-1')->child()->image(3)
-    ->animation(2)->attribute('scale')->from('1 1 1')->to('1.25 1.25 1.25')->begin(700)->dur(250)->fill('both')->easing('ease-out');
+    ->animation(2)->attribute('scale')->from('1 1 1')->to('1.25 1.25 1.25')->delay(700)->dur(250)->fill('both')->easing('ease-out');
 
 /* Lights */
-$aframe->scene()->light(1)
+$aframe->scene()->light()
     ->type('point')
     ->color('#94c6ff')
     ->distance(15)
     ->position(0, 0, -12);
-$aframe->scene()->light(2)
+$aframe->scene()->light()
     ->type('point')
     ->color('#94c6ff')
     ->distance(17)
     ->position(0, 0, -6);
-$aframe->scene()->light(3)
+$aframe->scene()->light()
     ->type('ambient')
     ->color('#4f6487');
 
 /* Sounds */
-$aframe->scene()->entity(1)->sound()
+$aframe->scene()->entity()->sound()
     ->autoplay(true)
     ->src('audio/321103__nsstudios__blip1.wav');
-$aframe->scene()->entity(2)->sound()
+$aframe->scene()->entity()->sound()
     ->autoplay(true)
     ->src('audio/321104__nsstudios__blip2.wav');    
 /* Render scene */

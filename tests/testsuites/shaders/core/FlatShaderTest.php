@@ -25,9 +25,6 @@ class FlatShaderTest extends PHPUnit_Framework_TestCase
             ->height(1080);
         $this->entity->material()
             ->shader('flat')
-            ->repeat(2, 2);
-        $this->entity->material()
-            ->shader('flat')
             ->src('video-url');
         $this->entity->material()
             ->shader('flat')
@@ -39,7 +36,6 @@ class FlatShaderTest extends PHPUnit_Framework_TestCase
         $this->assertAttributeEquals('#000','color',$shader);
         $this->assertAttributeEquals('false','fog',$shader);
         $this->assertAttributeEquals(1080,'height',$shader);
-        $this->assertAttributeEquals('2 2','repeat',$shader);
         $this->assertAttributeEquals('video-url','src',$shader);
         $this->assertAttributeEquals(1920,'width',$shader);
         

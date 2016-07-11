@@ -68,8 +68,10 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
      */
     public function __call(string $method, $args)
     {
-        /* Well then this call should be passed to shader, but lets make sure
-         * that shader is loaded and let shader either to throw any throwable */
+        /*
+         * Well then this call should be passed to shader, but lets make sure
+         * that shader is loaded and let shader either to throw any throwable
+         */
         $this->shader();
         if (method_exists($this->shaderObj, $method)) {
             call_user_func_array(
@@ -106,6 +108,18 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
         } else {
             throw new BadShaderCallException($shader);
         }
+        return $this;
+    }
+
+    /**
+     * repeat
+     *
+     * @param float $x            
+     * @param float $y            
+     */
+    public function repeat(float $x, float $y)
+    {
+        $this->dom_attributes['repeat'] = sprintf('%d %d', $x, $y);
         return $this;
     }
 
@@ -174,6 +188,18 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
     public function fog(bool $fog = true): MaterialCMPTIF
     {
         $this->dom_attributes['fog'] = $fog ? 'true' : 'false';
+        return $this;
+    }
+
+    /**
+     * roughness
+     *
+     * @param bool $roughness            
+     * @return MaterialCMPTIF
+     */
+    public function roughness(float $roughness): MaterialCMPTIF
+    {
+        $this->dom_attributes['roughness'] = $roughness;
         return $this;
     }
 

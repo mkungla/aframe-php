@@ -52,7 +52,6 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
         $this->component->width(2);
         $this->component->height(2);
         $this->component->depth(2);
-        $this->component->translate(1, 2, 3);
         $this->component->buffer(false);
         $this->component->skipCache(true);
         
@@ -60,7 +59,6 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('width', $attrs);
         $this->assertArrayHasKey('height', $attrs);
         $this->assertArrayHasKey('depth', $attrs);
-        $this->assertArrayHasKey('translate', $attrs);
         $this->assertArrayHasKey('buffer', $attrs);
         $this->assertArrayHasKey('skipCache', $attrs);
     }

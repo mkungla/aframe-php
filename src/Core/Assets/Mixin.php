@@ -146,20 +146,6 @@ final class Mixin extends AssetsAbstract implements MixinInterface
     }
     
     /**
-     * geometry.translate
-     *
-     * @param int|float $x
-     * @param int|float $y
-     * @param int|float $z
-     * @return Mixin
-     */
-    public function translate(float $x = 0, float $y = 0, float $z = 0)
-    {
-        $this->component('Geometry')->translate($x, $y, $z);
-        return $this;
-    }
-    
-    /**
      * material.shader
      *
      * @param string $shader

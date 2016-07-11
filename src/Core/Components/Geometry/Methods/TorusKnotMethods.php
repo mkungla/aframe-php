@@ -25,29 +25,6 @@ namespace AframeVR\Core\Components\Geometry\Methods;
 
 class TorusKnotMethods
 {
-
-    /**
-     * The torus knot primitive defines a pretzel shape, 
-     * the particular shape of which is defined by a pair of coprime integers, p and q.
-     * If p and q are not coprime the result will be a torus link.
-     */
-    const DEFAULTS = array(
-        /* Radius that contains the torus knot. */
-        'radius' => 1,
-        /* Radius of the tubes of the torus knot. */
-        'radiusTubular' => 0.2,
-        /* Number of segments along the circumference of the tube ends. 
-         * A higher number means the tube will be more round. */
-        'segmentsRadial' => 36,
-        /* Number of segments along the circumference of the tube face. 
-         * A higher number means the tube will be more round. */
-        'segmentsTubular' => 32,
-        /* Number that helps define the pretzel shape. */
-        'p' => 2,
-        /* Number that helps define the pretzel shape. */
-        'q' => 3
-    );
-
     /**
      * Radius that contains the torus knot.
      *

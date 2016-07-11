@@ -83,7 +83,6 @@ class AssetsTest extends PHPUnit_Framework_TestCase
             ->color('#000')
             ->metalness()
             ->roughness()
-            ->translate()
             ->opacity()
             ->transparent()
             ->shader()

@@ -42,6 +42,8 @@ class Camera extends Entity implements EntityInterface
         parent::reset();
         $this->child()->entity()->component('Camera');
         $this->active(false);
+        $this->lookControls(true);
+        $this->wasdControls(true);
     }
 
     /**
@@ -125,7 +127,7 @@ class Camera extends Entity implements EntityInterface
      * @param bool $wasd_controls            
      * @return \AframeVR\Extras\Primitives\Camera
      */
-    public function wasdControls(bool $wasd_controls = true)
+    public function wasdControls(bool $wasd_controls)
     {
         $this->child()
             ->entity()

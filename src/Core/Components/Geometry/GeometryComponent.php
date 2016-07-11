@@ -69,22 +69,6 @@ class GeometryComponent extends ComponentAbstract implements GeometryCMPTIF
     }
 
     /**
-     * translate
-     *
-     * {@inheritdoc}
-     *
-     * @param int $x            
-     * @param int $y            
-     * @param int $z            
-     * @return GeometryCMPTIF
-     */
-    public function translate(int $x = 0, int $y = 0, int $z = 0): GeometryCMPTIF
-    {
-        $this->dom_attributes['translate'] = sprintf('%d %d %d', $x, $y, $z);
-        return $this;
-    }
-
-    /**
      * Set Buffer
      *
      * {@inheritdoc}

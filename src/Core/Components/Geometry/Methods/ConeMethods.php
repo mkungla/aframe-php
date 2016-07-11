@@ -25,29 +25,6 @@ namespace AframeVR\Core\Components\Geometry\Methods;
 
 class ConeMethods
 {
-
-    /**
-     * The cone primitive under the hood is a cylinder primitive with varying top and bottom radiuses.
-     */
-    const DEFAULTS = array(
-        /* Height of the cone. */
-        'height' => 2,
-        /* Whether the ends of the cone are open (true) or capped ('false'). */
-        'openEnded' => 'false',
-        /* Radius of the bottom end of the cone. */
-        'radiusBottom' => 1,
-        /* Radius of the top end of the cone. */
-        'radiusTop' => 1,
-        /* Number of segmented faces around the circumference of the cone. */
-        'segmentsRadial' => 36,
-        /* Number of rows of faces along the height of the cone. */
-        'segmentsHeight' => 18,
-        /* Starting angle in degrees. */
-        'thetaStart' => 0,
-        /* Central angle in degrees. */
-        'thetaLength' => 360
-    );
-
     /**
      * Height of the cone.
      *

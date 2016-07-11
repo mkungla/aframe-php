@@ -45,7 +45,7 @@ interface AnimationInterface
      * @param string $ms            
      * @return AnimationInterface
      */
-    public function begin($ms = '0'): AnimationInterface;
+    public function delay($ms = '0'): AnimationInterface;
 
     /**
      * Direction of the animation

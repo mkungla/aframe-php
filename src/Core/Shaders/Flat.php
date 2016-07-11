@@ -57,13 +57,6 @@ class Flat extends ShaderAbstract implements ShaderInterface
     protected $height = 360;
     
     /**
-     * How many times a texture (defined by src) repeats in the X and Y direction.
-     *
-     * @var string $repeat
-     */
-    protected $repeat = '1 1';
-    
-    /**
      * Image or video texture map.
      * Can either be a selector to an <img> or <video>, or an inline URL.
      *
@@ -88,7 +81,6 @@ class Flat extends ShaderAbstract implements ShaderInterface
         $this->color('#fff');
         $this->fog(true);
         $this->height(360);
-        $this->repeat(1, 1);
         $this->src();
         $this->width(640);
     }
@@ -123,18 +115,6 @@ class Flat extends ShaderAbstract implements ShaderInterface
     public function height(int $height)
     {
         $this->height = $height;
-        return $this;
-    }
-
-    /**
-     * Repeat
-     *
-     * @param float $x            
-     * @param float $y            
-     */
-    public function repeat(float $x, float $y)
-    {
-        $this->repeat = sprintf('%d %d', $x, $y);
         return $this;
     }
 

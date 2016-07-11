@@ -25,32 +25,6 @@ namespace AframeVR\Core\Components\Geometry\Methods;
 
 class SphereMethods
 {
-
-    /**
-     * The sphere primitive can define spheres in the traditional sense like a basketball.
-     *
-     * But it can also define various polyhedrons and abstract shapes given that it can specify
-     * the number of horizontal and vertical angles and faces.
-     *
-     * Sticking with a basic sphere, the default number of segments is high enough to make the sphere appear round.
-     */
-    const DEFAULTS = array(
-        /* Radius of the sphere. */
-        'radius' => 1,
-        /* Number of horizontal segments. */
-        'segmentsWidth' => 18,
-        /* Number of vertical segments. */
-        'segmentsHeight' => 36,
-        /* Horizontal starting angle. */
-        'phiStart' => 0,
-        /* Horizontal sweep angle size. */
-        'phiLength' => 360,
-        /* Vertical starting angle. */
-        'thetaStart' => 0,
-        /* Vertical sweep angle size. */
-        'thetaLength' => 360
-    );
-
     /**
      * Radius of the sphere.
      *

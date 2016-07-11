@@ -25,27 +25,6 @@ namespace AframeVR\Core\Components\Geometry\Methods;
 
 class RingMethods
 {
-
-    /**
-     * The ring geometry defines a flat ring, like a CD.
-     * Note that because it is flat,
-     * only a single side of the ring will be rendered if side: double is not specified on the material component.
-     */
-    const DEFAULTS = array(
-        /* Radius of the inner hole of the ring. */
-        'radiusInner' => 1,
-        /* Radius of the outer edge of the ring. */
-        'radiusOuter' => 1,
-        /* Number of segments. A higher number means the ring will be more round */
-        'segmentsTheta' => 32,
-        /* Number of triangles within each face defined by segmentsTheta. */
-        'segmentsPhi' => 8,
-        /* Starting angle in degrees. */
-        'thetaStart' => 0,
-        /* Central angle in degrees. */
-        'thetaLength' => 360
-    );
-
     /**
      * Radius of the inner hole of the ring.
      *

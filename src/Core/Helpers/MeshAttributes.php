@@ -51,7 +51,7 @@ trait MeshAttributes
      * @param string $color            
      * @return EntityInterface
      */
-    public function color(string $color = 'gray'): EntityInterface
+    public function color(string $color): EntityInterface
     {
         $this->component('Material')
             ->shader()
@@ -65,7 +65,7 @@ trait MeshAttributes
      * @param int|float $metalness            
      * @return EntityInterface
      */
-    public function metalness(float $metalness = 0): EntityInterface
+    public function metalness(float $metalness): EntityInterface
     {
         $this->component('Material')
             ->shader()
@@ -74,12 +74,38 @@ trait MeshAttributes
     }
 
     /**
+     * material.opacity
+     *
+     * @param float $opacity
+     * @return EntityInterface
+     */
+    public function opacity(float $opacity): EntityInterface
+    {
+        $this->component('Material')->opacity($opacity);
+        return $this;
+    }
+    
+    /**
+     * material.repeat
+     * 
+     * @param float $x
+     * @param float $y
+     * 
+     * @return EntityInterface
+     */
+    public function repeat(float $x, float $y): EntityInterface
+    {
+        $this->component('Material')->repeat($x, $y);
+        return $this;
+    }
+    
+    /**
      * material.roughness
      *
      * @param float $roughness            
      * @return EntityInterface
      */
-    public function roughness(float $roughness = 0.5): EntityInterface
+    public function roughness(float $roughness): EntityInterface
     {
         $this->component('Material')
             ->shader()
@@ -87,6 +113,19 @@ trait MeshAttributes
         return $this;
     }
 
+    /**
+     * material.shader
+     *
+     * @param string $shader
+     * @return EntityInterface
+     */
+    public function shader($shader): EntityInterface
+    {
+        $this->component('Material')->shader($shader);
+        return $this;
+    }
+    
+    
     /**
      * material.src
      *
@@ -98,44 +137,6 @@ trait MeshAttributes
         $this->component('Material')
             ->shader()
             ->src($src);
-        return $this;
-    }
-
-    /**
-     * geometry.translate
-     *
-     * @param int|float $x            
-     * @param int|float $y            
-     * @param int|float $z            
-     * @return EntityInterface
-     */
-    public function translate(float $x = 0, float $y = 0, float $z = 0): EntityInterface
-    {
-        $this->component('Geometry')->translate($x, $y, $z);
-        return $this;
-    }
-
-    /**
-     * material.shader
-     *
-     * @param string $shader            
-     * @return EntityInterface
-     */
-    public function shader($shader = 'standard'): EntityInterface
-    {
-        $this->component('Material')->shader($shader);
-        return $this;
-    }
-
-    /**
-     * material.opacity
-     *
-     * @param float $opacity            
-     * @return EntityInterface
-     */
-    public function opacity(float $opacity = 1.0): EntityInterface
-    {
-        $this->component('Material')->opacity($opacity);
         return $this;
     }
 

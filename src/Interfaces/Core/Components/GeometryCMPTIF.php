@@ -67,20 +67,6 @@ interface GeometryCMPTIF extends ComponentInterface
     public function primitive(string $primitive): GeometryCMPTIF;
 
     /**
-     * translate
-     *
-     * Translates the geometry relative to its pivot point.
-     * The translate property translates the geometry. It is provided as a vec3. This is a useful short-hand for
-     * translating the geometry to effectively move its pivot point when running animations.
-     *
-     * @param int $x            
-     * @param int $y           
-     * @param int $z            
-     * @return GeometryCMPTIF
-     */
-    public function translate(int $x = 0, int $y = 0, int $z = 0): GeometryCMPTIF;
-
-    /**
      * Set Buffer
      *
      * Transform geometry into a BufferGeometry to reduce memory usage at the cost of being harder to manipulate.

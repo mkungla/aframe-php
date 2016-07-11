@@ -27,24 +27,6 @@ class CircleMethods
 {
 
     /**
-     * The circle primitive defines two-dimensional circles,
-     * which can be complete circles or partial circles (like Pac-Man).
-     * Note that because it is flat, only a single side of the circle will be rendered
-     * if “side: double” is not specified on the material component.
-     */
-    const DEFAULTS = array(
-        /* Radius (in meters) of the circle. */
-        'radius' => 1,
-        /* Number of triangles to construct the circle, like pizza slices. 
-         * A higher number of segments means the circle will be more round. */
-        'segments' => 32,
-        /* Start angle for first segment. Can be used to define a partial circle. */
-        'thetaStart' => 0,
-        /* The central angle (in degrees). Defaults to 360, which makes for a complete circle. */
-        'thetaLength' => 360
-    );
-
-    /**
      * Radius (in meters) of the circle.
      *
      * @param array $dom_attributes            

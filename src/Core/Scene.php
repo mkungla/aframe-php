@@ -51,7 +51,7 @@ final class Scene
     
     /**
      * Assets
-     * 
+     *
      * @var \AframeVR\Core\Assets
      */
     protected $assets;
@@ -69,14 +69,14 @@ final class Scene
      * @var array $entities
      */
     protected $entities = array();
-
+    
     /**
      * Scene components
-     * 
+     *
      * @var array $components
      */
     protected $components = array();
-    
+
     /**
      * Scene constructor
      *
@@ -85,7 +85,7 @@ final class Scene
      */
     public function __construct(string $keyword, Config $config)
     {
-        $this->keyword      = $keyword;
+        $this->keyword = $keyword;
         $this->aframeDomObj = new AframeDOMDocument($config);
         /* Initialize assests manager */
         $this->asset();
@@ -203,14 +203,14 @@ final class Scene
     /**
      * Load component for this entity
      *
-     * @param string $component_name
+     * @param string $component_name            
      * @throws \AframeVR\Core\Exceptions\BadComponentCallException
      * @return object|null
      */
     public function component(string $component_name)
     {
         if (! array_key_exists($component_name, $this->components)) {
-            $component = sprintf('\AframeVR\Core\Components\ascene\%s\%sComponent', ucfirst($component_name),
+            $component = sprintf('\AframeVR\Core\Components\ascene\%s\%sComponent', ucfirst($component_name), 
                 ucfirst($component_name));
             if (class_exists($component)) {
                 $this->components[$component_name] = new $component();
@@ -218,31 +218,31 @@ final class Scene
                 throw new BadComponentCallException($component_name);
             }
         }
-    
+        
         return $this->components[$component_name] ?? null;
     }
-    
 
     /**
      * Call
      *
-     * @param string $method
-     * @param array $args
+     * @param string $method            
+     * @param array $args            
      * @throws BadShaderCallException
      * @return Entity|\AframeVR\Interfaces\ComponentInterface
      */
     public function __call(string $method, array $args)
     {
-        $id        = $args[0] ?? 'untitled';
-        $primitive = sprintf('\AframeVR\Extras\Primitives\%s',  ucfirst($method));
-    
+        $id = $args[0] ?? 0;
+        $primitive = sprintf('\AframeVR\Extras\Primitives\%s', ucfirst($method));
+        
         if (class_exists($primitive)) {
-            return $this->childrens[$id] ?? $this->childrens[$id] = new $primitive($id);
+            return $this->childrens[$id] ?? (is_int($id) ? $this->childrens[array_push($this->childrens, 
+                new $primitive($id)) - 1] : $this->childrens[$id] = new $primitive($id));
         } else {
             return $this->callComponent($method, $args);
         }
     }
-    
+
     /**
      * Handle entity components
      *
@@ -250,8 +250,8 @@ final class Scene
      * custom components loaded as $this->methosd aswell therefore
      * we have these placeholder magic methods here
      *
-     * @param string $component_name
-     * @param array $args
+     * @param string $component_name            
+     * @param array $args            
      */
     public function callComponent(string $component_name, array $args)
     {
@@ -261,10 +261,10 @@ final class Scene
                     return $this->component($component_name);
                 }, $this, get_class());
         }
-    
+        
         return call_user_func($this->{$component_name}, $args);
     }
-    
+
     /**
      * Add everyting to DOM
      *
@@ -275,7 +275,7 @@ final class Scene
         if ($this->prepared)
             return;
             
-        /* Append all assets */
+            /* Append all assets */
         $assets = $this->assets->getAssets();
         (! $assets) ?: $this->aframeDomObj->appendAssets($assets);
         /* Append all primitives */
