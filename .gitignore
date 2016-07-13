@@ -2,6 +2,8 @@
 .buildpath
 composer.phar
 composer.lock
+/public/aframe/aframe.js
+/public/aframe/aframe.js.map
 /public/devel/*
 
 /tests/results/log/*
