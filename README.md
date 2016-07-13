@@ -24,7 +24,7 @@
 [php-image]: https://img.shields.io/badge/php-%3E%3D%207.0-8892BF.svg?style=flat-square
 [php-url]: https://php.net/
 <!-- A-Frame -->
-[aframe-image]: https://img.shields.io/badge/a--frame-0.0.2-FC3164.svg?style=flat-square
+[aframe-image]: https://img.shields.io/badge/a--frame-0.2.0-FC3164.svg?style=flat-square
 [aframe-url]: https://aframe.io/
 <!-- License -->
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
