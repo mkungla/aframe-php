@@ -103,10 +103,10 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
             return $this->shaderObj;
         
         $shader = sprintf('\AframeVR\Core\Shaders\%s', ucfirst($this->dom_attributes['shader']));
-        if (class_exists($shader_name)) {
-            $this->shaderObj = new $shader_name();
+        if (class_exists($shader)) {
+            $this->shaderObj = new $shader();
         } else {
-            throw new BadShaderCallException($shader_name);
+            throw new BadShaderCallException($shader);
         }
         return $this;
     }
