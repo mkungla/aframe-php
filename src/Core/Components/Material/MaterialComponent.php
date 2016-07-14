@@ -95,18 +95,18 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
      * @throws BadShaderCallException
      * @return ShaderInterface|MaterialComponent
      */
-    public function shader(string $shader = null)
+    public function shader(string $shader_name = null)
     {
-        $this->dom_attributes['shader'] = $this->dom_attributes['shader'] ?? $shader ?? 'standard';
+        $this->dom_attributes['shader'] = $this->dom_attributes['shader'] ?? $shader_name ?? 'standard';
         
         if ($this->shaderObj instanceof ShaderInterface)
             return $this->shaderObj;
         
         $shader = sprintf('\AframeVR\Core\Shaders\%s', ucfirst($this->dom_attributes['shader']));
-        if (class_exists($shader)) {
-            $this->shaderObj = new $shader();
+        if (class_exists($shader_name)) {
+            $this->shaderObj = new $shader_name();
         } else {
-            throw new BadShaderCallException($shader);
+            throw new BadShaderCallException($shader_name);
         }
         return $this;
     }
@@ -194,7 +194,7 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
     /**
      * roughness
      *
-     * @param bool $roughness            
+     * @param float $roughness            
      * @return MaterialCMPTIF
      */
     public function roughness(float $roughness): MaterialCMPTIF

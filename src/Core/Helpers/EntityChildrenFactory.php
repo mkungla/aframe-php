@@ -26,6 +26,28 @@ namespace AframeVR\Core\Helpers;
 use \AframeVR\Core\Entity;
 use \AframeVR\Core\Exceptions\BadPrimitiveCallException;
 
+/**
+ * @method \AframeVR\Core\Entity entity(string $id)
+ * @method \AframeVR\Extras\Primitives\Box box(string $id)
+ * @method \AframeVR\Extras\Primitives\Camera camera(string $id)
+ * @method \AframeVR\Extras\Primitives\Circle circle(string $id)
+ * @method \AframeVR\Extras\Primitives\Colladamodel colladamodel(string $id)
+ * @method \AframeVR\Extras\Primitives\Cone cone(string $id)
+ * @method \AframeVR\Extras\Primitives\Cursor cursor(string $id)
+ * @method \AframeVR\Extras\Primitives\Curvedimage curvedimage(string $id)
+ * @method \AframeVR\Extras\Primitives\Cylinder cylinder(string $id)
+ * @method \AframeVR\Extras\Primitives\Image image(string $id)
+ * @method \AframeVR\Extras\Primitives\Light light(string $id)
+ * @method \AframeVR\Extras\Primitives\Objmodel objmodel(string $id)
+ * @method \AframeVR\Extras\Primitives\Plane plane(string $id)
+ * @method \AframeVR\Extras\Primitives\Ring ring(string $id)
+ * @method \AframeVR\Extras\Primitives\Sky sky(string $id)
+ * @method \AframeVR\Extras\Primitives\Sphere sphere(string $id)
+ * @method \AframeVR\Extras\Primitives\Torus torus(string $id)
+ * @method \AframeVR\Extras\Primitives\Video video(string $id)
+ * @method \AframeVR\Extras\Primitives\Videosphere videosphere(string $id)
+ */
+
 class EntityChildrenFactory
 {
     /**
@@ -42,10 +64,10 @@ class EntityChildrenFactory
      * @param string $id
      * @return AframeVR\Interfaces\EntityInterface
      */
-    public function getEntity(string $a_type, string $id)
+    public function getEntity(string $a_type, string $entity_id)
     {
         $id = $id ?? 0;
-        return $this->childrens[$a_type][$id] ?? $this->addEntity($a_type, $id);
+        return $this->childrens[$a_type][$entity_id] ?? $this->addEntity($a_type, $entity_id);
     }
     
     /**
@@ -64,10 +86,10 @@ class EntityChildrenFactory
      * @param array $args
      * @return AframeVR\Interfaces\EntityInterface
      */
-    public function __call(string $method, array $args)
+    public function __call(string $method, array $entity_id)
     {
-        $id = $args[0] ?? 0;
-        return $this->getEntity($method, $id);
+        $entity_id = $entity_id[0] ?? 0;
+        return $this->getEntity($method, $entity_id);
     }
     
     /**
@@ -81,14 +103,14 @@ class EntityChildrenFactory
      * @throws BadShaderCallException
      * @return AframeVR\Interfaces\EntityInterface
      */
-    protected function addEntity(string $a_type, string $id)
+    protected function addEntity(string $a_type, string $entity_id)
     {
         $primitive = sprintf('\AframeVR\Extras\Primitives\%s', ucfirst($a_type));
         
         if($a_type === 'entity') {
-            return $this->childrens[$a_type][$id] = new Entity($id);
+            return $this->childrens[$a_type][$entity_id] = new Entity($entity_id);
         } elseif (class_exists($primitive)) {
-            return $this->childrens[$a_type][$id] = new $primitive($id);
+            return $this->childrens[$a_type][$entity_id] = new $primitive($entity_id);
         } else {
             throw new BadPrimitiveCallException($a_type);
         }
