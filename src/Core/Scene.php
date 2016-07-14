@@ -29,6 +29,7 @@ use \AframeVR\Core\DOM\AframeDOMDocument;
 use \AframeVR\Core\Assets;
 use \Closure;
 use \AframeVR\Core\Exceptions\BadComponentCallException;
+use \AframeVR\Core\Helpers\EntityChildrenFactory;
 
 final class Scene
 {
@@ -64,19 +65,19 @@ final class Scene
     protected $aframeDomObj;
     
     /**
-     * A-Frame scene entities
-     *
-     * @var array $entities
-     */
-    protected $entities = array();
-    
-    /**
      * Scene components
      *
      * @var array $components
      */
     protected $components = array();
 
+    /**
+     * Children Factory
+     *
+     * @var \AframeVR\Core\Helpers\EntityChildrenFactory
+     */
+    protected $childrenFactory;
+    
     /**
      * Scene constructor
      *
@@ -85,8 +86,9 @@ final class Scene
      */
     public function __construct(string $keyword, Config $config)
     {
-        $this->keyword = $keyword;
-        $this->aframeDomObj = new AframeDOMDocument($config);
+        $this->keyword         = $keyword;
+        $this->aframeDomObj    = new AframeDOMDocument($config);
+        $this->childrenFactory = new EntityChildrenFactory();
         /* Initialize assests manager */
         $this->asset();
     }
@@ -102,20 +104,7 @@ final class Scene
     {
         return $this->aframeDomObj;
     }
-
-    /**
-     * Entity
-     *
-     * @api
-     *
-     * @param string $id            
-     * @return \AframeVR\Core\Entity
-     */
-    public function entity(string $id = 'untitled'): Entity
-    {
-        return $this->entities[$id] ?? $this->entities[$id] = new Entity($id);
-    }
-
+    
     /**
      * Assets
      *
@@ -128,6 +117,16 @@ final class Scene
         return $this->assets ?? $this->assets = new Assets();
     }
 
+    /**
+     * Child entity / primitive
+     *
+     * @return \AframeVR\Core\Helpers\EntityChildrenFactory
+     */
+    public function child(): EntityChildrenFactory
+    {
+        return $this->childrenFactory;
+    }
+    
     /**
      * Render the A-Frame scene and return the HTML
      *
@@ -223,7 +222,11 @@ final class Scene
     }
 
     /**
-     * Call
+     * Map calls to scene entities and components
+     *
+     * Since we might need to customize these to have
+     * custom components loaded as $this->methosd aswell therefore
+     * we have these placeholder magic methods here
      *
      * @param string $method            
      * @param array $args            
@@ -232,37 +235,14 @@ final class Scene
      */
     public function __call(string $method, array $args)
     {
-        $id = $args[0] ?? 0;
+        $id        = $args[0] ?? 0;
         $primitive = sprintf('\AframeVR\Extras\Primitives\%s', ucfirst($method));
         
-        if (class_exists($primitive)) {
-            return $this->childrens[$id] ?? (is_int($id) ? $this->childrens[array_push($this->childrens, 
-                new $primitive($id)) - 1] : $this->childrens[$id] = new $primitive($id));
+        if ($method === 'entity' || class_exists($primitive)) {
+            return $this->child()->getEntity($method, $id);
         } else {
-            return $this->callComponent($method, $args);
+            return $this->component($method);
         }
-    }
-
-    /**
-     * Handle entity components
-     *
-     * Since we might need to customize these to have
-     * custom components loaded as $this->methosd aswell therefore
-     * we have these placeholder magic methods here
-     *
-     * @param string $component_name            
-     * @param array $args            
-     */
-    public function callComponent(string $component_name, array $args)
-    {
-        if (! method_exists($this, $component_name)) {
-            $this->{$component_name} = Closure::bind(
-                function () use ($component_name) {
-                    return $this->component($component_name);
-                }, $this, get_class());
-        }
-        
-        return call_user_func($this->{$component_name}, $args);
     }
 
     /**
@@ -282,7 +262,7 @@ final class Scene
         $this->preparePrimitives();
         
         /* Append all entities */
-        $this->aframeDomObj->appendEntities($this->entities);
+        $this->aframeDomObj->appendEntities($this->childrenFactory->getChildren());
         $this->aframeDomObj->appendSceneComponents($this->components);
         $this->prepared = true;
     }

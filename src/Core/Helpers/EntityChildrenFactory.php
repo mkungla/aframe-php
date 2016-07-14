@@ -26,27 +26,6 @@ namespace AframeVR\Core\Helpers;
 use \AframeVR\Core\Entity;
 use \AframeVR\Core\Exceptions\BadPrimitiveCallException;
 
-/**
- *
- * @method \AframeVR\Extras\Primitives\Box box(string $id = 'untitled')
- * @method \AframeVR\Extras\Primitives\Camera camera(string $id = 'untitled')
- * @method \AframeVR\Extras\Primitives\Circle circle(string $id = 'untitled')
- * @method \AframeVR\Extras\Primitives\Colladamodel colladamodel(string $id = 'untitled')
- * @method \AframeVR\Extras\Primitives\Cone cone(string $id = 'untitled')
- * @method \AframeVR\Extras\Primitives\Cursor cursor(string $id = 'untitled')
- * @method \AframeVR\Extras\Primitives\Curvedimage curvedimage(string $id = 'untitled')
- * @method \AframeVR\Extras\Primitives\Cylinder cylinder(string $id = 'untitled')
- * @method \AframeVR\Extras\Primitives\Image image(string $id = 'untitled')
- * @method \AframeVR\Extras\Primitives\Light light(string $id = 'untitled')
- * @method \AframeVR\Extras\Primitives\Objmodel objmodel(string $id = 'untitled')
- * @method \AframeVR\Extras\Primitives\Plane plane(string $id = 'untitled')
- * @method \AframeVR\Extras\Primitives\Ring ring(string $id = 'untitled')
- * @method \AframeVR\Extras\Primitives\Sky sky(string $id = 'untitled')
- * @method \AframeVR\Extras\Primitives\Sphere sphere(string $id = 'untitled')
- * @method \AframeVR\Extras\Primitives\Torus torus(string $id = 'untitled')
- * @method \AframeVR\Extras\Primitives\Video video(string $id = 'untitled')
- * @method \AframeVR\Extras\Primitives\Videosphere videosphere(string $id = 'untitled')
- */
 class EntityChildrenFactory
 {
     /**
@@ -54,44 +33,79 @@ class EntityChildrenFactory
      *
      * @var array
      */
-    protected $childrens = array();
+    private $childrens = array();
 
     /**
-     * Entity
-     *
-     * @api
-     *
-     * @param string $id            
-     * @return \AframeVR\Core\Entity
+     * Get entity
+     * 
+     * @param string $a_type
+     * @param string $id
+     * @return AframeVR\Interfaces\EntityInterface
      */
-    public function entity(string $id = 'untitled'): Entity
+    public function getEntity(string $a_type, string $id)
     {
-        return $this->childrens[$id] ?? $this->childrens[$id] = new Entity($id);
+        $id = $id ?? 0;
+        return $this->childrens[$a_type][$id] ?? $this->addEntity($a_type, $id);
     }
-
+    
     /**
-     * Call
-     *
-     * @param string $method            
-     * @param array $args            
-     * @throws BadShaderCallException
-     * @return Entity|\AframeVR\Interfaces\ComponentInterface
+     * Get all children for calling parent
+     * @return array
+     */
+    public function getChildren()
+    {
+        return iterator_to_array($this->getChildrenRAW($this->childrens), false);
+    }
+    
+    /**
+     * Get entity
+     * 
+     * @param string $method
+     * @param array $args
+     * @return AframeVR\Interfaces\EntityInterface
      */
     public function __call(string $method, array $args)
     {
-        $id = $args[0] ?? 'untitled';
+        $id = $args[0] ?? 0;
+        return $this->getEntity($method, $id);
+    }
+    
+    /**
+     * Register new entity
+     * 
+     * Generally you should not call this method directly but if you want to extend
+     * EntityChildrenFactory then you can still access it
+     *
+     * @param string $a_type            
+     * @param string $id            
+     * @throws BadShaderCallException
+     * @return AframeVR\Interfaces\EntityInterface
+     */
+    protected function addEntity(string $a_type, string $id)
+    {
+        $primitive = sprintf('\AframeVR\Extras\Primitives\%s', ucfirst($a_type));
         
-        $primitive = sprintf('\AframeVR\Extras\Primitives\%s', ucfirst($method));
-        
-        if (class_exists($primitive)) {
-            return $this->childrens[$id] ?? $this->childrens[$id] = new $primitive($id);
+        if($a_type === 'entity') {
+            return $this->childrens[$a_type][$id] = new Entity($id);
+        } elseif (class_exists($primitive)) {
+            return $this->childrens[$a_type][$id] = new $primitive($id);
         } else {
-            throw new BadPrimitiveCallException($method);
+            throw new BadPrimitiveCallException($a_type);
         }
     }
-
-    public function getChildern()
-    {
-        return $this->childrens;
+    
+    /**
+     * Generate array of children
+     * 
+     * @param array $array
+     */
+    protected function getChildrenRAW(array $array) {
+        foreach ($array as $value) {
+            if (is_array($value)) {
+                yield from $this->getChildrenRAW($value);
+            } else {
+                yield $value;
+            }
+        }
     }
 }

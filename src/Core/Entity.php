@@ -238,14 +238,7 @@ class Entity implements EntityInterface
      */
     public function __call(string $component_name, array $args)
     {
-        if (! method_exists($this, $component_name)) {
-            $this->{$component_name} = Closure::bind(
-                function () use ($component_name) {
-                    return $this->component($component_name);
-                }, $this, get_class());
-        }
-        
-        return call_user_func($this->{$component_name}, $args);
+        return $this->component($component_name);
     }
 
     /**
@@ -303,7 +296,7 @@ class Entity implements EntityInterface
     private function appendChildren(\DOMDocument &$aframe_dom, \DOMElement &$a_entity)
     {
         if ($this->childrenFactory instanceof EntityChildrenFactory) {
-            foreach ($this->childrenFactory->getChildern() as $child) {
+            foreach ($this->childrenFactory->getChildren() as $child) {
                 $this->addFormatComment($aframe_dom, $a_entity, "\n\t");
                 $a_entity->appendChild($child->domElement($aframe_dom));
                 $this->addFormatComment($aframe_dom, $a_entity, '');

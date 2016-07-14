@@ -139,6 +139,7 @@ $aframe->scene()->entity('rings-group-1')->child()->image(3)
     ->animation(2)->attribute('scale')->from('1 1 1')->to('1.25 1.25 1.25')->delay(700)->dur(250)->fill('both')->easing('ease-out');
 
 /* Lights */
+
 $aframe->scene()->light()
     ->type('point')
     ->color('#94c6ff')
