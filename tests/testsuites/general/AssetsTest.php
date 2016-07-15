@@ -87,7 +87,7 @@ class AssetsTest extends PHPUnit_Framework_TestCase
             ->transparent()
             ->shader()
             ->src('#mix-src')
-            ->component('Light')
+            ->attr('Light')
             ->angle(60);
         
         $this->aframe->scene()->save();

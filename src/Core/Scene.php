@@ -90,7 +90,7 @@ final class Scene
         $this->aframeDomObj    = new AframeDOMDocument($config);
         $this->childrenFactory = new EntityChildrenFactory();
         /* Initialize assests manager */
-        $this->asset();
+        $this->asset($config);
     }
 
     /**
@@ -110,11 +110,12 @@ final class Scene
      *
      * @api
      *
+     * @param null|Config $config
      * @return \AframeVR\Core\Assets
      */
-    public function asset(): Assets
+    public function asset(Config $config = null): Assets
     {
-        return $this->assets ?? $this->assets = new Assets();
+        return $this->assets ?? $this->assets = new Assets($config);
     }
 
     /**
@@ -200,14 +201,19 @@ final class Scene
     }
 
     /**
-     * Load component for this entity
+     * Load component for this scene or set it's attr
      *
-     * @param string $component_name            
+     * @param string $component_name
+     * @param null|string $attr_data
      * @throws \AframeVR\Core\Exceptions\BadComponentCallException
      * @return object|null
      */
-    public function component(string $component_name)
+    public function attr(string $component_name, string $attr_data = null)
     {
+        if(!is_null($attr_data)) {
+            $this->attrs[$component_name] = $attr_data;
+            return $this;
+        }
         if (! array_key_exists($component_name, $this->components)) {
             $component = sprintf('\AframeVR\Core\Components\ascene\%s\%sComponent', ucfirst($component_name), 
                 ucfirst($component_name));
@@ -241,7 +247,7 @@ final class Scene
         if ($method === 'entity' || class_exists($primitive)) {
             return $this->child()->getEntity($method, $id);
         } else {
-            return $this->component($method);
+            return $this->attr($method);
         }
     }
 

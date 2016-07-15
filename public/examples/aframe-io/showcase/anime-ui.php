@@ -1,13 +1,13 @@
 <?php
 /* Common bootstrap for examples */
-include dirname(__DIR__,3).DIRECTORY_SEPARATOR.'examples-bootstrap.php';
+include dirname(__DIR__,2).DIRECTORY_SEPARATOR.'examples-bootstrap.php';
 
 /* $aframe->scene(); === Anonymous scene */
 $aframe->scene()->title('Anime UI');
 $aframe->scene()->description('Anime UI — A-Frame');
 
 $aframe->scene()->asset()->item('engine')
-    ->src('models/engine.dae');
+    ->src('models/engine/engine.dae');
 
 $aframe->scene()->asset()->mixin('image')
     ->geometry()
@@ -18,21 +18,21 @@ $aframe->scene()->asset()->mixin('image')
 /* You can set Assets url as relative to scene url */
 $aframe->scene()->asset()->audio('blip1')->src('audio/321103__nsstudios__blip1.wav');
 $aframe->scene()->asset()->audio('blip2')->src('audio/321104__nsstudios__blip2.wav');
-$aframe->scene()->asset()->img('glow1')->src('img/glow1.png');
-$aframe->scene()->asset()->img('ring1')->src('img/ring1.png');
-$aframe->scene()->asset()->img('ring2')->src('img/ring2.png');
-$aframe->scene()->asset()->img('ring3')->src('img/ring3.png');
-$aframe->scene()->asset()->img('ring4')->src('img/ring4.png');
-$aframe->scene()->asset()->img('ring5')->src('img/ring5.png');
-$aframe->scene()->asset()->img('schematic1')->src('img/schematic1.png');
-$aframe->scene()->asset()->img('schematic2')->src('img/schematic2.png');
-$aframe->scene()->asset()->img('schematic3')->src('img/schematic3.png');
-$aframe->scene()->asset()->img('schematic4')->src('img/schematic4.png');
-$aframe->scene()->asset()->img('schematic5')->src('img/schematic5.png');  
-$aframe->scene()->asset()->img('text1')->src('img/text1.png');
-$aframe->scene()->asset()->img('text2')->src('img/text2.png');
-$aframe->scene()->asset()->img('text3')->src('img/text3.png');
-$aframe->scene()->asset()->img('text4')->src('img/text4.png');
+$aframe->scene()->asset()->img('glow1')->src('img/engine/glow1.png');
+$aframe->scene()->asset()->img('ring1')->src('img/engine/ring1.png');
+$aframe->scene()->asset()->img('ring2')->src('img/engine/ring2.png');
+$aframe->scene()->asset()->img('ring3')->src('img/engine/ring3.png');
+$aframe->scene()->asset()->img('ring4')->src('img/engine/ring4.png');
+$aframe->scene()->asset()->img('ring5')->src('img/engine/ring5.png');
+$aframe->scene()->asset()->img('schematic1')->src('img/engine/schematic1.png');
+$aframe->scene()->asset()->img('schematic2')->src('img/engine/schematic2.png');
+$aframe->scene()->asset()->img('schematic3')->src('img/engine/schematic3.png');
+$aframe->scene()->asset()->img('schematic4')->src('img/engine/schematic4.png');
+$aframe->scene()->asset()->img('schematic5')->src('img/engine/schematic5.png');
+$aframe->scene()->asset()->img('text1')->src('img/engine/text1.png');
+$aframe->scene()->asset()->img('text2')->src('img/engine/text2.png');
+$aframe->scene()->asset()->img('text3')->src('img/engine/text3.png');
+$aframe->scene()->asset()->img('text4')->src('img/engine/text4.png');
 
 $aframe->scene()->camera()
     ->active(true)
@@ -114,7 +114,7 @@ $aframe->scene()->entity('rings-group-3')->child()->image(3)
     ->animation(1)->attribute('visible')->from('false')->to('true')->delay(1100)->dur(1)->fill('both');
     $aframe->scene()->entity('rings-group-3')->child()->image(3)
     ->animation(2)->attribute('scale')->from('1 1 1')->to('1.2 1.2 1.2')->delay(1100)->dur(250)->fill('both')->easing('ease-out');
-    
+
 /* rings-group-2 */
 $aframe->scene()->entity('rings-group-2')->position(0, 0, -1)->scale(0.5, 0.5, 0.5);
 $aframe->scene()->entity('rings-group-2')->child()->image(1)
@@ -125,7 +125,7 @@ $aframe->scene()->entity('rings-group-2')->child()->image(2)
     ->animation()->attribute('visible')->from('false')->to('true')->delay(900)->dur(1)->fill('both');
 
 /* rings-group-1 */
-$aframe->scene()->entity('rings-group-1')->scale(0.6, 0.6, 0.6);  
+$aframe->scene()->entity('rings-group-1')->scale(0.6, 0.6, 0.6);
 $aframe->scene()->entity('rings-group-1')->child()->image(1)
     ->mixin('image')->src('#ring5')->scale(1.2, 1.2, 1.2)->position(0, 0, 0)
     ->animation()->attribute('visible')->from('false')->to('true')->delay(600)->dur(1)->fill('both');
@@ -139,7 +139,6 @@ $aframe->scene()->entity('rings-group-1')->child()->image(3)
     ->animation(2)->attribute('scale')->from('1 1 1')->to('1.25 1.25 1.25')->delay(700)->dur(250)->fill('both')->easing('ease-out');
 
 /* Lights */
-
 $aframe->scene()->light()
     ->type('point')
     ->color('#94c6ff')
@@ -157,12 +156,9 @@ $aframe->scene()->light()
 /* Sounds */
 $aframe->scene()->entity()->sound()
     ->autoplay(true)
-    ->src('audio/321103__nsstudios__blip1.wav');
+    ->src('#blip1');
 $aframe->scene()->entity()->sound()
     ->autoplay(true)
-    ->src('audio/321104__nsstudios__blip2.wav');    
+    ->src('#blip2');
 /* Render scene */
 $aframe->scene()->render();
-
-/* DEV: Save output for testsuites */
-save_output_files($aframe, '/aframe-io/showcase/anime-UI');

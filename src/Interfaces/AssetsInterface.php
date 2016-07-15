@@ -25,6 +25,10 @@ namespace AframeVR\Interfaces;
 
 interface AssetsInterface
 {
+    /**
+     * Initialize asset
+     */
+    public function init();
 
     /**
      * Set ID attribute of the asset

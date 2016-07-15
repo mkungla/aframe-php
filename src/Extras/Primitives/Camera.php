@@ -40,7 +40,7 @@ class Camera extends Entity implements EntityInterface
     public function reset()
     {
         parent::reset();
-        $this->child()->entity()->component('Camera');
+        $this->child()->entity()->attr('Camera');
         $this->active(false);
         $this->lookControls(true);
         $this->wasdControls(true);
@@ -56,7 +56,7 @@ class Camera extends Entity implements EntityInterface
     {
         $this->child()
             ->entity()
-            ->component('Camera')
+            ->attr('Camera')
             ->active($active);
         return $this;
     }
@@ -71,7 +71,7 @@ class Camera extends Entity implements EntityInterface
     {
         $this->child()
             ->entity()
-            ->component('Camera')
+            ->attr('Camera')
             ->far($far);
         return $this;
     }
@@ -86,7 +86,7 @@ class Camera extends Entity implements EntityInterface
     {
         $this->child()
             ->entity()
-            ->component('Camera')
+            ->attr('Camera')
             ->fov($fov);
         return $this;
     }
@@ -101,7 +101,7 @@ class Camera extends Entity implements EntityInterface
     {
         $this->child()
             ->entity()
-            ->component('LookControls')
+            ->attr('LookControls')
             ->enabled($look_controls);
         return $this;
     }
@@ -116,7 +116,7 @@ class Camera extends Entity implements EntityInterface
     {
         $this->child()
             ->entity()
-            ->component('Camera')
+            ->attr('Camera')
             ->near($near);
         return $this;
     }
@@ -131,7 +131,7 @@ class Camera extends Entity implements EntityInterface
     {
         $this->child()
             ->entity()
-            ->component('WASDControls')
+            ->attr('WASDControls')
             ->enabled($wasd_controls);
         return $this;
     }
@@ -146,7 +146,7 @@ class Camera extends Entity implements EntityInterface
     {
         $this->child()
             ->entity()
-            ->component('Camera')
+            ->attr('Camera')
             ->zoom($zoom);
         return $this;
     }

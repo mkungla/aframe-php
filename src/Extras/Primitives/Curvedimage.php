@@ -43,6 +43,6 @@ final class Curvedimage extends Entity implements EntityInterface
     public function reset()
     {
         parent::reset();
-        $this->component('Geometry')->primitive('cylinder');
+        $this->attr('Geometry')->primitive('cylinder');
     }
 }

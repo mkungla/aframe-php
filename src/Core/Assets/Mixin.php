@@ -26,7 +26,6 @@ namespace AframeVR\Core\Assets;
 use \AframeVR\Core\Exceptions\BadComponentCallException;
 use \AframeVR\Interfaces\Core\Assets\MixinInterface;
 use \AframeVR\Core\Helpers\AssetsAbstract;
-use \Closure;
 
 final class Mixin extends AssetsAbstract implements MixinInterface
 {
@@ -52,7 +51,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      * @throws \AframeVR\Core\Exceptions\BadComponentCallException
      * @return object|null
      */
-    public function component(string $component_name)
+    public function attr(string $component_name)
     {
         if (! array_key_exists($component_name, $this->components)) {
             $component = sprintf('\AframeVR\Core\Components\%s\%sComponent', ucfirst($component_name), 
@@ -79,14 +78,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      */
     public function __call(string $component_name, array $args)
     {
-        if (! method_exists($this, $component_name)) {
-            $this->{$component_name} = Closure::bind(
-                function () use ($component_name) {
-                    return $this->component($component_name);
-                }, $this, get_class());
-        }
-        
-        return call_user_func($this->{$component_name}, $args);
+        return $this->attr($component_name);
     }
     
     /**
@@ -97,7 +89,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      */
     public function color(string $color = 'gray')
     {
-        $this->component('Material')
+        $this->attr('Material')
         ->shader()
         ->color($color);
         return $this;
@@ -111,7 +103,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      */
     public function metalness(float $metalness = 0)
     {
-        $this->component('Material')
+        $this->attr('Material')
         ->shader()
         ->metalness($metalness);
         return $this;
@@ -125,7 +117,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      */
     public function roughness(float $roughness = 0.5)
     {
-        $this->component('Material')
+        $this->attr('Material')
         ->shader()
         ->roughness($roughness);
         return $this;
@@ -139,7 +131,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      */
     public function src(string $src = null)
     {
-        $this->component('Material')
+        $this->attr('Material')
         ->shader()
         ->src($src);
         return $this;
@@ -153,7 +145,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      */
     public function shader($shader = 'standard')
     {
-        $this->component('Material')->shader($shader);
+        $this->attr('Material')->shader($shader);
         return $this;
     }
     
@@ -165,7 +157,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      */
     public function opacity(float $opacity = 1.0)
     {
-        $this->component('Material')->opacity($opacity);
+        $this->attr('Material')->opacity($opacity);
         return $this;
     }
     
@@ -177,7 +169,7 @@ final class Mixin extends AssetsAbstract implements MixinInterface
      */
     public function transparent(bool $transparent = false)
     {
-        $this->component('Material')->transparent($transparent);
+        $this->attr('Material')->transparent($transparent);
         return $this;
     }
 }

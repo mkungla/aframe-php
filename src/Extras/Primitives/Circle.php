@@ -37,7 +37,7 @@ class Circle extends Entity implements EntityInterface
     public function reset()
     {
         parent::reset();
-        $this->component('Geometry')->primitive('circle');
+        $this->attr('Geometry')->primitive('circle');
     }
 
     /**
@@ -48,7 +48,7 @@ class Circle extends Entity implements EntityInterface
      */
     public function radius(float $radius)
     {
-        $this->component('Geometry')->radius($radius);
+        $this->attr('Geometry')->radius($radius);
         return $this;
     }
 
@@ -60,7 +60,7 @@ class Circle extends Entity implements EntityInterface
      */
     public function segments(float $segments)
     {
-        $this->component('Geometry')->segments($segments);
+        $this->attr('Geometry')->segments($segments);
         return $this;
     }
 
@@ -72,7 +72,7 @@ class Circle extends Entity implements EntityInterface
      */
     public function thetaLength(float $theta_length)
     {
-        $this->component('Geometry')->thetaLength($theta_length);
+        $this->attr('Geometry')->thetaLength($theta_length);
         return $this;
     }
 
@@ -84,7 +84,7 @@ class Circle extends Entity implements EntityInterface
      */
     public function thetaStart(float $theta_start)
     {
-        $this->component('Geometry')->thetaStart($theta_start);
+        $this->attr('Geometry')->thetaStart($theta_start);
         return $this;
     }
 }

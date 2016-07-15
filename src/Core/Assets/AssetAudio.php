@@ -43,14 +43,8 @@ final class AssetAudio extends AssetsAbstract implements AssetAudioInterface
      */
     protected $attr_preload;
 
-    /**
-     * Asset constructor set asset ID
-     *
-     * @param string $id            
-     */
-    public function __construct(string $id)
+    public function init()
     {
-        $this->id($id);
         $this->setDomElementTag('audio');
     }
 

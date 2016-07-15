@@ -155,6 +155,7 @@ class SceneTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf($fog, $aframe->scene()
             ->KeyboardShortcuts());
         
+        $aframe->scene()->attr('name','aframe-scene');
         $aframe->scene()->save();
     }
 }

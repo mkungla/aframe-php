@@ -40,7 +40,7 @@ class ColladaModel extends Entity implements EntityInterface
     public function reset()
     {
         parent::reset();
-        $this->child()->entity()->component('ColladaModel');
+        $this->child()->entity()->attr('ColladaModel');
     }
 
     /**
@@ -85,7 +85,7 @@ class ColladaModel extends Entity implements EntityInterface
     {
         $this->child()
             ->entity()
-            ->component('ColladaModel')
+            ->attr('ColladaModel')
             ->src($src);
         return $this;
     }

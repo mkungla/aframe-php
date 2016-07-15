@@ -37,13 +37,14 @@ trait MeshAttributes
 {
 
     /**
-     * Load component for this entity
+     * Load component for this entity or set it's attr
      *
-     * @param string $component_name            
+     * @param string $component_name
+     * @param null|string $attr_data
      * @throws \AframeVR\Core\Exceptions\BadComponentCallException
      * @return object|null
      */
-    abstract public function component(string $component_name);
+    abstract public function attr(string $component_name, string $attr_data = null);
 
     /**
      * material.color
@@ -53,7 +54,7 @@ trait MeshAttributes
      */
     public function color(string $color): EntityInterface
     {
-        $this->component('Material')
+        $this->attr('Material')
             ->shader()
             ->color($color);
         return $this;
@@ -67,7 +68,7 @@ trait MeshAttributes
      */
     public function metalness(float $metalness): EntityInterface
     {
-        $this->component('Material')
+        $this->attr('Material')
             ->shader()
             ->metalness($metalness);
         return $this;
@@ -81,7 +82,7 @@ trait MeshAttributes
      */
     public function opacity(float $opacity): EntityInterface
     {
-        $this->component('Material')->opacity($opacity);
+        $this->attr('Material')->opacity($opacity);
         return $this;
     }
     
@@ -95,7 +96,7 @@ trait MeshAttributes
      */
     public function repeat(float $x, float $y): EntityInterface
     {
-        $this->component('Material')->repeat($x, $y);
+        $this->attr('Material')->repeat($x, $y);
         return $this;
     }
     
@@ -107,7 +108,7 @@ trait MeshAttributes
      */
     public function roughness(float $roughness): EntityInterface
     {
-        $this->component('Material')
+        $this->attr('Material')
             ->shader()
             ->roughness($roughness);
         return $this;
@@ -121,7 +122,7 @@ trait MeshAttributes
      */
     public function shader($shader): EntityInterface
     {
-        $this->component('Material')->shader($shader);
+        $this->attr('Material')->shader($shader);
         return $this;
     }
     
@@ -134,7 +135,7 @@ trait MeshAttributes
      */
     public function src(string $src = null): EntityInterface
     {
-        $this->component('Material')
+        $this->attr('Material')
             ->shader()
             ->src($src);
         return $this;
@@ -148,7 +149,7 @@ trait MeshAttributes
      */
     public function transparent(bool $transparent = false): EntityInterface
     {
-        $this->component('Material')->transparent($transparent);
+        $this->attr('Material')->transparent($transparent);
         return $this;
     }
 }

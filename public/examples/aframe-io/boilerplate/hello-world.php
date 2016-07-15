@@ -1,4 +1,4 @@
-<?php 
+<?php
 /* Common bootstrap for examples */
 include dirname(__DIR__,3).DIRECTORY_SEPARATOR.'examples-bootstrap.php';
 
@@ -41,6 +41,3 @@ $aframe->scene()->sky()
 
 /* Render scene */
 $aframe->scene()->render();
-
-/* DEV: Save output for testsuites */
-save_output_files($aframe, '/aframe-io/boilerplate/hello-world');

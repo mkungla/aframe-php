@@ -36,16 +36,8 @@ final class AssetImage extends AssetsAbstract implements AssetImageInterface
      */
     protected $attr_crossorigin;
 
-    /**
-     * Image crossorigin
-     *
-     * Asset constructor set asset ID
-     *
-     * @param string $id            
-     */
-    public function __construct(string $id)
+    public function init()
     {
-        $this->id($id);
         $this->setDomElementTag('img');
     }
 

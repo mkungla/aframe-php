@@ -5,10 +5,10 @@
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
- * 
+ *
  * @category       AframeVR
  * @package        aframe-php
- * 
+ *
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
  * File         AssetsAbstract.php
@@ -35,18 +35,24 @@ abstract class AssetsAbstract implements AssetsInterface
      * @var string
      */
     protected $element_tag = 'a-asset-item';
-    
     protected $attrs = array();
-    
     protected $components = array();
+    protected $assets_uri;
+
     /**
      * Asset constructor set asset ID
      *
-     * @param string $id  
+     * @param string $id
      */
-    public function __construct(string $id)
+    public function __construct(string $id, string $assets_uri)
     {
         $this->id($id);
+        $this->assets_uri = $assets_uri;
+        $this->init();
+    }
+
+    public function init()
+    {
     }
 
     /**
@@ -55,7 +61,7 @@ abstract class AssetsAbstract implements AssetsInterface
      * {@inheritdoc}
      *
      * @param string $id
-     * @return AssetsInterface            
+     * @return AssetsInterface
      */
     public function id(string $id = 'untitled'): AssetsInterface
     {
@@ -68,19 +74,19 @@ abstract class AssetsAbstract implements AssetsInterface
      *
      * {@inheritdoc}
      *
-     * @param null|string $src            
+     * @param null|string $src
      * @return AssetsInterface
      */
     public function src(string $src = null): AssetsInterface
     {
-        $this->attrs['src'] = $src;
+        $this->attrs['src'] = $this->assets_uri ? $this->assets_uri . $src : $src;
         return $this;
     }
 
     /**
      * Create and add DOM element of the asset
      *
-     * @param \DOMDocument $aframe_dom            
+     * @param \DOMDocument $aframe_dom
      * @return \DOMElement
      */
     public function domElement(\DOMDocument &$aframe_dom): DOMElement
@@ -88,7 +94,7 @@ abstract class AssetsAbstract implements AssetsInterface
         $a_asset = $aframe_dom->createElement($this->element_tag);
         /* Asset must have a id */
         $this->appendAttributes($a_asset);
-        
+
         foreach ($this->components as $component) {
             /*
              * Check does component has any attributes to add to DOM element.
@@ -97,21 +103,21 @@ abstract class AssetsAbstract implements AssetsInterface
             if ($component->hasDOMAttributes())
                 $a_asset->setAttributeNode($component->getDOMAttr());
         }
-        
+
         return $a_asset;
     }
 
     /**
      * Set Dom element name
      *
-     * @param string $element_tag            
+     * @param string $element_tag
      * @return void
      */
     public function setDomElementTag(string $element_tag)
     {
         $this->element_tag = $element_tag;
     }
-    
+
     /**
      * Append DOM attributes no set by components
      *
@@ -123,12 +129,12 @@ abstract class AssetsAbstract implements AssetsInterface
             $this->setAttribute($a_entity, $attr, $val);
         }
     }
-    
+
     private function setAttribute(&$a_entity, $attr, $val)
     {
         if ($attr === 'id' && ($val === 'untitled' || is_numeric($val)))
             return;
-    
-            $a_entity->setAttribute($attr, $val);
+
+        $a_entity->setAttribute($attr, $val);
     }
 }

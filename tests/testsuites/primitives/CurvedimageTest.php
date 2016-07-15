@@ -35,7 +35,7 @@ class CurvedimageTest extends PHPUnit_Framework_TestCase implements PrimitiveTes
         $this->aframe->scene()
             ->curvedimage('new-curvedimage')
             ->repeat(1,1)
-            ->component('Geometry')
+            ->attr('Geometry')
             ->primitive('cylinder')
             ->height(1)
             ->radius(1)
@@ -46,7 +46,7 @@ class CurvedimageTest extends PHPUnit_Framework_TestCase implements PrimitiveTes
             ->thetaStart(135);
         $this->aframe->scene()
             ->curvedimage('new-curvedimage')
-            ->component('Material')
+            ->attr('Material')
             ->shader('standard')
             ->color('#000')
             ->metalness(0)

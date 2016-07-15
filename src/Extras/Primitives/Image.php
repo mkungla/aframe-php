@@ -38,8 +38,8 @@ class Image extends Plane implements EntityInterface
     public function reset()
     {
         parent::reset();
-        $this->component('Material')->shader('flat');
-        $this->component('Material')->side('double');
+        $this->attr('Material')->shader('flat');
+        $this->attr('Material')->side('double');
         $this->color('#FFF');
         $this->transparent(true);
         $this->height(1.75);

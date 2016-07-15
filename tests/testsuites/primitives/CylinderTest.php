@@ -43,7 +43,7 @@ class CylinderTest extends PHPUnit_Framework_TestCase implements PrimitiveTestIn
             ->thetaStart(135);
         $this->aframe->scene()
             ->cylinder('new-cylinder')
-            ->component('Material')
+            ->attr('Material')
             ->shader('standard')
             ->color('#000')
             ->metalness(0)

@@ -13,10 +13,10 @@ class PositionComponentTest extends PHPUnit_Framework_TestCase
         $aframe = new \AframeVR\Aframe();
         $aframe->scene()
             ->entity()
-            ->component('Position')->positionX(1);
+            ->attr('Position')->positionX(1);
         $this->component = $aframe->scene()
             ->entity()
-            ->component('Position');
+            ->attr('Position');
     }
 
     const A_INSTANCE = '\AframeVR\Core\Components\Position\PositionComponent';
@@ -53,7 +53,7 @@ class PositionComponentTest extends PHPUnit_Framework_TestCase
         
         $this->assertEquals($aframe->scene()
             ->entity()
-            ->component('Position')
+            ->attr('Position')
             ->getPosition(), '1 5 6');
     }
 }

@@ -40,8 +40,8 @@ class Cylinder extends Entity implements EntityInterface
     public function reset()
     {
         parent::reset();
-        $this->component('Material');
-        $this->component('Geometry')->primitive('cylinder');
+        $this->attr('Material');
+        $this->attr('Geometry')->primitive('cylinder');
     }
 
     /**
@@ -52,7 +52,7 @@ class Cylinder extends Entity implements EntityInterface
      */
     public function height(float $height)
     {
-        $this->component('Geometry')->height($height);
+        $this->attr('Geometry')->height($height);
         return $this;
     }
 
@@ -64,7 +64,7 @@ class Cylinder extends Entity implements EntityInterface
      */
     public function openEnded(bool $openEnded = false)
     {
-        $this->component('Geometry')->openEnded($openEnded);
+        $this->attr('Geometry')->openEnded($openEnded);
         return $this;
     }
 
@@ -76,7 +76,7 @@ class Cylinder extends Entity implements EntityInterface
      */
     public function radius(float $radius)
     {
-        $this->component('Geometry')->radius($radius);
+        $this->attr('Geometry')->radius($radius);
         return $this;
     }
 
@@ -88,7 +88,7 @@ class Cylinder extends Entity implements EntityInterface
      */
     public function segmentsHeight(int $segmentsHeight)
     {
-        $this->component('Geometry')->segmentsHeight($segmentsHeight);
+        $this->attr('Geometry')->segmentsHeight($segmentsHeight);
         return $this;
     }
 
@@ -100,7 +100,7 @@ class Cylinder extends Entity implements EntityInterface
      */
     public function segmentsRadial(int $segmentsRadial)
     {
-        $this->component('Geometry')->segmentsRadial($segmentsRadial);
+        $this->attr('Geometry')->segmentsRadial($segmentsRadial);
         return $this;
     }
 
@@ -112,7 +112,7 @@ class Cylinder extends Entity implements EntityInterface
      */
     public function thetaLength(int $thetaLength)
     {
-        $this->component('Geometry')->thetaLength($thetaLength);
+        $this->attr('Geometry')->thetaLength($thetaLength);
         return $this;
     }
 
@@ -124,7 +124,7 @@ class Cylinder extends Entity implements EntityInterface
      */
     public function thetaStart(int $thetaStart)
     {
-        $this->component('Geometry')->thetaStart($thetaStart);
+        $this->attr('Geometry')->thetaStart($thetaStart);
         return $this;
     }
 }

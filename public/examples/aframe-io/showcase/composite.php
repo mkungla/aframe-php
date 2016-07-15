@@ -1,19 +1,19 @@
 <?php
 /* Common bootstrap for examples */
-include dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'examples-bootstrap.php';
+include dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'examples-bootstrap.php';
 
 /* $aframe->scene(); === Anonymous scene */
 $aframe->scene()->title('Composite');
 $aframe->scene()->description('Composite — A-Frame');
 
 $aframe->scene()->asset()->img('lake')
-    ->src('lake.jpg');
+    ->src('img/lake.jpg');
 
 $aframe->scene()->asset()->img('pdx')
-    ->src('portland.png');
+    ->src('img/portland.png');
 
 $aframe->scene()->asset()->item('sculpture')
-    ->src('sculpture.dae');
+    ->src('models/sculpture/sculpture.dae');
 
 $aframe->scene()->sky()
     ->src('#lake');
@@ -31,4 +31,3 @@ $aframe->scene()->image()
 
 /* Render scene */
 $aframe->scene()->render();
-

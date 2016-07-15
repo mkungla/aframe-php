@@ -36,7 +36,6 @@ use \AframeVR\Core\Helpers\{
 };
 use \AframeVR\Core\Animation;
 use \DOMElement;
-use \Closure;
 
 class Entity implements EntityInterface
 {
@@ -100,21 +99,9 @@ class Entity implements EntityInterface
     public function reset()
     {
         /* Components which All entities inherently have */
-        $this->component('Position');
-        $this->component('Rotation');
-        $this->component('Scale');
-    }
-
-    /**
-     * Set DOM attributes
-     *
-     * @param string $attr            
-     * @param string $val            
-     * @return void
-     */
-    public function attr(string $attr, string $val)
-    {
-        $this->attrs[$attr] = $val;
+        $this->attr('Position');
+        $this->attr('Rotation');
+        $this->attr('Scale');
     }
 
     /**
@@ -139,9 +126,9 @@ class Entity implements EntityInterface
      */
     public function position(float $x_axis = 0, float $y_axis = 0, float $z_axis = 0): EntityInterface
     {
-        $this->component('Position')->positionX($x_axis);
-        $this->component('Position')->positionY($y_axis);
-        $this->component('Position')->positionZ($z_axis);
+        $this->attr('Position')->positionX($x_axis);
+        $this->attr('Position')->positionY($y_axis);
+        $this->attr('Position')->positionZ($z_axis);
         return $this;
     }
 
@@ -157,9 +144,9 @@ class Entity implements EntityInterface
      */
     public function rotation(float $roll = 0, float $pitch = 0, float $yaw = 0): EntityInterface
     {
-        $this->component('Rotation')->roll($roll);
-        $this->component('Rotation')->pitch($pitch);
-        $this->component('Rotation')->yaw($yaw);
+        $this->attr('Rotation')->roll($roll);
+        $this->attr('Rotation')->pitch($pitch);
+        $this->attr('Rotation')->yaw($yaw);
         return $this;
     }
 
@@ -175,9 +162,9 @@ class Entity implements EntityInterface
      */
     public function scale(float $scale_x = 1, float $scale_y = 1, float $scale_z = 1): EntityInterface
     {
-        $this->component('Scale')->scaleX($scale_x);
-        $this->component('Scale')->scaleY($scale_y);
-        $this->component('Scale')->scaleZ($scale_z);
+        $this->attr('Scale')->scaleX($scale_x);
+        $this->attr('Scale')->scaleY($scale_y);
+        $this->attr('Scale')->scaleZ($scale_z);
         return $this;
     }
 
@@ -205,14 +192,19 @@ class Entity implements EntityInterface
     }
 
     /**
-     * Load component for this entity
+     * Load component for this entity or set it's attr
      *
-     * @param string $component_name            
+     * @param string $component_name
+     * @param null|string $attr_data
      * @throws \AframeVR\Core\Exceptions\BadComponentCallException
      * @return object|null
      */
-    public function component(string $component_name)
+    public function attr(string $component_name, string $attr_data = null)
     {
+        if(!is_null($attr_data)) {
+            $this->attrs[$component_name] = $attr_data;
+            return $this;
+        }
         if (! array_key_exists($component_name, $this->components)) {
             $component = sprintf('\AframeVR\Core\Components\%s\%sComponent', ucfirst($component_name), 
                 ucfirst($component_name));
@@ -238,7 +230,7 @@ class Entity implements EntityInterface
      */
     public function __call(string $component_name, array $args)
     {
-        return $this->component($component_name);
+        return $this->attr($component_name);
     }
 
     /**
