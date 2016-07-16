@@ -5,10 +5,10 @@
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
- * 
+ *
  * @category       AframeVR
  * @package        aframe-php
- * 
+ *
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
  * File         EntityChildrenFactory.php
@@ -59,7 +59,7 @@ class EntityChildrenFactory
 
     /**
      * Get entity
-     * 
+     *
      * @param string $a_type
      * @param string $id
      * @return AframeVR\Interfaces\EntityInterface
@@ -69,7 +69,7 @@ class EntityChildrenFactory
         $id = $id ?? 0;
         return $this->childrens[$a_type][$entity_id] ?? $this->addEntity($a_type, $entity_id);
     }
-    
+
     /**
      * Get all children for calling parent
      * @return array
@@ -78,10 +78,10 @@ class EntityChildrenFactory
     {
         return iterator_to_array($this->getChildrenRAW($this->childrens), false);
     }
-    
+
     /**
      * Get entity
-     * 
+     *
      * @param string $method
      * @param array $args
      * @return AframeVR\Interfaces\EntityInterface
@@ -91,22 +91,22 @@ class EntityChildrenFactory
         $entity_id = $entity_id[0] ?? 0;
         return $this->getEntity($method, $entity_id);
     }
-    
+
     /**
      * Register new entity
-     * 
+     *
      * Generally you should not call this method directly but if you want to extend
      * EntityChildrenFactory then you can still access it
      *
-     * @param string $a_type            
-     * @param string $id            
+     * @param string $a_type
+     * @param string $id
      * @throws BadShaderCallException
      * @return AframeVR\Interfaces\EntityInterface
      */
     protected function addEntity(string $a_type, string $entity_id)
     {
         $primitive = sprintf('\AframeVR\Extras\Primitives\%s', ucfirst($a_type));
-        
+
         if($a_type === 'entity') {
             return $this->childrens[$a_type][$entity_id] = new Entity($entity_id);
         } elseif (class_exists($primitive)) {
@@ -115,10 +115,10 @@ class EntityChildrenFactory
             throw new BadPrimitiveCallException($a_type);
         }
     }
-    
+
     /**
      * Generate array of children
-     * 
+     *
      * @param array $array
      */
     protected function getChildrenRAW(array $array) {

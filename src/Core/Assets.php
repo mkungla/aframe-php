@@ -64,7 +64,7 @@ final class Assets
      * @param string $id
      * @return \AframeVR\Interfaces\Core\Assets\AssetAudioInterface
      */
-    public function audio(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\AssetAudioInterface
+    public function audio(string $id = '0'): \AframeVR\Interfaces\Core\Assets\AssetAudioInterface
     {
         return $this->assets[$id] ?? $this->assets[$id] = new AssetAudio($id, $this->assets_uri);
     }
@@ -75,7 +75,7 @@ final class Assets
      * @param string $id
      * @return \AframeVR\Interfaces\Core\Assets\AssetImageInterface
      */
-    public function img(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\AssetImageInterface
+    public function img(string $id = '0'): \AframeVR\Interfaces\Core\Assets\AssetImageInterface
     {
         return $this->assets[$id] ?? $this->assets[$id] = new AssetImage($id, $this->assets_uri);
     }
@@ -86,7 +86,7 @@ final class Assets
      * @param string $id
      * @return \AframeVR\Interfaces\Core\Assets\AssetItemInterface
      */
-    public function item(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\AssetItemInterface
+    public function item(string $id = '0'): \AframeVR\Interfaces\Core\Assets\AssetItemInterface
     {
         return $this->assets[$id] ?? $this->assets[$id] = new AssetItem($id, $this->assets_uri);
     }
@@ -97,7 +97,7 @@ final class Assets
      * @param string $id
      * @return \AframeVR\Interfaces\Core\Assets\AssetVideoInterface
      */
-    public function video(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\AssetVideoInterface
+    public function video(string $id = '0'): \AframeVR\Interfaces\Core\Assets\AssetVideoInterface
     {
         return $this->assets[$id] ?? $this->assets[$id] = new AssetVideo($id, $this->assets_uri);
     }
@@ -111,7 +111,7 @@ final class Assets
      * @param string $id
      * @return \AframeVR\Interfaces\Core\Assets\MixinInterface
      */
-    public function mixin(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\MixinInterface
+    public function mixin(string $id = '0'): \AframeVR\Interfaces\Core\Assets\MixinInterface
     {
         return $this->assets[$id] ?? $this->assets[$id] = new Mixin($id, $this->assets_uri);
     }

@@ -5,10 +5,10 @@
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
- * 
+ *
  * @category       AframeVR
  * @package        aframe-php
- * 
+ *
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
  * File         MaterialComponent.php
@@ -62,8 +62,8 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
     /**
      * Call passes all calls to no existing methods to self::methodProvider
      *
-     * @param string $method            
-     * @param array $args            
+     * @param string $method
+     * @param array $args
      * @throws InvalidComponentMethodException
      */
     public function __call(string $method, $args)
@@ -91,17 +91,17 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
      *
      * {@inheritdoc}
      *
-     * @param null|string $shader            
+     * @param null|string $shader
      * @throws BadShaderCallException
      * @return ShaderInterface|MaterialComponent
      */
     public function shader(string $shader_name = null)
     {
-        $this->dom_attributes['shader'] = $this->dom_attributes['shader'] ?? $shader_name ?? 'standard';
-        
-        if ($this->shaderObj instanceof ShaderInterface)
+        if ($this->shaderObj instanceof ShaderInterface && ($this->dom_attributes['shader'] === $shader_name || empty($shader_name)))
             return $this->shaderObj;
-        
+
+        $this->dom_attributes['shader'] = $shader_name ?? $this->dom_attributes['shader'] ?? 'standard';
+
         $shader = sprintf('\AframeVR\Core\Shaders\%s', ucfirst($this->dom_attributes['shader']));
         if (class_exists($shader)) {
             $this->shaderObj = new $shader();
@@ -114,8 +114,8 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
     /**
      * repeat
      *
-     * @param float $x            
-     * @param float $y            
+     * @param float $x
+     * @param float $y
      */
     public function repeat(float $x, float $y)
     {
@@ -128,7 +128,7 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
      *
      * {@inheritdoc}
      *
-     * @param float $opacity            
+     * @param float $opacity
      * @return MaterialCMPTIF
      */
     public function opacity(float $opacity = 1.0): MaterialCMPTIF
@@ -142,7 +142,7 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
      *
      * {@inheritdoc}
      *
-     * @param bool $transparent            
+     * @param bool $transparent
      * @return MaterialCMPTIF
      */
     public function transparent(bool $transparent = false): MaterialCMPTIF
@@ -156,7 +156,7 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
      *
      * {@inheritdoc}
      *
-     * @param bool $depth_test            
+     * @param bool $depth_test
      * @return MaterialCMPTIF
      */
     public function depthTest(bool $depth_test = true): MaterialCMPTIF
@@ -170,7 +170,7 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
      *
      * {@inheritdoc}
      *
-     * @param string $side            
+     * @param string $side
      * @return MaterialCMPTIF
      */
     public function side(string $side = 'front'): MaterialCMPTIF
@@ -182,7 +182,7 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
     /**
      * Do not apply fog to certain entities, we can disable fog for certain materials.
      *
-     * @param bool $fog            
+     * @param bool $fog
      * @return MaterialCMPTIF
      */
     public function fog(bool $fog = true): MaterialCMPTIF
@@ -194,7 +194,7 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
     /**
      * roughness
      *
-     * @param float $roughness            
+     * @param float $roughness
      * @return MaterialCMPTIF
      */
     public function roughness(float $roughness): MaterialCMPTIF
@@ -213,5 +213,6 @@ class MaterialComponent extends ComponentAbstract implements MaterialCMPTIF
         if (! empty($this->shaderObj)) {
             $this->dom_attributes = array_merge($this->dom_attributes, $this->shaderObj->getAttributes());
         }
+
     }
 }

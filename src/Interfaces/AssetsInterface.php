@@ -5,10 +5,10 @@
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
- * 
+ *
  * @category       AframeVR
  * @package        aframe-php
- * 
+ *
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
  * File         AssetsInterface.php
@@ -33,15 +33,15 @@ interface AssetsInterface
     /**
      * Set ID attribute of the asset
      *
-     * @param string $id            
+     * @param string $id
      * @return void
      */
-    public function id(string $id = 'untitled');
+    public function id(string $id = '0');
 
     /**
      * Set Assets src attribute
      *
-     * @param null|string $src            
+     * @param null|string $src
      * @return void
      */
     public function src(string $src = null);

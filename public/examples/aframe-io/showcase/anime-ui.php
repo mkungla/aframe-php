@@ -139,17 +139,19 @@ $aframe->scene()->entity('rings-group-1')->child()->image(3)
     ->animation(2)->attribute('scale')->from('1 1 1')->to('1.25 1.25 1.25')->delay(700)->dur(250)->fill('both')->easing('ease-out');
 
 /* Lights */
-$aframe->scene()->light()
+$aframe->scene()->light(1)
     ->type('point')
     ->color('#94c6ff')
     ->distance(15)
     ->position(0, 0, -12);
-$aframe->scene()->light()
+
+
+$aframe->scene()->light(2)
     ->type('point')
     ->color('#94c6ff')
     ->distance(17)
     ->position(0, 0, -6);
-$aframe->scene()->light()
+$aframe->scene()->light(3)
     ->type('ambient')
     ->color('#4f6487');
 

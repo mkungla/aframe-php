@@ -5,10 +5,10 @@
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
- * 
+ *
  * @category       AframeVR
  * @package        aframe-php
- * 
+ *
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
  * File         Primitives.php
@@ -26,17 +26,17 @@ namespace AframeVR\Extras;
 use \AframeVR\Core\Entity;
 trait Primitives
 {
-    
+
     /**
      * Aframe Document Object Model
      *
      * @var \AframeVR\Core\DOM\AframeDOMDocument
      */
     protected $aframeDomObj;
-    
+
     /**
      * Children entities
-     * 
+     *
      * @var array $childrens
      */
     protected $childrens = array();
@@ -46,19 +46,19 @@ trait Primitives
      * @var \AframeVR\Extras\Primitives\Sky $sky
      */
     protected $sky;
-    
+
     /**
      *
      * @var \AframeVR\Extras\Primitives\Videosphere $videosphere
      */
     protected $videosphere;
-    
+
     /**
      * A-Frame Primitive sky
      *
      * @return Entity
      */
-    public function sky(string $id = 'untitled'): Entity
+    public function sky(string $id = '0'): Entity
     {
         return $this->sky = new \AframeVR\Extras\Primitives\Sky($id);
     }
@@ -68,7 +68,7 @@ trait Primitives
      *
      * @return Entity
      */
-    public function videosphere(string $id = 'untitled'): Entity
+    public function videosphere(string $id = '0'): Entity
     {
         return $this->videosphere = new \AframeVR\Extras\Primitives\Videosphere($id);
     }

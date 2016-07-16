@@ -5,10 +5,10 @@
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
- * 
+ *
  * @category       AframeVR
  * @package        aframe-php
- * 
+ *
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
  * File         Entity.php
@@ -40,35 +40,35 @@ use \DOMElement;
 class Entity implements EntityInterface
 {
     use MeshAttributes;
-    
+
     /**
      * Array of used components
      *
      * @var array
      */
     protected $components = array();
-    
+
     /**
      * Array of used animations
      *
      * @var array
      */
     protected $animations = array();
-    
+
     /**
      * Dom element attributes
      *
      * @var unknown
      */
     protected $attrs = array();
-    
+
     /**
      * Children Factory
      *
      * @var \AframeVR\Core\Helpers\EntityChildrenFactory
      */
     protected $childrenFactory;
-    
+
     /**
      * Indent used when rendering formated outout
      *
@@ -79,12 +79,12 @@ class Entity implements EntityInterface
     /**
      * Constructor
      *
-     * @param string $id            
+     * @param string $id
      */
-    public function __construct(string $id = 'untitled')
+    public function __construct(string $id = '0')
     {
         $this->attr('id', $id);
-        
+
         /* Extending entity reset | initial setup */
         $this->reset();
     }
@@ -119,9 +119,9 @@ class Entity implements EntityInterface
      *
      * All entities inherently have the position component.
      *
-     * @param int|float $x_axis            
-     * @param int|float $y_axis            
-     * @param int|float $z_axis            
+     * @param int|float $x_axis
+     * @param int|float $y_axis
+     * @param int|float $z_axis
      * @return \AframeVR\Interfaces\EntityInterface
      */
     public function position(float $x_axis = 0, float $y_axis = 0, float $z_axis = 0): EntityInterface
@@ -137,9 +137,9 @@ class Entity implements EntityInterface
      *
      * All entities inherently have the rotation component.
      *
-     * @param int|float $roll            
-     * @param int|float $pitch            
-     * @param int|float $yaw            
+     * @param int|float $roll
+     * @param int|float $pitch
+     * @param int|float $yaw
      * @return \AframeVR\Interfaces\EntityInterface
      */
     public function rotation(float $roll = 0, float $pitch = 0, float $yaw = 0): EntityInterface
@@ -155,9 +155,9 @@ class Entity implements EntityInterface
      *
      * All entities inherently have the scale component.
      *
-     * @param int|float $scale_x            
-     * @param int|float $scale_y            
-     * @param int|float $scale_z            
+     * @param int|float $scale_x
+     * @param int|float $scale_y
+     * @param int|float $scale_z
      * @return \AframeVR\Interfaces\EntityInterface
      */
     public function scale(float $scale_x = 1, float $scale_y = 1, float $scale_z = 1): EntityInterface
@@ -171,10 +171,10 @@ class Entity implements EntityInterface
     /**
      * Animations
      *
-     * @param mixed $name            
+     * @param mixed $name
      * @return \AframeVR\Interfaces\AnimationInterface
      */
-    public function animation($name = 'untitled'): AnimationInterface
+    public function animation($name = '0'): AnimationInterface
     {
         return $this->animations[$name] ?? $this->animations[$name] = new Animation();
     }
@@ -182,7 +182,7 @@ class Entity implements EntityInterface
     /**
      * Set mixin attribute
      *
-     * @param string $id            
+     * @param string $id
      * @return \AframeVR\Core\Entity
      */
     public function mixin(string $id)
@@ -206,7 +206,7 @@ class Entity implements EntityInterface
             return $this;
         }
         if (! array_key_exists($component_name, $this->components)) {
-            $component = sprintf('\AframeVR\Core\Components\%s\%sComponent', ucfirst($component_name), 
+            $component = sprintf('\AframeVR\Core\Components\%s\%sComponent', ucfirst($component_name),
                 ucfirst($component_name));
             if (class_exists($component)) {
                 $this->components[$component_name] = new $component();
@@ -214,7 +214,7 @@ class Entity implements EntityInterface
                 throw new BadComponentCallException($component_name);
             }
         }
-        
+
         return $this->components[$component_name] ?? null;
     }
 
@@ -225,8 +225,8 @@ class Entity implements EntityInterface
      * custom components loaded as $this->methosd aswell therefore
      * we have these placeholder magic methods here
      *
-     * @param string $component_name            
-     * @param array $args            
+     * @param string $component_name
+     * @param array $args
      */
     public function __call(string $component_name, array $args)
     {
@@ -236,15 +236,15 @@ class Entity implements EntityInterface
     /**
      * Create and add DOM element of the entity
      *
-     * @param \DOMDocument $aframe_dom            
+     * @param \DOMDocument $aframe_dom
      * @return \DOMElement
      */
     public function domElement(\DOMDocument &$aframe_dom): DOMElement
     {
         $a_entity = $aframe_dom->createElement('a-entity');
-        
+
         $this->appendAttributes($a_entity);
- 
+
         foreach ($this->components as $component) {
             /*
              * Check does component has any attributes to add to DOM element.
@@ -253,7 +253,7 @@ class Entity implements EntityInterface
             if ($component->hasDOMAttributes())
                 $a_entity->setAttributeNode($component->getDOMAttr());
         }
-        
+
         $this->appendChildren($aframe_dom, $a_entity);
         $this->appendAnimations($aframe_dom, $a_entity);
         return $a_entity;
@@ -262,7 +262,7 @@ class Entity implements EntityInterface
     /**
      * Append DOM attributes no set by components
      *
-     * @param \DOMElement $a_entity            
+     * @param \DOMElement $a_entity
      */
     private function appendAttributes(\DOMElement &$a_entity)
     {
@@ -273,17 +273,17 @@ class Entity implements EntityInterface
 
     private function setAttribute(&$a_entity, $attr, $val)
     {
-        if ($attr === 'id' && ($val === 'untitled' || is_numeric($val)))
+        if ($attr === 'id' && is_numeric($val))
             return;
-        
+
         $a_entity->setAttribute($attr, $val);
     }
 
     /**
      * Append childern to entities DOM element
      *
-     * @param \DOMDocument $aframe_dom            
-     * @param \DOMElement $a_entity            
+     * @param \DOMDocument $aframe_dom
+     * @param \DOMElement $a_entity
      */
     private function appendChildren(\DOMDocument &$aframe_dom, \DOMElement &$a_entity)
     {
@@ -299,8 +299,8 @@ class Entity implements EntityInterface
     /**
      * Append childern to entities DOM element
      *
-     * @param \DOMDocument $aframe_dom            
-     * @param \DOMElement $a_entity            
+     * @param \DOMDocument $aframe_dom
+     * @param \DOMElement $a_entity
      */
     private function appendAnimations(\DOMDocument &$aframe_dom, \DOMElement &$a_entity)
     {
@@ -313,10 +313,10 @@ class Entity implements EntityInterface
 
     /**
      * Add format comment
-     * 
-     * @param \DOMDocument $aframe_dom            
-     * @param \DOMElement $a_entity            
-     * @param string $content            
+     *
+     * @param \DOMDocument $aframe_dom
+     * @param \DOMElement $a_entity
+     * @param string $content
      */
     private function addFormatComment(\DOMDocument &$aframe_dom, \DOMElement &$a_entity, string $content)
     {

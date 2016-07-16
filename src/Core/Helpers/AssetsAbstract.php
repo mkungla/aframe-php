@@ -63,7 +63,7 @@ abstract class AssetsAbstract implements AssetsInterface
      * @param string $id
      * @return AssetsInterface
      */
-    public function id(string $id = 'untitled'): AssetsInterface
+    public function id(string $id = '0'): AssetsInterface
     {
         $this->attrs['id'] = $id;
         return $this;
@@ -132,7 +132,7 @@ abstract class AssetsAbstract implements AssetsInterface
 
     private function setAttribute(&$a_entity, $attr, $val)
     {
-        if ($attr === 'id' && ($val === 'untitled' || is_numeric($val)))
+        if ($attr === 'id' && is_numeric($val))
             return;
 
         $a_entity->setAttribute($attr, $val);
