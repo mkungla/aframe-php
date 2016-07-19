@@ -145,10 +145,10 @@ final class Animation implements AnimationInterface
     /**
      * Repeat count or indefinite.
      *
-     * @param int $count
+     * @param string $count
      * @return AnimationInterface
      */
-    public function repeat(int $count = 0): AnimationInterface
+    public function repeat(string $count = '0'): AnimationInterface
     {
         $this->attrs['repeat'] = $count;
         return $this;

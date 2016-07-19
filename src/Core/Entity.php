@@ -230,7 +230,7 @@ class Entity implements EntityInterface
      */
     public function __call(string $component_name, array $args)
     {
-        return $this->attr($component_name);
+        return $this->attr($component_name, $args[0] ?? null);
     }
 
     /**

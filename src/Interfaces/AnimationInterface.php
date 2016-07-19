@@ -5,10 +5,10 @@
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
- * 
+ *
  * @category       AframeVR
  * @package        aframe-php
- * 
+ *
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
  * File         AnimationInterface.php
@@ -32,7 +32,7 @@ interface AnimationInterface
      * Attribute to animate. To specify a component attribute, use componentName.property syntax (e.g.,
      * light.intensity).
      *
-     * @param string $attr            
+     * @param string $attr
      * @return AnimationInterface
      */
     public function attribute(string $attr = 'rotation'): AnimationInterface;
@@ -42,7 +42,7 @@ interface AnimationInterface
      *
      * Delay (in milliseconds) or event name to wait on before beginning animation
      *
-     * @param string $ms            
+     * @param string $ms
      * @return AnimationInterface
      */
     public function delay($ms = '0'): AnimationInterface;
@@ -52,7 +52,7 @@ interface AnimationInterface
      *
      * Direction of the animation (between from and to). One of alternate, alternateReverse, normal, reverse.
      *
-     * @param string $direction            
+     * @param string $direction
      * @return AnimationInterface
      */
     public function direction(string $direction = 'normal'): AnimationInterface;
@@ -62,7 +62,7 @@ interface AnimationInterface
      *
      * Duration in (milliseconds) of the animation.
      *
-     * @param int $ms            
+     * @param int $ms
      * @return AnimationInterface
      */
     public function dur(int $ms = 1000): AnimationInterface;
@@ -72,7 +72,7 @@ interface AnimationInterface
      *
      * Easing function of the animation. There are very many to choose from.
      *
-     * @param string $func            
+     * @param string $func
      * @return AnimationInterface
      */
     public function easing(string $func = 'ease'): AnimationInterface;
@@ -82,7 +82,7 @@ interface AnimationInterface
      *
      * One of backwards, both, forwards, none.
      *
-     * @param string $effect            
+     * @param string $effect
      * @return AnimationInterface
      */
     public function fill(string $effect = 'forwards'): AnimationInterface;
@@ -90,7 +90,7 @@ interface AnimationInterface
     /**
      * Starting value.
      *
-     * @param string $val            
+     * @param string $val
      * @return AnimationInterface
      */
     public function from(string $val = 'Current'): AnimationInterface;
@@ -98,16 +98,16 @@ interface AnimationInterface
     /**
      * Repeat count or indefinite.
      *
-     * @param int $count            
+     * @param string $count
      * @return AnimationInterface
      */
-    public function repeat(int $count = 0): AnimationInterface;
+    public function repeat(string $count = '0'): AnimationInterface;
 
     /**
      * Ending value.
      * Must be specified.
      *
-     * @param string $val            
+     * @param string $val
      * @return AnimationInterface
      */
     public function to(string $val = 'true'): AnimationInterface;
