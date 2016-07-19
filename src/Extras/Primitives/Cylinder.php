@@ -5,10 +5,10 @@
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
- * 
+ *
  * @category       AframeVR
  * @package        aframe-php
- * 
+ *
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
  * File         Cylinder.php
@@ -34,7 +34,7 @@ class Cylinder extends Entity implements EntityInterface
      *
      * The cylinder primitive is an entity that prescribes the geometry with its geometric primitive set to cylinder.
      * It can be used to create tubes and curved surfaces.
-     * 
+     *
      * @return void
      */
     public function reset()
@@ -47,7 +47,7 @@ class Cylinder extends Entity implements EntityInterface
     /**
      * geometry.height
      *
-     * @param float $height            
+     * @param float $height
      * @return self
      */
     public function height(float $height)
@@ -59,7 +59,7 @@ class Cylinder extends Entity implements EntityInterface
     /**
      * geometry.openEnded
      *
-     * @param bool $openEnded            
+     * @param bool $openEnded
      * @return self
      */
     public function openEnded(bool $openEnded = false)
@@ -71,7 +71,7 @@ class Cylinder extends Entity implements EntityInterface
     /**
      * geometry.radius
      *
-     * @param float $radius            
+     * @param float $radius
      * @return self
      */
     public function radius(float $radius)
@@ -83,7 +83,7 @@ class Cylinder extends Entity implements EntityInterface
     /**
      * geometry.segmentsHeight
      *
-     * @param int $segmentsHeight            
+     * @param int $segmentsHeight
      * @return self
      */
     public function segmentsHeight(int $segmentsHeight)
@@ -95,7 +95,7 @@ class Cylinder extends Entity implements EntityInterface
     /**
      * geometry.segmentsRadial
      *
-     * @param int $segmentsRadial            
+     * @param int $segmentsRadial
      * @return self
      */
     public function segmentsRadial(int $segmentsRadial)
@@ -107,7 +107,7 @@ class Cylinder extends Entity implements EntityInterface
     /**
      * geometry.thetaLength
      *
-     * @param int $thetaLength            
+     * @param int $thetaLength
      * @return self
      */
     public function thetaLength(int $thetaLength)
@@ -119,12 +119,24 @@ class Cylinder extends Entity implements EntityInterface
     /**
      * geometry.thetaStart
      *
-     * @param int $thetaStart            
+     * @param int $thetaStart
      * @return self
      */
     public function thetaStart(int $thetaStart)
     {
         $this->attr('Geometry')->thetaStart($thetaStart);
+        return $this;
+    }
+
+    /**
+     * material.side
+     *
+     * @param bool $openEnded
+     * @return self
+     */
+    public function side(string $side)
+    {
+        $this->attr('Material')->side($side);
         return $this;
     }
 }
