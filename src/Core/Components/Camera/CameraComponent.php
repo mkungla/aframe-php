@@ -39,6 +39,7 @@ class CameraComponent extends ComponentAbstract implements CameraCMPTIF
     public function initializeComponent(): bool
     {
         $this->setDomAttribute('camera');
+        $this->active(true);
         $this->far(10000);
         $this->fov(80);
         $this->near(0.5);

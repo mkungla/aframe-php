@@ -87,6 +87,13 @@ final class Scene
     protected $scripts = array();
 
     /**
+     * Dom element attributes
+     *
+     * @var unknown
+     */
+    protected $attrs = array();
+
+    /**
      * Scene constructor
      *
      * @param string $keyword
