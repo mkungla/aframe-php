@@ -167,4 +167,13 @@ class SceneTest extends PHPUnit_Framework_TestCase
         $this->assertContains('some-componet.js', $aframe->scene()
             ->save());
     }
+
+    public function test_scene_remote_scripts()
+    {
+        $aframe = new \AframeVR\Aframe();
+        $aframe->scene()->addScript('http://example.com/some-componet.js');
+
+        $this->assertContains('http://example.com/some-componet.js', $aframe->scene()
+            ->save());
+    }
 }
