@@ -195,11 +195,11 @@ class Entity implements EntityInterface
      * Load component for this entity or set it's attr
      *
      * @param string $component_name
-     * @param null|string $attr_data
+     * @param null|mixed $attr_data
      * @throws \AframeVR\Core\Exceptions\BadComponentCallException
      * @return object|null
      */
-    public function attr(string $component_name, string $attr_data = null)
+    public function attr(string $component_name, $attr_data = null)
     {
         if(!is_null($attr_data)) {
             $this->attrs[$component_name] = $attr_data;
@@ -267,6 +267,8 @@ class Entity implements EntityInterface
     private function appendAttributes(\DOMElement &$a_entity)
     {
         foreach ($this->attrs as $attr => $val) {
+            if(is_bool($val))
+                $val = $val ? '' : 'false';
             $this->setAttribute($a_entity, $attr, $val);
         }
     }

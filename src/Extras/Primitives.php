@@ -83,6 +83,7 @@ trait Primitives
         /* Primitive collections */
         $this->aframeDomObj->appendEntities($this->childrens);
         /* Primitives which only one can be present */
+
         (! $this->sky) ?: $this->aframeDomObj->appendEntity($this->sky);
         (! $this->videosphere) ?: $this->aframeDomObj->appendEntity($this->videosphere);
     }
