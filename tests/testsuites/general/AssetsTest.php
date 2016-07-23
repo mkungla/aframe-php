@@ -7,7 +7,7 @@ class AssetsTest extends PHPUnit_Framework_TestCase
 
     const A_INSTANCE = 'AframeVR\Core\Assets';
     protected $aframe;
-    
+
     // Setup function to instantiate de object to $this->scrap
     protected function setUp()
     {
@@ -22,7 +22,7 @@ class AssetsTest extends PHPUnit_Framework_TestCase
 
     public function test_assets()
     {
-        $this->assertInstanceOf('AframeVR\Core\Assets', 
+        $this->assertInstanceOf('AframeVR\Core\Assets',
             $this->aframe->scene()
                 ->asset()
                 ->timeout());
@@ -30,7 +30,7 @@ class AssetsTest extends PHPUnit_Framework_TestCase
 
     public function test_audio()
     {
-        $this->assertInstanceOf('AframeVR\Interfaces\Core\Assets\AssetAudioInterface', 
+        $this->assertInstanceOf('AframeVR\Interfaces\Core\Assets\AssetAudioInterface',
             $this->aframe->scene()
                 ->asset()
                 ->audio()
@@ -40,7 +40,7 @@ class AssetsTest extends PHPUnit_Framework_TestCase
 
     public function test_img()
     {
-        $this->assertInstanceOf('AframeVR\Interfaces\Core\Assets\AssetImageInterface', 
+        $this->assertInstanceOf('AframeVR\Interfaces\Core\Assets\AssetImageInterface',
             $this->aframe->scene()
                 ->asset()
                 ->img()
@@ -50,7 +50,7 @@ class AssetsTest extends PHPUnit_Framework_TestCase
 
     public function test_item()
     {
-        $this->assertInstanceOf('AframeVR\Interfaces\Core\Assets\AssetItemInterface', 
+        $this->assertInstanceOf('AframeVR\Interfaces\Core\Assets\AssetItemInterface',
             $this->aframe->scene()
                 ->asset()
                 ->item());
@@ -58,7 +58,7 @@ class AssetsTest extends PHPUnit_Framework_TestCase
 
     public function test_video()
     {
-        $this->assertInstanceOf('AframeVR\Interfaces\Core\Assets\AssetVideoInterface', 
+        $this->assertInstanceOf('AframeVR\Interfaces\Core\Assets\AssetVideoInterface',
             $this->aframe->scene()
                 ->asset()
                 ->video(10)
@@ -66,17 +66,17 @@ class AssetsTest extends PHPUnit_Framework_TestCase
                 ->preload()
                 ->loop()
                 ->crossorigin());
-        
+
         $this->aframe->scene()->save();
     }
 
     public function test_mixin()
     {
-        $this->assertInstanceOf('AframeVR\Interfaces\Core\Assets\MixinInterface', 
+        $this->assertInstanceOf('AframeVR\Interfaces\Core\Assets\MixinInterface',
             $this->aframe->scene()
                 ->asset()
                 ->mixin());
-        
+
         $this->aframe->scene()
             ->asset()
             ->mixin('mix-id')
@@ -89,7 +89,15 @@ class AssetsTest extends PHPUnit_Framework_TestCase
             ->src('#mix-src')
             ->attr('Light')
             ->angle(60);
-        
+
         $this->aframe->scene()->save();
+    }
+
+    public function test_boolean_attr()
+    {
+        $this->aframe->scene()
+        ->asset()->mixin()->attr('grab', true);
+        $this->assertContains('grab', $this->aframe->scene()
+            ->save());
     }
 }

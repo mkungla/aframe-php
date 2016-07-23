@@ -79,7 +79,7 @@ abstract class AssetsAbstract implements AssetsInterface
      */
     public function src(string $src = null): AssetsInterface
     {
-        $this->attrs['src'] = $this->assets_uri ? $this->assets_uri . $src : $src;
+        $this->attrs['src'] = $this->assets_uri ? $this->createURL($src) : $src;
         return $this;
     }
 
@@ -116,6 +116,20 @@ abstract class AssetsAbstract implements AssetsInterface
     public function setDomElementTag(string $element_tag)
     {
         $this->element_tag = $element_tag;
+    }
+
+    /**
+     * Create asset URL
+     *
+     * If it is remote resource use fully qualified
+     * URL instead creating it relative to local assets url
+     *
+     * @param string $url
+     * @return string
+     */
+    private function createURL(string $url)
+    {
+        return substr($url,0,4) === 'http' ? $url : $this->assets_uri . $url;
     }
 
     /**

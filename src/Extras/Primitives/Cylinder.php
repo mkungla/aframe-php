@@ -127,16 +127,4 @@ class Cylinder extends Entity implements EntityInterface
         $this->attr('Geometry')->thetaStart($thetaStart);
         return $this;
     }
-
-    /**
-     * material.side
-     *
-     * @param bool $openEnded
-     * @return self
-     */
-    public function side(string $side)
-    {
-        $this->attr('Material')->side($side);
-        return $this;
-    }
 }
