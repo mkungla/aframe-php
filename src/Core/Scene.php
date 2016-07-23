@@ -290,6 +290,8 @@ final class Scene
         $this->aframeDomObj->appendEntities($this->childrenFactory->getChildren());
         $this->aframeDomObj->appendSceneComponents($this->components);
 
+        $this->aframeDomObj->appendSceneAttributes($this->attrs);
+
         /* Append extra scripts */
         $this->prepareScripts();
 

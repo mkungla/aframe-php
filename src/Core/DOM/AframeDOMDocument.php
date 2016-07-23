@@ -324,6 +324,29 @@ final class AframeDOMDocument extends DOMImplementation
     }
 
     /**
+     * Append DOM attributes no set by components
+     *
+     * @param \DOMElement $a_entity
+     */
+    public function appendSceneAttributes(array $attrs)
+    {
+        foreach ($attrs as $attr => $val) {
+            if(is_bool($val))
+                $val = $val ? '' : 'false';
+                $this->appendSceneAttribute($attr, $val);
+        }
+    }
+
+    private function appendSceneAttribute($attr, $val)
+    {
+        if ($attr === 'id' && is_numeric($val))
+            return;
+
+            $this->scene->setAttribute($attr, $val);
+    }
+
+
+    /**
      * Set configuration option related to DOM
      *
      * @param Config $config

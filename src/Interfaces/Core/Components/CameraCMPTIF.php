@@ -5,10 +5,10 @@
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
- * 
+ *
  * @category       AframeVR
  * @package        aframe-php
- * 
+ *
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
  * File         CameraCMPTIF.php
@@ -41,40 +41,40 @@ interface CameraCMPTIF extends ComponentInterface
      *
      * Whether the camera is currently the active camera in a scene with multiple cameras.
      *
-     * @param bool $active            
+     * @param bool $active
      * @return CameraCMPTIF
      */
-    public function active(bool $active = false): CameraCMPTIF;
+    public function active(bool $active): CameraCMPTIF;
 
     /**
      * Camera frustum far clipping plane.
      *
-     * @param int|float $far            
+     * @param float $far
      * @return CameraCMPTIF
      */
-    public function far(float $far = 10000): CameraCMPTIF;
+    public function far(float $far): CameraCMPTIF;
 
     /**
      * Field of view (in degrees).
      *
-     * @param int $fov            
+     * @param float $fov
      * @return CameraCMPTIF
      */
-    public function fov(int $fov = 80): CameraCMPTIF;
+    public function fov(float $fov): CameraCMPTIF;
 
     /**
      * Camera frustum near clipping plane.
      *
-     * @param float $near            
+     * @param float $near
      * @return CameraCMPTIF
      */
-    public function near(float $near = 0.5): CameraCMPTIF;
+    public function near(float $near): CameraCMPTIF;
 
     /**
      * Camera zoom
      *
-     * @param int|float $zoom            
+     * @param float $zoom
      * @return CameraCMPTIF
      */
-    public function zoom(float $zoom = 1): CameraCMPTIF;
+    public function zoom(float $zoom): CameraCMPTIF;
 }
