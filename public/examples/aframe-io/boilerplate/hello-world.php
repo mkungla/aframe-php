@@ -1,6 +1,6 @@
 <?php
 /* Common bootstrap for examples */
-include dirname(__DIR__,3).DIRECTORY_SEPARATOR.'examples-bootstrap.php';
+include dirname(__DIR__,2).DIRECTORY_SEPARATOR.'examples-bootstrap.php';
 
 /* $aframe->scene(); === Anonymous scene */
 $aframe->scene()->title('Hello, World! • A-Frame');
@@ -37,7 +37,7 @@ $aframe->scene()->plane()
 
 /* sky method creates anonymous entity matching primitive sky */
 $aframe->scene()->sky()
-    ->color('#000');
+    ->color('#ECECEC');
 
 /* Render scene */
 $aframe->scene()->render();
