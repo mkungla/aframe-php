@@ -109,7 +109,7 @@ class Entity implements EntityInterface
      *
      * @return \AframeVR\Core\Helpers\EntityChildrenFactory
      */
-    public function child(): EntityChildrenFactory
+    public function el(): EntityChildrenFactory
     {
         return $this->childrenFactory ?? $this->childrenFactory = new EntityChildrenFactory();
     }

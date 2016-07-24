@@ -40,7 +40,7 @@ class Camera extends Entity implements EntityInterface
     public function reset()
     {
         parent::reset();
-        $this->child()->entity()->attr('Camera');
+        $this->el()->entity()->attr('Camera');
         $this->active(true);
         $this->lookControls(true);
         $this->wasdControls(true);
@@ -54,7 +54,7 @@ class Camera extends Entity implements EntityInterface
      */
     public function active(bool $active)
     {
-        $this->child()
+        $this->el()
             ->entity()
             ->attr('Camera')
             ->active($active);
@@ -69,7 +69,7 @@ class Camera extends Entity implements EntityInterface
      */
     public function far(float $far)
     {
-        $this->child()
+        $this->el()
             ->entity()
             ->attr('Camera')
             ->far($far);
@@ -84,7 +84,7 @@ class Camera extends Entity implements EntityInterface
      */
     public function fov(float $fov)
     {
-        $this->child()
+        $this->el()
             ->entity()
             ->attr('Camera')
             ->fov($fov);
@@ -99,7 +99,7 @@ class Camera extends Entity implements EntityInterface
      */
     public function lookControls(bool $look_controls = true)
     {
-        $this->child()
+        $this->el()
             ->entity()
             ->attr('LookControls')
             ->enabled($look_controls);
@@ -114,7 +114,7 @@ class Camera extends Entity implements EntityInterface
      */
     public function near(float $near)
     {
-        $this->child()
+        $this->el()
             ->entity()
             ->attr('Camera')
             ->near($near);
@@ -129,7 +129,7 @@ class Camera extends Entity implements EntityInterface
      */
     public function wasdControls(bool $wasd_controls = true)
     {
-        $this->child()
+        $this->el()
             ->entity()
             ->attr('WASDControls')
             ->enabled($wasd_controls);
@@ -144,7 +144,7 @@ class Camera extends Entity implements EntityInterface
      */
     public function zoom(float $zoom)
     {
-        $this->child()
+        $this->el()
             ->entity()
             ->attr('Camera')
             ->zoom($zoom);
@@ -158,9 +158,9 @@ class Camera extends Entity implements EntityInterface
      */
     public function cursor()
     {
-        $this->child()
+        $this->el()
             ->entity()
-            ->child()
+            ->el()
             ->cursor();
         return $this;
     }

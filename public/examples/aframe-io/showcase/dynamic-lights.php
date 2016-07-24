@@ -34,7 +34,7 @@ $aframe->scene()->entity(1)->position(0, 0, 0)
         ->easing('linear')
         ->dur(4096);
 $aframe->scene()->entity(1)
-    ->child()->entity()
+    ->el()->entity()
         ->mixin('light')
         ->position(30, 0, 0);
 
@@ -46,7 +46,7 @@ $aframe->scene()->entity(2)->position(0, 0, 0)
         ->easing('linear')
         ->dur(4096);
 $aframe->scene()->entity(2)
-    ->child()->entity()
+    ->el()->entity()
         ->mixin('light')
         ->position(0, 0, 40);
 

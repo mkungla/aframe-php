@@ -138,7 +138,7 @@ final class Scene
      *
      * @return \AframeVR\Core\Helpers\EntityChildrenFactory
      */
-    public function child(): EntityChildrenFactory
+    public function el(): EntityChildrenFactory
     {
         return $this->childrenFactory;
     }
@@ -219,11 +219,11 @@ final class Scene
      * Load component for this scene or set it's attr
      *
      * @param string $component_name
-     * @param null|string $attr_data
+     * @param null|mixed $attr_data
      * @throws \AframeVR\Core\Exceptions\BadComponentCallException
      * @return object|null
      */
-    public function attr(string $component_name, string $attr_data = null)
+    public function attr(string $component_name, $attr_data = null)
     {
         if(!is_null($attr_data)) {
             $this->attrs[$component_name] = $attr_data;
@@ -271,7 +271,7 @@ final class Scene
         $primitive = sprintf('\AframeVR\Extras\Primitives\%s', ucfirst($method));
 
         if ($method === 'entity' || class_exists($primitive)) {
-            return $this->child()->getEntity($method, $id);
+            return $this->el()->getEntity($method, $id);
         } else {
             return $this->attr($method);
         }

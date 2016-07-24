@@ -34,12 +34,12 @@ $aframe->scene()->entity('model')
         ->dur(15000)
         ->easing('linear')
         ->repeat('infinite');
-$aframe->scene()->entity('model')->child()->colladamodel()
+$aframe->scene()->entity('model')->el()->colladamodel()
     ->position(-.35, 0, .55)
     ->rotation(0, -20, 0)
     ->scale(1.5, 1.5, 1.5)
     ->src('#why-male-models');
-$aframe->scene()->entity('model')->child()->image()
+$aframe->scene()->entity('model')->el()->image()
     ->src('#shadow2')
     ->rotation(-90, 0, 0)
     ->scale(.5, .5, .5);
@@ -89,7 +89,7 @@ $aframe->scene()->cylinder('goggles')
         ->dur(750)
         ->delay(1000)
         ->fill('both');
-$aframe->scene()->cylinder('goggles')->child()->image()
+$aframe->scene()->cylinder('goggles')->el()->image()
     ->src('#goggles')
     ->width(2)
     ->height(1)

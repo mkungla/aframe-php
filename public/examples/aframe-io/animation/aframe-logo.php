@@ -17,7 +17,7 @@ $aframe->scene()->entity(1)->animation()
     ->to('0 0 0')
     ->dur(4000)
     ->easing('ease-out');
-$aframe->scene()->entity(1)->child()->camera('camera')
+$aframe->scene()->entity(1)->el()->camera('camera')
     ->position(0, 880, 1290)
     ->rotation(-34, 0, 0)
     ->near(1000)
@@ -29,41 +29,41 @@ $aframe->scene()->entity(1)->child()->camera('camera')
 $aframe->scene()->entity('logo')->rotation(0, 45, 0);
 
 /*  Right side */
-$aframe->scene()->entity('logo')->child()->entity(1)
+$aframe->scene()->entity('logo')->el()->entity(1)
     ->rotation(-20, 0, 0)
     ->position(0, 0, 10.75)
     ->scale(1, 0, 1);
-$aframe->scene()->entity('logo')->child()->entity(1)->animation()
+$aframe->scene()->entity('logo')->el()->entity(1)->animation()
     ->attribute('scale')
     ->to('1 1 1')
     ->delay('200')
     ->dur('1000')
     ->easing('ease-out');
 /* Left side */
-$aframe->scene()->entity('logo')->child()->entity(1)->child()->box()
+$aframe->scene()->entity('logo')->el()->entity(1)->el()->box()
     ->width(12.5)
     ->depth(1)
     ->height(30)
     ->color('#EF2D5E')
     ->position(0, 15, 0);
-$aframe->scene()->entity('logo')->child()->entity(1)->child()->box()->child()->entity()
+$aframe->scene()->entity('logo')->el()->entity(1)->el()->box()->el()->entity()
     ->rotation(-140, 0, 0)
     ->position(0, 15, 0)
     ->scale(1, 0, 1);
-$aframe->scene()->entity('logo')->child()->entity(1)->child()->box()->child()->entity()->animation()
+$aframe->scene()->entity('logo')->el()->entity(1)->el()->box()->el()->entity()->animation()
     ->attribute('scale')
     ->to('1 1 1')
     ->delay(800)
     ->dur(800)
     ->easing('ease-out');
-$aframe->scene()->entity('logo')->child()->entity(1)->child()->box()->child()->entity()->child()->box(1)
+$aframe->scene()->entity('logo')->el()->entity(1)->el()->box()->el()->entity()->el()->box(1)
     ->shader('flat')
     ->width(12.49)
     ->depth(.1)
     ->height(30)
     ->color('#24CAFF')
     ->position(0, 15, -.52);
-$aframe->scene()->entity('logo')->child()->entity(1)->child()->box()->child()->entity()->child()->box(2)
+$aframe->scene()->entity('logo')->el()->entity(1)->el()->box()->el()->entity()->el()->box(2)
     ->width(12.5)
     ->depth(1)
     ->height(30)
@@ -71,24 +71,24 @@ $aframe->scene()->entity('logo')->child()->entity(1)->child()->box()->child()->e
     ->position(0, 15, 0);
 
 /* Cross-bar */
-$aframe->scene()->entity('logo')->child()->entity(2)
+$aframe->scene()->entity('logo')->el()->entity(2)
     ->rotation(-90, 0, 0)
     ->position(0, 8, 7.5)
     ->scale(1, 0, 1);
-$aframe->scene()->entity('logo')->child()->entity(2)->animation()
+$aframe->scene()->entity('logo')->el()->entity(2)->animation()
     ->attribute('scale')
     ->to('1 1 1')
     ->delay(800)
     ->dur(600)
     ->easing('ease-out');
-$aframe->scene()->entity('logo')->child()->entity(2)->child()->box(1)
+$aframe->scene()->entity('logo')->el()->entity(2)->el()->box(1)
     ->shader('flat')
     ->width(12.45)
     ->depth(.1)
     ->height(14)
     ->color('#F2E646')
     ->position(0, 7, .52);
-$aframe->scene()->entity('logo')->child()->entity(2)->child()->box(2)
+$aframe->scene()->entity('logo')->el()->entity(2)->el()->box(2)
     ->width(12.5)
     ->depth(1)
     ->height(14)
@@ -97,7 +97,7 @@ $aframe->scene()->entity('logo')->child()->entity(2)->child()->box(2)
 
 
 /* Clouds */
-$aframe->scene()->entity('logo')->child()->entity(3)->child()->box(1)
+$aframe->scene()->entity('logo')->el()->entity(3)->el()->box(1)
     ->color('white')
     ->opacity(.25)
     ->width(18)
@@ -113,7 +113,7 @@ $aframe->scene()->entity('logo')->child()->entity(3)->child()->box(1)
         ->repeat('indefinite')
         ->fill('both');
 
-$aframe->scene()->entity('logo')->child()->entity(3)->child()->box(2)
+$aframe->scene()->entity('logo')->el()->entity(3)->el()->box(2)
     ->color('white')
     ->opacity(.65)
     ->width(8)
@@ -129,7 +129,7 @@ $aframe->scene()->entity('logo')->child()->entity(3)->child()->box(2)
         ->repeat('indefinite')
         ->fill('both');
 
-$aframe->scene()->entity('logo')->child()->entity(3)->child()->box(3)
+$aframe->scene()->entity('logo')->el()->entity(3)->el()->box(3)
     ->color('white')
     ->opacity(.75)
     ->width(6)
@@ -145,14 +145,14 @@ $aframe->scene()->entity('logo')->child()->entity(3)->child()->box(3)
         ->easing('linear')
         ->repeat('indefinite')
         ->fill('both');
-$aframe->scene()->entity('logo')->child()->entity(3)->child()->box(3)
+$aframe->scene()->entity('logo')->el()->entity(3)->el()->box(3)
     ->animation(2)
         ->attribute('visible')
         ->to('true')
         ->delay(1000)
         ->dur(1);
 
-$aframe->scene()->entity('logo')->child()->entity(3)->child()->box(4)
+$aframe->scene()->entity('logo')->el()->entity(3)->el()->box(4)
     ->color('white')
     ->opacity(.5)
     ->width(8)
@@ -169,7 +169,7 @@ $aframe->scene()->entity('logo')->child()->entity(3)->child()->box(4)
         ->fill('both');
 
 
-$aframe->scene()->entity('logo')->child()->entity(3)->child()->box(5)
+$aframe->scene()->entity('logo')->el()->entity(3)->el()->box(5)
     ->color('white')
     ->opacity(.8)
     ->width(8)
@@ -185,7 +185,7 @@ $aframe->scene()->entity('logo')->child()->entity(3)->child()->box(5)
         ->repeat('indefinite')
         ->fill('both');
 
-$aframe->scene()->entity('logo')->child()->entity(3)->child()->box(6)
+$aframe->scene()->entity('logo')->el()->entity(3)->el()->box(6)
     ->color('white')
     ->opacity(.75)
     ->width(5)
@@ -201,9 +201,9 @@ $aframe->scene()->entity('logo')->child()->entity(3)->child()->box(6)
         ->repeat('indefinite')
         ->fill('both');
 /* Shadow */
-$aframe->scene()->entity('logo')->child()->entity(4)
+$aframe->scene()->entity('logo')->el()->entity(4)
     ->rotation(-90, 0, 0);
-$aframe->scene()->entity('logo')->child()->entity(4)->child()->plane()
+$aframe->scene()->entity('logo')->el()->entity(4)->el()->plane()
     ->width(12.5)
     ->height(20)
     ->position(0, 0, .1)
@@ -219,7 +219,7 @@ $aframe->scene()->entity('logo')->child()->entity(4)->child()->plane()
         ->fill('both');
 
 /* Base */
-$aframe->scene()->entity('logo')->child()->entity(5)->child()->plane()
+$aframe->scene()->entity('logo')->el()->entity(5)->el()->plane()
     ->width(30)
     ->height(30)
     ->color('#249889')
@@ -232,13 +232,13 @@ $aframe->scene()->entity('logo')->child()->entity(5)->child()->plane()
         ->easing('ease-out');
 
 /* Trees */
-$aframe->scene()->entity('logo')->child()->entity(6)
+$aframe->scene()->entity('logo')->el()->entity(6)
     ->position(-10, .2, -10)
-    ->child()->colladamodel()
+    ->el()->colladamodel()
         ->src('#tree')
         ->scale(2.5, 2.5, 2.5)
         ->visible(false);
-$aframe->scene()->entity('logo')->child()->entity(6)->child()->colladamodel()->animation(1)
+$aframe->scene()->entity('logo')->el()->entity(6)->el()->colladamodel()->animation(1)
     ->attribute('position')
     ->from('0 10 0')
     ->to('0 0 0')
@@ -246,19 +246,19 @@ $aframe->scene()->entity('logo')->child()->entity(6)->child()->colladamodel()->a
     ->dur(800)
     ->easing('ease-out')
     ->fill('backwards');
-$aframe->scene()->entity('logo')->child()->entity(6)->child()->colladamodel()->animation(2)
+$aframe->scene()->entity('logo')->el()->entity(6)->el()->colladamodel()->animation(2)
     ->attribute('visible')
     ->to('true')
     ->delay(800)
     ->dur(1);
 
-$aframe->scene()->entity('logo')->child()->entity(7)
+$aframe->scene()->entity('logo')->el()->entity(7)
     ->position(-10, .2, 6)
-    ->child()->colladamodel()
+    ->el()->colladamodel()
         ->src('#tree')
         ->scale(2.5, 2.5, 2.5)
         ->visible(false);
-$aframe->scene()->entity('logo')->child()->entity(7)->child()->colladamodel()->animation(1)
+$aframe->scene()->entity('logo')->el()->entity(7)->el()->colladamodel()->animation(1)
     ->attribute('position')
     ->from('0 10 0')
     ->to('0 0 0')
@@ -266,19 +266,19 @@ $aframe->scene()->entity('logo')->child()->entity(7)->child()->colladamodel()->a
     ->dur(800)
     ->easing('ease-out')
     ->fill('backwards');
-$aframe->scene()->entity('logo')->child()->entity(7)->child()->colladamodel()->animation(2)
+$aframe->scene()->entity('logo')->el()->entity(7)->el()->colladamodel()->animation(2)
     ->attribute('visible')
     ->to('true')
     ->delay(400)
     ->dur(1);
 
-$aframe->scene()->entity('logo')->child()->entity(8)
+$aframe->scene()->entity('logo')->el()->entity(8)
     ->position(10, .2, 10)
-    ->child()->colladamodel()
+    ->el()->colladamodel()
         ->src('#tree')
         ->scale(2.5, 2.5, 2.5)
         ->visible(false);
-$aframe->scene()->entity('logo')->child()->entity(8)->child()->colladamodel()->animation(1)
+$aframe->scene()->entity('logo')->el()->entity(8)->el()->colladamodel()->animation(1)
     ->attribute('position')
     ->from('0 10 0')
     ->to('0 0 0')
@@ -286,7 +286,7 @@ $aframe->scene()->entity('logo')->child()->entity(8)->child()->colladamodel()->a
     ->dur(800)
     ->easing('ease-out')
     ->fill('backwards');
-$aframe->scene()->entity('logo')->child()->entity(8)->child()->colladamodel()->animation(2)
+$aframe->scene()->entity('logo')->el()->entity(8)->el()->colladamodel()->animation(2)
     ->attribute('visible')
     ->to('true')
     ->delay(600)

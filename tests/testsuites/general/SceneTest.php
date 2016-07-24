@@ -85,46 +85,46 @@ class SceneTest extends PHPUnit_Framework_TestCase
     public function test_EntityChildrenFactory()
     {
         $this->assertInstanceOf('\AframeVR\Extras\Primitives\Box', $this->aframe->scene()
-            ->entity()->child()->box(1));
+            ->entity()->el()->box(1));
 
         $this->assertInstanceOf('\AframeVR\Extras\Primitives\Sphere', $this->aframe->scene()
-            ->entity()->child()->sphere(2));
+            ->entity()->el()->sphere(2));
 
         $this->assertInstanceOf('\AframeVR\Extras\Primitives\Cylinder', $this->aframe->scene()
-            ->entity()->child()->cylinder(3));
+            ->entity()->el()->cylinder(3));
 
         $this->assertInstanceOf('\AframeVR\Extras\Primitives\Plane', $this->aframe->scene()
-            ->entity()->child()->plane(4));
+            ->entity()->el()->plane(4));
 
         $this->assertInstanceOf('\AframeVR\Extras\Primitives\Camera', $this->aframe->scene()
-            ->entity()->child()->camera(5));
+            ->entity()->el()->camera(5));
 
         $this->assertInstanceOf('\AframeVR\Extras\Primitives\ColladaModel', $this->aframe->scene()
-            ->entity()->child()->colladaModel(6));
+            ->entity()->el()->colladaModel(6));
 
         $this->assertInstanceOf('\AframeVR\Extras\Primitives\Image', $this->aframe->scene()
-            ->entity()->child()->image(7));
+            ->entity()->el()->image(7));
 
         $this->assertInstanceOf('\AframeVR\Extras\Primitives\Light', $this->aframe->scene()
-            ->entity()->child()->light(8));
+            ->entity()->el()->light(8));
 
         $this->assertInstanceOf('\AframeVR\Extras\Primitives\Video', $this->aframe->scene()
-            ->entity()->child()->video(9));
+            ->entity()->el()->video(9));
 
         $this->assertInstanceOf('\AframeVR\Extras\Primitives\Torus', $this->aframe->scene()
-            ->entity()->child()->torus(10));
+            ->entity()->el()->torus(10));
 
         $this->assertInstanceOf('\AframeVR\Extras\Primitives\Ring', $this->aframe->scene()
-            ->entity()->child()->ring(11));
+            ->entity()->el()->ring(11));
 
         $this->assertInstanceOf('\AframeVR\Extras\Primitives\ObjModel', $this->aframe->scene()
-            ->entity()->child()->objmodel(12));
+            ->entity()->el()->objmodel(12));
 
         $this->assertInstanceOf('\AframeVR\Extras\Primitives\Curvedimage', $this->aframe->scene()
-            ->entity()->child()->curvedimage(13));
+            ->entity()->el()->curvedimage(13));
 
         $this->assertInstanceOf('\AframeVR\Extras\Primitives\Cone', $this->aframe->scene()
-            ->entity()->child()->cone(14));
+            ->entity()->el()->cone(14));
     }
 
     public function test_scene_components()
@@ -175,5 +175,19 @@ class SceneTest extends PHPUnit_Framework_TestCase
 
         $this->assertContains('http://example.com/some-componet.js', $aframe->scene()
             ->save());
+    }
+
+    public function test_scene_attr()
+    {
+        $aframe = new \AframeVR\Aframe();
+        $aframe->scene('my-scene')->attr('vr-mode-ui','enabled: false');
+        $aframe->scene('my-scene')->attr('bool',true);
+        $aframe->scene('my-scene')->attr('do-not-allow-int',50);
+
+        $scene = $aframe->scene('my-scene')->save();
+
+        $this->assertContains('vr-mode-ui="enabled: false"', $scene);
+        $this->assertContains('bool=""', $scene);
+        $this->assertNotContains('do-not-allow-int', $scene);
     }
 }

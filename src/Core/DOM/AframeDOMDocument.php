@@ -339,7 +339,7 @@ final class AframeDOMDocument extends DOMImplementation
 
     private function appendSceneAttribute($attr, $val)
     {
-        if ($attr === 'id' && is_numeric($val))
+        if ($attr === 'id' || is_numeric($val))
             return;
 
             $this->scene->setAttribute($attr, $val);
