@@ -5,10 +5,10 @@
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
- * 
+ *
  * @category       AframeVR
  * @package        aframe-php
- * 
+ *
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
  * File         Scene.php
@@ -27,49 +27,42 @@ use \AframeVR\Extras\Primitives;
 use \AframeVR\Core\Entity;
 use \AframeVR\Core\DOM\AframeDOMDocument;
 use \AframeVR\Core\Assets;
-use \Closure;
 use \AframeVR\Core\Exceptions\BadComponentCallException;
+use \AframeVR\Core\Helpers\EntityChildrenFactory;
 
 final class Scene
 {
     /* All scenes can use primitives */
     use Primitives;
-    
+
     /**
      * Name with what you can retrieve this scene while working with multiple scenes
      *
      * @var string $name
      */
     private $keyword;
-    
+
     /**
      * Is scene prepared for rendering
      *
      * @var bool
      */
     private $prepared;
-    
+
     /**
      * Assets
      *
      * @var \AframeVR\Core\Assets
      */
     protected $assets;
-    
+
     /**
      * Aframe Document Object Model
      *
      * @var \AframeVR\Core\DOM\AframeDOMDocument
      */
     protected $aframeDomObj;
-    
-    /**
-     * A-Frame scene entities
-     *
-     * @var array $entities
-     */
-    protected $entities = array();
-    
+
     /**
      * Scene components
      *
@@ -78,17 +71,41 @@ final class Scene
     protected $components = array();
 
     /**
+     * Children Factory
+     *
+     * @var \AframeVR\Core\Helpers\EntityChildrenFactory
+     */
+    protected $childrenFactory;
+
+    /**
+     * Extra scrits to add into head
+     *
+     * Like components and shaders
+     *
+     * @var array $scripts
+     */
+    protected $scripts = array();
+
+    /**
+     * Dom element attributes
+     *
+     * @var unknown
+     */
+    protected $attrs = array();
+
+    /**
      * Scene constructor
      *
-     * @param string $keyword            
-     * @param Config $config            
+     * @param string $keyword
+     * @param Config $config
      */
     public function __construct(string $keyword, Config $config)
     {
-        $this->keyword = $keyword;
-        $this->aframeDomObj = new AframeDOMDocument($config);
+        $this->keyword         = $keyword;
+        $this->aframeDomObj    = new AframeDOMDocument($config);
+        $this->childrenFactory = new EntityChildrenFactory();
         /* Initialize assests manager */
-        $this->asset();
+        $this->asset($config);
     }
 
     /**
@@ -104,28 +121,26 @@ final class Scene
     }
 
     /**
-     * Entity
-     *
-     * @api
-     *
-     * @param string $id            
-     * @return \AframeVR\Core\Entity
-     */
-    public function entity(string $id = 'untitled'): Entity
-    {
-        return $this->entities[$id] ?? $this->entities[$id] = new Entity($id);
-    }
-
-    /**
      * Assets
      *
      * @api
      *
+     * @param null|Config $config
      * @return \AframeVR\Core\Assets
      */
-    public function asset(): Assets
+    public function asset(Config $config = null): Assets
     {
-        return $this->assets ?? $this->assets = new Assets();
+        return $this->assets ?? $this->assets = new Assets($config);
+    }
+
+    /**
+     * Child entity / primitive
+     *
+     * @return \AframeVR\Core\Helpers\EntityChildrenFactory
+     */
+    public function el(): EntityChildrenFactory
+    {
+        return $this->childrenFactory;
     }
 
     /**
@@ -133,7 +148,7 @@ final class Scene
      *
      * @api
      *
-     * @param bool $only_scene            
+     * @param bool $only_scene
      * @return string
      */
     public function save($only_scene = false, string $file = null): string
@@ -143,7 +158,7 @@ final class Scene
         if (! empty($file) && is_writable(dirname($file))) {
             file_put_contents($file, $html);
         }
-        
+
         return $html;
     }
 
@@ -152,7 +167,7 @@ final class Scene
      *
      * @api
      *
-     * @param bool $only_scene            
+     * @param bool $only_scene
      * @return void
      */
     public function render($only_scene = false)
@@ -168,7 +183,7 @@ final class Scene
      *
      * @api
      *
-     * @param string $title            
+     * @param string $title
      */
     public function title(string $title)
     {
@@ -183,7 +198,7 @@ final class Scene
      *
      * @api
      *
-     * @param string $description            
+     * @param string $description
      */
     public function description(string $description)
     {
@@ -201,16 +216,21 @@ final class Scene
     }
 
     /**
-     * Load component for this entity
+     * Load component for this scene or set it's attr
      *
-     * @param string $component_name            
+     * @param string $component_name
+     * @param null|mixed $attr_data
      * @throws \AframeVR\Core\Exceptions\BadComponentCallException
      * @return object|null
      */
-    public function component(string $component_name)
+    public function attr(string $component_name, $attr_data = null)
     {
+        if(!is_null($attr_data)) {
+            $this->attrs[$component_name] = $attr_data;
+            return $this;
+        }
         if (! array_key_exists($component_name, $this->components)) {
-            $component = sprintf('\AframeVR\Core\Components\ascene\%s\%sComponent', ucfirst($component_name), 
+            $component = sprintf('\AframeVR\Core\Components\ascene\%s\%sComponent', ucfirst($component_name),
                 ucfirst($component_name));
             if (class_exists($component)) {
                 $this->components[$component_name] = new $component();
@@ -218,51 +238,43 @@ final class Scene
                 throw new BadComponentCallException($component_name);
             }
         }
-        
+
         return $this->components[$component_name] ?? null;
     }
 
     /**
-     * Call
+     * Add scripts like components and shaders
      *
-     * @param string $method            
-     * @param array $args            
-     * @throws BadShaderCallException
-     * @return Entity|\AframeVR\Interfaces\ComponentInterface
+     * @param string $path
+     * @return void
      */
-    public function __call(string $method, array $args)
+    public function addScript(string $path)
     {
-        $id = $args[0] ?? 0;
-        $primitive = sprintf('\AframeVR\Extras\Primitives\%s', ucfirst($method));
-        
-        if (class_exists($primitive)) {
-            return $this->childrens[$id] ?? (is_int($id) ? $this->childrens[array_push($this->childrens, 
-                new $primitive($id)) - 1] : $this->childrens[$id] = new $primitive($id));
-        } else {
-            return $this->callComponent($method, $args);
-        }
+        $this->scripts[$path] = true;
     }
 
     /**
-     * Handle entity components
+     * Map calls to scene entities and components
      *
      * Since we might need to customize these to have
      * custom components loaded as $this->methosd aswell therefore
      * we have these placeholder magic methods here
      *
-     * @param string $component_name            
-     * @param array $args            
+     * @param string $method
+     * @param array $args
+     * @throws BadShaderCallException
+     * @return Entity|\AframeVR\Interfaces\ComponentInterface
      */
-    public function callComponent(string $component_name, array $args)
+    public function __call(string $method, array $args)
     {
-        if (! method_exists($this, $component_name)) {
-            $this->{$component_name} = Closure::bind(
-                function () use ($component_name) {
-                    return $this->component($component_name);
-                }, $this, get_class());
+        $id        = $args[0] ?? 0;
+        $primitive = sprintf('\AframeVR\Extras\Primitives\%s', ucfirst($method));
+
+        if ($method === 'entity' || class_exists($primitive)) {
+            return $this->el()->getEntity($method, $id);
+        } else {
+            return $this->attr($method);
         }
-        
-        return call_user_func($this->{$component_name}, $args);
     }
 
     /**
@@ -274,16 +286,45 @@ final class Scene
     {
         if ($this->prepared)
             return;
-            
-            /* Append all assets */
-        $assets = $this->assets->getAssets();
-        (! $assets) ?: $this->aframeDomObj->appendAssets($assets);
+
+        /* Append all assets */
+        $this->prepareAssets();
+
         /* Append all primitives */
         $this->preparePrimitives();
-        
+
         /* Append all entities */
-        $this->aframeDomObj->appendEntities($this->entities);
+        $this->aframeDomObj->appendEntities($this->childrenFactory->getChildren());
         $this->aframeDomObj->appendSceneComponents($this->components);
+
+        $this->aframeDomObj->appendSceneAttributes($this->attrs);
+
+        /* Append extra scripts */
+        $this->prepareScripts();
+
         $this->prepared = true;
+    }
+
+    /**
+     * Append all assets
+     *
+     * @return void
+     */
+    protected function prepareAssets()
+    {
+        $assets = $this->assets->getAssets();
+        (!$assets) ?: $this->aframeDomObj->appendAssets($assets);
+    }
+
+    /**
+     * Append extra scripts
+     *
+     * like extra components and shaders used in scene
+     *
+     * @return void
+     */
+    protected function prepareScripts()
+    {
+        (empty($this->scripts)) ?: $this->aframeDomObj->registerScripts($this->scripts);
     }
 }

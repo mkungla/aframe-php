@@ -40,12 +40,12 @@ class Video extends Entity implements EntityInterface
     public function reset()
     {
         parent::reset();
-        $this->component('Material')->shader('flat');
+        $this->attr('Material')->shader('flat');
         $this->color('#FFF');
-        $this->component('Material')->side('double');
-        $this->component('Material')->transparent(true);
+        $this->attr('Material')->side('double');
+        $this->attr('Material')->transparent(true);
         
-        $this->component('Geometry')->primitive('plane');
+        $this->attr('Geometry')->primitive('plane');
         $this->height(1.75);
         $this->width(3);
     }
@@ -58,7 +58,7 @@ class Video extends Entity implements EntityInterface
      */
     public function height(float $height)
     {
-        $this->component('Geometry')->height($height);
+        $this->attr('Geometry')->height($height);
         return $this;
     }
 
@@ -70,7 +70,7 @@ class Video extends Entity implements EntityInterface
      */
     public function width(float $width)
     {
-        $this->component('Geometry')->width($width);
+        $this->attr('Geometry')->width($width);
         return $this;
     }
 }

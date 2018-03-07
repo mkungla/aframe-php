@@ -15,7 +15,7 @@ class GeometryComponentTest extends PHPUnit_Framework_TestCase
         $aframe = new \AframeVR\Aframe();
         $this->component = $aframe->scene()
             ->entity()
-            ->component('Geometry');
+            ->attr('Geometry');
     }
 
     const A_INSTANCE = '\AframeVR\Core\Components\Geometry\GeometryComponent';

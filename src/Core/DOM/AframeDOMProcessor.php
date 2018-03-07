@@ -5,10 +5,10 @@
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
- * 
+ *
  * @category       AframeVR
  * @package        aframe-php
- * 
+ *
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
  * File         AframeDOMProcessor.php
@@ -31,28 +31,28 @@ trait AframeDOMProcessor
      * @var \DOMDocumentType
      */
     protected $doctypeObj;
-    
+
     /**
      * A-Frame DOM Document
      *
      * @var \DOMDocument
      */
     protected $docObj;
-    
+
     /**
      * Scene meta tile
      *
      * @var string $scene_title
      */
     protected $scene_title = 'Untitled';
-    
+
     /**
      * Scene meta description
      *
      * @var string $scene_description
      */
     protected $scene_description = '';
-    
+
     /**
      * <head>
      *
@@ -80,11 +80,11 @@ trait AframeDOMProcessor
      * @var \DOMElement
      */
     protected $assets;
-    
+
     /************
      * CONFIG
      ***********/
-    
+
     /**
      * Nicely formats output with indentation and extra space.
      *
@@ -98,52 +98,52 @@ trait AframeDOMProcessor
      * @var string
      */
     protected $cdn_url;
-    
+
     /**
      * Whether to use CDN
      *
      * @var bool $use_cdn
      */
     protected $use_cdn = false;
-    
+
     /**
      * aframe assets URI relative to App's base URL / domain
-     * 
+     *
      * @var string assets_uri
      */
     protected $assets_uri;
-    
+
     /**
      * \DOMImplementation::createDocumentType
-     * 
-     * DOMImplementation::createDocumentType — Creates an empty DOMDocumentType object 
-     * 
+     *
+     * DOMImplementation::createDocumentType — Creates an empty DOMDocumentType object
+     *
      * {@inheritdoc}
-     * 
+     *
      * @param string $qualifiedName
      * @param null|string $publicId
      * @param null|string $systemId
      * @return \DOMDocumentType
      */
     abstract protected function createDocumentType($qualifiedName, $publicId, $systemId);
-    
+
     /**
      * \DOMImplementation::createDocument
-     * 
+     *
      * {@inheritdoc}
-     * 
+     *
      * @param string $namespaceURI
      * @param string $qualifiedName
      * @param \DOMDocumentType $doctype
      * @return \DOMDocument
      */
     abstract protected function createDocument($namespaceURI, $qualifiedName, \DOMDocumentType $doctype);
-    
+
     /**
      * Add document comment for formatting
      *
-     * @param string $element            
-     * @param string $comment            
+     * @param string $element
+     * @param string $comment
      */
     protected function appendFormatComment(string $element, string $comment)
     {
@@ -156,7 +156,7 @@ trait AframeDOMProcessor
     /**
      * Correct html format for tags which are not supported by DOMDocument
      *
-     * @param string $html            
+     * @param string $html
      * @return string
      */
     protected function correctOutputFormat($html)
@@ -189,6 +189,7 @@ trait AframeDOMProcessor
         $this->head->appendChild($title);
         $this->appendDefaultMetaTags();
         $this->appendCDN();
+        $this->appendScripts($this->scripts);
     }
 
     /**
@@ -214,17 +215,17 @@ trait AframeDOMProcessor
     protected function getDefaultMetaTags(): array
     {
         $dmt               = array();
-        $dmt[0]['charset'] = 'utf-8';     
+        $dmt[0]['charset'] = 'utf-8';
         $dmt[1]['name']    = 'viewport';
-        
+
         $vp = 'width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,minimal-ui';
-        
+
         $dmt[1]['content'] = $vp;
         $dmt[2]['name']    = 'mobile-web-app-capable';
         $dmt[2]['content'] = 'yes';
         $dmt[3]['name']    = 'theme-color';
         $dmt[3]['content'] = 'black';
-        
+
         return $dmt;
     }
 
@@ -254,7 +255,7 @@ trait AframeDOMProcessor
     /**
      * Create meta tags
      *
-     * @param array $attr            
+     * @param array $attr
      */
     protected function appendMetaTag(array $attr)
     {
@@ -267,7 +268,7 @@ trait AframeDOMProcessor
     /**
      * Creates an empty DOMDocumentType object
      *
-     * @param string $doctype            
+     * @param string $doctype
      * @return void
      */
     protected function createDocType(string $doctype)
@@ -283,7 +284,7 @@ trait AframeDOMProcessor
     protected function createAframeDocument()
     {
         $this->docObj = $this->createDocument(null, 'html', $this->doctypeObj);
-        
+
         $this->docObj->formatOutput = $this->format_output;
     }
 

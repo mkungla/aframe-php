@@ -50,17 +50,10 @@ final class AssetVideo extends AssetsAbstract implements AssetVideoInterface
      */
     protected $attr_crossorigin;
     
-    /**
-     * Asset constructor set asset ID
-     *
-     * @param string $id            
-     */
-    public function __construct(string $id)
+    public function init()
     {
-        $this->id($id);
         $this->setDomElementTag('video');
     }
-
     /**
      * Autoplay video
      *

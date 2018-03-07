@@ -13,11 +13,11 @@ class ScaleComponentTest extends PHPUnit_Framework_TestCase
         $aframe = new \AframeVR\Aframe();
         $aframe->scene()
             ->entity()
-            ->component('Scale')
+            ->attr('Scale')
                 ->scaleX(2);
         $this->component = $aframe->scene()
             ->entity()
-            ->component('Scale');
+            ->attr('Scale');
     }
 
     const A_INSTANCE = '\AframeVR\Core\Components\Scale\ScaleComponent';
@@ -50,7 +50,7 @@ class ScaleComponentTest extends PHPUnit_Framework_TestCase
         
         $this->assertEquals($aframe->scene()
             ->entity()
-            ->component('Scale')
+            ->attr('Scale')
             ->getScale(), '1 2 6');
     }
 }

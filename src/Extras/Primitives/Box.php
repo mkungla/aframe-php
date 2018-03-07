@@ -40,7 +40,7 @@ class Box extends Entity implements EntityInterface
     public function reset()
     {
         parent::reset();
-        $this->component('Geometry')->primitive('box');
+        $this->attr('Geometry')->primitive('box');
     }
 
     /**
@@ -51,7 +51,7 @@ class Box extends Entity implements EntityInterface
      */
     public function depth(float $depth)
     {
-        $this->component('Geometry')->depth($depth);
+        $this->attr('Geometry')->depth($depth);
         return $this;
     }
 
@@ -63,7 +63,7 @@ class Box extends Entity implements EntityInterface
      */
     public function height(float $height)
     {
-        $this->component('Geometry')->height($height);
+        $this->attr('Geometry')->height($height);
         return $this;
     }
 
@@ -75,7 +75,7 @@ class Box extends Entity implements EntityInterface
      */
     public function width(float $width)
     {
-        $this->component('Geometry')->width($width);
+        $this->attr('Geometry')->width($width);
         return $this;
     }
 
@@ -87,7 +87,7 @@ class Box extends Entity implements EntityInterface
      */
     public function segmentsHeight(int $height)
     {
-        $this->component('Geometry')->segmentsHeight($height);
+        $this->attr('Geometry')->segmentsHeight($height);
         return $this;
     }
 
@@ -99,7 +99,7 @@ class Box extends Entity implements EntityInterface
      */
     public function segmentsWidth(int $width)
     {
-        $this->component('Geometry')->segmentsWidth($width);
+        $this->attr('Geometry')->segmentsWidth($width);
         return $this;
     }
 
@@ -111,7 +111,7 @@ class Box extends Entity implements EntityInterface
      */
     public function segmentsDepth(int $depth)
     {
-        $this->component('Geometry')->segmentsDepth($depth);
+        $this->attr('Geometry')->segmentsDepth($depth);
         return $this;
     }
 }

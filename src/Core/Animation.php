@@ -5,10 +5,10 @@
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
- * 
+ *
  * @category       AframeVR
  * @package        aframe-php
- * 
+ *
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
  * File         Animation.php
@@ -30,17 +30,17 @@ final class Animation implements AnimationInterface
 {
     /**
      * Animation DOM attributes array
-     * 
+     *
      * @var array
      */
     protected $attrs;
-    
+
     /**
      * Constructor
      *
-     * @param string $id            
+     * @param string $id
      */
-    public function __construct(string $id = 'untitled')
+    public function __construct(string $id = '0')
     {
         $this->attrs['id'] = $id;
     }
@@ -51,7 +51,7 @@ final class Animation implements AnimationInterface
      * Attribute to animate. To specify a component attribute, use componentName.property syntax (e.g.,
      * light.intensity).
      *
-     * @param string $attr            
+     * @param string $attr
      * @return AnimationInterface
      */
     public function attribute(string $attr = 'rotation'): AnimationInterface
@@ -65,7 +65,7 @@ final class Animation implements AnimationInterface
      *
      * Delay (in milliseconds) or event name to wait on before beginning animation
      *
-     * @param string $ms            
+     * @param string $ms
      * @return AnimationInterface
      */
     public function delay($ms = '0'): AnimationInterface
@@ -79,7 +79,7 @@ final class Animation implements AnimationInterface
      *
      * Direction of the animation (between from and to). One of alternate, alternateReverse, normal, reverse.
      *
-     * @param string $direction            
+     * @param string $direction
      * @return AnimationInterface
      */
     public function direction(string $direction = 'normal'): AnimationInterface
@@ -93,7 +93,7 @@ final class Animation implements AnimationInterface
      *
      * Duration in (milliseconds) of the animation.
      *
-     * @param int $ms            
+     * @param int $ms
      * @return AnimationInterface
      */
     public function dur(int $ms = 1000): AnimationInterface
@@ -107,7 +107,7 @@ final class Animation implements AnimationInterface
      *
      * Easing function of the animation. There are very many to choose from.
      *
-     * @param string $func            
+     * @param string $func
      * @return AnimationInterface
      */
     public function easing(string $func = 'ease'): AnimationInterface
@@ -121,7 +121,7 @@ final class Animation implements AnimationInterface
      *
      * One of backwards, both, forwards, none.
      *
-     * @param string $effect            
+     * @param string $effect
      * @return AnimationInterface
      */
     public function fill(string $effect = 'forwards'): AnimationInterface
@@ -133,7 +133,7 @@ final class Animation implements AnimationInterface
     /**
      * Starting value.
      *
-     * @param string $val            
+     * @param string $val
      * @return AnimationInterface
      */
     public function from(string $val = 'Current'): AnimationInterface
@@ -145,10 +145,10 @@ final class Animation implements AnimationInterface
     /**
      * Repeat count or indefinite.
      *
-     * @param int $count            
+     * @param string $count
      * @return AnimationInterface
      */
-    public function repeat(int $count = 0): AnimationInterface
+    public function repeat(string $count = '0'): AnimationInterface
     {
         $this->attrs['repeat'] = $count;
         return $this;
@@ -158,7 +158,7 @@ final class Animation implements AnimationInterface
      * Ending value.
      * Must be specified.
      *
-     * @param string $val            
+     * @param string $val
      * @return AnimationInterface
      */
     public function to(string $val = 'true'): AnimationInterface
@@ -170,7 +170,7 @@ final class Animation implements AnimationInterface
     /**
      * Create and add DOM element of the entity
      *
-     * @param \DOMDocument $aframe_dom            
+     * @param \DOMDocument $aframe_dom
      * @return \DOMElement
      */
     public function domElement(\DOMDocument &$aframe_dom): DOMElement
@@ -183,7 +183,7 @@ final class Animation implements AnimationInterface
     /**
      * Append DOM attributes no set by components
      *
-     * @param \DOMElement $a_entity            
+     * @param \DOMElement $a_entity
      */
     private function appendAttributes(\DOMElement &$a_entity)
     {
@@ -191,13 +191,13 @@ final class Animation implements AnimationInterface
             $this->setAttribute($a_entity, $attribute, $val);
         }
     }
-    
+
     private function setAttribute(&$a_entity, $attribute, $val)
     {
-        if ($attribute === 'id' && ($val === 'untitled' || is_numeric($val)))
+        if ($attribute === 'id' && is_numeric($val))
             return;
-    
+
         $a_entity->setAttribute($attribute, $val);
     }
-    
+
 }

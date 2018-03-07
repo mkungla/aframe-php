@@ -5,10 +5,10 @@
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
- * 
+ *
  * @category       AframeVR
  * @package        aframe-php
- * 
+ *
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
  * File         Assets.php
@@ -43,53 +43,63 @@ final class Assets
 
     /**
      * Set assets timeout attribute
-     * 
+     *
      * @var int
      */
     protected $attr_timeout;
-    
+
+    /**
+     * Asset manager constructor
+     *
+     * @param Config $config
+     */
+    public function __construct(Config $config)
+    {
+        $this->assets_uri = $config->get('assets_uri');
+    }
+
     /**
      * <a-scene><a-assets><audio>
      *
-     * @param string $id            
+     * @param string $id
      * @return \AframeVR\Interfaces\Core\Assets\AssetAudioInterface
      */
-    public function audio(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\AssetAudioInterface
+    public function audio(string $id = '0'): \AframeVR\Interfaces\Core\Assets\AssetAudioInterface
     {
-        return $this->assets[$id] ?? $this->assets[$id] = new AssetAudio($id);
+        return $this->assets[$id] ?? $this->assets[$id] = new AssetAudio($id, $this->assets_uri);
     }
 
     /**
      * <a-scene><a-assets><img>
      *
-     * @param string $id            
+     * @param string $id
      * @return \AframeVR\Interfaces\Core\Assets\AssetImageInterface
      */
-    public function img(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\AssetImageInterface
+    public function img(string $id = '0'): \AframeVR\Interfaces\Core\Assets\AssetImageInterface
     {
-        return $this->assets[$id] ?? $this->assets[$id] = new AssetImage($id);
+        return $this->assets[$id] ?? $this->assets[$id] = new AssetImage($id, $this->assets_uri);
     }
 
     /**
      * <a-scene><a-assets><a-asset-item>
      *
-     * @param string $id            
+     * @param string $id
      * @return \AframeVR\Interfaces\Core\Assets\AssetItemInterface
      */
-    public function item(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\AssetItemInterface
+    public function item(string $id = '0'): \AframeVR\Interfaces\Core\Assets\AssetItemInterface
     {
-        return $this->assets[$id] ?? $this->assets[$id] = new AssetItem($id);
+        return $this->assets[$id] ?? $this->assets[$id] = new AssetItem($id, $this->assets_uri);
     }
 
     /**
      * <a-scene><a-assets><video>
      *
-     * @param string $id            
+     * @param string $id
      * @return \AframeVR\Interfaces\Core\Assets\AssetVideoInterface
      */
-    public function video(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\AssetVideoInterface
+    public function video(string $id = '0'): \AframeVR\Interfaces\Core\Assets\AssetVideoInterface
     {
-        return $this->assets[$id] ?? $this->assets[$id] = new AssetVideo($id);
+        return $this->assets[$id] ?? $this->assets[$id] = new AssetVideo($id, $this->assets_uri);
     }
 
     /**
@@ -98,18 +108,18 @@ final class Assets
      * A-Frame PHP does not create <a-mixin>. Instead it is appling
      * mixin directly on element using this mixin.
      *
-     * @param string $id            
+     * @param string $id
      * @return \AframeVR\Interfaces\Core\Assets\MixinInterface
      */
-    public function mixin(string $id = 'untitled'): \AframeVR\Interfaces\Core\Assets\MixinInterface
+    public function mixin(string $id = '0'): \AframeVR\Interfaces\Core\Assets\MixinInterface
     {
-        return $this->assets[$id] ?? $this->assets[$id] = new Mixin($id);
+        return $this->assets[$id] ?? $this->assets[$id] = new Mixin($id, $this->assets_uri);
     }
 
     /**
      * Setting a timeout
      *
-     * @param int $milliseconds            
+     * @param int $milliseconds
      * @return Assets
      */
     public function timeout(int $milliseconds = 3000)

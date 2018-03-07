@@ -5,10 +5,10 @@
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
- * 
+ *
  * @category       AframeVR
  * @package        aframe-php
- * 
+ *
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
  * File         CameraComponent.php
@@ -39,6 +39,11 @@ class CameraComponent extends ComponentAbstract implements CameraCMPTIF
     public function initializeComponent(): bool
     {
         $this->setDomAttribute('camera');
+        $this->active(true);
+        $this->far(10000);
+        $this->fov(80);
+        $this->near(0.5);
+        $this->zoom(1);
         return true;
     }
 
@@ -47,7 +52,7 @@ class CameraComponent extends ComponentAbstract implements CameraCMPTIF
      *
      * {@inheritdoc}
      *
-     * @param bool $active            
+     * @param bool $active
      * @return CameraCMPTIF
      */
     public function active(bool $active = false): CameraCMPTIF
@@ -61,10 +66,10 @@ class CameraComponent extends ComponentAbstract implements CameraCMPTIF
      *
      * {@inheritdoc}
      *
-     * @param int|float $far            
+     * @param float $far
      * @return CameraCMPTIF
      */
-    public function far(float $far = 10000): CameraCMPTIF
+    public function far(float $far): CameraCMPTIF
     {
         $this->dom_attributes['far'] = $far;
         return $this;
@@ -75,10 +80,10 @@ class CameraComponent extends ComponentAbstract implements CameraCMPTIF
      *
      * {@inheritdoc}
      *
-     * @param int $fov            
+     * @param float $fov
      * @return CameraCMPTIF
      */
-    public function fov(int $fov = 80): CameraCMPTIF
+    public function fov(float $fov): CameraCMPTIF
     {
         $this->dom_attributes['fov'] = $fov;
         return $this;
@@ -89,10 +94,10 @@ class CameraComponent extends ComponentAbstract implements CameraCMPTIF
      *
      * {@inheritdoc}
      *
-     * @param float $near            
+     * @param float $near
      * @return CameraCMPTIF
      */
-    public function near(float $near = 0.5): CameraCMPTIF
+    public function near(float $near): CameraCMPTIF
     {
         $this->dom_attributes['near'] = $near;
         return $this;
@@ -103,10 +108,10 @@ class CameraComponent extends ComponentAbstract implements CameraCMPTIF
      *
      * {@inheritdoc}
      *
-     * @param int|float $zoom            
+     * @param float $zoom
      * @return CameraCMPTIF
      */
-    public function zoom(float $zoom = 1): CameraCMPTIF
+    public function zoom(float $zoom): CameraCMPTIF
     {
         $this->dom_attributes['zoom'] = $zoom;
         return $this;

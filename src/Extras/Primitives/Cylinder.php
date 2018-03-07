@@ -5,10 +5,10 @@
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
- * 
+ *
  * @category       AframeVR
  * @package        aframe-php
- * 
+ *
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
  * File         Cylinder.php
@@ -34,97 +34,97 @@ class Cylinder extends Entity implements EntityInterface
      *
      * The cylinder primitive is an entity that prescribes the geometry with its geometric primitive set to cylinder.
      * It can be used to create tubes and curved surfaces.
-     * 
+     *
      * @return void
      */
     public function reset()
     {
         parent::reset();
-        $this->component('Material');
-        $this->component('Geometry')->primitive('cylinder');
+        $this->attr('Material');
+        $this->attr('Geometry')->primitive('cylinder');
     }
 
     /**
      * geometry.height
      *
-     * @param float $height            
+     * @param float $height
      * @return self
      */
     public function height(float $height)
     {
-        $this->component('Geometry')->height($height);
+        $this->attr('Geometry')->height($height);
         return $this;
     }
 
     /**
      * geometry.openEnded
      *
-     * @param bool $openEnded            
+     * @param bool $openEnded
      * @return self
      */
     public function openEnded(bool $openEnded = false)
     {
-        $this->component('Geometry')->openEnded($openEnded);
+        $this->attr('Geometry')->openEnded($openEnded);
         return $this;
     }
 
     /**
      * geometry.radius
      *
-     * @param float $radius            
+     * @param float $radius
      * @return self
      */
     public function radius(float $radius)
     {
-        $this->component('Geometry')->radius($radius);
+        $this->attr('Geometry')->radius($radius);
         return $this;
     }
 
     /**
      * geometry.segmentsHeight
      *
-     * @param int $segmentsHeight            
+     * @param int $segmentsHeight
      * @return self
      */
     public function segmentsHeight(int $segmentsHeight)
     {
-        $this->component('Geometry')->segmentsHeight($segmentsHeight);
+        $this->attr('Geometry')->segmentsHeight($segmentsHeight);
         return $this;
     }
 
     /**
      * geometry.segmentsRadial
      *
-     * @param int $segmentsRadial            
+     * @param int $segmentsRadial
      * @return self
      */
     public function segmentsRadial(int $segmentsRadial)
     {
-        $this->component('Geometry')->segmentsRadial($segmentsRadial);
+        $this->attr('Geometry')->segmentsRadial($segmentsRadial);
         return $this;
     }
 
     /**
      * geometry.thetaLength
      *
-     * @param int $thetaLength            
+     * @param int $thetaLength
      * @return self
      */
     public function thetaLength(int $thetaLength)
     {
-        $this->component('Geometry')->thetaLength($thetaLength);
+        $this->attr('Geometry')->thetaLength($thetaLength);
         return $this;
     }
 
     /**
      * geometry.thetaStart
      *
-     * @param int $thetaStart            
+     * @param int $thetaStart
      * @return self
      */
     public function thetaStart(int $thetaStart)
     {
-        $this->component('Geometry')->thetaStart($thetaStart);
+        $this->attr('Geometry')->thetaStart($thetaStart);
         return $this;
     }
 }

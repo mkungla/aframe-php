@@ -41,19 +41,19 @@ final class Cursor extends Entity implements EntityInterface
     public function reset()
     {
         parent::reset();
-        $this->component('Geometry')->primitive('ring');
-        $this->component('Geometry')->radiusOuter(0.016);
-        $this->component('Geometry')->radiusInner(0.01);
-        $this->component('Geometry')->segmentsTheta(64);
+        $this->attr('Geometry')->primitive('ring');
+        $this->attr('Geometry')->radiusOuter(0.016);
+        $this->attr('Geometry')->radiusInner(0.01);
+        $this->attr('Geometry')->segmentsTheta(64);
         
-        $this->component('Material')->shader('flat');
+        $this->attr('Material')->shader('flat');
         $this->color('#000');
-        $this->component('Material')->opacity(0.8);
+        $this->attr('Material')->opacity(0.8);
         
         $this->position(0, 0, - 1);
         
-        $this->component('Cursor')->fuse(true);
-        $this->component('Raycaster')->far(1000);
-        $this->component('Cursor')->fuseTimeout(1500);
+        $this->attr('Cursor')->fuse(true);
+        $this->attr('Raycaster')->far(1000);
+        $this->attr('Cursor')->fuseTimeout(1500);
     }
 }

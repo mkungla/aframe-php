@@ -40,7 +40,7 @@ final class Ring extends Entity implements EntityInterface
     public function reset()
     {
         parent::reset();
-        $this->component('Geometry')->primitive('ring');
+        $this->attr('Geometry')->primitive('ring');
         $this->radiusInner(0.8);
         $this->radiusOuter(1.2);
         $this->segmentsPhi(10);
@@ -57,7 +57,7 @@ final class Ring extends Entity implements EntityInterface
      */
     public function radiusInner(float $radiusInner)
     {
-        $this->component('Geometry')->radiusInner($radiusInner);
+        $this->attr('Geometry')->radiusInner($radiusInner);
         return $this;
     }
 
@@ -69,7 +69,7 @@ final class Ring extends Entity implements EntityInterface
      */
     public function radiusOuter(float $radiusOuter)
     {
-        $this->component('Geometry')->radiusOuter($radiusOuter);
+        $this->attr('Geometry')->radiusOuter($radiusOuter);
         return $this;
     }
 
@@ -81,7 +81,7 @@ final class Ring extends Entity implements EntityInterface
      */
     public function segmentsPhi(int $segmentsPhi)
     {
-        $this->component('Geometry')->segmentsPhi($segmentsPhi);
+        $this->attr('Geometry')->segmentsPhi($segmentsPhi);
         return $this;
     }
 
@@ -94,7 +94,7 @@ final class Ring extends Entity implements EntityInterface
      */
     public function segmentsTheta(int $segmentsTheta)
     {
-        $this->component('Geometry')->segmentsTheta($segmentsTheta);
+        $this->attr('Geometry')->segmentsTheta($segmentsTheta);
         return $this;
     }
 
@@ -106,7 +106,7 @@ final class Ring extends Entity implements EntityInterface
      */
     public function thetaLength(float $thetaLength)
     {
-        $this->component('Geometry')->thetaLength($thetaLength);
+        $this->attr('Geometry')->thetaLength($thetaLength);
         return $this;
     }
 
@@ -118,7 +118,7 @@ final class Ring extends Entity implements EntityInterface
      */
     public function thetaStart(float $thetaStart)
     {
-        $this->component('Geometry')->thetaStart($thetaStart);
+        $this->attr('Geometry')->thetaStart($thetaStart);
         return $this;
     }
 }

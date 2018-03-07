@@ -50,7 +50,7 @@ final class ObjModel extends Entity implements EntityInterface
      */
     public function obj(string $selector)
     {
-        $this->component('ObjModel')->obj($selector);
+        $this->attr('ObjModel')->obj($selector);
         return $this;
     }
 
@@ -65,7 +65,7 @@ final class ObjModel extends Entity implements EntityInterface
      */
     public function mtl(string $selector)
     {
-        $this->component('ObjModel')->mtl($selector);
+        $this->attr('ObjModel')->mtl($selector);
         return $this;
     }
 }

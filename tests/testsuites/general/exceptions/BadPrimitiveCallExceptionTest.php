@@ -4,7 +4,7 @@ class BadPrimitiveCallExceptionTest extends PHPUnit_Framework_TestCase
 {
 
     protected $aframe;
-    
+
     // Setup function to instantiate de object to $this->scrap
     protected function setUp()
     {
@@ -17,10 +17,10 @@ class BadPrimitiveCallExceptionTest extends PHPUnit_Framework_TestCase
     public function test_Entity()
     {
         $this->setExpectedException('\AframeVR\Core\Exceptions\BadPrimitiveCallException');
-        
+
         $this->aframe->scene()
             ->box()
-            ->child()->InvalidPrimitveName();
+            ->el()->InvalidPrimitveName();
     }
 
 

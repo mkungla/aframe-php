@@ -5,10 +5,10 @@
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
- * 
+ *
  * @category       AframeVR
  * @package        aframe-php
- * 
+ *
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
  * File         ColladaModel.php
@@ -40,54 +40,53 @@ class ColladaModel extends Entity implements EntityInterface
     public function reset()
     {
         parent::reset();
-        $this->child()->entity()->component('ColladaModel');
+        $this->el()->entity()->attr('ColladaModel');
     }
 
     /**
      * Rotation component
      *
-     * Apply rotation on child instead
+     * Apply rotation on el instead
      *
-     * @param int|float $roll            
-     * @param int|float $pitch            
-     * @param int|float $yaw            
+     * @param int|float $roll
+     * @param int|float $pitch
+     * @param int|float $yaw
      * @return EntityInterface
      */
     public function rotation(float $roll = 0, float $pitch = 0, float $yaw = 0): EntityInterface
     {
-        $this->child()->entity()->rotation($roll, $pitch, $yaw);
+        $this->el()->entity()->rotation($roll, $pitch, $yaw);
         return $this;
     }
 
     /**
      * Scale component
      *
-     * Apply scale on child intead
+     * Apply scale on el intead
      *
-     * @param int|float $scale_x            
-     * @param int|float $scale_y            
-     * @param int|float $scale_z            
+     * @param int|float $scale_x
+     * @param int|float $scale_y
+     * @param int|float $scale_z
      * @return EntityInterface
      */
     public function scale(float $scale_x = 1, float $scale_y = 1, float $scale_z = 1): EntityInterface
     {
-        $this->child()->entity()->scale($scale_x, $scale_y, $scale_z);
+        $this->el()->entity()->scale($scale_x, $scale_y, $scale_z);
         return $this;
     }
 
     /**
      * ColladaModel.src
      *
-     * @param null|string $src            
+     * @param null|string $src
      * @return EntityInterface
      */
     public function src(string $src = null): EntityInterface
     {
-        $this->child()
+        $this->el()
             ->entity()
-            ->component('ColladaModel')
+            ->attr('ColladaModel')
             ->src($src);
         return $this;
     }
 }
- 

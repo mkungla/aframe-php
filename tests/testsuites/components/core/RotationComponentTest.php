@@ -13,11 +13,11 @@ class RotationComponentTest extends PHPUnit_Framework_TestCase
         $aframe = new \AframeVR\Aframe();
         $aframe->scene()
             ->entity()
-            ->component('Rotation')
+            ->attr('Rotation')
                 ->roll(0);
         $this->component = $aframe->scene()
             ->entity()
-            ->component('Rotation');
+            ->attr('Rotation');
     }
 
     const A_INSTANCE = '\AframeVR\Core\Components\Rotation\RotationComponent';
@@ -50,7 +50,7 @@ class RotationComponentTest extends PHPUnit_Framework_TestCase
         
         $this->assertEquals($aframe->scene()
             ->entity()
-            ->component('Rotation')
+            ->attr('Rotation')
             ->getRotation(), '10 -5 6');
     }
 }

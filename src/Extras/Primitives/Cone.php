@@ -40,7 +40,7 @@ final class Cone extends Entity implements EntityInterface
     public function reset()
     {
         parent::reset();
-        $this->component('Geometry')->primitive('cone');
+        $this->attr('Geometry')->primitive('cone');
     }
 
     /**
@@ -51,7 +51,7 @@ final class Cone extends Entity implements EntityInterface
      */
     public function height(int $height)
     {
-        $this->component('Geometry')->height($height);
+        $this->attr('Geometry')->height($height);
         return $this;
     }
 
@@ -63,7 +63,7 @@ final class Cone extends Entity implements EntityInterface
      */
     public function openEnded(bool $open_ended)
     {
-        $this->component('Geometry')->openEnded($open_ended);
+        $this->attr('Geometry')->openEnded($open_ended);
         return $this;
     }
 
@@ -75,7 +75,7 @@ final class Cone extends Entity implements EntityInterface
      */
     public function radiusBottom(float $radius)
     {
-        $this->component('Geometry')->radiusBottom($radius);
+        $this->attr('Geometry')->radiusBottom($radius);
         return $this;
     }
 
@@ -87,7 +87,7 @@ final class Cone extends Entity implements EntityInterface
      */
     public function radiusTop(float $radius)
     {
-        $this->component('Geometry')->radiusTop($radius);
+        $this->attr('Geometry')->radiusTop($radius);
         return $this;
     }
 
@@ -99,7 +99,7 @@ final class Cone extends Entity implements EntityInterface
      */
     public function segmentsHeight(int $s_height)
     {
-        $this->component('Geometry')->segmentsHeight($s_height);
+        $this->attr('Geometry')->segmentsHeight($s_height);
         return $this;
     }
 
@@ -111,7 +111,7 @@ final class Cone extends Entity implements EntityInterface
      */
     public function segmentsRadial(int $s_radial)
     {
-        $this->component('Geometry')->segmentsRadial($s_radial);
+        $this->attr('Geometry')->segmentsRadial($s_radial);
         return $this;
     }
 
@@ -123,7 +123,7 @@ final class Cone extends Entity implements EntityInterface
      */
     public function thetaLength(float $t_lenght)
     {
-        $this->component('Geometry')->thetaLength($t_lenght);
+        $this->attr('Geometry')->thetaLength($t_lenght);
         return $this;
     }
 
@@ -135,7 +135,7 @@ final class Cone extends Entity implements EntityInterface
      */
     public function thetaStart(float $t_start)
     {
-        $this->component('Geometry')->thetaStart($t_start);
+        $this->attr('Geometry')->thetaStart($t_start);
         return $this;
     }
 }

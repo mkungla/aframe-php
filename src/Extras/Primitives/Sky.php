@@ -41,10 +41,10 @@ final class Sky extends Sphere implements EntityInterface
     {
         parent::reset();
         $this->radius(5000);
-        $this->component('Material')->shader('flat');
+        $this->attr('Material')->shader('flat');
         $this->segmentsHeight(20);
         $this->segmentsWidth(64);
         $this->scale(-1, 1, 1);
-        $this->component('Material')->side('front');
+        $this->attr('Material')->side('front');
     }
 }

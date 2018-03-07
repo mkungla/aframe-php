@@ -40,8 +40,8 @@ class Plane extends Entity implements EntityInterface
     public function reset()
     {
         parent::reset();
-        $this->component('Material');
-        $this->component('Geometry')->primitive('plane');
+        $this->attr('Material');
+        $this->attr('Geometry')->primitive('plane');
     }
 
     /**
@@ -52,7 +52,7 @@ class Plane extends Entity implements EntityInterface
      */
     public function height(float $height)
     {
-        $this->component('Geometry')->height($height);
+        $this->attr('Geometry')->height($height);
         return $this;
     }
 
@@ -64,7 +64,7 @@ class Plane extends Entity implements EntityInterface
      */
     public function width(float $width)
     {
-        $this->component('Geometry')->width($width);
+        $this->attr('Geometry')->width($width);
         return $this;
     }
 }

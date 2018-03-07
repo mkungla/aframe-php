@@ -39,10 +39,10 @@ class Videosphere extends Entity implements EntityInterface
      */
     public function reset()
     {
-        $this->component('Material')->shader('flat');
+        $this->attr('Material')->shader('flat');
         $this->color('#FFF');
         
-        $this->component('Geometry')->primitive('sphere');
+        $this->attr('Geometry')->primitive('sphere');
         $this->radius(5000);
         $this->segmentsHeight(64);
         $this->segmentsWidth(20);
@@ -58,7 +58,7 @@ class Videosphere extends Entity implements EntityInterface
      */
     public function radius(float $radius)
     {
-        $this->component('Geometry')->radius($radius);
+        $this->attr('Geometry')->radius($radius);
         return $this;
     }
 
@@ -82,7 +82,7 @@ class Videosphere extends Entity implements EntityInterface
      */
     public function segmentsHeight(int $segmentsHeigh)
     {
-        $this->component('Geometry')->segmentsHeight($segmentsHeigh);
+        $this->attr('Geometry')->segmentsHeight($segmentsHeigh);
         return $this;
     }
 
@@ -94,7 +94,7 @@ class Videosphere extends Entity implements EntityInterface
      */
     public function segmentsWidth(int $segmentsWidth)
     {
-        $this->component('Geometry')->segmentsWidth($segmentsWidth);
+        $this->attr('Geometry')->segmentsWidth($segmentsWidth);
         return $this;
     }
 }

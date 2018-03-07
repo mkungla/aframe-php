@@ -35,7 +35,7 @@ class CurvedimageTest extends PHPUnit_Framework_TestCase implements PrimitiveTes
         $this->aframe->scene()
             ->curvedimage('new-curvedimage')
             ->repeat(1,1)
-            ->component('Geometry')
+            ->attr('Geometry')
             ->primitive('cylinder')
             ->height(1)
             ->radius(1)
@@ -46,7 +46,7 @@ class CurvedimageTest extends PHPUnit_Framework_TestCase implements PrimitiveTes
             ->thetaStart(135);
         $this->aframe->scene()
             ->curvedimage('new-curvedimage')
-            ->component('Material')
+            ->attr('Material')
             ->shader('standard')
             ->color('#000')
             ->metalness(0)
@@ -72,15 +72,15 @@ class CurvedimageTest extends PHPUnit_Framework_TestCase implements PrimitiveTes
         $doc = new DOMDocument();
         $dom = $doc->loadHTML($this->aframe->scene()->save(true));
         $curvedimage = $doc->getElementById('new-curvedimage');
-        
+
         $this->assertTrue($curvedimage->hasAttribute('geometry'));
         $this->assertTrue($curvedimage->hasAttribute('material'));
-        
+
         $this->assertEquals(
-            'primitive: cylinder; height: 1; radius: 1; segmentsRadial: 36; segmentsHeight: 18; thetaLength: 90; openEnded: true; thetaStart: 135;', 
+            'primitive: cylinder; height: 1; radius: 1; segmentsRadial: 36; segmentsHeight: 18; thetaLength: 90; openEnded: true; thetaStart: 135;',
             $curvedimage->getAttribute('geometry'));
         $this->assertEquals(
-            'repeat: 1 10; shader: standard; opacity: 1; roughness: 0.5; side: double; transparent: true; color: #000; src: #src-selector;', 
+            'shader: standard; side: double; transparent: true; repeat: 1 10; opacity: 1; roughness: 0.5; color: #000; src: #src-selector;',
             $curvedimage->getAttribute('material'));
         libxml_use_internal_errors(false);
     }

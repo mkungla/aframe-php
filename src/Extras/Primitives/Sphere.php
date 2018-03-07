@@ -38,8 +38,8 @@ class Sphere extends Entity implements EntityInterface
      */
     public function reset()
     {
-        $this->component('Material');
-        $this->component('Geometry')->primitive('sphere');
+        $this->attr('Material');
+        $this->attr('Geometry')->primitive('sphere');
         
         $this->radius();
         $this->segmentsHeight();
@@ -54,7 +54,7 @@ class Sphere extends Entity implements EntityInterface
      */
     public function radius(float $radius = 0.85)
     {
-        $this->component('Geometry')->radius($radius);
+        $this->attr('Geometry')->radius($radius);
         return $this;
     }
 
@@ -66,7 +66,7 @@ class Sphere extends Entity implements EntityInterface
      */
     public function segmentsHeight($segmentsHeigh = 18)
     {
-        $this->component('Geometry')->segmentsHeight($segmentsHeigh);
+        $this->attr('Geometry')->segmentsHeight($segmentsHeigh);
         return $this;
     }
 
@@ -78,7 +78,7 @@ class Sphere extends Entity implements EntityInterface
      */
     public function segmentsWidth($segmentsWidth = 36)
     {
-        $this->component('Geometry')->segmentsWidth($segmentsWidth);
+        $this->attr('Geometry')->segmentsWidth($segmentsWidth);
         return $this;
     }
 }

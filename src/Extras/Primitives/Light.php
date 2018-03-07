@@ -40,7 +40,7 @@ class Light extends Entity implements EntityInterface
     public function reset()
     {
         parent::reset();
-        $this->component('Light');
+        $this->attr('Light');
         
     }
 
@@ -52,7 +52,7 @@ class Light extends Entity implements EntityInterface
      */
     public function angle(float $angle = 60)
     {
-        $this->component('Light')->angle($angle);
+        $this->attr('Light')->angle($angle);
         return $this;
     }
 
@@ -64,7 +64,7 @@ class Light extends Entity implements EntityInterface
      */
     public function color(string $color = '#fff'): EntityInterface
     {
-        $this->component('Light')->color($color);
+        $this->attr('Light')->color($color);
         return $this;
     }
 
@@ -76,7 +76,7 @@ class Light extends Entity implements EntityInterface
      */
     public function decay(int $decay = 1)
     {
-        $this->component('Light')->decay($decay);
+        $this->attr('Light')->decay($decay);
         return $this;
     }
 
@@ -88,7 +88,7 @@ class Light extends Entity implements EntityInterface
      */
     public function distance(float $distance = 0.0)
     {
-        $this->component('Light')->distance($distance);
+        $this->attr('Light')->distance($distance);
         return $this;
     }
 
@@ -100,7 +100,7 @@ class Light extends Entity implements EntityInterface
      */
     public function exponent(float $exponent = 10.0)
     {
-        $this->component('Light')->exponent($exponent);
+        $this->attr('Light')->exponent($exponent);
         return $this;
     }
 
@@ -112,7 +112,7 @@ class Light extends Entity implements EntityInterface
      */
     public function groundColor(string $ground_color = '#fff')
     {
-        $this->component('Light')->groundColor($ground_color);
+        $this->attr('Light')->groundColor($ground_color);
         return $this;
     }
 
@@ -124,7 +124,7 @@ class Light extends Entity implements EntityInterface
      */
     public function intensity(float $intensity = 1.0)
     {
-        $this->component('Light')->intensity($intensity);
+        $this->attr('Light')->intensity($intensity);
         return $this;
     }
 
@@ -136,7 +136,7 @@ class Light extends Entity implements EntityInterface
      */
     public function penumbra(float $penumbra)
     {
-        $this->component('Light')->penumbra($penumbra);
+        $this->attr('Light')->penumbra($penumbra);
         return $this;
     }
     
@@ -149,7 +149,7 @@ class Light extends Entity implements EntityInterface
      */
     public function type(string $type = 'directional')
     {
-        $this->component('Light')->type($type);
+        $this->attr('Light')->type($type);
         return $this;
     }
 }

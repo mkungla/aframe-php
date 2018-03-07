@@ -5,10 +5,10 @@
  * Contact      marko@okramlabs.com
  * @copyright   2016 Marko Kungla - https://github.com/mkungla
  * @license     The MIT License (MIT)
- * 
+ *
  * @category       AframeVR
  * @package        aframe-php
- * 
+ *
  * Lang         PHP (php version >= 7)
  * Encoding     UTF-8
  * File         Camera.php
@@ -40,8 +40,8 @@ class Camera extends Entity implements EntityInterface
     public function reset()
     {
         parent::reset();
-        $this->child()->entity()->component('Camera');
-        $this->active(false);
+        $this->el()->entity()->attr('Camera');
+        $this->active(true);
         $this->lookControls(true);
         $this->wasdControls(true);
     }
@@ -49,14 +49,14 @@ class Camera extends Entity implements EntityInterface
     /**
      * camera.active
      *
-     * @param bool $active            
+     * @param bool $active
      * @return \AframeVR\Extras\Primitives\Camera
      */
     public function active(bool $active)
     {
-        $this->child()
+        $this->el()
             ->entity()
-            ->component('Camera')
+            ->attr('Camera')
             ->active($active);
         return $this;
     }
@@ -64,14 +64,14 @@ class Camera extends Entity implements EntityInterface
     /**
      * camera.far
      *
-     * @param float $far            
+     * @param float $far
      * @return \AframeVR\Extras\Primitives\Camera
      */
     public function far(float $far)
     {
-        $this->child()
+        $this->el()
             ->entity()
-            ->component('Camera')
+            ->attr('Camera')
             ->far($far);
         return $this;
     }
@@ -79,14 +79,14 @@ class Camera extends Entity implements EntityInterface
     /**
      * camera.fov
      *
-     * @param float $fov            
+     * @param float $fov
      * @return \AframeVR\Extras\Primitives\Camera
      */
     public function fov(float $fov)
     {
-        $this->child()
+        $this->el()
             ->entity()
-            ->component('Camera')
+            ->attr('Camera')
             ->fov($fov);
         return $this;
     }
@@ -94,14 +94,14 @@ class Camera extends Entity implements EntityInterface
     /**
      * look-controls.enabled
      *
-     * @param bool $look_controls            
+     * @param bool $look_controls
      * @return \AframeVR\Extras\Primitives\Camera
      */
-    public function lookControls(bool $look_controls)
+    public function lookControls(bool $look_controls = true)
     {
-        $this->child()
+        $this->el()
             ->entity()
-            ->component('LookControls')
+            ->attr('LookControls')
             ->enabled($look_controls);
         return $this;
     }
@@ -109,14 +109,14 @@ class Camera extends Entity implements EntityInterface
     /**
      * camera.near
      *
-     * @param float $near            
+     * @param float $near
      * @return \AframeVR\Extras\Primitives\Camera
      */
     public function near(float $near)
     {
-        $this->child()
+        $this->el()
             ->entity()
-            ->component('Camera')
+            ->attr('Camera')
             ->near($near);
         return $this;
     }
@@ -124,14 +124,14 @@ class Camera extends Entity implements EntityInterface
     /**
      * wasd-controls.enabled
      *
-     * @param bool $wasd_controls            
+     * @param bool $wasd_controls
      * @return \AframeVR\Extras\Primitives\Camera
      */
-    public function wasdControls(bool $wasd_controls)
+    public function wasdControls(bool $wasd_controls = true)
     {
-        $this->child()
+        $this->el()
             ->entity()
-            ->component('WASDControls')
+            ->attr('WASDControls')
             ->enabled($wasd_controls);
         return $this;
     }
@@ -139,14 +139,14 @@ class Camera extends Entity implements EntityInterface
     /**
      * camera.zoom
      *
-     * @param float $zoom            
+     * @param float $zoom
      * @return \AframeVR\Extras\Primitives\Camera
      */
     public function zoom(float $zoom)
     {
-        $this->child()
+        $this->el()
             ->entity()
-            ->component('Camera')
+            ->attr('Camera')
             ->zoom($zoom);
         return $this;
     }
@@ -158,12 +158,11 @@ class Camera extends Entity implements EntityInterface
      */
     public function cursor()
     {
-        $this->child()
+        $this->el()
             ->entity()
-            ->child()
+            ->el()
             ->cursor();
         return $this;
     }
 }
 
- 

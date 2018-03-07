@@ -11,9 +11,7 @@ class CursorComponentTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $aframe = new \AframeVR\Aframe();
-        $this->component = $aframe->scene()
-            ->entity()
-            ->cursor();
+        $this->component = $aframe->scene()->entity()->cursor();
     }
 
     const A_INSTANCE = '\AframeVR\Core\Components\Cursor\CursorComponent';
